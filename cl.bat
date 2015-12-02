@@ -1,2 +1,2 @@
 
-CL /EHsc /WX /W4 /O2 /Zi /analyze /FAsc %*
+CL.exe /MP /EHsc /WX /W4 /O2 /Zi /analyze /FAsc %*
