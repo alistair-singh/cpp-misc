@@ -1,0 +1,11 @@
+*.exe
+*.exe.stackdump
+*.dll
+*.lib
+*.o
+*.obj
+*.pdb
+*.ilk
+.vs/
+a.out
+*.nativecodeanalysis.xml
