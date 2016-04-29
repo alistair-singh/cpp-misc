@@ -1,11 +1,11 @@
-#include <ctime>
-#include <cstdlib>
-#include <iostream>
-#include <fstream>
-#include <vector>
-#include <memory>
 #include <algorithm>
+#include <cstdlib>
+#include <ctime>
+#include <fstream>
+#include <iostream>
+#include <memory>
 #include <ppl.h>
+#include <vector>
 
 std::vector<int> bigV(int size) {
   std::vector<int> v;

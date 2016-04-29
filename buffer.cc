@@ -2,9 +2,9 @@
 #include <iostream>
 
 struct buffer {
-  char* begin;
-  char* last;
-  char* end;
+  char *begin;
+  char *last;
+  char *end;
 };
 
 int main() {

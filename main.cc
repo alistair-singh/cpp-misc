@@ -1,10 +1,10 @@
 
-#include <iostream>
-#include <cstdint>
 #include <algorithm>
-#include <sstream>
-#include <gsl.h>
 #include <array_view.h>
+#include <cstdint>
+#include <gsl.h>
+#include <iostream>
+#include <sstream>
 
 typedef uint64_t PageId;
 

@@ -1,10 +1,10 @@
 
-#include <iostream>
-#include <iomanip>
 #include <algorithm>
-#include <string>
-#include <sstream>
 #include <cstdint>
+#include <iomanip>
+#include <iostream>
+#include <sstream>
+#include <string>
 
 struct print_options {
   int columns = 80;
@@ -30,20 +30,22 @@ std::string print_hex(unsigned char const *begin, unsigned char const *end,
 
   int lines = 0;
   for (auto const *cur = begin; cur < end; ++cur) {
-    stream << std::hex << std::setw(2) << std::setfill('0') << static_cast<unsigned>(*cur);
+    stream << std::hex << std::setw(2) << std::setfill('0')
+           << static_cast<unsigned>(*cur);
 
     size_t position = (cur - begin);
-    if ((position+1) % numPerLine == 0 || cur + 1 == end) {
+    if ((position + 1) % numPerLine == 0 || cur + 1 == end) {
       lines++;
       stream << std::endl;
-      if(lines == options.lines) {
-        auto rem = static_cast<int>(std::ceil(length * 1.0/ numPerLine)) - options.lines;
-        if (rem == 0) break;
+      if (lines == options.lines) {
+        auto rem = static_cast<int>(std::ceil(length * 1.0 / numPerLine)) -
+                   options.lines;
+        if (rem == 0)
+          break;
         stream << "... " << rem << " more" << std::endl;
         break;
       }
-    }
-    else
+    } else
       stream << options.seperator;
   }
 

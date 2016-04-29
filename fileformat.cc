@@ -3,15 +3,12 @@
 
 using namespace std;
 
-template <typename T>
-struct Array {
+template <typename T> struct Array {
   const uint32_t size;
-  const T* items;
+  const T *items;
 };
 
-enum class FieldType {
-  String, Atom, Word, DWord, QWord
-};
+enum class FieldType { String, Atom, Word, DWord, QWord };
 
 struct String {
   const int32_t offset;
@@ -34,9 +31,7 @@ struct Record {
   const Array<char> data;
 };
 
-int main()
-{
+int main() {
   cout << "fileformat" << endl;
   return 0;
 }
-

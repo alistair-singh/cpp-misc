@@ -1,14 +1,14 @@
 
 #include <algorithm>
 #include <cstdlib>
-#include <memory>
 #include <iostream>
+#include <memory>
 
 int main() {
   const int SIZE = 1024;
 
   char *ptr1 = static_cast<char *>(::malloc(sizeof(char) * SIZE));
-  auto  ptr2 = new char[SIZE];
+  auto ptr2 = new char[SIZE];
 
   std::fill(ptr1, ptr1 + SIZE, '1');
   std::fill(ptr2, ptr2 + SIZE, '2');
