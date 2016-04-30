@@ -1,2 +1,2 @@
 
-ls *.cc | xargs clang-format -i
+ls *.cc *.cpp | xargs clang-format -i

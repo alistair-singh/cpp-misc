@@ -10,9 +10,6 @@ PUBLIC	?__empty_global_delete@@YAXPEAX_K@Z		; __empty_global_delete
 PUBLIC	fabsl
 PUBLIC	frexpl
 PUBLIC	__local_stdio_printf_options
-PUBLIC	??$__vcrt_va_start_verify_argument_type@QEBD@@YAXXZ ; __vcrt_va_start_verify_argument_type<char const * __ptr64 const>
-PUBLIC	_vsprintf_s_l
-PUBLIC	sprintf_s
 PUBLIC	_MarkAllocaS
 PUBLIC	_MallocaComputeSize
 PUBLIC	_freea
@@ -27,6 +24,9 @@ PUBLIC	??1bad_alloc@std@@UEAA@XZ			; std::bad_alloc::~bad_alloc
 PUBLIC	??0bad_alloc@std@@QEAA@AEBV01@@Z		; std::bad_alloc::bad_alloc
 PUBLIC	??_Gbad_alloc@std@@UEAAPEAXI@Z			; std::bad_alloc::`scalar deleting destructor'
 PUBLIC	??2@YAPEAX_KPEAX@Z				; operator new
+PUBLIC	??$__vcrt_va_start_verify_argument_type@QEBD@@YAXXZ ; __vcrt_va_start_verify_argument_type<char const * __ptr64 const>
+PUBLIC	_vsprintf_s_l
+PUBLIC	sprintf_s
 PUBLIC	?length@?$char_traits@D@std@@SA_KPEBD@Z		; std::char_traits<char>::length
 PUBLIC	?copy@?$char_traits@D@std@@SAPEADPEADPEBD_K@Z	; std::char_traits<char>::copy
 PUBLIC	?move@?$char_traits@D@std@@SAPEADPEADPEBD_K@Z	; std::char_traits<char>::move
@@ -704,24 +704,24 @@ EXTRN	__std_terminate:PROC
 EXTRN	_invalid_parameter_noinfo_noreturn:PROC
 EXTRN	??0_Lockit@std@@QEAA@H@Z:PROC			; std::_Lockit::_Lockit
 EXTRN	??1_Lockit@std@@QEAA@XZ:PROC			; std::_Lockit::~_Lockit
-EXTRN	_time64:PROC
 EXTRN	calloc:PROC
 EXTRN	free:PROC
 EXTRN	malloc:PROC
 EXTRN	srand:PROC
 EXTRN	rand:PROC
 EXTRN	frexp:PROC
-EXTRN	__stdio_common_vsprintf_s:PROC
 EXTRN	memmove:PROC
-EXTRN	strcspn:PROC
 EXTRN	?uncaught_exception@std@@YA_NXZ:PROC		; std::uncaught_exception
 EXTRN	__std_exception_copy:PROC
 EXTRN	__std_exception_destroy:PROC
 EXTRN	??_Eexception@std@@UEAAPEAXI@Z:PROC		; std::exception::`vector deleting destructor'
 EXTRN	??_Ebad_alloc@std@@UEAAPEAXI@Z:PROC		; std::bad_alloc::`vector deleting destructor'
+EXTRN	__stdio_common_vsprintf_s:PROC
+EXTRN	strcspn:PROC
 EXTRN	?_Xbad_alloc@std@@YAXXZ:PROC			; std::_Xbad_alloc
 EXTRN	?_Xlength_error@std@@YAXPEBD@Z:PROC		; std::_Xlength_error
 EXTRN	?_Xout_of_range@std@@YAXPEBD@Z:PROC		; std::_Xout_of_range
+EXTRN	_time64:PROC
 EXTRN	??_Eruntime_error@std@@UEAAPEAXI@Z:PROC		; std::runtime_error::`vector deleting destructor'
 EXTRN	??_Ebad_cast@std@@UEAAPEAXI@Z:PROC		; std::bad_cast::`vector deleting destructor'
 EXTRN	localeconv:PROC
@@ -817,18 +817,6 @@ _BSS	SEGMENT
 _BSS	ENDS
 ;	COMDAT pdata
 pdata	SEGMENT
-$pdata$_vsprintf_s_l DD imagerel $LN4
-	DD	imagerel $LN4+98
-	DD	imagerel $unwind$_vsprintf_s_l
-pdata	ENDS
-;	COMDAT pdata
-pdata	SEGMENT
-$pdata$sprintf_s DD imagerel $LN8
-	DD	imagerel $LN8+85
-	DD	imagerel $unwind$sprintf_s
-pdata	ENDS
-;	COMDAT pdata
-pdata	SEGMENT
 $pdata$??0exception@std@@QEAA@QEBD@Z DD imagerel $LN4
 	DD	imagerel $LN4+64
 	DD	imagerel $unwind$??0exception@std@@QEAA@QEBD@Z
@@ -856,6 +844,18 @@ pdata	SEGMENT
 $pdata$??_Gbad_alloc@std@@UEAAPEAXI@Z DD imagerel $LN11
 	DD	imagerel $LN11+66
 	DD	imagerel $unwind$??_Gbad_alloc@std@@UEAAPEAXI@Z
+pdata	ENDS
+;	COMDAT pdata
+pdata	SEGMENT
+$pdata$_vsprintf_s_l DD imagerel $LN4
+	DD	imagerel $LN4+98
+	DD	imagerel $unwind$_vsprintf_s_l
+pdata	ENDS
+;	COMDAT pdata
+pdata	SEGMENT
+$pdata$sprintf_s DD imagerel $LN8
+	DD	imagerel $LN8+85
+	DD	imagerel $unwind$sprintf_s
 pdata	ENDS
 ;	COMDAT pdata
 pdata	SEGMENT
@@ -6438,6 +6438,21 @@ $unwind$?copy@?$char_traits@D@std@@SAPEADPEADPEBD_K@Z DD 020601H
 xdata	ENDS
 ;	COMDAT xdata
 xdata	SEGMENT
+$unwind$sprintf_s DD 051201H
+	DD	0700e6212H
+	DD	0500c600dH
+	DD	0300bH
+xdata	ENDS
+;	COMDAT xdata
+xdata	SEGMENT
+$unwind$_vsprintf_s_l DD 081401H
+	DD	0a6414H
+	DD	095414H
+	DD	083414H
+	DD	070105214H
+xdata	ENDS
+;	COMDAT xdata
+xdata	SEGMENT
 $unwind$??_Gbad_alloc@std@@UEAAPEAXI@Z DD 040a01H
 	DD	06340aH
 	DD	07006320aH
@@ -6462,21 +6477,6 @@ xdata	ENDS
 xdata	SEGMENT
 $unwind$??0exception@std@@QEAA@QEBD@Z DD 020601H
 	DD	030025206H
-xdata	ENDS
-;	COMDAT xdata
-xdata	SEGMENT
-$unwind$sprintf_s DD 051201H
-	DD	0700e6212H
-	DD	0500c600dH
-	DD	0300bH
-xdata	ENDS
-;	COMDAT xdata
-xdata	SEGMENT
-$unwind$_vsprintf_s_l DD 081401H
-	DD	0a6414H
-	DD	095414H
-	DD	083414H
-	DD	070105214H
 xdata	ENDS
 ; Function compile flags: /Ogtpy
 ; File c:\program files (x86)\microsoft visual studio 14.0\vc\include\xutility
@@ -43644,6 +43644,18 @@ this$ = 8
 ??0?$allocator@D@std@@QEAA@XZ ENDP			; std::allocator<char>::allocator<char>
 _TEXT	ENDS
 ; Function compile flags: /Ogtpy
+; File c:\program files (x86)\windows kits\10\include\10.0.10586.0\ucrt\time.h
+;	COMDAT time
+_TEXT	SEGMENT
+_Time$ = 8
+time	PROC						; COMDAT
+
+; 535  :             return _time64(_Time);
+
+  00000	e9 00 00 00 00	 jmp	 _time64
+time	ENDP
+_TEXT	ENDS
+; Function compile flags: /Ogtpy
 ; File c:\program files (x86)\microsoft visual studio 14.0\vc\include\xatomic0.h
 ;	COMDAT ?_Init_atomic_counter@std@@YAXAEAKK@Z
 _TEXT	SEGMENT
@@ -44192,6 +44204,134 @@ $LL5@length:
 ?length@?$char_traits@D@std@@SA_KPEBD@Z ENDP		; std::char_traits<char>::length
 _TEXT	ENDS
 ; Function compile flags: /Ogtpy
+; File c:\program files (x86)\windows kits\10\include\10.0.10586.0\ucrt\stdio.h
+;	COMDAT sprintf_s
+_TEXT	SEGMENT
+_Buffer$ = 96
+_BufferCount$ = 104
+_Format$ = 112
+sprintf_s PROC						; COMDAT
+
+; 1834 :     {
+
+$LN8:
+  00000	4c 89 44 24 18	 mov	 QWORD PTR [rsp+24], r8
+  00005	4c 89 4c 24 20	 mov	 QWORD PTR [rsp+32], r9
+  0000a	53		 push	 rbx
+  0000b	55		 push	 rbp
+  0000c	56		 push	 rsi
+  0000d	57		 push	 rdi
+  0000e	48 83 ec 38	 sub	 rsp, 56			; 00000038H
+  00012	49 8b f0	 mov	 rsi, r8
+
+; 1835 :         int _Result;
+; 1836 :         va_list _ArgList;
+; 1837 :         __crt_va_start(_ArgList, _Format);
+
+  00015	48 8d 6c 24 78	 lea	 rbp, QWORD PTR _Format$[rsp+8]
+  0001a	48 8b da	 mov	 rbx, rdx
+  0001d	48 8b f9	 mov	 rdi, rcx
+
+; 1494 :     int const _Result = __stdio_common_vsprintf_s(
+
+  00020	e8 00 00 00 00	 call	 __local_stdio_printf_options
+  00025	48 89 6c 24 28	 mov	 QWORD PTR [rsp+40], rbp
+  0002a	4c 8b ce	 mov	 r9, rsi
+  0002d	4c 8b c3	 mov	 r8, rbx
+  00030	48 c7 44 24 20
+	00 00 00 00	 mov	 QWORD PTR [rsp+32], 0
+  00039	48 8b d7	 mov	 rdx, rdi
+  0003c	48 8b 08	 mov	 rcx, QWORD PTR [rax]
+  0003f	e8 00 00 00 00	 call	 __stdio_common_vsprintf_s
+
+; 1495 :         _CRT_INTERNAL_LOCAL_PRINTF_OPTIONS,
+; 1496 :         _Buffer, _BufferCount, _Format, _Locale, _ArgList);
+; 1497 : 
+; 1498 :     return _Result < 0 ? -1 : _Result;
+
+  00044	83 c9 ff	 or	 ecx, -1
+  00047	85 c0		 test	 eax, eax
+  00049	0f 48 c1	 cmovs	 eax, ecx
+
+; 1838 :         _Result = _vsprintf_s_l(_Buffer, _BufferCount, _Format, NULL, _ArgList);
+; 1839 :         __crt_va_end(_ArgList);
+; 1840 :         return _Result;
+; 1841 :     }
+
+  0004c	48 83 c4 38	 add	 rsp, 56			; 00000038H
+  00050	5f		 pop	 rdi
+  00051	5e		 pop	 rsi
+  00052	5d		 pop	 rbp
+  00053	5b		 pop	 rbx
+  00054	c3		 ret	 0
+sprintf_s ENDP
+_TEXT	ENDS
+; Function compile flags: /Ogtpy
+; File c:\program files (x86)\windows kits\10\include\10.0.10586.0\ucrt\stdio.h
+;	COMDAT _vsprintf_s_l
+_TEXT	SEGMENT
+_Buffer$ = 64
+_BufferCount$ = 72
+_Format$ = 80
+_Locale$ = 88
+_ArgList$ = 96
+_vsprintf_s_l PROC					; COMDAT
+
+; 1493 : {
+
+$LN4:
+  00000	48 89 5c 24 08	 mov	 QWORD PTR [rsp+8], rbx
+  00005	48 89 6c 24 10	 mov	 QWORD PTR [rsp+16], rbp
+  0000a	48 89 74 24 18	 mov	 QWORD PTR [rsp+24], rsi
+  0000f	57		 push	 rdi
+  00010	48 83 ec 30	 sub	 rsp, 48			; 00000030H
+  00014	49 8b d9	 mov	 rbx, r9
+  00017	49 8b f8	 mov	 rdi, r8
+  0001a	48 8b f2	 mov	 rsi, rdx
+  0001d	48 8b e9	 mov	 rbp, rcx
+
+; 1494 :     int const _Result = __stdio_common_vsprintf_s(
+
+  00020	e8 00 00 00 00	 call	 __local_stdio_printf_options
+  00025	4c 8b 54 24 60	 mov	 r10, QWORD PTR _ArgList$[rsp]
+  0002a	4c 8b cf	 mov	 r9, rdi
+  0002d	4c 89 54 24 28	 mov	 QWORD PTR [rsp+40], r10
+  00032	4c 8b c6	 mov	 r8, rsi
+  00035	48 8b d5	 mov	 rdx, rbp
+  00038	48 89 5c 24 20	 mov	 QWORD PTR [rsp+32], rbx
+  0003d	48 8b 08	 mov	 rcx, QWORD PTR [rax]
+  00040	e8 00 00 00 00	 call	 __stdio_common_vsprintf_s
+
+; 1495 :         _CRT_INTERNAL_LOCAL_PRINTF_OPTIONS,
+; 1496 :         _Buffer, _BufferCount, _Format, _Locale, _ArgList);
+; 1497 : 
+; 1498 :     return _Result < 0 ? -1 : _Result;
+; 1499 : }
+
+  00045	48 8b 5c 24 40	 mov	 rbx, QWORD PTR [rsp+64]
+  0004a	83 c9 ff	 or	 ecx, -1
+  0004d	48 8b 6c 24 48	 mov	 rbp, QWORD PTR [rsp+72]
+  00052	85 c0		 test	 eax, eax
+  00054	48 8b 74 24 50	 mov	 rsi, QWORD PTR [rsp+80]
+  00059	0f 48 c1	 cmovs	 eax, ecx
+  0005c	48 83 c4 30	 add	 rsp, 48			; 00000030H
+  00060	5f		 pop	 rdi
+  00061	c3		 ret	 0
+_vsprintf_s_l ENDP
+_TEXT	ENDS
+; Function compile flags: /Ogtpy
+; File c:\program files (x86)\microsoft visual studio 14.0\vc\include\vadefs.h
+;	COMDAT ??$__vcrt_va_start_verify_argument_type@QEBD@@YAXXZ
+_TEXT	SEGMENT
+??$__vcrt_va_start_verify_argument_type@QEBD@@YAXXZ PROC ; __vcrt_va_start_verify_argument_type<char const * __ptr64 const>, COMDAT
+
+; 145  :             static_assert(!__vcrt_va_list_is_reference<_Ty>::__the_value, "va_start argument must not have reference type and must not be parenthesized");
+; 146  :         }
+
+  00000	c2 00 00	 ret	 0
+??$__vcrt_va_start_verify_argument_type@QEBD@@YAXXZ ENDP ; __vcrt_va_start_verify_argument_type<char const * __ptr64 const>
+_TEXT	ENDS
+; Function compile flags: /Ogtpy
 ; File c:\program files (x86)\microsoft visual studio 14.0\vc\include\vcruntime_new.h
 ;	COMDAT ??2@YAPEAX_KPEAX@Z
 _TEXT	SEGMENT
@@ -44616,134 +44756,6 @@ $LN4@MarkAlloca:
 _MarkAllocaS ENDP
 _TEXT	ENDS
 ; Function compile flags: /Ogtpy
-; File c:\program files (x86)\windows kits\10\include\10.0.10586.0\ucrt\stdio.h
-;	COMDAT sprintf_s
-_TEXT	SEGMENT
-_Buffer$ = 96
-_BufferCount$ = 104
-_Format$ = 112
-sprintf_s PROC						; COMDAT
-
-; 1834 :     {
-
-$LN8:
-  00000	4c 89 44 24 18	 mov	 QWORD PTR [rsp+24], r8
-  00005	4c 89 4c 24 20	 mov	 QWORD PTR [rsp+32], r9
-  0000a	53		 push	 rbx
-  0000b	55		 push	 rbp
-  0000c	56		 push	 rsi
-  0000d	57		 push	 rdi
-  0000e	48 83 ec 38	 sub	 rsp, 56			; 00000038H
-  00012	49 8b f0	 mov	 rsi, r8
-
-; 1835 :         int _Result;
-; 1836 :         va_list _ArgList;
-; 1837 :         __crt_va_start(_ArgList, _Format);
-
-  00015	48 8d 6c 24 78	 lea	 rbp, QWORD PTR _Format$[rsp+8]
-  0001a	48 8b da	 mov	 rbx, rdx
-  0001d	48 8b f9	 mov	 rdi, rcx
-
-; 1494 :     int const _Result = __stdio_common_vsprintf_s(
-
-  00020	e8 00 00 00 00	 call	 __local_stdio_printf_options
-  00025	48 89 6c 24 28	 mov	 QWORD PTR [rsp+40], rbp
-  0002a	4c 8b ce	 mov	 r9, rsi
-  0002d	4c 8b c3	 mov	 r8, rbx
-  00030	48 c7 44 24 20
-	00 00 00 00	 mov	 QWORD PTR [rsp+32], 0
-  00039	48 8b d7	 mov	 rdx, rdi
-  0003c	48 8b 08	 mov	 rcx, QWORD PTR [rax]
-  0003f	e8 00 00 00 00	 call	 __stdio_common_vsprintf_s
-
-; 1495 :         _CRT_INTERNAL_LOCAL_PRINTF_OPTIONS,
-; 1496 :         _Buffer, _BufferCount, _Format, _Locale, _ArgList);
-; 1497 : 
-; 1498 :     return _Result < 0 ? -1 : _Result;
-
-  00044	83 c9 ff	 or	 ecx, -1
-  00047	85 c0		 test	 eax, eax
-  00049	0f 48 c1	 cmovs	 eax, ecx
-
-; 1838 :         _Result = _vsprintf_s_l(_Buffer, _BufferCount, _Format, NULL, _ArgList);
-; 1839 :         __crt_va_end(_ArgList);
-; 1840 :         return _Result;
-; 1841 :     }
-
-  0004c	48 83 c4 38	 add	 rsp, 56			; 00000038H
-  00050	5f		 pop	 rdi
-  00051	5e		 pop	 rsi
-  00052	5d		 pop	 rbp
-  00053	5b		 pop	 rbx
-  00054	c3		 ret	 0
-sprintf_s ENDP
-_TEXT	ENDS
-; Function compile flags: /Ogtpy
-; File c:\program files (x86)\windows kits\10\include\10.0.10586.0\ucrt\stdio.h
-;	COMDAT _vsprintf_s_l
-_TEXT	SEGMENT
-_Buffer$ = 64
-_BufferCount$ = 72
-_Format$ = 80
-_Locale$ = 88
-_ArgList$ = 96
-_vsprintf_s_l PROC					; COMDAT
-
-; 1493 : {
-
-$LN4:
-  00000	48 89 5c 24 08	 mov	 QWORD PTR [rsp+8], rbx
-  00005	48 89 6c 24 10	 mov	 QWORD PTR [rsp+16], rbp
-  0000a	48 89 74 24 18	 mov	 QWORD PTR [rsp+24], rsi
-  0000f	57		 push	 rdi
-  00010	48 83 ec 30	 sub	 rsp, 48			; 00000030H
-  00014	49 8b d9	 mov	 rbx, r9
-  00017	49 8b f8	 mov	 rdi, r8
-  0001a	48 8b f2	 mov	 rsi, rdx
-  0001d	48 8b e9	 mov	 rbp, rcx
-
-; 1494 :     int const _Result = __stdio_common_vsprintf_s(
-
-  00020	e8 00 00 00 00	 call	 __local_stdio_printf_options
-  00025	4c 8b 54 24 60	 mov	 r10, QWORD PTR _ArgList$[rsp]
-  0002a	4c 8b cf	 mov	 r9, rdi
-  0002d	4c 89 54 24 28	 mov	 QWORD PTR [rsp+40], r10
-  00032	4c 8b c6	 mov	 r8, rsi
-  00035	48 8b d5	 mov	 rdx, rbp
-  00038	48 89 5c 24 20	 mov	 QWORD PTR [rsp+32], rbx
-  0003d	48 8b 08	 mov	 rcx, QWORD PTR [rax]
-  00040	e8 00 00 00 00	 call	 __stdio_common_vsprintf_s
-
-; 1495 :         _CRT_INTERNAL_LOCAL_PRINTF_OPTIONS,
-; 1496 :         _Buffer, _BufferCount, _Format, _Locale, _ArgList);
-; 1497 : 
-; 1498 :     return _Result < 0 ? -1 : _Result;
-; 1499 : }
-
-  00045	48 8b 5c 24 40	 mov	 rbx, QWORD PTR [rsp+64]
-  0004a	83 c9 ff	 or	 ecx, -1
-  0004d	48 8b 6c 24 48	 mov	 rbp, QWORD PTR [rsp+72]
-  00052	85 c0		 test	 eax, eax
-  00054	48 8b 74 24 50	 mov	 rsi, QWORD PTR [rsp+80]
-  00059	0f 48 c1	 cmovs	 eax, ecx
-  0005c	48 83 c4 30	 add	 rsp, 48			; 00000030H
-  00060	5f		 pop	 rdi
-  00061	c3		 ret	 0
-_vsprintf_s_l ENDP
-_TEXT	ENDS
-; Function compile flags: /Ogtpy
-; File c:\program files (x86)\microsoft visual studio 14.0\vc\include\vadefs.h
-;	COMDAT ??$__vcrt_va_start_verify_argument_type@QEBD@@YAXXZ
-_TEXT	SEGMENT
-??$__vcrt_va_start_verify_argument_type@QEBD@@YAXXZ PROC ; __vcrt_va_start_verify_argument_type<char const * __ptr64 const>, COMDAT
-
-; 145  :             static_assert(!__vcrt_va_list_is_reference<_Ty>::__the_value, "va_start argument must not have reference type and must not be parenthesized");
-; 146  :         }
-
-  00000	c2 00 00	 ret	 0
-??$__vcrt_va_start_verify_argument_type@QEBD@@YAXXZ ENDP ; __vcrt_va_start_verify_argument_type<char const * __ptr64 const>
-_TEXT	ENDS
-; Function compile flags: /Ogtpy
 ; File c:\program files (x86)\windows kits\10\include\10.0.10586.0\ucrt\corecrt_stdio_config.h
 ;	COMDAT __local_stdio_printf_options
 _TEXT	SEGMENT
@@ -44789,18 +44801,6 @@ fabsl	PROC						; COMDAT
 
   00007	c3		 ret	 0
 fabsl	ENDP
-_TEXT	ENDS
-; Function compile flags: /Ogtpy
-; File c:\program files (x86)\windows kits\10\include\10.0.10586.0\ucrt\time.h
-;	COMDAT time
-_TEXT	SEGMENT
-_Time$ = 8
-time	PROC						; COMDAT
-
-; 535  :             return _time64(_Time);
-
-  00000	e9 00 00 00 00	 jmp	 _time64
-time	ENDP
 _TEXT	ENDS
 ; Function compile flags: /Ogtpy
 ; File c:\users\alist_000\cppmisc\madints.cc
