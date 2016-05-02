@@ -15,7 +15,6 @@ struct print_options {
 
 std::string print_hex(unsigned char const *begin, unsigned char const *end,
                       print_options const &options) {
-  const int pad = 64;
   std::ostringstream stream;
   auto length = std::distance(begin, end);
 
@@ -57,7 +56,7 @@ int main() {
 
   auto data = (unsigned char const *)(&print_hex);
   auto body = print_hex(data, data + 120, print_options{});
-  std::cout << &print_hex << std::endl;
+  std::cout << (void*)(&print_hex) << std::endl;
   std::cout << body << std::endl;
   std::cout << body.length() << std::endl;
   return 0;
