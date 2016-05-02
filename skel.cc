@@ -2,6 +2,6 @@
 #include <iostream>
 
 int main() {
-  std::cout << "skel.cc\n";
+  std::cout << __FILE__ << std::endl;
   return 0;
 }
