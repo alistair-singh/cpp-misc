@@ -6,6 +6,7 @@
 *.obj
 *.pdb
 *.ilk
+*.lnk
 .vs/
 a.out
 *.nativecodeanalysis.xml
