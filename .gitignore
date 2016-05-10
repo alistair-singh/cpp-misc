@@ -10,3 +10,4 @@
 .vs/
 a.out
 *.nativecodeanalysis.xml
+packages/
