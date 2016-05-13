@@ -7,10 +7,11 @@
 
 using namespace std;
 
-void run(int num) {
+auto run(int num) {
   vector<int> v;
   v.reserve(num);
   fill_n(back_inserter(v), num, num);
+  return v;
 }
 
 int main(int argc, char **argv) {
@@ -25,7 +26,11 @@ int main(int argc, char **argv) {
   //  {
   int num = stoi(argv[1], nullptr);
   cout << "number of items " << num << endl;
-  run(num);
+  auto v = run(num);
+  cout << "memory reserved, press enter to quit." << endl;
+  
+  string line;
+  getline(cin, line);
   return 0;
   //  }
   //  catch (std::exception& e)
