@@ -149,6 +149,7 @@ EXTRN	__imp_ReadDirectoryChangesW:PROC
 EXTRN	_Wcrtomb:PROC
 EXTRN	_Init_thread_abort:PROC
 EXTRN	_Getwctypes:PROC
+EXTRN	_flushall:PROC
 EXTRN	_Getcvt:PROC
 EXTRN	localeconv:PROC
 EXTRN	_Init_thread_header:PROC
@@ -1107,29 +1108,29 @@ CONST	ENDS
 ;	COMDAT ??_C@_02BBAHNLBA@?$CFp?$AA@
 CONST	SEGMENT
 ??_C@_02BBAHNLBA@?$CFp?$AA@ DB '%p', 00H		; `string'
-$SG4294967199 DB ' - ', 00H
-$SG4294967198 DB ') ', 00H
+$SG4294967197 DB ' ', 00H, 00H, 00H
+$SG4294967196 DB ' - ', 00H
+$SG4294967195 DB ') ', 00H
 	ORG $+1
-$SG4294967197 DB ':(', 00H
+$SG4294967194 DB ':(', 00H
 	ORG $+1
-$SG4294967195 DB ' ', 00H, 00H, 00H
-$SG4294967196 DB 'Executing command: ', 00H
-$SG4294967191 DB ' ', 00H, 00H, 00H
-$SG4294967194 DB 'Skipping command.', 00H
+$SG4294967193 DB ':', 00H
 	ORG $+2
-$SG4294967190 DB 'usage:', 00H
-	ORG $+1
-$SG4294967188 DB 09H, 00H
-	ORG $+2
-$SG4294967193 DB 'Error Code: ', 00H
+$SG4294967189 DB ' ', 00H, 00H, 00H
+$SG4294967192 DB '#######', 00H
+$SG4294967191 DB 'Error Code: ', 00H
 	ORG $+3
-$SG4294967192 DB 'Error Message: ', 00H
-$SG4294967189 DB ' \dir\to\watch extension command', 00H
+$SG4294967190 DB 'Error Message: ', 00H
+$SG4294967188 DB 'usage:', 00H
+	ORG $+1
+$SG4294967187 DB ' \dir\to\watch extension command', 00H
 	ORG $+3
-$SG4294967187 DB '''', 00H
+$SG4294967186 DB 09H, 00H
 	ORG $+2
-$SG4294967186 DB 'Cannot open directory ''', 00H
-$SG4294967185 DB 'E', 00H, 'r', 00H, 'r', 00H, 'o', 00H, 'r', 00H, ' ', 00H
+$SG4294967185 DB '''', 00H
+	ORG $+6
+$SG4294967184 DB 'Cannot open directory ''', 00H
+$SG4294967183 DB 'E', 00H, 'r', 00H, 'r', 00H, 'o', 00H, 'r', 00H, ' ', 00H
 	DB	'R', 00H, 'e', 00H, 'a', 00H, 'd', 00H, 'i', 00H, 'n', 00H, 'g'
 	DB	00H, ' ', 00H, 'D', 00H, 'i', 00H, 'r', 00H, 'e', 00H, 'c', 00H
 	DB	't', 00H, 'o', 00H, 'r', 00H, 'y', 00H, ' ', 00H, 'C', 00H, 'h'
@@ -1273,12 +1274,12 @@ PUBLIC	??$forward@V?$basic_string@_WU?$char_traits@_W@std@@V?$allocator@_W@2@@st
 PUBLIC	??$assign@V?$_String_iterator@V?$_String_val@U?$_Simple_types@_W@std@@@std@@@std@@@?$basic_string@_WU?$char_traits@_W@std@@V?$allocator@_W@2@@std@@QEAAAEAV01@V?$_String_iterator@V?$_String_val@U?$_Simple_types@_W@std@@@std@@@1@0@Z ; std::basic_string<wchar_t,std::char_traits<wchar_t>,std::allocator<wchar_t> >::assign<std::_String_iterator<std::_String_val<std::_Simple_types<wchar_t> > > >
 PUBLIC	??$?9_W_W@std@@YA_NAEBV?$allocator@_W@0@0@Z	; std::operator!=<wchar_t,wchar_t>
 PUBLIC	??$?9V?$allocator@_W@std@@V01@@std@@YA_NAEBU?$_Wrap_alloc@V?$allocator@_W@std@@@0@0@Z ; std::operator!=<std::allocator<wchar_t>,std::allocator<wchar_t> >
-PUBLIC	??$?H_WU?$char_traits@_W@std@@V?$allocator@_W@1@@std@@YA?AV?$basic_string@_WU?$char_traits@_W@std@@V?$allocator@_W@2@@0@$$QEAV10@AEBV10@@Z ; std::operator+<wchar_t,std::char_traits<wchar_t>,std::allocator<wchar_t> >
-PUBLIC	??$?H_WU?$char_traits@_W@std@@V?$allocator@_W@1@@std@@YA?AV?$basic_string@_WU?$char_traits@_W@std@@V?$allocator@_W@2@@0@AEBV10@PEB_W@Z ; std::operator+<wchar_t,std::char_traits<wchar_t>,std::allocator<wchar_t> >
 PUBLIC	??$endl@_WU?$char_traits@_W@std@@@std@@YAAEAV?$basic_ostream@_WU?$char_traits@_W@std@@@0@AEAV10@@Z ; std::endl<wchar_t,std::char_traits<wchar_t> >
 PUBLIC	??$?6_WU?$char_traits@_W@std@@@std@@YAAEAV?$basic_ostream@_WU?$char_traits@_W@std@@@0@AEAV10@PEB_W@Z ; std::operator<<<wchar_t,std::char_traits<wchar_t> >
 PUBLIC	??$?6_WU?$char_traits@_W@std@@V?$allocator@_W@1@@std@@YAAEAV?$basic_ostream@_WU?$char_traits@_W@std@@@0@AEAV10@AEBV?$basic_string@_WU?$char_traits@_W@std@@V?$allocator@_W@2@@0@@Z ; std::operator<<<wchar_t,std::char_traits<wchar_t>,std::allocator<wchar_t> >
 PUBLIC	??$?6_WU?$char_traits@_W@std@@@std@@YAAEAV?$basic_ostream@_WU?$char_traits@_W@std@@@0@AEAV10@PEBD@Z ; std::operator<<<wchar_t,std::char_traits<wchar_t> >
+PUBLIC	??$?H_WU?$char_traits@_W@std@@V?$allocator@_W@1@@std@@YA?AV?$basic_string@_WU?$char_traits@_W@std@@V?$allocator@_W@2@@0@$$QEAV10@AEBV10@@Z ; std::operator+<wchar_t,std::char_traits<wchar_t>,std::allocator<wchar_t> >
+PUBLIC	??$?H_WU?$char_traits@_W@std@@V?$allocator@_W@1@@std@@YA?AV?$basic_string@_WU?$char_traits@_W@std@@V?$allocator@_W@2@@0@AEBV10@PEB_W@Z ; std::operator+<wchar_t,std::char_traits<wchar_t>,std::allocator<wchar_t> >
 PUBLIC	??$_Immortalize@V_Iostream_error_category@std@@@std@@YAAEAV_Iostream_error_category@0@XZ ; std::_Immortalize<std::_Iostream_error_category>
 PUBLIC	??$__vcrt_va_start_verify_argument_type@QEBD@@YAXXZ ; __vcrt_va_start_verify_argument_type<char const * __ptr64 const>
 PUBLIC	?max_size@?$allocator@D@std@@QEBA_KXZ		; std::allocator<char>::max_size
@@ -1437,8 +1438,8 @@ PUBLIC	??1_Bxty@?$_String_val@U?$_Simple_types@_W@std@@@std@@QEAA@XZ ; std::_Str
 PUBLIC	??0?$ostreambuf_iterator@_WU?$char_traits@_W@std@@@std@@QEAA@PEAV?$basic_streambuf@_WU?$char_traits@_W@std@@@1@@Z ; std::ostreambuf_iterator<wchar_t,std::char_traits<wchar_t> >::ostreambuf_iterator<wchar_t,std::char_traits<wchar_t> >
 PUBLIC	?failed@?$ostreambuf_iterator@_WU?$char_traits@_W@std@@@std@@QEBA_NXZ ; std::ostreambuf_iterator<wchar_t,std::char_traits<wchar_t> >::failed
 PUBLIC	??1?$num_put@_WV?$ostreambuf_iterator@_WU?$char_traits@_W@std@@@std@@@std@@MEAA@XZ ; std::num_put<wchar_t,std::ostreambuf_iterator<wchar_t,std::char_traits<wchar_t> > >::~num_put<wchar_t,std::ostreambuf_iterator<wchar_t,std::char_traits<wchar_t> > >
-PUBLIC	?put@?$num_put@_WV?$ostreambuf_iterator@_WU?$char_traits@_W@std@@@std@@@std@@QEBA?AV?$ostreambuf_iterator@_WU?$char_traits@_W@std@@@2@V32@AEAVios_base@2@_WJ@Z ; std::num_put<wchar_t,std::ostreambuf_iterator<wchar_t,std::char_traits<wchar_t> > >::put
 PUBLIC	?put@?$num_put@_WV?$ostreambuf_iterator@_WU?$char_traits@_W@std@@@std@@@std@@QEBA?AV?$ostreambuf_iterator@_WU?$char_traits@_W@std@@@2@V32@AEAVios_base@2@_WK@Z ; std::num_put<wchar_t,std::ostreambuf_iterator<wchar_t,std::char_traits<wchar_t> > >::put
+PUBLIC	?put@?$num_put@_WV?$ostreambuf_iterator@_WU?$char_traits@_W@std@@@std@@@std@@QEBA?AV?$ostreambuf_iterator@_WU?$char_traits@_W@std@@@2@V32@AEAVios_base@2@_W_K@Z ; std::num_put<wchar_t,std::ostreambuf_iterator<wchar_t,std::char_traits<wchar_t> > >::put
 PUBLIC	?do_put@?$num_put@_WV?$ostreambuf_iterator@_WU?$char_traits@_W@std@@@std@@@std@@MEBA?AV?$ostreambuf_iterator@_WU?$char_traits@_W@std@@@2@V32@AEAVios_base@2@_W_N@Z ; std::num_put<wchar_t,std::ostreambuf_iterator<wchar_t,std::char_traits<wchar_t> > >::do_put
 PUBLIC	?do_put@?$num_put@_WV?$ostreambuf_iterator@_WU?$char_traits@_W@std@@@std@@@std@@MEBA?AV?$ostreambuf_iterator@_WU?$char_traits@_W@std@@@2@V32@AEAVios_base@2@_WJ@Z ; std::num_put<wchar_t,std::ostreambuf_iterator<wchar_t,std::char_traits<wchar_t> > >::do_put
 PUBLIC	?do_put@?$num_put@_WV?$ostreambuf_iterator@_WU?$char_traits@_W@std@@@std@@@std@@MEBA?AV?$ostreambuf_iterator@_WU?$char_traits@_W@std@@@2@V32@AEAVios_base@2@_WK@Z ; std::num_put<wchar_t,std::ostreambuf_iterator<wchar_t,std::char_traits<wchar_t> > >::do_put
@@ -1458,8 +1459,8 @@ PUBLIC	??1?$_String_alloc@U?$_String_base_types@DV?$allocator@D@std@@@std@@@std@
 PUBLIC	??1?$_String_alloc@U?$_String_base_types@_WV?$allocator@_W@std@@@std@@@std@@QEAA@XZ ; std::_String_alloc<std::_String_base_types<wchar_t,std::allocator<wchar_t> > >::~_String_alloc<std::_String_base_types<wchar_t,std::allocator<wchar_t> > >
 PUBLIC	??6?$basic_ostream@_WU?$char_traits@_W@std@@@std@@QEAAAEAV01@P6AAEAV01@AEAV01@@Z@Z ; std::basic_ostream<wchar_t,std::char_traits<wchar_t> >::operator<<
 PUBLIC	??6?$basic_ostream@_WU?$char_traits@_W@std@@@std@@QEAAAEAV01@P6AAEAVios_base@1@AEAV21@@Z@Z ; std::basic_ostream<wchar_t,std::char_traits<wchar_t> >::operator<<
-PUBLIC	??6?$basic_ostream@_WU?$char_traits@_W@std@@@std@@QEAAAEAV01@H@Z ; std::basic_ostream<wchar_t,std::char_traits<wchar_t> >::operator<<
 PUBLIC	??6?$basic_ostream@_WU?$char_traits@_W@std@@@std@@QEAAAEAV01@I@Z ; std::basic_ostream<wchar_t,std::char_traits<wchar_t> >::operator<<
+PUBLIC	??6?$basic_ostream@_WU?$char_traits@_W@std@@@std@@QEAAAEAV01@_K@Z ; std::basic_ostream<wchar_t,std::char_traits<wchar_t> >::operator<<
 PUBLIC	??0?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QEAA@AEBV01@@Z ; std::basic_string<char,std::char_traits<char>,std::allocator<char> >::basic_string<char,std::char_traits<char>,std::allocator<char> >
 PUBLIC	??0?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QEAA@XZ ; std::basic_string<char,std::char_traits<char>,std::allocator<char> >::basic_string<char,std::char_traits<char>,std::allocator<char> >
 PUBLIC	??0?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QEAA@PEBD@Z ; std::basic_string<char,std::char_traits<char>,std::allocator<char> >::basic_string<char,std::char_traits<char>,std::allocator<char> >
@@ -1489,7 +1490,7 @@ PUBLIC	??1?$_Yarn@_W@std@@QEAA@XZ			; std::_Yarn<wchar_t>::~_Yarn<wchar_t>
 PUBLIC	wmain
 PUBLIC	?joinCommand@@YA?AV?$basic_string@_WU?$char_traits@_W@std@@V?$allocator@_W@2@@std@@HPEAPEA_W@Z ; joinCommand
 PUBLIC	?printError@@YAXXZ				; printError
-PUBLIC	?handle@@YAXHIAEBV?$basic_string@_WU?$char_traits@_W@std@@V?$allocator@_W@2@@std@@00@Z ; handle
+PUBLIC	?handle@@YAX_K0IAEBV?$basic_string@_WU?$char_traits@_W@std@@V?$allocator@_W@2@@std@@11@Z ; handle
 PUBLIC	?hasExtension@@YA_NAEBV?$basic_string@_WU?$char_traits@_W@std@@V?$allocator@_W@2@@std@@0@Z ; hasExtension
 PUBLIC	?hex@std@@YAAEAVios_base@1@AEAV21@@Z		; std::hex
 PUBLIC	??0_System_error@std@@QEAA@AEBV01@@Z		; std::_System_error::_System_error
@@ -1871,24 +1872,6 @@ $pdata$??$assign@V?$_String_iterator@V?$_String_val@U?$_Simple_types@_W@std@@@st
 pdata	ENDS
 ;	COMDAT pdata
 pdata	SEGMENT
-$pdata$??$?H_WU?$char_traits@_W@std@@V?$allocator@_W@1@@std@@YA?AV?$basic_string@_WU?$char_traits@_W@std@@V?$allocator@_W@2@@0@$$QEAV10@AEBV10@@Z DD imagerel $LN138
-	DD	imagerel $LN138+83
-	DD	imagerel $unwind$??$?H_WU?$char_traits@_W@std@@V?$allocator@_W@1@@std@@YA?AV?$basic_string@_WU?$char_traits@_W@std@@V?$allocator@_W@2@@0@$$QEAV10@AEBV10@@Z
-pdata	ENDS
-;	COMDAT pdata
-pdata	SEGMENT
-$pdata$??$?H_WU?$char_traits@_W@std@@V?$allocator@_W@1@@std@@YA?AV?$basic_string@_WU?$char_traits@_W@std@@V?$allocator@_W@2@@0@AEBV10@PEB_W@Z DD imagerel $LN142
-	DD	imagerel $LN142+143
-	DD	imagerel $unwind$??$?H_WU?$char_traits@_W@std@@V?$allocator@_W@1@@std@@YA?AV?$basic_string@_WU?$char_traits@_W@std@@V?$allocator@_W@2@@0@AEBV10@PEB_W@Z
-pdata	ENDS
-;	COMDAT pdata
-pdata	SEGMENT
-$pdata$?dtor$0@?0???$?H_WU?$char_traits@_W@std@@V?$allocator@_W@1@@std@@YA?AV?$basic_string@_WU?$char_traits@_W@std@@V?$allocator@_W@2@@0@AEBV10@PEB_W@Z@4HA DD imagerel ?dtor$0@?0???$?H_WU?$char_traits@_W@std@@V?$allocator@_W@1@@std@@YA?AV?$basic_string@_WU?$char_traits@_W@std@@V?$allocator@_W@2@@0@AEBV10@PEB_W@Z@4HA
-	DD	imagerel ?dtor$0@?0???$?H_WU?$char_traits@_W@std@@V?$allocator@_W@1@@std@@YA?AV?$basic_string@_WU?$char_traits@_W@std@@V?$allocator@_W@2@@0@AEBV10@PEB_W@Z@4HA+38
-	DD	imagerel $unwind$?dtor$0@?0???$?H_WU?$char_traits@_W@std@@V?$allocator@_W@1@@std@@YA?AV?$basic_string@_WU?$char_traits@_W@std@@V?$allocator@_W@2@@0@AEBV10@PEB_W@Z@4HA
-pdata	ENDS
-;	COMDAT pdata
-pdata	SEGMENT
 $pdata$??$endl@_WU?$char_traits@_W@std@@@std@@YAAEAV?$basic_ostream@_WU?$char_traits@_W@std@@@0@AEAV10@@Z DD imagerel $LN4
 	DD	imagerel $LN4+54
 	DD	imagerel $unwind$??$endl@_WU?$char_traits@_W@std@@@std@@YAAEAV?$basic_ostream@_WU?$char_traits@_W@std@@@0@AEAV10@@Z
@@ -1928,6 +1911,24 @@ pdata	SEGMENT
 $pdata$?catch$238@?0???$?6_WU?$char_traits@_W@std@@@std@@YAAEAV?$basic_ostream@_WU?$char_traits@_W@std@@@0@AEAV10@PEBD@Z@4HA DD imagerel ?catch$238@?0???$?6_WU?$char_traits@_W@std@@@std@@YAAEAV?$basic_ostream@_WU?$char_traits@_W@std@@@0@AEAV10@PEBD@Z@4HA
 	DD	imagerel ?catch$238@?0???$?6_WU?$char_traits@_W@std@@@std@@YAAEAV?$basic_ostream@_WU?$char_traits@_W@std@@@0@AEAV10@PEBD@Z@4HA+80
 	DD	imagerel $unwind$?catch$238@?0???$?6_WU?$char_traits@_W@std@@@std@@YAAEAV?$basic_ostream@_WU?$char_traits@_W@std@@@0@AEAV10@PEBD@Z@4HA
+pdata	ENDS
+;	COMDAT pdata
+pdata	SEGMENT
+$pdata$??$?H_WU?$char_traits@_W@std@@V?$allocator@_W@1@@std@@YA?AV?$basic_string@_WU?$char_traits@_W@std@@V?$allocator@_W@2@@0@$$QEAV10@AEBV10@@Z DD imagerel $LN138
+	DD	imagerel $LN138+83
+	DD	imagerel $unwind$??$?H_WU?$char_traits@_W@std@@V?$allocator@_W@1@@std@@YA?AV?$basic_string@_WU?$char_traits@_W@std@@V?$allocator@_W@2@@0@$$QEAV10@AEBV10@@Z
+pdata	ENDS
+;	COMDAT pdata
+pdata	SEGMENT
+$pdata$??$?H_WU?$char_traits@_W@std@@V?$allocator@_W@1@@std@@YA?AV?$basic_string@_WU?$char_traits@_W@std@@V?$allocator@_W@2@@0@AEBV10@PEB_W@Z DD imagerel $LN142
+	DD	imagerel $LN142+143
+	DD	imagerel $unwind$??$?H_WU?$char_traits@_W@std@@V?$allocator@_W@1@@std@@YA?AV?$basic_string@_WU?$char_traits@_W@std@@V?$allocator@_W@2@@0@AEBV10@PEB_W@Z
+pdata	ENDS
+;	COMDAT pdata
+pdata	SEGMENT
+$pdata$?dtor$0@?0???$?H_WU?$char_traits@_W@std@@V?$allocator@_W@1@@std@@YA?AV?$basic_string@_WU?$char_traits@_W@std@@V?$allocator@_W@2@@0@AEBV10@PEB_W@Z@4HA DD imagerel ?dtor$0@?0???$?H_WU?$char_traits@_W@std@@V?$allocator@_W@1@@std@@YA?AV?$basic_string@_WU?$char_traits@_W@std@@V?$allocator@_W@2@@0@AEBV10@PEB_W@Z@4HA
+	DD	imagerel ?dtor$0@?0???$?H_WU?$char_traits@_W@std@@V?$allocator@_W@1@@std@@YA?AV?$basic_string@_WU?$char_traits@_W@std@@V?$allocator@_W@2@@0@AEBV10@PEB_W@Z@4HA+38
+	DD	imagerel $unwind$?dtor$0@?0???$?H_WU?$char_traits@_W@std@@V?$allocator@_W@1@@std@@YA?AV?$basic_string@_WU?$char_traits@_W@std@@V?$allocator@_W@2@@0@AEBV10@PEB_W@Z@4HA
 pdata	ENDS
 ;	COMDAT pdata
 pdata	SEGMENT
@@ -2519,15 +2520,15 @@ $pdata$?_Tidy@?$_Yarn@_W@std@@AEAAXXZ DD imagerel $LN6
 pdata	ENDS
 ;	COMDAT pdata
 pdata	SEGMENT
-$pdata$?put@?$num_put@_WV?$ostreambuf_iterator@_WU?$char_traits@_W@std@@@std@@@std@@QEBA?AV?$ostreambuf_iterator@_WU?$char_traits@_W@std@@@2@V32@AEAVios_base@2@_WJ@Z DD imagerel $LN6
-	DD	imagerel $LN6+58
-	DD	imagerel $unwind$?put@?$num_put@_WV?$ostreambuf_iterator@_WU?$char_traits@_W@std@@@std@@@std@@QEBA?AV?$ostreambuf_iterator@_WU?$char_traits@_W@std@@@2@V32@AEAVios_base@2@_WJ@Z
-pdata	ENDS
-;	COMDAT pdata
-pdata	SEGMENT
 $pdata$?put@?$num_put@_WV?$ostreambuf_iterator@_WU?$char_traits@_W@std@@@std@@@std@@QEBA?AV?$ostreambuf_iterator@_WU?$char_traits@_W@std@@@2@V32@AEAVios_base@2@_WK@Z DD imagerel $LN6
 	DD	imagerel $LN6+58
 	DD	imagerel $unwind$?put@?$num_put@_WV?$ostreambuf_iterator@_WU?$char_traits@_W@std@@@std@@@std@@QEBA?AV?$ostreambuf_iterator@_WU?$char_traits@_W@std@@@2@V32@AEAVios_base@2@_WK@Z
+pdata	ENDS
+;	COMDAT pdata
+pdata	SEGMENT
+$pdata$?put@?$num_put@_WV?$ostreambuf_iterator@_WU?$char_traits@_W@std@@@std@@@std@@QEBA?AV?$ostreambuf_iterator@_WU?$char_traits@_W@std@@@2@V32@AEAVios_base@2@_W_K@Z DD imagerel $LN6
+	DD	imagerel $LN6+60
+	DD	imagerel $unwind$?put@?$num_put@_WV?$ostreambuf_iterator@_WU?$char_traits@_W@std@@@std@@@std@@QEBA?AV?$ostreambuf_iterator@_WU?$char_traits@_W@std@@@2@V32@AEAVios_base@2@_W_K@Z
 pdata	ENDS
 ;	COMDAT pdata
 pdata	SEGMENT
@@ -2591,18 +2592,6 @@ $pdata$??1sentry@?$basic_ostream@_WU?$char_traits@_W@std@@@std@@QEAA@XZ DD image
 pdata	ENDS
 ;	COMDAT pdata
 pdata	SEGMENT
-$pdata$??6?$basic_ostream@_WU?$char_traits@_W@std@@@std@@QEAAAEAV01@H@Z DD imagerel $LN1102
-	DD	imagerel $LN1102+435
-	DD	imagerel $unwind$??6?$basic_ostream@_WU?$char_traits@_W@std@@@std@@QEAAAEAV01@H@Z
-pdata	ENDS
-;	COMDAT pdata
-pdata	SEGMENT
-$pdata$?catch$228@?0???6?$basic_ostream@_WU?$char_traits@_W@std@@@std@@QEAAAEAV01@H@Z@4HA DD imagerel ?catch$228@?0???6?$basic_ostream@_WU?$char_traits@_W@std@@@std@@QEAAAEAV01@H@Z@4HA
-	DD	imagerel ?catch$228@?0???6?$basic_ostream@_WU?$char_traits@_W@std@@@std@@QEAAAEAV01@H@Z@4HA+87
-	DD	imagerel $unwind$?catch$228@?0???6?$basic_ostream@_WU?$char_traits@_W@std@@@std@@QEAAAEAV01@H@Z@4HA
-pdata	ENDS
-;	COMDAT pdata
-pdata	SEGMENT
 $pdata$??6?$basic_ostream@_WU?$char_traits@_W@std@@@std@@QEAAAEAV01@I@Z DD imagerel $LN1098
 	DD	imagerel $LN1098+399
 	DD	imagerel $unwind$??6?$basic_ostream@_WU?$char_traits@_W@std@@@std@@QEAAAEAV01@I@Z
@@ -2612,6 +2601,18 @@ pdata	SEGMENT
 $pdata$?catch$228@?0???6?$basic_ostream@_WU?$char_traits@_W@std@@@std@@QEAAAEAV01@I@Z@4HA DD imagerel ?catch$228@?0???6?$basic_ostream@_WU?$char_traits@_W@std@@@std@@QEAAAEAV01@I@Z@4HA
 	DD	imagerel ?catch$228@?0???6?$basic_ostream@_WU?$char_traits@_W@std@@@std@@QEAAAEAV01@I@Z@4HA+80
 	DD	imagerel $unwind$?catch$228@?0???6?$basic_ostream@_WU?$char_traits@_W@std@@@std@@QEAAAEAV01@I@Z@4HA
+pdata	ENDS
+;	COMDAT pdata
+pdata	SEGMENT
+$pdata$??6?$basic_ostream@_WU?$char_traits@_W@std@@@std@@QEAAAEAV01@_K@Z DD imagerel $LN1098
+	DD	imagerel $LN1098+399
+	DD	imagerel $unwind$??6?$basic_ostream@_WU?$char_traits@_W@std@@@std@@QEAAAEAV01@_K@Z
+pdata	ENDS
+;	COMDAT pdata
+pdata	SEGMENT
+$pdata$?catch$228@?0???6?$basic_ostream@_WU?$char_traits@_W@std@@@std@@QEAAAEAV01@_K@Z@4HA DD imagerel ?catch$228@?0???6?$basic_ostream@_WU?$char_traits@_W@std@@@std@@QEAAAEAV01@_K@Z@4HA
+	DD	imagerel ?catch$228@?0???6?$basic_ostream@_WU?$char_traits@_W@std@@@std@@QEAAAEAV01@_K@Z@4HA+80
+	DD	imagerel $unwind$?catch$228@?0???6?$basic_ostream@_WU?$char_traits@_W@std@@@std@@QEAAAEAV01@_K@Z@4HA
 pdata	ENDS
 ;	COMDAT pdata
 pdata	SEGMENT
@@ -2681,7 +2682,7 @@ $pdata$??1?$_Yarn@_W@std@@QEAA@XZ DD imagerel $LN8
 pdata	ENDS
 pdata	SEGMENT
 $pdata$wmain DD	imagerel $LN2230
-	DD	imagerel $LN2230+1175
+	DD	imagerel $LN2230+1265
 	DD	imagerel $unwind$wmain
 $pdata$?joinCommand@@YA?AV?$basic_string@_WU?$char_traits@_W@std@@V?$allocator@_W@2@@std@@HPEAPEA_W@Z DD imagerel $LN139
 	DD	imagerel $LN139+194
@@ -2696,9 +2697,9 @@ pdata	SEGMENT
 $pdata$?printError@@YAXXZ DD imagerel $LN12
 	DD	imagerel $LN12+248
 	DD	imagerel $unwind$?printError@@YAXXZ
-$pdata$?handle@@YAXHIAEBV?$basic_string@_WU?$char_traits@_W@std@@V?$allocator@_W@2@@std@@00@Z DD imagerel $LN386
-	DD	imagerel $LN386+589
-	DD	imagerel $unwind$?handle@@YAXHIAEBV?$basic_string@_WU?$char_traits@_W@std@@V?$allocator@_W@2@@std@@00@Z
+$pdata$?handle@@YAX_K0IAEBV?$basic_string@_WU?$char_traits@_W@std@@V?$allocator@_W@2@@std@@11@Z DD imagerel $LN377
+	DD	imagerel $LN377+522
+	DD	imagerel $unwind$?handle@@YAX_K0IAEBV?$basic_string@_WU?$char_traits@_W@std@@V?$allocator@_W@2@@std@@11@Z
 $pdata$?hasExtension@@YA_NAEBV?$basic_string@_WU?$char_traits@_W@std@@V?$allocator@_W@2@@std@@0@Z DD imagerel $LN137
 	DD	imagerel $LN137+104
 	DD	imagerel $unwind$?hasExtension@@YA_NAEBV?$basic_string@_WU?$char_traits@_W@std@@V?$allocator@_W@2@@std@@0@Z
@@ -4086,23 +4087,24 @@ $cppxdata$?joinCommand@@YA?AV?$basic_string@_WU?$char_traits@_W@std@@V?$allocato
 	DD	028H
 	DD	00H
 	DD	01H
-$cppxdata$?handle@@YAXHIAEBV?$basic_string@_WU?$char_traits@_W@std@@V?$allocator@_W@2@@std@@00@Z DD 019930522H
-	DD	01H
-	DD	imagerel $stateUnwindMap$?handle@@YAXHIAEBV?$basic_string@_WU?$char_traits@_W@std@@V?$allocator@_W@2@@std@@00@Z
-	DD	00H
-	DD	00H
+$cppxdata$?handle@@YAX_K0IAEBV?$basic_string@_WU?$char_traits@_W@std@@V?$allocator@_W@2@@std@@11@Z DD 019930522H
 	DD	03H
-	DD	imagerel $ip2state$?handle@@YAXHIAEBV?$basic_string@_WU?$char_traits@_W@std@@V?$allocator@_W@2@@std@@00@Z
+	DD	imagerel $stateUnwindMap$?handle@@YAX_K0IAEBV?$basic_string@_WU?$char_traits@_W@std@@V?$allocator@_W@2@@std@@11@Z
+	DD	00H
+	DD	00H
+	DD	04H
+	DD	imagerel $ip2state$?handle@@YAX_K0IAEBV?$basic_string@_WU?$char_traits@_W@std@@V?$allocator@_W@2@@std@@11@Z
 	DD	020H
 	DD	00H
 	DD	01H
 CONST	ENDS
 xdata	SEGMENT
-$unwind$wmain DD 093f19H
-	DD	0224342eH
-	DD	021c011dH
-	DD	0e006f008H
-	DD	060037004H
+$unwind$wmain DD 0b4819H
+	DD	02256437H
+	DD	0224342fH
+	DD	021c011eH
+	DD	0e007f009H
+	DD	07003c005H
 	DD	05002H
 	DD	imagerel __GSHandlerCheck_EH
 	DD	imagerel $cppxdata$wmain
@@ -4119,25 +4121,25 @@ $stateUnwindMap$wmain DD 0ffffffffH
 	DD	imagerel wmain$dtor$4
 $ip2state$wmain DD imagerel wmain
 	DD	0ffffffffH
-	DD	imagerel wmain+88
+	DD	imagerel wmain+97
 	DD	00H
-	DD	imagerel wmain+105
+	DD	imagerel wmain+114
 	DD	01H
-	DD	imagerel wmain+125
+	DD	imagerel wmain+134
 	DD	02H
-	DD	imagerel wmain+384
+	DD	imagerel wmain+397
 	DD	03H
-	DD	imagerel wmain+457
+	DD	imagerel wmain+470
 	DD	02H
-	DD	imagerel wmain+737
+	DD	imagerel wmain+782
 	DD	04H
-	DD	imagerel wmain+767
+	DD	imagerel wmain+822
 	DD	02H
-	DD	imagerel wmain+1017
+	DD	imagerel wmain+1102
 	DD	01H
-	DD	imagerel wmain+1066
+	DD	imagerel wmain+1151
 	DD	00H
-	DD	imagerel wmain+1109
+	DD	imagerel wmain+1194
 	DD	0ffffffffH
 $unwind$?joinCommand@@YA?AV?$basic_string@_WU?$char_traits@_W@std@@V?$allocator@_W@2@@std@@HPEAPEA_W@Z DD 082011H
 	DD	0c5420H
@@ -4159,20 +4161,26 @@ $unwind$?printError@@YAXXZ DD 031b19H
 	DD	03002H
 	DD	imagerel __GSHandlerCheck
 	DD	0440H
-$unwind$?handle@@YAXHIAEBV?$basic_string@_WU?$char_traits@_W@std@@V?$allocator@_W@2@@std@@00@Z DD 062319H
+$unwind$?handle@@YAX_K0IAEBV?$basic_string@_WU?$char_traits@_W@std@@V?$allocator@_W@2@@std@@11@Z DD 062319H
 	DD	0e007d20bH
 	DD	060047005H
 	DD	030025003H
 	DD	imagerel __GSHandlerCheck_EH
-	DD	imagerel $cppxdata$?handle@@YAXHIAEBV?$basic_string@_WU?$char_traits@_W@std@@V?$allocator@_W@2@@std@@00@Z
+	DD	imagerel $cppxdata$?handle@@YAX_K0IAEBV?$basic_string@_WU?$char_traits@_W@std@@V?$allocator@_W@2@@std@@11@Z
 	DD	06aH
-$stateUnwindMap$?handle@@YAXHIAEBV?$basic_string@_WU?$char_traits@_W@std@@V?$allocator@_W@2@@std@@00@Z DD 0ffffffffH
-	DD	imagerel ?dtor$0@?0??handle@@YAXHIAEBV?$basic_string@_WU?$char_traits@_W@std@@V?$allocator@_W@2@@std@@00@Z@4HA
-$ip2state$?handle@@YAXHIAEBV?$basic_string@_WU?$char_traits@_W@std@@V?$allocator@_W@2@@std@@00@Z DD imagerel ?handle@@YAXHIAEBV?$basic_string@_WU?$char_traits@_W@std@@V?$allocator@_W@2@@std@@00@Z
-	DD	0ffffffffH
-	DD	imagerel ?handle@@YAXHIAEBV?$basic_string@_WU?$char_traits@_W@std@@V?$allocator@_W@2@@std@@00@Z+393
+$stateUnwindMap$?handle@@YAX_K0IAEBV?$basic_string@_WU?$char_traits@_W@std@@V?$allocator@_W@2@@std@@11@Z DD 0ffffffffH
+	DD	imagerel ?dtor$0@?0??handle@@YAX_K0IAEBV?$basic_string@_WU?$char_traits@_W@std@@V?$allocator@_W@2@@std@@11@Z@4HA
 	DD	00H
-	DD	imagerel ?handle@@YAXHIAEBV?$basic_string@_WU?$char_traits@_W@std@@V?$allocator@_W@2@@std@@00@Z+476
+	DD	imagerel ?dtor$1@?0??handle@@YAX_K0IAEBV?$basic_string@_WU?$char_traits@_W@std@@V?$allocator@_W@2@@std@@11@Z@4HA
+	DD	0ffffffffH
+	DD	imagerel ?dtor$1@?0??handle@@YAX_K0IAEBV?$basic_string@_WU?$char_traits@_W@std@@V?$allocator@_W@2@@std@@11@Z@4HA
+$ip2state$?handle@@YAX_K0IAEBV?$basic_string@_WU?$char_traits@_W@std@@V?$allocator@_W@2@@std@@11@Z DD imagerel ?handle@@YAX_K0IAEBV?$basic_string@_WU?$char_traits@_W@std@@V?$allocator@_W@2@@std@@11@Z
+	DD	0ffffffffH
+	DD	imagerel ?handle@@YAX_K0IAEBV?$basic_string@_WU?$char_traits@_W@std@@V?$allocator@_W@2@@std@@11@Z+170
+	DD	00H
+	DD	imagerel ?handle@@YAX_K0IAEBV?$basic_string@_WU?$char_traits@_W@std@@V?$allocator@_W@2@@std@@11@Z+187
+	DD	02H
+	DD	imagerel ?handle@@YAX_K0IAEBV?$basic_string@_WU?$char_traits@_W@std@@V?$allocator@_W@2@@std@@11@Z+469
 	DD	0ffffffffH
 $unwind$?hasExtension@@YA_NAEBV?$basic_string@_WU?$char_traits@_W@std@@V?$allocator@_W@2@@std@@0@Z DD 010401H
 	DD	04204H
@@ -4253,6 +4261,107 @@ xdata	ENDS
 xdata	SEGMENT
 $unwind$??0?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QEAA@AEBV01@@Z DD 020601H
 	DD	030023206H
+xdata	ENDS
+;	COMDAT xdata
+xdata	SEGMENT
+$unwind$?catch$228@?0???6?$basic_ostream@_WU?$char_traits@_W@std@@@std@@QEAAAEAV01@_K@Z@4HA DD 020a19H
+	DD	05006520aH
+	DD	imagerel __CxxFrameHandler3
+	DD	imagerel $cppxdata$??6?$basic_ostream@_WU?$char_traits@_W@std@@@std@@QEAAAEAV01@_K@Z
+xdata	ENDS
+;	COMDAT xdata
+xdata	SEGMENT
+$ip2state$??6?$basic_ostream@_WU?$char_traits@_W@std@@@std@@QEAAAEAV01@_K@Z DD imagerel ??6?$basic_ostream@_WU?$char_traits@_W@std@@@std@@QEAAAEAV01@_K@Z
+	DD	0ffffffffH
+	DD	imagerel ??6?$basic_ostream@_WU?$char_traits@_W@std@@@std@@QEAAAEAV01@_K@Z+75
+	DD	00H
+	DD	imagerel ??6?$basic_ostream@_WU?$char_traits@_W@std@@@std@@QEAAAEAV01@_K@Z+130
+	DD	01H
+	DD	imagerel ??6?$basic_ostream@_WU?$char_traits@_W@std@@@std@@QEAAAEAV01@_K@Z+149
+	DD	02H
+	DD	imagerel ??6?$basic_ostream@_WU?$char_traits@_W@std@@@std@@QEAAAEAV01@_K@Z+160
+	DD	03H
+	DD	imagerel ??6?$basic_ostream@_WU?$char_traits@_W@std@@@std@@QEAAAEAV01@_K@Z+196
+	DD	04H
+	DD	imagerel ??6?$basic_ostream@_WU?$char_traits@_W@std@@@std@@QEAAAEAV01@_K@Z+282
+	DD	01H
+	DD	imagerel ??6?$basic_ostream@_WU?$char_traits@_W@std@@@std@@QEAAAEAV01@_K@Z+334
+	DD	08H
+	DD	imagerel ??6?$basic_ostream@_WU?$char_traits@_W@std@@@std@@QEAAAEAV01@_K@Z+352
+	DD	09H
+	DD	imagerel ??6?$basic_ostream@_WU?$char_traits@_W@std@@@std@@QEAAAEAV01@_K@Z+376
+	DD	0ffffffffH
+	DD	imagerel ?catch$228@?0???6?$basic_ostream@_WU?$char_traits@_W@std@@@std@@QEAAAEAV01@_K@Z@4HA
+	DD	00H
+	DD	imagerel ?catch$228@?0???6?$basic_ostream@_WU?$char_traits@_W@std@@@std@@QEAAAEAV01@_K@Z@4HA+13
+	DD	05H
+	DD	imagerel ?catch$228@?0???6?$basic_ostream@_WU?$char_traits@_W@std@@@std@@QEAAAEAV01@_K@Z@4HA+54
+	DD	00H
+	DD	imagerel ?catch$228@?0???6?$basic_ostream@_WU?$char_traits@_W@std@@@std@@QEAAAEAV01@_K@Z@4HA+63
+	DD	05H
+	DD	imagerel ?catch$228@?0???6?$basic_ostream@_WU?$char_traits@_W@std@@@std@@QEAAAEAV01@_K@Z@4HA+73
+	DD	00H
+xdata	ENDS
+;	COMDAT xdata
+xdata	SEGMENT
+$handlerMap$0$??6?$basic_ostream@_WU?$char_traits@_W@std@@@std@@QEAAAEAV01@_K@Z DD 040H
+	DD	00H
+	DD	00H
+	DD	imagerel ?catch$228@?0???6?$basic_ostream@_WU?$char_traits@_W@std@@@std@@QEAAAEAV01@_K@Z@4HA
+	DD	048H
+xdata	ENDS
+;	COMDAT xdata
+xdata	SEGMENT
+$tryMap$??6?$basic_ostream@_WU?$char_traits@_W@std@@@std@@QEAAAEAV01@_K@Z DD 04H
+	DD	04H
+	DD	07H
+	DD	01H
+	DD	imagerel $handlerMap$0$??6?$basic_ostream@_WU?$char_traits@_W@std@@@std@@QEAAAEAV01@_K@Z
+xdata	ENDS
+;	COMDAT xdata
+xdata	SEGMENT
+$stateUnwindMap$??6?$basic_ostream@_WU?$char_traits@_W@std@@@std@@QEAAAEAV01@_K@Z DD 0ffffffffH
+	DD	imagerel ?dtor$2@?0???6?$basic_ostream@_WU?$char_traits@_W@std@@@std@@QEAAAEAV01@_K@Z@4HA
+	DD	0ffffffffH
+	DD	imagerel ?dtor$0@?0???6?$basic_ostream@_WU?$char_traits@_W@std@@@std@@QEAAAEAV01@_K@Z@4HA
+	DD	01H
+	DD	imagerel ?dtor$1@?0???6?$basic_ostream@_WU?$char_traits@_W@std@@@std@@QEAAAEAV01@_K@Z@4HA
+	DD	01H
+	DD	imagerel __std_terminate
+	DD	01H
+	DD	00H
+	DD	01H
+	DD	00H
+	DD	05H
+	DD	00H
+	DD	05H
+	DD	00H
+	DD	0ffffffffH
+	DD	imagerel __std_terminate
+	DD	08H
+	DD	imagerel __std_terminate
+xdata	ENDS
+;	COMDAT CONST
+CONST	SEGMENT
+$cppxdata$??6?$basic_ostream@_WU?$char_traits@_W@std@@@std@@QEAAAEAV01@_K@Z DD 019930522H
+	DD	0aH
+	DD	imagerel $stateUnwindMap$??6?$basic_ostream@_WU?$char_traits@_W@std@@@std@@QEAAAEAV01@_K@Z
+	DD	01H
+	DD	imagerel $tryMap$??6?$basic_ostream@_WU?$char_traits@_W@std@@@std@@QEAAAEAV01@_K@Z
+	DD	0fH
+	DD	imagerel $ip2state$??6?$basic_ostream@_WU?$char_traits@_W@std@@@std@@QEAAAEAV01@_K@Z
+	DD	060H
+	DD	00H
+	DD	01H
+CONST	ENDS
+;	COMDAT xdata
+xdata	SEGMENT
+$unwind$??6?$basic_ostream@_WU?$char_traits@_W@std@@@std@@QEAAAEAV01@_K@Z DD 061d19H
+	DD	016341dH
+	DD	0e005f20cH
+	DD	060027003H
+	DD	imagerel __CxxFrameHandler3
+	DD	imagerel $cppxdata$??6?$basic_ostream@_WU?$char_traits@_W@std@@@std@@QEAAAEAV01@_K@Z
 xdata	ENDS
 ;	COMDAT xdata
 xdata	SEGMENT
@@ -4354,108 +4463,6 @@ $unwind$??6?$basic_ostream@_WU?$char_traits@_W@std@@@std@@QEAAAEAV01@I@Z DD 061d
 	DD	060027003H
 	DD	imagerel __CxxFrameHandler3
 	DD	imagerel $cppxdata$??6?$basic_ostream@_WU?$char_traits@_W@std@@@std@@QEAAAEAV01@I@Z
-xdata	ENDS
-;	COMDAT xdata
-xdata	SEGMENT
-$unwind$?catch$228@?0???6?$basic_ostream@_WU?$char_traits@_W@std@@@std@@QEAAAEAV01@H@Z@4HA DD 020a19H
-	DD	05006520aH
-	DD	imagerel __CxxFrameHandler3
-	DD	imagerel $cppxdata$??6?$basic_ostream@_WU?$char_traits@_W@std@@@std@@QEAAAEAV01@H@Z
-xdata	ENDS
-;	COMDAT xdata
-xdata	SEGMENT
-$ip2state$??6?$basic_ostream@_WU?$char_traits@_W@std@@@std@@QEAAAEAV01@H@Z DD imagerel ??6?$basic_ostream@_WU?$char_traits@_W@std@@@std@@QEAAAEAV01@H@Z
-	DD	0ffffffffH
-	DD	imagerel ??6?$basic_ostream@_WU?$char_traits@_W@std@@@std@@QEAAAEAV01@H@Z+80
-	DD	00H
-	DD	imagerel ??6?$basic_ostream@_WU?$char_traits@_W@std@@@std@@QEAAAEAV01@H@Z+141
-	DD	01H
-	DD	imagerel ??6?$basic_ostream@_WU?$char_traits@_W@std@@@std@@QEAAAEAV01@H@Z+163
-	DD	02H
-	DD	imagerel ??6?$basic_ostream@_WU?$char_traits@_W@std@@@std@@QEAAAEAV01@H@Z+174
-	DD	03H
-	DD	imagerel ??6?$basic_ostream@_WU?$char_traits@_W@std@@@std@@QEAAAEAV01@H@Z+210
-	DD	04H
-	DD	imagerel ??6?$basic_ostream@_WU?$char_traits@_W@std@@@std@@QEAAAEAV01@H@Z+302
-	DD	01H
-	DD	imagerel ??6?$basic_ostream@_WU?$char_traits@_W@std@@@std@@QEAAAEAV01@H@Z+360
-	DD	08H
-	DD	imagerel ??6?$basic_ostream@_WU?$char_traits@_W@std@@@std@@QEAAAEAV01@H@Z+378
-	DD	09H
-	DD	imagerel ??6?$basic_ostream@_WU?$char_traits@_W@std@@@std@@QEAAAEAV01@H@Z+406
-	DD	0ffffffffH
-	DD	imagerel ?catch$228@?0???6?$basic_ostream@_WU?$char_traits@_W@std@@@std@@QEAAAEAV01@H@Z@4HA
-	DD	00H
-	DD	imagerel ?catch$228@?0???6?$basic_ostream@_WU?$char_traits@_W@std@@@std@@QEAAAEAV01@H@Z@4HA+13
-	DD	05H
-	DD	imagerel ?catch$228@?0???6?$basic_ostream@_WU?$char_traits@_W@std@@@std@@QEAAAEAV01@H@Z@4HA+61
-	DD	00H
-	DD	imagerel ?catch$228@?0???6?$basic_ostream@_WU?$char_traits@_W@std@@@std@@QEAAAEAV01@H@Z@4HA+70
-	DD	05H
-	DD	imagerel ?catch$228@?0???6?$basic_ostream@_WU?$char_traits@_W@std@@@std@@QEAAAEAV01@H@Z@4HA+80
-	DD	00H
-xdata	ENDS
-;	COMDAT xdata
-xdata	SEGMENT
-$handlerMap$0$??6?$basic_ostream@_WU?$char_traits@_W@std@@@std@@QEAAAEAV01@H@Z DD 040H
-	DD	00H
-	DD	00H
-	DD	imagerel ?catch$228@?0???6?$basic_ostream@_WU?$char_traits@_W@std@@@std@@QEAAAEAV01@H@Z@4HA
-	DD	048H
-xdata	ENDS
-;	COMDAT xdata
-xdata	SEGMENT
-$tryMap$??6?$basic_ostream@_WU?$char_traits@_W@std@@@std@@QEAAAEAV01@H@Z DD 04H
-	DD	04H
-	DD	07H
-	DD	01H
-	DD	imagerel $handlerMap$0$??6?$basic_ostream@_WU?$char_traits@_W@std@@@std@@QEAAAEAV01@H@Z
-xdata	ENDS
-;	COMDAT xdata
-xdata	SEGMENT
-$stateUnwindMap$??6?$basic_ostream@_WU?$char_traits@_W@std@@@std@@QEAAAEAV01@H@Z DD 0ffffffffH
-	DD	imagerel ?dtor$2@?0???6?$basic_ostream@_WU?$char_traits@_W@std@@@std@@QEAAAEAV01@H@Z@4HA
-	DD	0ffffffffH
-	DD	imagerel ?dtor$0@?0???6?$basic_ostream@_WU?$char_traits@_W@std@@@std@@QEAAAEAV01@H@Z@4HA
-	DD	01H
-	DD	imagerel ?dtor$1@?0???6?$basic_ostream@_WU?$char_traits@_W@std@@@std@@QEAAAEAV01@H@Z@4HA
-	DD	01H
-	DD	imagerel __std_terminate
-	DD	01H
-	DD	00H
-	DD	01H
-	DD	00H
-	DD	05H
-	DD	00H
-	DD	05H
-	DD	00H
-	DD	0ffffffffH
-	DD	imagerel __std_terminate
-	DD	08H
-	DD	imagerel __std_terminate
-xdata	ENDS
-;	COMDAT CONST
-CONST	SEGMENT
-$cppxdata$??6?$basic_ostream@_WU?$char_traits@_W@std@@@std@@QEAAAEAV01@H@Z DD 019930522H
-	DD	0aH
-	DD	imagerel $stateUnwindMap$??6?$basic_ostream@_WU?$char_traits@_W@std@@@std@@QEAAAEAV01@H@Z
-	DD	01H
-	DD	imagerel $tryMap$??6?$basic_ostream@_WU?$char_traits@_W@std@@@std@@QEAAAEAV01@H@Z
-	DD	0fH
-	DD	imagerel $ip2state$??6?$basic_ostream@_WU?$char_traits@_W@std@@@std@@QEAAAEAV01@H@Z
-	DD	060H
-	DD	00H
-	DD	01H
-CONST	ENDS
-;	COMDAT xdata
-xdata	SEGMENT
-$unwind$??6?$basic_ostream@_WU?$char_traits@_W@std@@@std@@QEAAAEAV01@H@Z DD 082019H
-	DD	0157420H
-	DD	014641cH
-	DD	0123418H
-	DD	0e005f20cH
-	DD	imagerel __CxxFrameHandler3
-	DD	imagerel $cppxdata$??6?$basic_ostream@_WU?$char_traits@_W@std@@@std@@QEAAAEAV01@H@Z
 xdata	ENDS
 ;	COMDAT xdata
 xdata	SEGMENT
@@ -4714,12 +4721,12 @@ $unwind$?do_put@?$num_put@_WV?$ostreambuf_iterator@_WU?$char_traits@_W@std@@@std
 xdata	ENDS
 ;	COMDAT xdata
 xdata	SEGMENT
-$unwind$?put@?$num_put@_WV?$ostreambuf_iterator@_WU?$char_traits@_W@std@@@std@@@std@@QEBA?AV?$ostreambuf_iterator@_WU?$char_traits@_W@std@@@2@V32@AEAVios_base@2@_WK@Z DD 020601H
+$unwind$?put@?$num_put@_WV?$ostreambuf_iterator@_WU?$char_traits@_W@std@@@std@@@std@@QEBA?AV?$ostreambuf_iterator@_WU?$char_traits@_W@std@@@2@V32@AEAVios_base@2@_W_K@Z DD 020601H
 	DD	030027206H
 xdata	ENDS
 ;	COMDAT xdata
 xdata	SEGMENT
-$unwind$?put@?$num_put@_WV?$ostreambuf_iterator@_WU?$char_traits@_W@std@@@std@@@std@@QEBA?AV?$ostreambuf_iterator@_WU?$char_traits@_W@std@@@2@V32@AEAVios_base@2@_WJ@Z DD 020601H
+$unwind$?put@?$num_put@_WV?$ostreambuf_iterator@_WU?$char_traits@_W@std@@@std@@@std@@QEBA?AV?$ostreambuf_iterator@_WU?$char_traits@_W@std@@@2@V32@AEAVios_base@2@_WK@Z DD 020601H
 	DD	030027206H
 xdata	ENDS
 ;	COMDAT xdata
@@ -5739,6 +5746,50 @@ $unwind$??$_Immortalize@V_Iostream_error_category@std@@@std@@YAAEAV_Iostream_err
 xdata	ENDS
 ;	COMDAT xdata
 xdata	SEGMENT
+$unwind$?dtor$0@?0???$?H_WU?$char_traits@_W@std@@V?$allocator@_W@1@@std@@YA?AV?$basic_string@_WU?$char_traits@_W@std@@V?$allocator@_W@2@@0@AEBV10@PEB_W@Z@4HA DD 020601H
+	DD	050023206H
+xdata	ENDS
+;	COMDAT xdata
+xdata	SEGMENT
+$ip2state$??$?H_WU?$char_traits@_W@std@@V?$allocator@_W@1@@std@@YA?AV?$basic_string@_WU?$char_traits@_W@std@@V?$allocator@_W@2@@0@AEBV10@PEB_W@Z DD imagerel ??$?H_WU?$char_traits@_W@std@@V?$allocator@_W@1@@std@@YA?AV?$basic_string@_WU?$char_traits@_W@std@@V?$allocator@_W@2@@0@AEBV10@PEB_W@Z
+	DD	0ffffffffH
+	DD	imagerel ??$?H_WU?$char_traits@_W@std@@V?$allocator@_W@1@@std@@YA?AV?$basic_string@_WU?$char_traits@_W@std@@V?$allocator@_W@2@@0@AEBV10@PEB_W@Z+30
+	DD	00H
+xdata	ENDS
+;	COMDAT xdata
+xdata	SEGMENT
+$stateUnwindMap$??$?H_WU?$char_traits@_W@std@@V?$allocator@_W@1@@std@@YA?AV?$basic_string@_WU?$char_traits@_W@std@@V?$allocator@_W@2@@0@AEBV10@PEB_W@Z DD 0ffffffffH
+	DD	imagerel ?dtor$0@?0???$?H_WU?$char_traits@_W@std@@V?$allocator@_W@1@@std@@YA?AV?$basic_string@_WU?$char_traits@_W@std@@V?$allocator@_W@2@@0@AEBV10@PEB_W@Z@4HA
+xdata	ENDS
+;	COMDAT CONST
+CONST	SEGMENT
+$cppxdata$??$?H_WU?$char_traits@_W@std@@V?$allocator@_W@1@@std@@YA?AV?$basic_string@_WU?$char_traits@_W@std@@V?$allocator@_W@2@@0@AEBV10@PEB_W@Z DD 019930522H
+	DD	01H
+	DD	imagerel $stateUnwindMap$??$?H_WU?$char_traits@_W@std@@V?$allocator@_W@1@@std@@YA?AV?$basic_string@_WU?$char_traits@_W@std@@V?$allocator@_W@2@@0@AEBV10@PEB_W@Z
+	DD	00H
+	DD	00H
+	DD	02H
+	DD	imagerel $ip2state$??$?H_WU?$char_traits@_W@std@@V?$allocator@_W@1@@std@@YA?AV?$basic_string@_WU?$char_traits@_W@std@@V?$allocator@_W@2@@0@AEBV10@PEB_W@Z
+	DD	028H
+	DD	00H
+	DD	01H
+CONST	ENDS
+;	COMDAT xdata
+xdata	SEGMENT
+$unwind$??$?H_WU?$char_traits@_W@std@@V?$allocator@_W@1@@std@@YA?AV?$basic_string@_WU?$char_traits@_W@std@@V?$allocator@_W@2@@0@AEBV10@PEB_W@Z DD 041811H
+	DD	093418H
+	DD	07006520aH
+	DD	imagerel __CxxFrameHandler3
+	DD	imagerel $cppxdata$??$?H_WU?$char_traits@_W@std@@V?$allocator@_W@1@@std@@YA?AV?$basic_string@_WU?$char_traits@_W@std@@V?$allocator@_W@2@@0@AEBV10@PEB_W@Z
+xdata	ENDS
+;	COMDAT xdata
+xdata	SEGMENT
+$unwind$??$?H_WU?$char_traits@_W@std@@V?$allocator@_W@1@@std@@YA?AV?$basic_string@_WU?$char_traits@_W@std@@V?$allocator@_W@2@@0@$$QEAV10@AEBV10@@Z DD 040a01H
+	DD	08340aH
+	DD	07006520aH
+xdata	ENDS
+;	COMDAT xdata
+xdata	SEGMENT
 $unwind$?catch$238@?0???$?6_WU?$char_traits@_W@std@@@std@@YAAEAV?$basic_ostream@_WU?$char_traits@_W@std@@@0@AEAV10@PEBD@Z@4HA DD 020a19H
 	DD	05006520aH
 	DD	imagerel __CxxFrameHandler3
@@ -6036,50 +6087,6 @@ xdata	ENDS
 xdata	SEGMENT
 $unwind$??$endl@_WU?$char_traits@_W@std@@@std@@YAAEAV?$basic_ostream@_WU?$char_traits@_W@std@@@0@AEAV10@@Z DD 020601H
 	DD	030023206H
-xdata	ENDS
-;	COMDAT xdata
-xdata	SEGMENT
-$unwind$?dtor$0@?0???$?H_WU?$char_traits@_W@std@@V?$allocator@_W@1@@std@@YA?AV?$basic_string@_WU?$char_traits@_W@std@@V?$allocator@_W@2@@0@AEBV10@PEB_W@Z@4HA DD 020601H
-	DD	050023206H
-xdata	ENDS
-;	COMDAT xdata
-xdata	SEGMENT
-$ip2state$??$?H_WU?$char_traits@_W@std@@V?$allocator@_W@1@@std@@YA?AV?$basic_string@_WU?$char_traits@_W@std@@V?$allocator@_W@2@@0@AEBV10@PEB_W@Z DD imagerel ??$?H_WU?$char_traits@_W@std@@V?$allocator@_W@1@@std@@YA?AV?$basic_string@_WU?$char_traits@_W@std@@V?$allocator@_W@2@@0@AEBV10@PEB_W@Z
-	DD	0ffffffffH
-	DD	imagerel ??$?H_WU?$char_traits@_W@std@@V?$allocator@_W@1@@std@@YA?AV?$basic_string@_WU?$char_traits@_W@std@@V?$allocator@_W@2@@0@AEBV10@PEB_W@Z+30
-	DD	00H
-xdata	ENDS
-;	COMDAT xdata
-xdata	SEGMENT
-$stateUnwindMap$??$?H_WU?$char_traits@_W@std@@V?$allocator@_W@1@@std@@YA?AV?$basic_string@_WU?$char_traits@_W@std@@V?$allocator@_W@2@@0@AEBV10@PEB_W@Z DD 0ffffffffH
-	DD	imagerel ?dtor$0@?0???$?H_WU?$char_traits@_W@std@@V?$allocator@_W@1@@std@@YA?AV?$basic_string@_WU?$char_traits@_W@std@@V?$allocator@_W@2@@0@AEBV10@PEB_W@Z@4HA
-xdata	ENDS
-;	COMDAT CONST
-CONST	SEGMENT
-$cppxdata$??$?H_WU?$char_traits@_W@std@@V?$allocator@_W@1@@std@@YA?AV?$basic_string@_WU?$char_traits@_W@std@@V?$allocator@_W@2@@0@AEBV10@PEB_W@Z DD 019930522H
-	DD	01H
-	DD	imagerel $stateUnwindMap$??$?H_WU?$char_traits@_W@std@@V?$allocator@_W@1@@std@@YA?AV?$basic_string@_WU?$char_traits@_W@std@@V?$allocator@_W@2@@0@AEBV10@PEB_W@Z
-	DD	00H
-	DD	00H
-	DD	02H
-	DD	imagerel $ip2state$??$?H_WU?$char_traits@_W@std@@V?$allocator@_W@1@@std@@YA?AV?$basic_string@_WU?$char_traits@_W@std@@V?$allocator@_W@2@@0@AEBV10@PEB_W@Z
-	DD	028H
-	DD	00H
-	DD	01H
-CONST	ENDS
-;	COMDAT xdata
-xdata	SEGMENT
-$unwind$??$?H_WU?$char_traits@_W@std@@V?$allocator@_W@1@@std@@YA?AV?$basic_string@_WU?$char_traits@_W@std@@V?$allocator@_W@2@@0@AEBV10@PEB_W@Z DD 041811H
-	DD	093418H
-	DD	07006520aH
-	DD	imagerel __CxxFrameHandler3
-	DD	imagerel $cppxdata$??$?H_WU?$char_traits@_W@std@@V?$allocator@_W@1@@std@@YA?AV?$basic_string@_WU?$char_traits@_W@std@@V?$allocator@_W@2@@0@AEBV10@PEB_W@Z
-xdata	ENDS
-;	COMDAT xdata
-xdata	SEGMENT
-$unwind$??$?H_WU?$char_traits@_W@std@@V?$allocator@_W@1@@std@@YA?AV?$basic_string@_WU?$char_traits@_W@std@@V?$allocator@_W@2@@0@$$QEAV10@AEBV10@@Z DD 040a01H
-	DD	08340aH
-	DD	07006520aH
 xdata	ENDS
 ;	COMDAT xdata
 xdata	SEGMENT
@@ -14209,13 +14216,13 @@ str$ = 48
 suffix$ = 56
 ?hasExtension@@YA_NAEBV?$basic_string@_WU?$char_traits@_W@std@@V?$allocator@_W@2@@std@@0@Z PROC ; hasExtension
 
-; 9    : bool hasExtension(const wstring &str, const wstring &suffix) {
+; 10   : bool hasExtension(const wstring &str, const wstring &suffix) {
 
 $LN137:
   00000	48 83 ec 28	 sub	 rsp, 40			; 00000028H
   00004	4c 8b c2	 mov	 r8, rdx
 
-; 10   :   return str.size() >= suffix.size() &&
+; 11   :   return str.size() >= suffix.size() &&
 
   00007	48 8b 51 10	 mov	 rdx, QWORD PTR [rcx+16]
   0000b	4d 8b 48 10	 mov	 r9, QWORD PTR [r8+16]
@@ -14269,23 +14276,23 @@ $LN130@hasExtensi:
   00041	e8 00 00 00 00	 call	 ?_Traits_compare@?$basic_string@_WU?$char_traits@_W@std@@V?$allocator@_W@2@@std@@SAHQEB_W_K01@Z ; std::basic_string<wchar_t,std::char_traits<wchar_t>,std::allocator<wchar_t> >::_Traits_compare
 ; File c:\users\alist_000\cppmisc\wwatch.cc
 
-; 10   :   return str.size() >= suffix.size() &&
+; 11   :   return str.size() >= suffix.size() &&
 
   00046	85 c0		 test	 eax, eax
   00048	75 0a		 jne	 SHORT $LN3@hasExtensi
   0004a	b8 01 00 00 00	 mov	 eax, 1
 
-; 12   : }
+; 13   : }
 
   0004f	48 83 c4 28	 add	 rsp, 40			; 00000028H
   00053	c3		 ret	 0
 $LN3@hasExtensi:
 
-; 10   :   return str.size() >= suffix.size() &&
+; 11   :   return str.size() >= suffix.size() &&
 
   00054	33 c0		 xor	 eax, eax
 
-; 12   : }
+; 13   : }
 
   00056	48 83 c4 28	 add	 rsp, 40			; 00000028H
   0005a	c3		 ret	 0
@@ -14303,44 +14310,42 @@ $LN134@hasExtensi:
 _TEXT	ENDS
 ; Function compile flags: /Ogtpy
 ; File c:\users\alist_000\cppmisc\wwatch.cc
+; File c:\users\alist_000\cppmisc\packages\visualcpptools.14.0.24120-pre\lib\native\include\xstring
+; File c:\users\alist_000\cppmisc\wwatch.cc
+; File c:\users\alist_000\cppmisc\packages\visualcpptools.14.0.24120-pre\lib\native\include\xstring
+; File c:\users\alist_000\cppmisc\packages\visualcpptools.14.0.24120-pre\lib\native\include\xstddef
+; File c:\users\alist_000\cppmisc\packages\visualcpptools.14.0.24120-pre\lib\native\include\xstring
+; File c:\users\alist_000\cppmisc\packages\visualcpptools.14.0.24120-pre\lib\native\include\xstddef
+; File c:\users\alist_000\cppmisc\packages\visualcpptools.14.0.24120-pre\lib\native\include\xstring
+; File c:\users\alist_000\cppmisc\wwatch.cc
+; File c:\users\alist_000\cppmisc\packages\visualcpptools.14.0.24120-pre\lib\native\include\xstring
+; File c:\users\alist_000\cppmisc\packages\visualcpptools.14.0.24120-pre\lib\native\include\iosfwd
+; File c:\users\alist_000\cppmisc\wwatch.cc
 ; File c:\users\alist_000\cppmisc\packages\visualcpptools.14.0.24120-pre\lib\native\include\ostream
 ; File c:\users\alist_000\cppmisc\packages\visualcpptools.14.0.24120-pre\lib\native\include\xiosbase
 ; File c:\users\alist_000\cppmisc\wwatch.cc
 ; File c:\users\alist_000\cppmisc\packages\visualcpptools.14.0.24120-pre\lib\native\include\ostream
+; File c:\users\alist_000\cppmisc\wwatch.cc
 ; File c:\users\alist_000\cppmisc\packages\visualcpptools.14.0.24120-pre\lib\native\include\xstring
 ; File c:\users\alist_000\cppmisc\wwatch.cc
 ; File c:\users\alist_000\cppmisc\packages\visualcpptools.14.0.24120-pre\lib\native\include\xstring
-; File c:\users\alist_000\cppmisc\packages\visualcpptools.14.0.24120-pre\lib\native\include\xstddef
-; File c:\users\alist_000\cppmisc\packages\visualcpptools.14.0.24120-pre\lib\native\include\xstring
-; File c:\users\alist_000\cppmisc\packages\visualcpptools.14.0.24120-pre\lib\native\include\xstddef
-; File c:\users\alist_000\cppmisc\packages\visualcpptools.14.0.24120-pre\lib\native\include\xstring
-; File c:\users\alist_000\cppmisc\wwatch.cc
-; File c:\users\alist_000\cppmisc\packages\visualcpptools.14.0.24120-pre\lib\native\include\ostream
-; File c:\users\alist_000\cppmisc\wwatch.cc
-; File c:\users\alist_000\cppmisc\packages\visualcpptools.14.0.24120-pre\lib\native\include\xstring
-; File c:\users\alist_000\cppmisc\packages\visualcpptools.14.0.24120-pre\lib\native\include\xstddef
-; File c:\users\alist_000\cppmisc\wwatch.cc
-; File c:\users\alist_000\cppmisc\packages\visualcpptools.14.0.24120-pre\lib\native\include\xstring
-; File c:\users\alist_000\cppmisc\packages\visualcpptools.14.0.24120-pre\lib\native\include\iosfwd
-; File c:\users\alist_000\cppmisc\packages\visualcpptools.14.0.24120-pre\lib\native\include\xstring
-; File c:\users\alist_000\cppmisc\wwatch.cc
-; File c:\users\alist_000\cppmisc\packages\visualcpptools.14.0.24120-pre\lib\native\include\ostream
 ; File c:\users\alist_000\cppmisc\wwatch.cc
 _TEXT	SEGMENT
 $T1 = 32
-$T2 = 40
+fullCommand$2 = 40
 $T3 = 72
 __$ArrayPad$ = 104
-iteration$ = 160
-action$ = 168
-name$ = 176
-command$ = 184
-extension$ = 192
-?handle@@YAXHIAEBV?$basic_string@_WU?$char_traits@_W@std@@V?$allocator@_W@2@@std@@00@Z PROC ; handle
+global$ = 160
+local$ = 168
+action$ = 176
+name$ = 184
+command$ = 192
+extension$ = 200
+?handle@@YAX_K0IAEBV?$basic_string@_WU?$char_traits@_W@std@@V?$allocator@_W@2@@std@@11@Z PROC ; handle
 
-; 15   :             const wstring &command, const wstring &extension) {
+; 16   :             const wstring &command, const wstring &extension) {
 
-$LN386:
+$LN377:
   00000	40 53		 push	 rbx
   00002	55		 push	 rbp
   00003	56		 push	 rsi
@@ -14353,231 +14358,114 @@ $LN386:
 	00 00		 mov	 rax, QWORD PTR __security_cookie
   0001b	48 33 c4	 xor	 rax, rsp
   0001e	48 89 44 24 68	 mov	 QWORD PTR __$ArrayPad$[rsp], rax
-  00023	49 8b e9	 mov	 rbp, r9
-  00026	49 8b f0	 mov	 rsi, r8
-  00029	8b da		 mov	 ebx, edx
-  0002b	48 8b bc 24 c0
-	00 00 00	 mov	 rdi, QWORD PTR extension$[rsp]
-
-; 16   :   wcout << iteration << ":(" << hex << action << ") " << name << " - "
-
-  00033	8b d1		 mov	 edx, ecx
-  00035	e8 00 00 00 00	 call	 ??6?$basic_ostream@_WU?$char_traits@_W@std@@@std@@QEAAAEAV01@H@Z ; std::basic_ostream<wchar_t,std::char_traits<wchar_t> >::operator<<
-  0003a	48 8b c8	 mov	 rcx, rax
-  0003d	48 8d 15 00 00
-	00 00		 lea	 rdx, OFFSET FLAT:$SG4294967197
-  00044	e8 00 00 00 00	 call	 ??$?6_WU?$char_traits@_W@std@@@std@@YAAEAV?$basic_ostream@_WU?$char_traits@_W@std@@@0@AEAV10@PEBD@Z ; std::operator<<<wchar_t,std::char_traits<wchar_t> >
-  00049	4c 8b c0	 mov	 r8, rax
-; File c:\users\alist_000\cppmisc\packages\visualcpptools.14.0.24120-pre\lib\native\include\ostream
-
-; 212  : 		(*_Pfn)(*(ios_base *)this);
-
-  0004c	45 33 f6	 xor	 r14d, r14d
-  0004f	48 85 c0	 test	 rax, rax
-  00052	75 05		 jne	 SHORT $LN9@handle
-  00054	41 8b ce	 mov	 ecx, r14d
-  00057	eb 0a		 jmp	 SHORT $LN10@handle
-$LN9@handle:
-  00059	48 8b 00	 mov	 rax, QWORD PTR [rax]
-  0005c	48 63 48 04	 movsxd	 rcx, DWORD PTR [rax+4]
-  00060	49 03 c8	 add	 rcx, r8
-$LN10@handle:
-; File c:\users\alist_000\cppmisc\packages\visualcpptools.14.0.24120-pre\lib\native\include\xiosbase
-
-; 399  : 		_Fmtfl = (fmtflags)(((int)_Fmtfl & (int)~_Mask)
-
-  00063	81 61 18 ff f9
-	ff ff		 and	 DWORD PTR [rcx+24], -1537 ; fffffffffffff9ffH
-  0006a	81 49 18 00 08
-	00 00		 or	 DWORD PTR [rcx+24], 2048 ; 00000800H
-; File c:\users\alist_000\cppmisc\wwatch.cc
-
-; 16   :   wcout << iteration << ":(" << hex << action << ") " << name << " - "
-
-  00071	8b d3		 mov	 edx, ebx
-  00073	49 8b c8	 mov	 rcx, r8
-  00076	e8 00 00 00 00	 call	 ??6?$basic_ostream@_WU?$char_traits@_W@std@@@std@@QEAAAEAV01@I@Z ; std::basic_ostream<wchar_t,std::char_traits<wchar_t> >::operator<<
-  0007b	48 8b c8	 mov	 rcx, rax
-  0007e	48 8d 15 00 00
-	00 00		 lea	 rdx, OFFSET FLAT:$SG4294967198
-  00085	e8 00 00 00 00	 call	 ??$?6_WU?$char_traits@_W@std@@@std@@YAAEAV?$basic_ostream@_WU?$char_traits@_W@std@@@0@AEAV10@PEBD@Z ; std::operator<<<wchar_t,std::char_traits<wchar_t> >
-  0008a	48 8b c8	 mov	 rcx, rax
-  0008d	48 8b d6	 mov	 rdx, rsi
-  00090	e8 00 00 00 00	 call	 ??$?6_WU?$char_traits@_W@std@@V?$allocator@_W@1@@std@@YAAEAV?$basic_ostream@_WU?$char_traits@_W@std@@@0@AEAV10@AEBV?$basic_string@_WU?$char_traits@_W@std@@V?$allocator@_W@2@@0@@Z ; std::operator<<<wchar_t,std::char_traits<wchar_t>,std::allocator<wchar_t> >
-  00095	48 8b c8	 mov	 rcx, rax
-  00098	48 8d 15 00 00
-	00 00		 lea	 rdx, OFFSET FLAT:$SG4294967199
-  0009f	e8 00 00 00 00	 call	 ??$?6_WU?$char_traits@_W@std@@@std@@YAAEAV?$basic_ostream@_WU?$char_traits@_W@std@@@0@AEAV10@PEBD@Z ; std::operator<<<wchar_t,std::char_traits<wchar_t> >
-  000a4	48 8b c8	 mov	 rcx, rax
-  000a7	48 8b d5	 mov	 rdx, rbp
-  000aa	e8 00 00 00 00	 call	 ??$?6_WU?$char_traits@_W@std@@V?$allocator@_W@1@@std@@YAAEAV?$basic_ostream@_WU?$char_traits@_W@std@@@0@AEAV10@AEBV?$basic_string@_WU?$char_traits@_W@std@@V?$allocator@_W@2@@0@@Z ; std::operator<<<wchar_t,std::char_traits<wchar_t>,std::allocator<wchar_t> >
-  000af	48 8b d8	 mov	 rbx, rax
-; File c:\users\alist_000\cppmisc\packages\visualcpptools.14.0.24120-pre\lib\native\include\ostream
-
-; 992  : 	_Ostr.put(_Ostr.widen('\n'));
-
-  000b2	48 8b 08	 mov	 rcx, QWORD PTR [rax]
-  000b5	48 63 49 04	 movsxd	 rcx, DWORD PTR [rcx+4]
-  000b9	48 03 c8	 add	 rcx, rax
-  000bc	b2 0a		 mov	 dl, 10
-  000be	e8 00 00 00 00	 call	 ?widen@?$basic_ios@_WU?$char_traits@_W@std@@@std@@QEBA_WD@Z ; std::basic_ios<wchar_t,std::char_traits<wchar_t> >::widen
-  000c3	0f b7 d0	 movzx	 edx, ax
-  000c6	48 8b cb	 mov	 rcx, rbx
-  000c9	e8 00 00 00 00	 call	 ?put@?$basic_ostream@_WU?$char_traits@_W@std@@@std@@QEAAAEAV12@_W@Z ; std::basic_ostream<wchar_t,std::char_traits<wchar_t> >::put
-
-; 993  : 	_Ostr.flush();
-
-  000ce	48 8b cb	 mov	 rcx, rbx
-  000d1	e8 00 00 00 00	 call	 ?flush@?$basic_ostream@_WU?$char_traits@_W@std@@@std@@QEAAAEAV12@XZ ; std::basic_ostream<wchar_t,std::char_traits<wchar_t> >::flush
+  00023	49 8b f9	 mov	 rdi, r9
+  00026	45 8b f0	 mov	 r14d, r8d
+  00029	48 8b ea	 mov	 rbp, rdx
+  0002c	48 8b f1	 mov	 rsi, rcx
+  0002f	48 8b 9c 24 c0
+	00 00 00	 mov	 rbx, QWORD PTR command$[rsp]
+  00037	4c 8b 84 24 c8
+	00 00 00	 mov	 r8, QWORD PTR extension$[rsp]
 ; File c:\users\alist_000\cppmisc\packages\visualcpptools.14.0.24120-pre\lib\native\include\xstring
 
 ; 1763 : 		return (this->_Mysize());
 
-  000d6	48 8b 56 10	 mov	 rdx, QWORD PTR [rsi+16]
-  000da	4c 8b 4f 10	 mov	 r9, QWORD PTR [rdi+16]
+  0003f	49 8b 51 10	 mov	 rdx, QWORD PTR [r9+16]
+  00043	4d 8b 48 10	 mov	 r9, QWORD PTR [r8+16]
 ; File c:\users\alist_000\cppmisc\wwatch.cc
 
-; 10   :   return str.size() >= suffix.size() &&
+; 11   :   return str.size() >= suffix.size() &&
 
-  000de	49 3b d1	 cmp	 rdx, r9
-  000e1	0f 82 14 01 00
-	00		 jb	 $LN2@handle
-  000e7	48 8b c2	 mov	 rax, rdx
-  000ea	49 2b c1	 sub	 rax, r9
+  00047	49 3b d1	 cmp	 rdx, r9
+  0004a	0f 82 a2 01 00
+	00		 jb	 $LN278@handle
+  00050	48 8b c2	 mov	 rax, rdx
+  00053	49 2b c1	 sub	 rax, r9
 ; File c:\users\alist_000\cppmisc\packages\visualcpptools.14.0.24120-pre\lib\native\include\xstring
 
 ; 2269 : 		if (this->_Mysize() < _Off)
 
-  000ed	48 3b d0	 cmp	 rdx, rax
-  000f0	73 0d		 jae	 SHORT $LN86@handle
+  00056	48 3b d0	 cmp	 rdx, rax
+  00059	73 0d		 jae	 SHORT $LN73@handle
 
 ; 2281 : 		_Xout_of_range("invalid string position");
 
-  000f2	48 8d 0d 00 00
+  0005b	48 8d 0d 00 00
 	00 00		 lea	 rcx, OFFSET FLAT:??_C@_0BI@CFPLBAOH@invalid?5string?5position?$AA@
-  000f9	e8 00 00 00 00	 call	 ?_Xout_of_range@std@@YAXPEBD@Z ; std::_Xout_of_range
-  000fe	cc		 int	 3
-$LN86@handle:
+  00062	e8 00 00 00 00	 call	 ?_Xout_of_range@std@@YAXPEBD@Z ; std::_Xout_of_range
+  00067	cc		 int	 3
+$LN73@handle:
 
 ; 521  : 		return (this->_BUF_SIZE <= _Myres
 
-  000ff	48 83 7f 18 08	 cmp	 QWORD PTR [rdi+24], 8
-  00104	72 03		 jb	 SHORT $LN121@handle
+  00068	49 83 78 18 08	 cmp	 QWORD PTR [r8+24], 8
+  0006d	72 03		 jb	 SHORT $LN108@handle
 ; File c:\users\alist_000\cppmisc\packages\visualcpptools.14.0.24120-pre\lib\native\include\xstddef
 
 ; 738  : 	return (_Ptr);
 
-  00106	48 8b 3f	 mov	 rdi, QWORD PTR [rdi]
-$LN121@handle:
+  0006f	4d 8b 00	 mov	 r8, QWORD PTR [r8]
+$LN108@handle:
 ; File c:\users\alist_000\cppmisc\packages\visualcpptools.14.0.24120-pre\lib\native\include\xstring
 
 ; 2110 : 		const size_type _Max_effective_size = this->_Mysize() - _Off;
 
-  00109	48 2b d0	 sub	 rdx, rax
+  00072	48 2b d0	 sub	 rdx, rax
 
 ; 2111 : 		if (_Size <= _Max_effective_size)
 
-  0010c	4c 3b ca	 cmp	 r9, rdx
-  0010f	49 0f 46 d1	 cmovbe	 rdx, r9
+  00075	4c 3b ca	 cmp	 r9, rdx
+  00078	49 0f 46 d1	 cmovbe	 rdx, r9
 
 ; 521  : 		return (this->_BUF_SIZE <= _Myres
 
-  00113	48 83 7e 18 08	 cmp	 QWORD PTR [rsi+24], 8
-  00118	72 05		 jb	 SHORT $LN147@handle
+  0007c	48 83 7f 18 08	 cmp	 QWORD PTR [rdi+24], 8
+  00081	72 05		 jb	 SHORT $LN134@handle
 ; File c:\users\alist_000\cppmisc\packages\visualcpptools.14.0.24120-pre\lib\native\include\xstddef
 
 ; 738  : 	return (_Ptr);
 
-  0011a	48 8b 0e	 mov	 rcx, QWORD PTR [rsi]
+  00083	48 8b 0f	 mov	 rcx, QWORD PTR [rdi]
 ; File c:\users\alist_000\cppmisc\packages\visualcpptools.14.0.24120-pre\lib\native\include\xstring
 
 ; 521  : 		return (this->_BUF_SIZE <= _Myres
 
-  0011d	eb 03		 jmp	 SHORT $LN148@handle
-$LN147@handle:
-  0011f	48 8b ce	 mov	 rcx, rsi
-$LN148@handle:
+  00086	eb 03		 jmp	 SHORT $LN135@handle
+$LN134@handle:
+  00088	48 8b cf	 mov	 rcx, rdi
+$LN135@handle:
 
 ; 2127 : 		return (_Traits_compare(this->_Myptr() + _Off, _Clamp_suffix_size(_Off, _N0),
 
-  00122	48 8d 0c 41	 lea	 rcx, QWORD PTR [rcx+rax*2]
-  00126	4c 8b c7	 mov	 r8, rdi
-  00129	e8 00 00 00 00	 call	 ?_Traits_compare@?$basic_string@_WU?$char_traits@_W@std@@V?$allocator@_W@2@@std@@SAHQEB_W_K01@Z ; std::basic_string<wchar_t,std::char_traits<wchar_t>,std::allocator<wchar_t> >::_Traits_compare
+  0008b	48 8d 0c 41	 lea	 rcx, QWORD PTR [rcx+rax*2]
+  0008f	e8 00 00 00 00	 call	 ?_Traits_compare@?$basic_string@_WU?$char_traits@_W@std@@V?$allocator@_W@2@@std@@SAHQEB_W_K01@Z ; std::basic_string<wchar_t,std::char_traits<wchar_t>,std::allocator<wchar_t> >::_Traits_compare
 ; File c:\users\alist_000\cppmisc\wwatch.cc
 
-; 10   :   return str.size() >= suffix.size() &&
+; 11   :   return str.size() >= suffix.size() &&
 
-  0012e	85 c0		 test	 eax, eax
-  00130	0f 85 c5 00 00
-	00		 jne	 $LN2@handle
+  00094	85 c0		 test	 eax, eax
+  00096	0f 85 56 01 00
+	00		 jne	 $LN278@handle
 
-; 17   :         << command << endl;
-; 18   :   if (hasExtension(name, extension))
-; 19   :   {wcout << "Executing command: " << command << endl;
+; 17   :   if (hasExtension(name, extension)) {
+; 18   :     auto fullCommand = (command + L" " + name);
 
-  00136	48 8d 15 00 00
-	00 00		 lea	 rdx, OFFSET FLAT:$SG4294967196
-  0013d	48 8d 0d 00 00
-	00 00		 lea	 rcx, OFFSET FLAT:?wcout@std@@3V?$basic_ostream@_WU?$char_traits@_W@std@@@1@A ; std::wcout
-  00144	e8 00 00 00 00	 call	 ??$?6_WU?$char_traits@_W@std@@@std@@YAAEAV?$basic_ostream@_WU?$char_traits@_W@std@@@0@AEAV10@PEBD@Z ; std::operator<<<wchar_t,std::char_traits<wchar_t> >
-  00149	48 8b c8	 mov	 rcx, rax
-  0014c	48 8b d5	 mov	 rdx, rbp
-  0014f	e8 00 00 00 00	 call	 ??$?6_WU?$char_traits@_W@std@@V?$allocator@_W@1@@std@@YAAEAV?$basic_ostream@_WU?$char_traits@_W@std@@@0@AEAV10@AEBV?$basic_string@_WU?$char_traits@_W@std@@V?$allocator@_W@2@@0@@Z ; std::operator<<<wchar_t,std::char_traits<wchar_t>,std::allocator<wchar_t> >
-  00154	48 8b d8	 mov	 rbx, rax
-; File c:\users\alist_000\cppmisc\packages\visualcpptools.14.0.24120-pre\lib\native\include\ostream
-
-; 992  : 	_Ostr.put(_Ostr.widen('\n'));
-
-  00157	48 8b 08	 mov	 rcx, QWORD PTR [rax]
-  0015a	48 63 49 04	 movsxd	 rcx, DWORD PTR [rcx+4]
-  0015e	48 03 c8	 add	 rcx, rax
-  00161	b2 0a		 mov	 dl, 10
-  00163	e8 00 00 00 00	 call	 ?widen@?$basic_ios@_WU?$char_traits@_W@std@@@std@@QEBA_WD@Z ; std::basic_ios<wchar_t,std::char_traits<wchar_t> >::widen
-  00168	0f b7 d0	 movzx	 edx, ax
-  0016b	48 8b cb	 mov	 rcx, rbx
-  0016e	e8 00 00 00 00	 call	 ?put@?$basic_ostream@_WU?$char_traits@_W@std@@@std@@QEAAAEAV12@_W@Z ; std::basic_ostream<wchar_t,std::char_traits<wchar_t> >::put
-
-; 993  : 	_Ostr.flush();
-
-  00173	48 8b cb	 mov	 rcx, rbx
-  00176	e8 00 00 00 00	 call	 ?flush@?$basic_ostream@_WU?$char_traits@_W@std@@@std@@QEAAAEAV12@XZ ; std::basic_ostream<wchar_t,std::char_traits<wchar_t> >::flush
-; File c:\users\alist_000\cppmisc\wwatch.cc
-
-; 20   :     _wsystem((command + L" " + name).data());
-
-  0017b	48 8b d5	 mov	 rdx, rbp
-  0017e	48 8d 4c 24 48	 lea	 rcx, QWORD PTR $T3[rsp]
-  00183	e8 00 00 00 00	 call	 ??$?H_WU?$char_traits@_W@std@@V?$allocator@_W@1@@std@@YA?AV?$basic_string@_WU?$char_traits@_W@std@@V?$allocator@_W@2@@0@AEBV10@PEB_W@Z ; std::operator+<wchar_t,std::char_traits<wchar_t>,std::allocator<wchar_t> >
-  00188	90		 npad	 1
-  00189	4c 8b c6	 mov	 r8, rsi
-  0018c	48 8b d0	 mov	 rdx, rax
-  0018f	48 8d 4c 24 28	 lea	 rcx, QWORD PTR $T2[rsp]
-  00194	e8 00 00 00 00	 call	 ??$?H_WU?$char_traits@_W@std@@V?$allocator@_W@1@@std@@YA?AV?$basic_string@_WU?$char_traits@_W@std@@V?$allocator@_W@2@@0@$$QEAV10@AEBV10@@Z ; std::operator+<wchar_t,std::char_traits<wchar_t>,std::allocator<wchar_t> >
-; File c:\users\alist_000\cppmisc\packages\visualcpptools.14.0.24120-pre\lib\native\include\xstring
-
-; 514  : 		return (this->_BUF_SIZE <= _Myres
-
-  00199	48 83 78 18 08	 cmp	 QWORD PTR [rax+24], 8
-  0019e	72 03		 jb	 SHORT $LN171@handle
-; File c:\users\alist_000\cppmisc\packages\visualcpptools.14.0.24120-pre\lib\native\include\xstddef
-
-; 738  : 	return (_Ptr);
-
-  001a0	48 8b 00	 mov	 rax, QWORD PTR [rax]
-$LN171@handle:
-; File c:\users\alist_000\cppmisc\wwatch.cc
-
-; 20   :     _wsystem((command + L" " + name).data());
-
-  001a3	48 8b c8	 mov	 rcx, rax
-  001a6	e8 00 00 00 00	 call	 _wsystem
+  0009c	48 8b d3	 mov	 rdx, rbx
+  0009f	48 8d 4c 24 48	 lea	 rcx, QWORD PTR $T3[rsp]
+  000a4	e8 00 00 00 00	 call	 ??$?H_WU?$char_traits@_W@std@@V?$allocator@_W@1@@std@@YA?AV?$basic_string@_WU?$char_traits@_W@std@@V?$allocator@_W@2@@0@AEBV10@PEB_W@Z ; std::operator+<wchar_t,std::char_traits<wchar_t>,std::allocator<wchar_t> >
+  000a9	90		 npad	 1
+  000aa	4c 8b c7	 mov	 r8, rdi
+  000ad	48 8b d0	 mov	 rdx, rax
+  000b0	48 8d 4c 24 28	 lea	 rcx, QWORD PTR fullCommand$2[rsp]
+  000b5	e8 00 00 00 00	 call	 ??$?H_WU?$char_traits@_W@std@@V?$allocator@_W@1@@std@@YA?AV?$basic_string@_WU?$char_traits@_W@std@@V?$allocator@_W@2@@0@$$QEAV10@AEBV10@@Z ; std::operator+<wchar_t,std::char_traits<wchar_t>,std::allocator<wchar_t> >
+  000ba	90		 npad	 1
 ; File c:\users\alist_000\cppmisc\packages\visualcpptools.14.0.24120-pre\lib\native\include\xstring
 
 ; 2249 : 		else if (this->_BUF_SIZE <= this->_Myres())
 
-  001ab	4c 8b 44 24 40	 mov	 r8, QWORD PTR $T2[rsp+24]
-  001b0	49 83 f8 08	 cmp	 r8, 8
-  001b4	72 12		 jb	 SHORT $LN180@handle
+  000bb	4c 8b 44 24 60	 mov	 r8, QWORD PTR $T3[rsp+24]
+  000c0	49 83 f8 08	 cmp	 r8, 8
+  000c4	72 12		 jb	 SHORT $LN146@handle
 
 ; 2250 : 			{	// copy any leftovers to small buffer and deallocate
 ; 2251 : 			pointer _Ptr = this->_Bx()._Ptr;
@@ -14587,34 +14475,134 @@ $LN171@handle:
 ; 2255 : 					_Unfancy(_Ptr), _Newsize);
 ; 2256 : 			this->_Getal().deallocate(_Ptr, this->_Myres() + 1);
 
-  001b6	49 ff c0	 inc	 r8
-  001b9	48 8b 54 24 28	 mov	 rdx, QWORD PTR $T2[rsp]
-  001be	48 8d 4c 24 28	 lea	 rcx, QWORD PTR $T2[rsp]
-  001c3	e8 00 00 00 00	 call	 ?deallocate@?$_Wrap_alloc@V?$allocator@_W@std@@@std@@QEAAXPEA_W_K@Z ; std::_Wrap_alloc<std::allocator<wchar_t> >::deallocate
-$LN180@handle:
+  000c6	49 ff c0	 inc	 r8
+  000c9	48 8b 54 24 48	 mov	 rdx, QWORD PTR $T3[rsp]
+  000ce	48 8d 4c 24 48	 lea	 rcx, QWORD PTR $T3[rsp]
+  000d3	e8 00 00 00 00	 call	 ?deallocate@?$_Wrap_alloc@V?$allocator@_W@std@@@std@@QEAAXPEA_W_K@Z ; std::_Wrap_alloc<std::allocator<wchar_t> >::deallocate
+$LN146@handle:
 
 ; 2257 : 			}
 ; 2258 : 		this->_Myres() = this->_BUF_SIZE - 1;
 
-  001c8	48 c7 44 24 40
-	07 00 00 00	 mov	 QWORD PTR $T2[rsp+24], 7
+  000d8	48 c7 44 24 60
+	07 00 00 00	 mov	 QWORD PTR $T3[rsp+24], 7
 
 ; 2217 : 		_Traits::assign(_Dx._Myptr()[_Dx._Mysize = _Newsize], _Elem());
 
-  001d1	4c 89 74 24 38	 mov	 QWORD PTR $T2[rsp+16], r14
+  000e1	33 db		 xor	 ebx, ebx
+  000e3	48 89 5c 24 58	 mov	 QWORD PTR $T3[rsp+16], rbx
 ; File c:\users\alist_000\cppmisc\packages\visualcpptools.14.0.24120-pre\lib\native\include\iosfwd
 
 ; 345  : 		_Left = _Right;
 
-  001d6	66 44 89 74 24
-	28		 mov	 WORD PTR $T2[rsp], r14w
+  000e8	66 89 5c 24 48	 mov	 WORD PTR $T3[rsp], bx
+; File c:\users\alist_000\cppmisc\wwatch.cc
+
+; 19   :     wcout << "#######" << global << ":" << local << ":(" << hex << action
+
+  000ed	48 8d 15 00 00
+	00 00		 lea	 rdx, OFFSET FLAT:$SG4294967192
+  000f4	48 8d 0d 00 00
+	00 00		 lea	 rcx, OFFSET FLAT:?wcout@std@@3V?$basic_ostream@_WU?$char_traits@_W@std@@@1@A ; std::wcout
+  000fb	e8 00 00 00 00	 call	 ??$?6_WU?$char_traits@_W@std@@@std@@YAAEAV?$basic_ostream@_WU?$char_traits@_W@std@@@0@AEAV10@PEBD@Z ; std::operator<<<wchar_t,std::char_traits<wchar_t> >
+  00100	48 8b c8	 mov	 rcx, rax
+  00103	48 8b d6	 mov	 rdx, rsi
+  00106	e8 00 00 00 00	 call	 ??6?$basic_ostream@_WU?$char_traits@_W@std@@@std@@QEAAAEAV01@_K@Z ; std::basic_ostream<wchar_t,std::char_traits<wchar_t> >::operator<<
+  0010b	48 8b c8	 mov	 rcx, rax
+  0010e	48 8d 15 00 00
+	00 00		 lea	 rdx, OFFSET FLAT:$SG4294967193
+  00115	e8 00 00 00 00	 call	 ??$?6_WU?$char_traits@_W@std@@@std@@YAAEAV?$basic_ostream@_WU?$char_traits@_W@std@@@0@AEAV10@PEBD@Z ; std::operator<<<wchar_t,std::char_traits<wchar_t> >
+  0011a	48 8b c8	 mov	 rcx, rax
+  0011d	48 8b d5	 mov	 rdx, rbp
+  00120	e8 00 00 00 00	 call	 ??6?$basic_ostream@_WU?$char_traits@_W@std@@@std@@QEAAAEAV01@_K@Z ; std::basic_ostream<wchar_t,std::char_traits<wchar_t> >::operator<<
+  00125	48 8b c8	 mov	 rcx, rax
+  00128	48 8d 15 00 00
+	00 00		 lea	 rdx, OFFSET FLAT:$SG4294967194
+  0012f	e8 00 00 00 00	 call	 ??$?6_WU?$char_traits@_W@std@@@std@@YAAEAV?$basic_ostream@_WU?$char_traits@_W@std@@@0@AEAV10@PEBD@Z ; std::operator<<<wchar_t,std::char_traits<wchar_t> >
+  00134	48 8b c8	 mov	 rcx, rax
+; File c:\users\alist_000\cppmisc\packages\visualcpptools.14.0.24120-pre\lib\native\include\ostream
+
+; 212  : 		(*_Pfn)(*(ios_base *)this);
+
+  00137	48 85 c0	 test	 rax, rax
+  0013a	74 0a		 je	 SHORT $LN246@handle
+  0013c	48 8b 00	 mov	 rax, QWORD PTR [rax]
+  0013f	48 63 58 04	 movsxd	 rbx, DWORD PTR [rax+4]
+  00143	48 03 d9	 add	 rbx, rcx
+$LN246@handle:
+; File c:\users\alist_000\cppmisc\packages\visualcpptools.14.0.24120-pre\lib\native\include\xiosbase
+
+; 399  : 		_Fmtfl = (fmtflags)(((int)_Fmtfl & (int)~_Mask)
+
+  00146	81 63 18 ff f9
+	ff ff		 and	 DWORD PTR [rbx+24], -1537 ; fffffffffffff9ffH
+  0014d	81 4b 18 00 08
+	00 00		 or	 DWORD PTR [rbx+24], 2048 ; 00000800H
+; File c:\users\alist_000\cppmisc\wwatch.cc
+
+; 19   :     wcout << "#######" << global << ":" << local << ":(" << hex << action
+
+  00154	41 8b d6	 mov	 edx, r14d
+  00157	e8 00 00 00 00	 call	 ??6?$basic_ostream@_WU?$char_traits@_W@std@@@std@@QEAAAEAV01@I@Z ; std::basic_ostream<wchar_t,std::char_traits<wchar_t> >::operator<<
+  0015c	48 8b c8	 mov	 rcx, rax
+  0015f	48 8d 15 00 00
+	00 00		 lea	 rdx, OFFSET FLAT:$SG4294967195
+  00166	e8 00 00 00 00	 call	 ??$?6_WU?$char_traits@_W@std@@@std@@YAAEAV?$basic_ostream@_WU?$char_traits@_W@std@@@0@AEAV10@PEBD@Z ; std::operator<<<wchar_t,std::char_traits<wchar_t> >
+  0016b	48 8b c8	 mov	 rcx, rax
+  0016e	48 8b d7	 mov	 rdx, rdi
+  00171	e8 00 00 00 00	 call	 ??$?6_WU?$char_traits@_W@std@@V?$allocator@_W@1@@std@@YAAEAV?$basic_ostream@_WU?$char_traits@_W@std@@@0@AEAV10@AEBV?$basic_string@_WU?$char_traits@_W@std@@V?$allocator@_W@2@@0@@Z ; std::operator<<<wchar_t,std::char_traits<wchar_t>,std::allocator<wchar_t> >
+  00176	48 8b c8	 mov	 rcx, rax
+  00179	48 8d 15 00 00
+	00 00		 lea	 rdx, OFFSET FLAT:$SG4294967196
+  00180	e8 00 00 00 00	 call	 ??$?6_WU?$char_traits@_W@std@@@std@@YAAEAV?$basic_ostream@_WU?$char_traits@_W@std@@@0@AEAV10@PEBD@Z ; std::operator<<<wchar_t,std::char_traits<wchar_t> >
+  00185	48 8b c8	 mov	 rcx, rax
+  00188	48 8d 54 24 28	 lea	 rdx, QWORD PTR fullCommand$2[rsp]
+  0018d	e8 00 00 00 00	 call	 ??$?6_WU?$char_traits@_W@std@@V?$allocator@_W@1@@std@@YAAEAV?$basic_ostream@_WU?$char_traits@_W@std@@@0@AEAV10@AEBV?$basic_string@_WU?$char_traits@_W@std@@V?$allocator@_W@2@@0@@Z ; std::operator<<<wchar_t,std::char_traits<wchar_t>,std::allocator<wchar_t> >
+  00192	48 8b d8	 mov	 rbx, rax
+; File c:\users\alist_000\cppmisc\packages\visualcpptools.14.0.24120-pre\lib\native\include\ostream
+
+; 992  : 	_Ostr.put(_Ostr.widen('\n'));
+
+  00195	48 8b 08	 mov	 rcx, QWORD PTR [rax]
+  00198	48 63 49 04	 movsxd	 rcx, DWORD PTR [rcx+4]
+  0019c	48 03 c8	 add	 rcx, rax
+  0019f	b2 0a		 mov	 dl, 10
+  001a1	e8 00 00 00 00	 call	 ?widen@?$basic_ios@_WU?$char_traits@_W@std@@@std@@QEBA_WD@Z ; std::basic_ios<wchar_t,std::char_traits<wchar_t> >::widen
+  001a6	0f b7 d0	 movzx	 edx, ax
+  001a9	48 8b cb	 mov	 rcx, rbx
+  001ac	e8 00 00 00 00	 call	 ?put@?$basic_ostream@_WU?$char_traits@_W@std@@@std@@QEAAAEAV12@_W@Z ; std::basic_ostream<wchar_t,std::char_traits<wchar_t> >::put
+
+; 993  : 	_Ostr.flush();
+
+  001b1	48 8b cb	 mov	 rcx, rbx
+  001b4	e8 00 00 00 00	 call	 ?flush@?$basic_ostream@_WU?$char_traits@_W@std@@@std@@QEAAAEAV12@XZ ; std::basic_ostream<wchar_t,std::char_traits<wchar_t> >::flush
+; File c:\users\alist_000\cppmisc\wwatch.cc
+
+; 21   :     _flushall();
+
+  001b9	e8 00 00 00 00	 call	 _flushall
+; File c:\users\alist_000\cppmisc\packages\visualcpptools.14.0.24120-pre\lib\native\include\xstring
+
+; 514  : 		return (this->_BUF_SIZE <= _Myres
+
+  001be	48 8d 4c 24 28	 lea	 rcx, QWORD PTR fullCommand$2[rsp]
+  001c3	48 83 7c 24 40
+	08		 cmp	 QWORD PTR fullCommand$2[rsp+24], 8
+  001c9	48 0f 43 4c 24
+	28		 cmovae	 rcx, QWORD PTR fullCommand$2[rsp]
+; File c:\users\alist_000\cppmisc\wwatch.cc
+
+; 22   :     _wsystem(fullCommand.data());
+
+  001cf	e8 00 00 00 00	 call	 _wsystem
+  001d4	90		 npad	 1
 ; File c:\users\alist_000\cppmisc\packages\visualcpptools.14.0.24120-pre\lib\native\include\xstring
 
 ; 2249 : 		else if (this->_BUF_SIZE <= this->_Myres())
 
-  001dc	4c 8b 44 24 60	 mov	 r8, QWORD PTR $T3[rsp+24]
-  001e1	49 83 f8 08	 cmp	 r8, 8
-  001e5	72 4e		 jb	 SHORT $LN3@handle
+  001d5	4c 8b 44 24 40	 mov	 r8, QWORD PTR fullCommand$2[rsp+24]
+  001da	49 83 f8 08	 cmp	 r8, 8
+  001de	72 12		 jb	 SHORT $LN278@handle
 
 ; 2250 : 			{	// copy any leftovers to small buffer and deallocate
 ; 2251 : 			pointer _Ptr = this->_Bx()._Ptr;
@@ -14624,92 +14612,95 @@ $LN180@handle:
 ; 2255 : 					_Unfancy(_Ptr), _Newsize);
 ; 2256 : 			this->_Getal().deallocate(_Ptr, this->_Myres() + 1);
 
-  001e7	49 ff c0	 inc	 r8
-  001ea	48 8b 54 24 48	 mov	 rdx, QWORD PTR $T3[rsp]
-  001ef	48 8d 4c 24 48	 lea	 rcx, QWORD PTR $T3[rsp]
-  001f4	e8 00 00 00 00	 call	 ?deallocate@?$_Wrap_alloc@V?$allocator@_W@std@@@std@@QEAAXPEA_W_K@Z ; std::_Wrap_alloc<std::allocator<wchar_t> >::deallocate
-; File c:\users\alist_000\cppmisc\wwatch.cc
-
-; 22   :   else
-
-  001f9	eb 3a		 jmp	 SHORT $LN3@handle
-$LN2@handle:
-
-; 23   :     wcout << "Skipping command." << endl;
-
-  001fb	48 8d 15 00 00
-	00 00		 lea	 rdx, OFFSET FLAT:$SG4294967194
-  00202	48 8d 0d 00 00
-	00 00		 lea	 rcx, OFFSET FLAT:?wcout@std@@3V?$basic_ostream@_WU?$char_traits@_W@std@@@1@A ; std::wcout
-  00209	e8 00 00 00 00	 call	 ??$?6_WU?$char_traits@_W@std@@@std@@YAAEAV?$basic_ostream@_WU?$char_traits@_W@std@@@0@AEAV10@PEBD@Z ; std::operator<<<wchar_t,std::char_traits<wchar_t> >
-  0020e	48 8b d8	 mov	 rbx, rax
-; File c:\users\alist_000\cppmisc\packages\visualcpptools.14.0.24120-pre\lib\native\include\ostream
-
-; 992  : 	_Ostr.put(_Ostr.widen('\n'));
-
-  00211	48 8b 08	 mov	 rcx, QWORD PTR [rax]
-  00214	48 63 49 04	 movsxd	 rcx, DWORD PTR [rcx+4]
-  00218	48 03 c8	 add	 rcx, rax
-  0021b	b2 0a		 mov	 dl, 10
-  0021d	e8 00 00 00 00	 call	 ?widen@?$basic_ios@_WU?$char_traits@_W@std@@@std@@QEBA_WD@Z ; std::basic_ios<wchar_t,std::char_traits<wchar_t> >::widen
-  00222	0f b7 d0	 movzx	 edx, ax
-  00225	48 8b cb	 mov	 rcx, rbx
-  00228	e8 00 00 00 00	 call	 ?put@?$basic_ostream@_WU?$char_traits@_W@std@@@std@@QEAAAEAV12@_W@Z ; std::basic_ostream<wchar_t,std::char_traits<wchar_t> >::put
-
-; 993  : 	_Ostr.flush();
-
-  0022d	48 8b cb	 mov	 rcx, rbx
-  00230	e8 00 00 00 00	 call	 ?flush@?$basic_ostream@_WU?$char_traits@_W@std@@@std@@QEAAAEAV12@XZ ; std::basic_ostream<wchar_t,std::char_traits<wchar_t> >::flush
-$LN3@handle:
+  001e0	49 ff c0	 inc	 r8
+  001e3	48 8b 54 24 28	 mov	 rdx, QWORD PTR fullCommand$2[rsp]
+  001e8	48 8d 4c 24 28	 lea	 rcx, QWORD PTR fullCommand$2[rsp]
+  001ed	e8 00 00 00 00	 call	 ?deallocate@?$_Wrap_alloc@V?$allocator@_W@std@@@std@@QEAAXPEA_W_K@Z ; std::_Wrap_alloc<std::allocator<wchar_t> >::deallocate
+$LN278@handle:
 ; File c:\users\alist_000\cppmisc\wwatch.cc
 
 ; 24   : }
 
-  00235	48 8b 4c 24 68	 mov	 rcx, QWORD PTR __$ArrayPad$[rsp]
-  0023a	48 33 cc	 xor	 rcx, rsp
-  0023d	e8 00 00 00 00	 call	 __security_check_cookie
-  00242	48 83 c4 70	 add	 rsp, 112		; 00000070H
-  00246	41 5e		 pop	 r14
-  00248	5f		 pop	 rdi
-  00249	5e		 pop	 rsi
-  0024a	5d		 pop	 rbp
-  0024b	5b		 pop	 rbx
-  0024c	c3		 ret	 0
-$LN385@handle:
-?handle@@YAXHIAEBV?$basic_string@_WU?$char_traits@_W@std@@V?$allocator@_W@2@@std@@00@Z ENDP ; handle
+  001f2	48 8b 4c 24 68	 mov	 rcx, QWORD PTR __$ArrayPad$[rsp]
+  001f7	48 33 cc	 xor	 rcx, rsp
+  001fa	e8 00 00 00 00	 call	 __security_check_cookie
+  001ff	48 83 c4 70	 add	 rsp, 112		; 00000070H
+  00203	41 5e		 pop	 r14
+  00205	5f		 pop	 rdi
+  00206	5e		 pop	 rsi
+  00207	5d		 pop	 rbp
+  00208	5b		 pop	 rbx
+  00209	c3		 ret	 0
+$LN376@handle:
+?handle@@YAX_K0IAEBV?$basic_string@_WU?$char_traits@_W@std@@V?$allocator@_W@2@@std@@11@Z ENDP ; handle
 _TEXT	ENDS
 text$x	SEGMENT
 $T1 = 32
-$T2 = 40
+fullCommand$2 = 40
 $T3 = 72
 __$ArrayPad$ = 104
-iteration$ = 160
-action$ = 168
-name$ = 176
-command$ = 184
-extension$ = 192
-?dtor$0@?0??handle@@YAXHIAEBV?$basic_string@_WU?$char_traits@_W@std@@V?$allocator@_W@2@@std@@00@Z@4HA PROC ; `handle'::`1'::dtor$0
+global$ = 160
+local$ = 168
+action$ = 176
+name$ = 184
+command$ = 192
+extension$ = 200
+?dtor$0@?0??handle@@YAX_K0IAEBV?$basic_string@_WU?$char_traits@_W@std@@V?$allocator@_W@2@@std@@11@Z@4HA PROC ; `handle'::`1'::dtor$0
   00000	48 8d 8a 48 00
 	00 00		 lea	 rcx, QWORD PTR $T3[rdx]
   00007	e9 00 00 00 00	 jmp	 ??1?$basic_string@_WU?$char_traits@_W@std@@V?$allocator@_W@2@@std@@QEAA@XZ ; std::basic_string<wchar_t,std::char_traits<wchar_t>,std::allocator<wchar_t> >::~basic_string<wchar_t,std::char_traits<wchar_t>,std::allocator<wchar_t> >
-?dtor$0@?0??handle@@YAXHIAEBV?$basic_string@_WU?$char_traits@_W@std@@V?$allocator@_W@2@@std@@00@Z@4HA ENDP ; `handle'::`1'::dtor$0
+?dtor$0@?0??handle@@YAX_K0IAEBV?$basic_string@_WU?$char_traits@_W@std@@V?$allocator@_W@2@@std@@11@Z@4HA ENDP ; `handle'::`1'::dtor$0
+$T1 = 32
+fullCommand$2 = 40
+$T3 = 72
+__$ArrayPad$ = 104
+global$ = 160
+local$ = 168
+action$ = 176
+name$ = 184
+command$ = 192
+extension$ = 200
+?dtor$1@?0??handle@@YAX_K0IAEBV?$basic_string@_WU?$char_traits@_W@std@@V?$allocator@_W@2@@std@@11@Z@4HA PROC ; `handle'::`1'::dtor$1
+  0000c	48 8d 8a 28 00
+	00 00		 lea	 rcx, QWORD PTR fullCommand$2[rdx]
+  00013	e9 00 00 00 00	 jmp	 ??1?$basic_string@_WU?$char_traits@_W@std@@V?$allocator@_W@2@@std@@QEAA@XZ ; std::basic_string<wchar_t,std::char_traits<wchar_t>,std::allocator<wchar_t> >::~basic_string<wchar_t,std::char_traits<wchar_t>,std::allocator<wchar_t> >
+?dtor$1@?0??handle@@YAX_K0IAEBV?$basic_string@_WU?$char_traits@_W@std@@V?$allocator@_W@2@@std@@11@Z@4HA ENDP ; `handle'::`1'::dtor$1
 text$x	ENDS
 ; Function compile flags: /Ogtpy
 text$x	SEGMENT
 $T1 = 32
-$T2 = 40
+fullCommand$2 = 40
 $T3 = 72
 __$ArrayPad$ = 104
-iteration$ = 160
-action$ = 168
-name$ = 176
-command$ = 184
-extension$ = 192
-?dtor$0@?0??handle@@YAXHIAEBV?$basic_string@_WU?$char_traits@_W@std@@V?$allocator@_W@2@@std@@00@Z@4HA PROC ; `handle'::`1'::dtor$0
+global$ = 160
+local$ = 168
+action$ = 176
+name$ = 184
+command$ = 192
+extension$ = 200
+?dtor$0@?0??handle@@YAX_K0IAEBV?$basic_string@_WU?$char_traits@_W@std@@V?$allocator@_W@2@@std@@11@Z@4HA PROC ; `handle'::`1'::dtor$0
   00000	48 8d 8a 48 00
 	00 00		 lea	 rcx, QWORD PTR $T3[rdx]
   00007	e9 00 00 00 00	 jmp	 ??1?$basic_string@_WU?$char_traits@_W@std@@V?$allocator@_W@2@@std@@QEAA@XZ ; std::basic_string<wchar_t,std::char_traits<wchar_t>,std::allocator<wchar_t> >::~basic_string<wchar_t,std::char_traits<wchar_t>,std::allocator<wchar_t> >
-?dtor$0@?0??handle@@YAXHIAEBV?$basic_string@_WU?$char_traits@_W@std@@V?$allocator@_W@2@@std@@00@Z@4HA ENDP ; `handle'::`1'::dtor$0
+?dtor$0@?0??handle@@YAX_K0IAEBV?$basic_string@_WU?$char_traits@_W@std@@V?$allocator@_W@2@@std@@11@Z@4HA ENDP ; `handle'::`1'::dtor$0
+text$x	ENDS
+; Function compile flags: /Ogtpy
+text$x	SEGMENT
+$T1 = 32
+fullCommand$2 = 40
+$T3 = 72
+__$ArrayPad$ = 104
+global$ = 160
+local$ = 168
+action$ = 176
+name$ = 184
+command$ = 192
+extension$ = 200
+?dtor$1@?0??handle@@YAX_K0IAEBV?$basic_string@_WU?$char_traits@_W@std@@V?$allocator@_W@2@@std@@11@Z@4HA PROC ; `handle'::`1'::dtor$1
+  0000c	48 8d 8a 28 00
+	00 00		 lea	 rcx, QWORD PTR fullCommand$2[rdx]
+  00013	e9 00 00 00 00	 jmp	 ??1?$basic_string@_WU?$char_traits@_W@std@@V?$allocator@_W@2@@std@@QEAA@XZ ; std::basic_string<wchar_t,std::char_traits<wchar_t>,std::allocator<wchar_t> >::~basic_string<wchar_t,std::char_traits<wchar_t>,std::allocator<wchar_t> >
+?dtor$1@?0??handle@@YAX_K0IAEBV?$basic_string@_WU?$char_traits@_W@std@@V?$allocator@_W@2@@std@@11@Z@4HA ENDP ; `handle'::`1'::dtor$1
 text$x	ENDS
 ; Function compile flags: /Ogtpy
 ; File c:\users\alist_000\cppmisc\wwatch.cc
@@ -14765,7 +14756,7 @@ $LN12:
 ; 33   :   wcerr << "Error Code: " << errorCode << endl;
 
   00054	48 8d 15 00 00
-	00 00		 lea	 rdx, OFFSET FLAT:$SG4294967193
+	00 00		 lea	 rdx, OFFSET FLAT:$SG4294967191
   0005b	48 8d 0d 00 00
 	00 00		 lea	 rcx, OFFSET FLAT:?wcerr@std@@3V?$basic_ostream@_WU?$char_traits@_W@std@@@1@A ; std::wcerr
   00062	e8 00 00 00 00	 call	 ??$?6_WU?$char_traits@_W@std@@@std@@YAAEAV?$basic_ostream@_WU?$char_traits@_W@std@@@0@AEAV10@PEBD@Z ; std::operator<<<wchar_t,std::char_traits<wchar_t> >
@@ -14795,7 +14786,7 @@ $LN12:
 ; 34   :   wcerr << "Error Message: " << errorMessage << endl;
 
   00098	48 8d 15 00 00
-	00 00		 lea	 rdx, OFFSET FLAT:$SG4294967192
+	00 00		 lea	 rdx, OFFSET FLAT:$SG4294967190
   0009f	48 8d 0d 00 00
 	00 00		 lea	 rcx, OFFSET FLAT:?wcerr@std@@3V?$basic_ostream@_WU?$char_traits@_W@std@@@1@A ; std::wcerr
   000a6	e8 00 00 00 00	 call	 ??$?6_WU?$char_traits@_W@std@@@std@@YAAEAV?$basic_ostream@_WU?$char_traits@_W@std@@@0@AEAV10@PEBD@Z ; std::operator<<<wchar_t,std::char_traits<wchar_t> >
@@ -14930,7 +14921,7 @@ $LL4@joinComman:
   00060	41 b8 01 00 00
 	00		 mov	 r8d, 1
   00066	48 8d 15 00 00
-	00 00		 lea	 rdx, OFFSET FLAT:$SG4294967191
+	00 00		 lea	 rdx, OFFSET FLAT:$SG4294967189
   0006d	48 8b cb	 mov	 rcx, rbx
   00070	e8 00 00 00 00	 call	 ?append@?$basic_string@_WU?$char_traits@_W@std@@V?$allocator@_W@2@@std@@QEAAAEAV12@PEB_W_K@Z ; std::basic_string<wchar_t,std::char_traits<wchar_t>,std::allocator<wchar_t> >::append
 ; File c:\users\alist_000\cppmisc\wwatch.cc
@@ -15079,11 +15070,11 @@ text$x	ENDS
 ; File c:\users\alist_000\cppmisc\packages\visualcpptools.14.0.24120-pre\lib\native\include\xstring
 ; File c:\users\alist_000\cppmisc\wwatch.cc
 _TEXT	SEGMENT
-dwBytesReturned$ = 64
-$T1 = 72
+dwBytesReturned$1 = 64
+$T2 = 72
 subcommand$ = 80
-$T2 = 112
 $T3 = 112
+$T4 = 112
 extension$ = 144
 dir$ = 176
 buffer$ = 208
@@ -15096,218 +15087,221 @@ wmain	PROC
 
 $LN2230:
   00000	40 55		 push	 rbp
-  00002	56		 push	 rsi
-  00003	57		 push	 rdi
-  00004	41 56		 push	 r14
-  00006	41 57		 push	 r15
-  00008	48 8d ac 24 20
+  00002	57		 push	 rdi
+  00003	41 54		 push	 r12
+  00005	41 56		 push	 r14
+  00007	41 57		 push	 r15
+  00009	48 8d ac 24 20
 	f0 ff ff	 lea	 rbp, QWORD PTR [rsp-4064]
-  00010	b8 e0 10 00 00	 mov	 eax, 4320		; 000010e0H
-  00015	e8 00 00 00 00	 call	 __chkstk
-  0001a	48 2b e0	 sub	 rsp, rax
-  0001d	48 c7 44 24 48
-	fe ff ff ff	 mov	 QWORD PTR $T1[rsp], -2
-  00026	48 89 9c 24 20
+  00011	b8 e0 10 00 00	 mov	 eax, 4320		; 000010e0H
+  00016	e8 00 00 00 00	 call	 __chkstk
+  0001b	48 2b e0	 sub	 rsp, rax
+  0001e	48 c7 44 24 48
+	fe ff ff ff	 mov	 QWORD PTR $T2[rsp], -2
+  00027	48 89 9c 24 20
 	11 00 00	 mov	 QWORD PTR [rsp+4384], rbx
-  0002e	48 8b 05 00 00
+  0002f	48 89 b4 24 28
+	11 00 00	 mov	 QWORD PTR [rsp+4392], rsi
+  00037	48 8b 05 00 00
 	00 00		 mov	 rax, QWORD PTR __security_cookie
-  00035	48 33 c4	 xor	 rax, rsp
-  00038	48 89 85 d0 0f
+  0003e	48 33 c4	 xor	 rax, rsp
+  00041	48 89 85 d0 0f
 	00 00		 mov	 QWORD PTR __$ArrayPad$[rbp-256], rax
-  0003f	48 8b fa	 mov	 rdi, rdx
-  00042	8b f1		 mov	 esi, ecx
+  00048	48 8b fa	 mov	 rdi, rdx
+  0004b	8b f1		 mov	 esi, ecx
 ; File c:\users\alist_000\cppmisc\packages\visualcpptools.14.0.24120-pre\lib\native\include\xstring
 
 ; 2258 : 		this->_Myres() = this->_BUF_SIZE - 1;
 
-  00044	48 c7 45 c8 07
+  0004d	48 c7 45 c8 07
 	00 00 00	 mov	 QWORD PTR dir$[rbp-232], 7
 
 ; 2217 : 		_Traits::assign(_Dx._Myptr()[_Dx._Mysize = _Newsize], _Elem());
 
-  0004c	45 33 f6	 xor	 r14d, r14d
-  0004f	4c 89 75 c0	 mov	 QWORD PTR dir$[rbp-240], r14
+  00055	45 33 ff	 xor	 r15d, r15d
+  00058	4c 89 7d c0	 mov	 QWORD PTR dir$[rbp-240], r15
 ; File c:\users\alist_000\cppmisc\packages\visualcpptools.14.0.24120-pre\lib\native\include\iosfwd
 
 ; 345  : 		_Left = _Right;
 
-  00053	66 44 89 75 b0	 mov	 WORD PTR dir$[rbp-256], r14w
+  0005c	66 44 89 7d b0	 mov	 WORD PTR dir$[rbp-256], r15w
 ; File c:\users\alist_000\cppmisc\packages\visualcpptools.14.0.24120-pre\lib\native\include\xstring
 
 ; 2258 : 		this->_Myres() = this->_BUF_SIZE - 1;
 
-  00058	48 c7 45 a8 07
+  00061	48 c7 45 a8 07
 	00 00 00	 mov	 QWORD PTR extension$[rbp-232], 7
 
 ; 2217 : 		_Traits::assign(_Dx._Myptr()[_Dx._Mysize = _Newsize], _Elem());
 
-  00060	4c 89 75 a0	 mov	 QWORD PTR extension$[rbp-240], r14
+  00069	4c 89 7d a0	 mov	 QWORD PTR extension$[rbp-240], r15
 ; File c:\users\alist_000\cppmisc\packages\visualcpptools.14.0.24120-pre\lib\native\include\iosfwd
 
 ; 345  : 		_Left = _Right;
 
-  00064	66 44 89 75 90	 mov	 WORD PTR extension$[rbp-256], r14w
+  0006d	66 44 89 7d 90	 mov	 WORD PTR extension$[rbp-256], r15w
 ; File c:\users\alist_000\cppmisc\packages\visualcpptools.14.0.24120-pre\lib\native\include\xstring
 
 ; 2258 : 		this->_Myres() = this->_BUF_SIZE - 1;
 
-  00069	48 c7 44 24 68
+  00072	48 c7 44 24 68
 	07 00 00 00	 mov	 QWORD PTR subcommand$[rsp+24], 7
 
 ; 2217 : 		_Traits::assign(_Dx._Myptr()[_Dx._Mysize = _Newsize], _Elem());
 
-  00072	4c 89 74 24 60	 mov	 QWORD PTR subcommand$[rsp+16], r14
+  0007b	4c 89 7c 24 60	 mov	 QWORD PTR subcommand$[rsp+16], r15
 ; File c:\users\alist_000\cppmisc\packages\visualcpptools.14.0.24120-pre\lib\native\include\iosfwd
 
 ; 345  : 		_Left = _Right;
 
-  00077	66 44 89 74 24
-	50		 mov	 WORD PTR subcommand$[rsp], r14w
+  00080	66 44 89 7c 24
+	50		 mov	 WORD PTR subcommand$[rsp], r15w
 ; File c:\users\alist_000\cppmisc\wwatch.cc
 
 ; 51   :   if (argc < 4) {
 
-  0007d	83 f9 04	 cmp	 ecx, 4
-  00080	0f 8d 97 00 00
+  00086	83 f9 04	 cmp	 ecx, 4
+  00089	0f 8d 97 00 00
 	00		 jge	 $LN7@wmain
 
 ; 52   :     wcout << "usage:" << endl;
 
-  00086	48 8d 15 00 00
-	00 00		 lea	 rdx, OFFSET FLAT:$SG4294967190
-  0008d	48 8d 0d 00 00
+  0008f	48 8d 15 00 00
+	00 00		 lea	 rdx, OFFSET FLAT:$SG4294967188
+  00096	48 8d 0d 00 00
 	00 00		 lea	 rcx, OFFSET FLAT:?wcout@std@@3V?$basic_ostream@_WU?$char_traits@_W@std@@@1@A ; std::wcout
-  00094	e8 00 00 00 00	 call	 ??$?6_WU?$char_traits@_W@std@@@std@@YAAEAV?$basic_ostream@_WU?$char_traits@_W@std@@@0@AEAV10@PEBD@Z ; std::operator<<<wchar_t,std::char_traits<wchar_t> >
-  00099	48 8b d8	 mov	 rbx, rax
+  0009d	e8 00 00 00 00	 call	 ??$?6_WU?$char_traits@_W@std@@@std@@YAAEAV?$basic_ostream@_WU?$char_traits@_W@std@@@0@AEAV10@PEBD@Z ; std::operator<<<wchar_t,std::char_traits<wchar_t> >
+  000a2	48 8b d8	 mov	 rbx, rax
 ; File c:\users\alist_000\cppmisc\packages\visualcpptools.14.0.24120-pre\lib\native\include\ostream
 
 ; 992  : 	_Ostr.put(_Ostr.widen('\n'));
 
-  0009c	4c 8b 00	 mov	 r8, QWORD PTR [rax]
-  0009f	49 63 48 04	 movsxd	 rcx, DWORD PTR [r8+4]
-  000a3	48 03 c8	 add	 rcx, rax
-  000a6	b2 0a		 mov	 dl, 10
-  000a8	e8 00 00 00 00	 call	 ?widen@?$basic_ios@_WU?$char_traits@_W@std@@@std@@QEBA_WD@Z ; std::basic_ios<wchar_t,std::char_traits<wchar_t> >::widen
-  000ad	0f b7 d0	 movzx	 edx, ax
-  000b0	48 8b cb	 mov	 rcx, rbx
-  000b3	e8 00 00 00 00	 call	 ?put@?$basic_ostream@_WU?$char_traits@_W@std@@@std@@QEAAAEAV12@_W@Z ; std::basic_ostream<wchar_t,std::char_traits<wchar_t> >::put
+  000a5	4c 8b 00	 mov	 r8, QWORD PTR [rax]
+  000a8	49 63 48 04	 movsxd	 rcx, DWORD PTR [r8+4]
+  000ac	48 03 c8	 add	 rcx, rax
+  000af	b2 0a		 mov	 dl, 10
+  000b1	e8 00 00 00 00	 call	 ?widen@?$basic_ios@_WU?$char_traits@_W@std@@@std@@QEBA_WD@Z ; std::basic_ios<wchar_t,std::char_traits<wchar_t> >::widen
+  000b6	0f b7 d0	 movzx	 edx, ax
+  000b9	48 8b cb	 mov	 rcx, rbx
+  000bc	e8 00 00 00 00	 call	 ?put@?$basic_ostream@_WU?$char_traits@_W@std@@@std@@QEAAAEAV12@_W@Z ; std::basic_ostream<wchar_t,std::char_traits<wchar_t> >::put
 
 ; 993  : 	_Ostr.flush();
 
-  000b8	48 8b cb	 mov	 rcx, rbx
-  000bb	e8 00 00 00 00	 call	 ?flush@?$basic_ostream@_WU?$char_traits@_W@std@@@std@@QEAAAEAV12@XZ ; std::basic_ostream<wchar_t,std::char_traits<wchar_t> >::flush
+  000c1	48 8b cb	 mov	 rcx, rbx
+  000c4	e8 00 00 00 00	 call	 ?flush@?$basic_ostream@_WU?$char_traits@_W@std@@@std@@QEAAAEAV12@XZ ; std::basic_ostream<wchar_t,std::char_traits<wchar_t> >::flush
 ; File c:\users\alist_000\cppmisc\wwatch.cc
 
 ; 53   :     wcout << "\t" << argv[0] << " \\dir\\to\\watch extension command" << endl;
 
-  000c0	48 8d 15 00 00
-	00 00		 lea	 rdx, OFFSET FLAT:$SG4294967188
-  000c7	48 8d 0d 00 00
+  000c9	48 8d 15 00 00
+	00 00		 lea	 rdx, OFFSET FLAT:$SG4294967186
+  000d0	48 8d 0d 00 00
 	00 00		 lea	 rcx, OFFSET FLAT:?wcout@std@@3V?$basic_ostream@_WU?$char_traits@_W@std@@@1@A ; std::wcout
-  000ce	e8 00 00 00 00	 call	 ??$?6_WU?$char_traits@_W@std@@@std@@YAAEAV?$basic_ostream@_WU?$char_traits@_W@std@@@0@AEAV10@PEBD@Z ; std::operator<<<wchar_t,std::char_traits<wchar_t> >
-  000d3	48 8b c8	 mov	 rcx, rax
-  000d6	48 8b 17	 mov	 rdx, QWORD PTR [rdi]
-  000d9	e8 00 00 00 00	 call	 ??$?6_WU?$char_traits@_W@std@@@std@@YAAEAV?$basic_ostream@_WU?$char_traits@_W@std@@@0@AEAV10@PEB_W@Z ; std::operator<<<wchar_t,std::char_traits<wchar_t> >
-  000de	48 8b c8	 mov	 rcx, rax
-  000e1	48 8d 15 00 00
-	00 00		 lea	 rdx, OFFSET FLAT:$SG4294967189
-  000e8	e8 00 00 00 00	 call	 ??$?6_WU?$char_traits@_W@std@@@std@@YAAEAV?$basic_ostream@_WU?$char_traits@_W@std@@@0@AEAV10@PEBD@Z ; std::operator<<<wchar_t,std::char_traits<wchar_t> >
-  000ed	48 8b d8	 mov	 rbx, rax
+  000d7	e8 00 00 00 00	 call	 ??$?6_WU?$char_traits@_W@std@@@std@@YAAEAV?$basic_ostream@_WU?$char_traits@_W@std@@@0@AEAV10@PEBD@Z ; std::operator<<<wchar_t,std::char_traits<wchar_t> >
+  000dc	48 8b c8	 mov	 rcx, rax
+  000df	48 8b 17	 mov	 rdx, QWORD PTR [rdi]
+  000e2	e8 00 00 00 00	 call	 ??$?6_WU?$char_traits@_W@std@@@std@@YAAEAV?$basic_ostream@_WU?$char_traits@_W@std@@@0@AEAV10@PEB_W@Z ; std::operator<<<wchar_t,std::char_traits<wchar_t> >
+  000e7	48 8b c8	 mov	 rcx, rax
+  000ea	48 8d 15 00 00
+	00 00		 lea	 rdx, OFFSET FLAT:$SG4294967187
+  000f1	e8 00 00 00 00	 call	 ??$?6_WU?$char_traits@_W@std@@@std@@YAAEAV?$basic_ostream@_WU?$char_traits@_W@std@@@0@AEAV10@PEBD@Z ; std::operator<<<wchar_t,std::char_traits<wchar_t> >
+  000f6	48 8b d8	 mov	 rbx, rax
 ; File c:\users\alist_000\cppmisc\packages\visualcpptools.14.0.24120-pre\lib\native\include\ostream
 
 ; 992  : 	_Ostr.put(_Ostr.widen('\n'));
 
-  000f0	48 8b 08	 mov	 rcx, QWORD PTR [rax]
-  000f3	48 63 49 04	 movsxd	 rcx, DWORD PTR [rcx+4]
-  000f7	48 03 c8	 add	 rcx, rax
-  000fa	b2 0a		 mov	 dl, 10
-  000fc	e8 00 00 00 00	 call	 ?widen@?$basic_ios@_WU?$char_traits@_W@std@@@std@@QEBA_WD@Z ; std::basic_ios<wchar_t,std::char_traits<wchar_t> >::widen
-  00101	0f b7 d0	 movzx	 edx, ax
-  00104	48 8b cb	 mov	 rcx, rbx
-  00107	e8 00 00 00 00	 call	 ?put@?$basic_ostream@_WU?$char_traits@_W@std@@@std@@QEAAAEAV12@_W@Z ; std::basic_ostream<wchar_t,std::char_traits<wchar_t> >::put
+  000f9	48 8b 08	 mov	 rcx, QWORD PTR [rax]
+  000fc	48 63 49 04	 movsxd	 rcx, DWORD PTR [rcx+4]
+  00100	48 03 c8	 add	 rcx, rax
+  00103	b2 0a		 mov	 dl, 10
+  00105	e8 00 00 00 00	 call	 ?widen@?$basic_ios@_WU?$char_traits@_W@std@@@std@@QEBA_WD@Z ; std::basic_ios<wchar_t,std::char_traits<wchar_t> >::widen
+  0010a	0f b7 d0	 movzx	 edx, ax
+  0010d	48 8b cb	 mov	 rcx, rbx
+  00110	e8 00 00 00 00	 call	 ?put@?$basic_ostream@_WU?$char_traits@_W@std@@@std@@QEAAAEAV12@_W@Z ; std::basic_ostream<wchar_t,std::char_traits<wchar_t> >::put
 
 ; 993  : 	_Ostr.flush();
 
-  0010c	48 8b cb	 mov	 rcx, rbx
-  0010f	e8 00 00 00 00	 call	 ?flush@?$basic_ostream@_WU?$char_traits@_W@std@@@std@@QEAAAEAV12@XZ ; std::basic_ostream<wchar_t,std::char_traits<wchar_t> >::flush
-  00114	41 8d 5e 01	 lea	 ebx, QWORD PTR [r14+1]
-  00118	e9 dc 02 00 00	 jmp	 $LN19@wmain
+  00115	48 8b cb	 mov	 rcx, rbx
+  00118	e8 00 00 00 00	 call	 ?flush@?$basic_ostream@_WU?$char_traits@_W@std@@@std@@QEAAAEAV12@XZ ; std::basic_ostream<wchar_t,std::char_traits<wchar_t> >::flush
+  0011d	41 8d 5f 01	 lea	 ebx, QWORD PTR [r15+1]
+  00121	e9 28 03 00 00	 jmp	 $LN19@wmain
 $LN7@wmain:
 ; File c:\users\alist_000\cppmisc\wwatch.cc
 
 ; 56   :     dir = argv[1];
 
-  0011d	48 8b 52 08	 mov	 rdx, QWORD PTR [rdx+8]
+  00126	48 8b 52 08	 mov	 rdx, QWORD PTR [rdx+8]
 ; File c:\users\alist_000\cppmisc\packages\visualcpptools.14.0.24120-pre\lib\native\include\iosfwd
 
 ; 303  : 		return (*_First == 0 ? 0
 
-  00121	48 83 cb ff	 or	 rbx, -1
-  00125	66 83 3a 00	 cmp	 WORD PTR [rdx], 0
-  00129	75 05		 jne	 SHORT $LN670@wmain
-  0012b	4d 8b c6	 mov	 r8, r14
-  0012e	eb 0e		 jmp	 SHORT $LN671@wmain
+  0012a	48 83 cb ff	 or	 rbx, -1
+  0012e	66 83 3a 00	 cmp	 WORD PTR [rdx], 0
+  00132	75 05		 jne	 SHORT $LN670@wmain
+  00134	4d 8b c7	 mov	 r8, r15
+  00137	eb 12		 jmp	 SHORT $LN671@wmain
 $LN670@wmain:
-  00130	4c 8b c3	 mov	 r8, rbx
+  00139	4c 8b c3	 mov	 r8, rbx
+  0013c	0f 1f 40 00	 npad	 4
 $LL2225@wmain:
-  00133	49 ff c0	 inc	 r8
-  00136	66 42 83 3c 42
+  00140	49 ff c0	 inc	 r8
+  00143	66 42 83 3c 42
 	00		 cmp	 WORD PTR [rdx+r8*2], 0
-  0013c	75 f5		 jne	 SHORT $LL2225@wmain
+  00149	75 f5		 jne	 SHORT $LL2225@wmain
 $LN671@wmain:
 ; File c:\users\alist_000\cppmisc\packages\visualcpptools.14.0.24120-pre\lib\native\include\xstring
 
 ; 1182 : 		return (assign(_Ptr, _Traits::length(_Ptr)));
 
-  0013e	48 8d 4d b0	 lea	 rcx, QWORD PTR dir$[rbp-256]
-  00142	e8 00 00 00 00	 call	 ?assign@?$basic_string@_WU?$char_traits@_W@std@@V?$allocator@_W@2@@std@@QEAAAEAV12@PEB_W_K@Z ; std::basic_string<wchar_t,std::char_traits<wchar_t>,std::allocator<wchar_t> >::assign
+  0014b	48 8d 4d b0	 lea	 rcx, QWORD PTR dir$[rbp-256]
+  0014f	e8 00 00 00 00	 call	 ?assign@?$basic_string@_WU?$char_traits@_W@std@@V?$allocator@_W@2@@std@@QEAAAEAV12@PEB_W_K@Z ; std::basic_string<wchar_t,std::char_traits<wchar_t>,std::allocator<wchar_t> >::assign
 ; File c:\users\alist_000\cppmisc\wwatch.cc
 
 ; 57   :     extension = argv[2];
 
-  00147	48 8b 57 10	 mov	 rdx, QWORD PTR [rdi+16]
+  00154	48 8b 57 10	 mov	 rdx, QWORD PTR [rdi+16]
 ; File c:\users\alist_000\cppmisc\packages\visualcpptools.14.0.24120-pre\lib\native\include\iosfwd
 
 ; 303  : 		return (*_First == 0 ? 0
 
-  0014b	66 83 3a 00	 cmp	 WORD PTR [rdx], 0
-  0014f	75 05		 jne	 SHORT $LL2224@wmain
-  00151	49 8b de	 mov	 rbx, r14
-  00154	eb 0a		 jmp	 SHORT $LN679@wmain
+  00158	66 83 3a 00	 cmp	 WORD PTR [rdx], 0
+  0015c	75 05		 jne	 SHORT $LL2224@wmain
+  0015e	49 8b df	 mov	 rbx, r15
+  00161	eb 0a		 jmp	 SHORT $LN679@wmain
 $LL2224@wmain:
-  00156	48 ff c3	 inc	 rbx
-  00159	66 83 3c 5a 00	 cmp	 WORD PTR [rdx+rbx*2], 0
-  0015e	75 f6		 jne	 SHORT $LL2224@wmain
+  00163	48 ff c3	 inc	 rbx
+  00166	66 83 3c 5a 00	 cmp	 WORD PTR [rdx+rbx*2], 0
+  0016b	75 f6		 jne	 SHORT $LL2224@wmain
 $LN679@wmain:
 ; File c:\users\alist_000\cppmisc\packages\visualcpptools.14.0.24120-pre\lib\native\include\xstring
 
 ; 1182 : 		return (assign(_Ptr, _Traits::length(_Ptr)));
 
-  00160	4c 8b c3	 mov	 r8, rbx
-  00163	48 8d 4d 90	 lea	 rcx, QWORD PTR extension$[rbp-256]
-  00167	e8 00 00 00 00	 call	 ?assign@?$basic_string@_WU?$char_traits@_W@std@@V?$allocator@_W@2@@std@@QEAAAEAV12@PEB_W_K@Z ; std::basic_string<wchar_t,std::char_traits<wchar_t>,std::allocator<wchar_t> >::assign
+  0016d	4c 8b c3	 mov	 r8, rbx
+  00170	48 8d 4d 90	 lea	 rcx, QWORD PTR extension$[rbp-256]
+  00174	e8 00 00 00 00	 call	 ?assign@?$basic_string@_WU?$char_traits@_W@std@@V?$allocator@_W@2@@std@@QEAAAEAV12@PEB_W_K@Z ; std::basic_string<wchar_t,std::char_traits<wchar_t>,std::allocator<wchar_t> >::assign
 ; File c:\users\alist_000\cppmisc\wwatch.cc
 
 ; 58   :     subcommand = joinCommand(argc - 3, &argv[3]);
 
-  0016c	4c 8d 47 18	 lea	 r8, QWORD PTR [rdi+24]
-  00170	8d 56 fd	 lea	 edx, DWORD PTR [rsi-3]
-  00173	48 8d 4c 24 70	 lea	 rcx, QWORD PTR $T3[rsp]
-  00178	e8 00 00 00 00	 call	 ?joinCommand@@YA?AV?$basic_string@_WU?$char_traits@_W@std@@V?$allocator@_W@2@@std@@HPEAPEA_W@Z ; joinCommand
-  0017d	48 8b d8	 mov	 rbx, rax
+  00179	4c 8d 47 18	 lea	 r8, QWORD PTR [rdi+24]
+  0017d	8d 56 fd	 lea	 edx, DWORD PTR [rsi-3]
+  00180	48 8d 4c 24 70	 lea	 rcx, QWORD PTR $T4[rsp]
+  00185	e8 00 00 00 00	 call	 ?joinCommand@@YA?AV?$basic_string@_WU?$char_traits@_W@std@@V?$allocator@_W@2@@std@@HPEAPEA_W@Z ; joinCommand
+  0018a	48 8b d8	 mov	 rbx, rax
 ; File c:\users\alist_000\cppmisc\packages\visualcpptools.14.0.24120-pre\lib\native\include\xstring
 
 ; 929  : 		if (this != &_Right)
 
-  00180	48 8d 44 24 50	 lea	 rax, QWORD PTR subcommand$[rsp]
-  00185	48 3b c3	 cmp	 rax, rbx
-  00188	74 3f		 je	 SHORT $LN684@wmain
+  0018d	48 8d 44 24 50	 lea	 rax, QWORD PTR subcommand$[rsp]
+  00192	48 3b c3	 cmp	 rax, rbx
+  00195	74 3f		 je	 SHORT $LN684@wmain
 
 ; 2249 : 		else if (this->_BUF_SIZE <= this->_Myres())
 
-  0018a	4c 8b 44 24 68	 mov	 r8, QWORD PTR subcommand$[rsp+24]
-  0018f	49 83 f8 08	 cmp	 r8, 8
-  00193	72 12		 jb	 SHORT $LN690@wmain
+  00197	4c 8b 44 24 68	 mov	 r8, QWORD PTR subcommand$[rsp+24]
+  0019c	49 83 f8 08	 cmp	 r8, 8
+  001a0	72 12		 jb	 SHORT $LN690@wmain
 
 ; 2250 : 			{	// copy any leftovers to small buffer and deallocate
 ; 2251 : 			pointer _Ptr = this->_Bx()._Ptr;
@@ -15317,41 +15311,41 @@ $LN679@wmain:
 ; 2255 : 					_Unfancy(_Ptr), _Newsize);
 ; 2256 : 			this->_Getal().deallocate(_Ptr, this->_Myres() + 1);
 
-  00195	49 ff c0	 inc	 r8
-  00198	48 8b 54 24 50	 mov	 rdx, QWORD PTR subcommand$[rsp]
-  0019d	48 8d 4c 24 50	 lea	 rcx, QWORD PTR subcommand$[rsp]
-  001a2	e8 00 00 00 00	 call	 ?deallocate@?$_Wrap_alloc@V?$allocator@_W@std@@@std@@QEAAXPEA_W_K@Z ; std::_Wrap_alloc<std::allocator<wchar_t> >::deallocate
+  001a2	49 ff c0	 inc	 r8
+  001a5	48 8b 54 24 50	 mov	 rdx, QWORD PTR subcommand$[rsp]
+  001aa	48 8d 4c 24 50	 lea	 rcx, QWORD PTR subcommand$[rsp]
+  001af	e8 00 00 00 00	 call	 ?deallocate@?$_Wrap_alloc@V?$allocator@_W@std@@@std@@QEAAXPEA_W_K@Z ; std::_Wrap_alloc<std::allocator<wchar_t> >::deallocate
 $LN690@wmain:
 
 ; 2258 : 		this->_Myres() = this->_BUF_SIZE - 1;
 
-  001a7	48 c7 44 24 68
+  001b4	48 c7 44 24 68
 	07 00 00 00	 mov	 QWORD PTR subcommand$[rsp+24], 7
 
 ; 2217 : 		_Traits::assign(_Dx._Myptr()[_Dx._Mysize = _Newsize], _Elem());
 
-  001b0	4c 89 74 24 60	 mov	 QWORD PTR subcommand$[rsp+16], r14
+  001bd	4c 89 7c 24 60	 mov	 QWORD PTR subcommand$[rsp+16], r15
 ; File c:\users\alist_000\cppmisc\packages\visualcpptools.14.0.24120-pre\lib\native\include\iosfwd
 
 ; 345  : 		_Left = _Right;
 
-  001b5	66 44 89 74 24
-	50		 mov	 WORD PTR subcommand$[rsp], r14w
+  001c2	66 44 89 7c 24
+	50		 mov	 WORD PTR subcommand$[rsp], r15w
 ; File c:\users\alist_000\cppmisc\packages\visualcpptools.14.0.24120-pre\lib\native\include\xstring
 
 ; 940  : 				_Assign_rv(_STD forward<_Myt>(_Right));
 
-  001bb	48 8b d3	 mov	 rdx, rbx
-  001be	48 8d 4c 24 50	 lea	 rcx, QWORD PTR subcommand$[rsp]
-  001c3	e8 00 00 00 00	 call	 ?_Assign_rv@?$basic_string@_WU?$char_traits@_W@std@@V?$allocator@_W@2@@std@@QEAAX$$QEAV12@@Z ; std::basic_string<wchar_t,std::char_traits<wchar_t>,std::allocator<wchar_t> >::_Assign_rv
-  001c8	90		 npad	 1
+  001c8	48 8b d3	 mov	 rdx, rbx
+  001cb	48 8d 4c 24 50	 lea	 rcx, QWORD PTR subcommand$[rsp]
+  001d0	e8 00 00 00 00	 call	 ?_Assign_rv@?$basic_string@_WU?$char_traits@_W@std@@V?$allocator@_W@2@@std@@QEAAX$$QEAV12@@Z ; std::basic_string<wchar_t,std::char_traits<wchar_t>,std::allocator<wchar_t> >::_Assign_rv
+  001d5	90		 npad	 1
 $LN684@wmain:
 
 ; 2249 : 		else if (this->_BUF_SIZE <= this->_Myres())
 
-  001c9	4c 8b 45 88	 mov	 r8, QWORD PTR $T3[rbp-232]
-  001cd	49 83 f8 08	 cmp	 r8, 8
-  001d1	72 12		 jb	 SHORT $LN912@wmain
+  001d6	4c 8b 45 88	 mov	 r8, QWORD PTR $T4[rbp-232]
+  001da	49 83 f8 08	 cmp	 r8, 8
+  001de	72 12		 jb	 SHORT $LN912@wmain
 
 ; 2250 : 			{	// copy any leftovers to small buffer and deallocate
 ; 2251 : 			pointer _Ptr = this->_Bx()._Ptr;
@@ -15361,162 +15355,180 @@ $LN684@wmain:
 ; 2255 : 					_Unfancy(_Ptr), _Newsize);
 ; 2256 : 			this->_Getal().deallocate(_Ptr, this->_Myres() + 1);
 
-  001d3	49 ff c0	 inc	 r8
-  001d6	48 8b 54 24 70	 mov	 rdx, QWORD PTR $T3[rsp]
-  001db	48 8d 4c 24 70	 lea	 rcx, QWORD PTR $T3[rsp]
-  001e0	e8 00 00 00 00	 call	 ?deallocate@?$_Wrap_alloc@V?$allocator@_W@std@@@std@@QEAAXPEA_W_K@Z ; std::_Wrap_alloc<std::allocator<wchar_t> >::deallocate
+  001e0	49 ff c0	 inc	 r8
+  001e3	48 8b 54 24 70	 mov	 rdx, QWORD PTR $T4[rsp]
+  001e8	48 8d 4c 24 70	 lea	 rcx, QWORD PTR $T4[rsp]
+  001ed	e8 00 00 00 00	 call	 ?deallocate@?$_Wrap_alloc@V?$allocator@_W@std@@@std@@QEAAXPEA_W_K@Z ; std::_Wrap_alloc<std::allocator<wchar_t> >::deallocate
 $LN912@wmain:
 
 ; 514  : 		return (this->_BUF_SIZE <= _Myres
 
-  001e5	48 8d 4d b0	 lea	 rcx, QWORD PTR dir$[rbp-256]
-  001e9	48 83 7d c8 08	 cmp	 QWORD PTR dir$[rbp-232], 8
-  001ee	48 0f 43 4d b0	 cmovae	 rcx, QWORD PTR dir$[rbp-256]
+  001f2	48 8d 4d b0	 lea	 rcx, QWORD PTR dir$[rbp-256]
+  001f6	48 83 7d c8 08	 cmp	 QWORD PTR dir$[rbp-232], 8
+  001fb	48 0f 43 4d b0	 cmovae	 rcx, QWORD PTR dir$[rbp-256]
 ; File c:\users\alist_000\cppmisc\wwatch.cc
 
 ; 62   :       CreateFileW(dir.data(), FILE_LIST_DIRECTORY,
 
-  001f3	4c 89 74 24 30	 mov	 QWORD PTR [rsp+48], r14
-  001f8	c7 44 24 28 00
+  00200	4c 89 7c 24 30	 mov	 QWORD PTR [rsp+48], r15
+  00205	c7 44 24 28 00
 	00 00 02	 mov	 DWORD PTR [rsp+40], 33554432 ; 02000000H
-  00200	c7 44 24 20 03
+  0020d	c7 44 24 20 03
 	00 00 00	 mov	 DWORD PTR [rsp+32], 3
-  00208	45 33 c9	 xor	 r9d, r9d
-  0020b	41 8d 51 01	 lea	 edx, QWORD PTR [r9+1]
-  0020f	45 8d 41 07	 lea	 r8d, QWORD PTR [r9+7]
-  00213	ff 15 00 00 00
+  00215	45 33 c9	 xor	 r9d, r9d
+  00218	41 8d 51 01	 lea	 edx, QWORD PTR [r9+1]
+  0021c	45 8d 41 07	 lea	 r8d, QWORD PTR [r9+7]
+  00220	ff 15 00 00 00
 	00		 call	 QWORD PTR __imp_CreateFileW
-  00219	48 8b f0	 mov	 rsi, rax
+  00226	4c 8b f0	 mov	 r14, rax
 
 ; 63   :                   FILE_SHARE_WRITE | FILE_SHARE_READ | FILE_SHARE_DELETE, NULL,
 ; 64   :                   OPEN_EXISTING, FILE_FLAG_BACKUP_SEMANTICS, NULL);
 ; 65   : 
 ; 66   :   if (hDir == INVALID_HANDLE_VALUE) {
 
-  0021c	48 83 f8 ff	 cmp	 rax, -1
-  00220	75 38		 jne	 SHORT $LN9@wmain
+  00229	48 83 f8 ff	 cmp	 rax, -1
+  0022d	75 38		 jne	 SHORT $LN9@wmain
 
 ; 67   :     printError();
 
-  00222	e8 00 00 00 00	 call	 ?printError@@YAXXZ	; printError
+  0022f	e8 00 00 00 00	 call	 ?printError@@YAXXZ	; printError
 
 ; 68   :     wcerr << "Cannot open directory '" << argv[1] << "'" << endl;
 
-  00227	48 8d 15 00 00
-	00 00		 lea	 rdx, OFFSET FLAT:$SG4294967186
-  0022e	48 8d 0d 00 00
+  00234	48 8d 15 00 00
+	00 00		 lea	 rdx, OFFSET FLAT:$SG4294967184
+  0023b	48 8d 0d 00 00
 	00 00		 lea	 rcx, OFFSET FLAT:?wcerr@std@@3V?$basic_ostream@_WU?$char_traits@_W@std@@@1@A ; std::wcerr
-  00235	e8 00 00 00 00	 call	 ??$?6_WU?$char_traits@_W@std@@@std@@YAAEAV?$basic_ostream@_WU?$char_traits@_W@std@@@0@AEAV10@PEBD@Z ; std::operator<<<wchar_t,std::char_traits<wchar_t> >
-  0023a	48 8b c8	 mov	 rcx, rax
-  0023d	48 8b 57 08	 mov	 rdx, QWORD PTR [rdi+8]
-  00241	e8 00 00 00 00	 call	 ??$?6_WU?$char_traits@_W@std@@@std@@YAAEAV?$basic_ostream@_WU?$char_traits@_W@std@@@0@AEAV10@PEB_W@Z ; std::operator<<<wchar_t,std::char_traits<wchar_t> >
-  00246	48 8b c8	 mov	 rcx, rax
-  00249	48 8d 15 00 00
-	00 00		 lea	 rdx, OFFSET FLAT:$SG4294967187
-  00250	e8 00 00 00 00	 call	 ??$?6_WU?$char_traits@_W@std@@@std@@YAAEAV?$basic_ostream@_WU?$char_traits@_W@std@@@0@AEAV10@PEBD@Z ; std::operator<<<wchar_t,std::char_traits<wchar_t> >
-  00255	e9 73 01 00 00	 jmp	 $LN2229@wmain
+  00242	e8 00 00 00 00	 call	 ??$?6_WU?$char_traits@_W@std@@@std@@YAAEAV?$basic_ostream@_WU?$char_traits@_W@std@@@0@AEAV10@PEBD@Z ; std::operator<<<wchar_t,std::char_traits<wchar_t> >
+  00247	48 8b c8	 mov	 rcx, rax
+  0024a	48 8b 57 08	 mov	 rdx, QWORD PTR [rdi+8]
+  0024e	e8 00 00 00 00	 call	 ??$?6_WU?$char_traits@_W@std@@@std@@YAAEAV?$basic_ostream@_WU?$char_traits@_W@std@@@0@AEAV10@PEB_W@Z ; std::operator<<<wchar_t,std::char_traits<wchar_t> >
+  00253	48 8b c8	 mov	 rcx, rax
+  00256	48 8d 15 00 00
+	00 00		 lea	 rdx, OFFSET FLAT:$SG4294967185
+  0025d	e8 00 00 00 00	 call	 ??$?6_WU?$char_traits@_W@std@@@std@@YAAEAV?$basic_ostream@_WU?$char_traits@_W@std@@@0@AEAV10@PEBD@Z ; std::operator<<<wchar_t,std::char_traits<wchar_t> >
+  00262	e9 bb 01 00 00	 jmp	 $LN2229@wmain
 $LN9@wmain:
 
 ; 69   :     return 2;
 ; 70   :   }
 ; 71   : 
-; 72   :   int8_t buffer[4096];
-; 73   :   DWORD dwBytesReturned = 0;
+; 72   :   size_t globalIteration = 0;
 
-  0025a	44 89 74 24 40	 mov	 DWORD PTR dwBytesReturned$[rsp], r14d
+  00267	49 8b f7	 mov	 rsi, r15
 
-; 74   : 
-; 75   :   while (TRUE) {
-; 76   :     if (ReadDirectoryChangesW(hDir, static_cast<LPVOID>(buffer), sizeof(buffer),
-; 77   :                               FALSE, FILE_NOTIFY_CHANGE_LAST_WRITE,
-; 78   :                               &dwBytesReturned, NULL, NULL) == FALSE) {
+; 73   :   const size_t bufferSize = 4096;
+; 74   :   int8_t buffer[bufferSize];
+; 75   : 
+; 76   :   while (TRUE) {
+; 77   :     memset(buffer, 0, bufferSize);
 
-  0025f	4c 89 74 24 38	 mov	 QWORD PTR [rsp+56], r14
-  00264	4c 89 74 24 30	 mov	 QWORD PTR [rsp+48], r14
-  00269	48 8d 44 24 40	 lea	 rax, QWORD PTR dwBytesReturned$[rsp]
-  0026e	48 89 44 24 28	 mov	 QWORD PTR [rsp+40], rax
-  00273	c7 44 24 20 10
-	00 00 00	 mov	 DWORD PTR [rsp+32], 16
-  0027b	45 33 c9	 xor	 r9d, r9d
-  0027e	41 b8 00 10 00
+  0026a	33 d2		 xor	 edx, edx
+  0026c	41 b8 00 10 00
 	00		 mov	 r8d, 4096		; 00001000H
-  00284	48 8d 55 d0	 lea	 rdx, QWORD PTR buffer$[rbp-256]
-  00288	48 8b ce	 mov	 rcx, rsi
-  0028b	ff 15 00 00 00
+  00272	48 8d 4d d0	 lea	 rcx, QWORD PTR buffer$[rbp-256]
+  00276	e8 00 00 00 00	 call	 memset
+
+; 78   :     DWORD dwBytesReturned = 0;
+
+  0027b	44 89 7c 24 40	 mov	 DWORD PTR dwBytesReturned$1[rsp], r15d
+
+; 79   :     if (ReadDirectoryChangesW(hDir, static_cast<LPVOID>(buffer), bufferSize,
+; 80   :                               FALSE, FILE_NOTIFY_CHANGE_SIZE, &dwBytesReturned,
+; 81   :                               NULL, NULL) == FALSE) {
+
+  00280	4c 89 7c 24 38	 mov	 QWORD PTR [rsp+56], r15
+  00285	4c 89 7c 24 30	 mov	 QWORD PTR [rsp+48], r15
+  0028a	48 8d 44 24 40	 lea	 rax, QWORD PTR dwBytesReturned$1[rsp]
+  0028f	48 89 44 24 28	 mov	 QWORD PTR [rsp+40], rax
+  00294	c7 44 24 20 08
+	00 00 00	 mov	 DWORD PTR [rsp+32], 8
+  0029c	45 33 c9	 xor	 r9d, r9d
+  0029f	41 b8 00 10 00
+	00		 mov	 r8d, 4096		; 00001000H
+  002a5	48 8d 55 d0	 lea	 rdx, QWORD PTR buffer$[rbp-256]
+  002a9	49 8b ce	 mov	 rcx, r14
+  002ac	ff 15 00 00 00
 	00		 call	 QWORD PTR __imp_ReadDirectoryChangesW
-  00291	85 c0		 test	 eax, eax
-  00293	0f 84 1c 01 00
+  002b2	85 c0		 test	 eax, eax
+  002b4	0f 84 50 01 00
 	00		 je	 $LN2218@wmain
-  00299	49 bf ff ff ff
-	ff ff ff ff 7f	 mov	 r15, 9223372036854775807 ; 7fffffffffffffffH
-  002a3	0f 1f 40 00 66
-	0f 1f 84 00 00
-	00 00 00	 npad	 13
+  002ba	49 bc ff ff ff
+	ff ff ff ff 7f	 mov	 r12, 9223372036854775807 ; 7fffffffffffffffH
+  002c4	0f 1f 40 00 0f
+	1f 84 00 00 00
+	00 00		 npad	 12
 $LL2@wmain:
 
-; 82   :     } else {
-; 83   :       PFILE_NOTIFY_INFORMATION notifications =
-; 84   :           reinterpret_cast<PFILE_NOTIFY_INFORMATION>(&buffer[0]);
+; 85   :     } else {
+; 86   :       PFILE_NOTIFY_INFORMATION notifications =
+; 87   :           reinterpret_cast<PFILE_NOTIFY_INFORMATION>(buffer);
 
-  002b0	48 8d 5d d0	 lea	 rbx, QWORD PTR buffer$[rbp-256]
+  002d0	48 8d 5d d0	 lea	 rbx, QWORD PTR buffer$[rbp-256]
 
-; 85   :       int iteration = 0;
+; 88   :       size_t localIteration = 0;
 
-  002b4	41 8b fe	 mov	 edi, r14d
+  002d4	49 8b ff	 mov	 rdi, r15
+  002d7	66 0f 1f 84 00
+	00 00 00 00	 npad	 9
 $LL6@wmain:
 
-; 87   :         handle(
+; 90   :         handle(
 
-  002b7	ff c7		 inc	 edi
-  002b9	44 8b 43 08	 mov	 r8d, DWORD PTR [rbx+8]
-  002bd	49 d1 e8	 shr	 r8, 1
+  002e0	48 ff c7	 inc	 rdi
+  002e3	48 ff c6	 inc	 rsi
+  002e6	44 8b 43 08	 mov	 r8d, DWORD PTR [rbx+8]
+  002ea	49 d1 e8	 shr	 r8, 1
 ; File c:\users\alist_000\cppmisc\packages\visualcpptools.14.0.24120-pre\lib\native\include\xstring
 
 ; 2258 : 		this->_Myres() = this->_BUF_SIZE - 1;
 
-  002c0	48 c7 45 88 07
-	00 00 00	 mov	 QWORD PTR $T2[rbp-232], 7
+  002ed	48 c7 45 88 07
+	00 00 00	 mov	 QWORD PTR $T3[rbp-232], 7
 
 ; 2217 : 		_Traits::assign(_Dx._Myptr()[_Dx._Mysize = _Newsize], _Elem());
 
-  002c8	4c 89 75 80	 mov	 QWORD PTR $T2[rbp-240], r14
+  002f5	4c 89 7d 80	 mov	 QWORD PTR $T3[rbp-240], r15
 ; File c:\users\alist_000\cppmisc\packages\visualcpptools.14.0.24120-pre\lib\native\include\iosfwd
 
 ; 345  : 		_Left = _Right;
 
-  002cc	66 44 89 74 24
-	70		 mov	 WORD PTR $T2[rsp], r14w
+  002f9	66 44 89 7c 24
+	70		 mov	 WORD PTR $T3[rsp], r15w
 ; File c:\users\alist_000\cppmisc\wwatch.cc
 
-; 87   :         handle(
+; 90   :         handle(
 
-  002d2	48 8d 53 0c	 lea	 rdx, QWORD PTR [rbx+12]
+  002ff	48 8d 53 0c	 lea	 rdx, QWORD PTR [rbx+12]
 ; File c:\users\alist_000\cppmisc\packages\visualcpptools.14.0.24120-pre\lib\native\include\xstring
 
 ; 824  : 		assign(_Ptr, _Count);
 
-  002d6	48 8d 4c 24 70	 lea	 rcx, QWORD PTR $T2[rsp]
-  002db	e8 00 00 00 00	 call	 ?assign@?$basic_string@_WU?$char_traits@_W@std@@V?$allocator@_W@2@@std@@QEAAAEAV12@PEB_W_K@Z ; std::basic_string<wchar_t,std::char_traits<wchar_t>,std::allocator<wchar_t> >::assign
-  002e0	90		 npad	 1
+  00303	48 8d 4c 24 70	 lea	 rcx, QWORD PTR $T3[rsp]
+  00308	e8 00 00 00 00	 call	 ?assign@?$basic_string@_WU?$char_traits@_W@std@@V?$allocator@_W@2@@std@@QEAAAEAV12@PEB_W_K@Z ; std::basic_string<wchar_t,std::char_traits<wchar_t>,std::allocator<wchar_t> >::assign
+  0030d	90		 npad	 1
 ; File c:\users\alist_000\cppmisc\wwatch.cc
 
-; 87   :         handle(
+; 90   :         handle(
 
-  002e1	48 8d 45 90	 lea	 rax, QWORD PTR extension$[rbp-256]
-  002e5	48 89 44 24 20	 mov	 QWORD PTR [rsp+32], rax
-  002ea	4c 8d 4c 24 50	 lea	 r9, QWORD PTR subcommand$[rsp]
-  002ef	4c 8d 44 24 70	 lea	 r8, QWORD PTR $T2[rsp]
-  002f4	8b 53 04	 mov	 edx, DWORD PTR [rbx+4]
-  002f7	8b cf		 mov	 ecx, edi
-  002f9	e8 00 00 00 00	 call	 ?handle@@YAXHIAEBV?$basic_string@_WU?$char_traits@_W@std@@V?$allocator@_W@2@@std@@00@Z ; handle
-  002fe	90		 npad	 1
+  0030e	48 8d 45 90	 lea	 rax, QWORD PTR extension$[rbp-256]
+  00312	48 89 44 24 28	 mov	 QWORD PTR [rsp+40], rax
+  00317	48 8d 44 24 50	 lea	 rax, QWORD PTR subcommand$[rsp]
+  0031c	48 89 44 24 20	 mov	 QWORD PTR [rsp+32], rax
+  00321	4c 8d 4c 24 70	 lea	 r9, QWORD PTR $T3[rsp]
+  00326	44 8b 43 04	 mov	 r8d, DWORD PTR [rbx+4]
+  0032a	48 8b d7	 mov	 rdx, rdi
+  0032d	48 8b ce	 mov	 rcx, rsi
+  00330	e8 00 00 00 00	 call	 ?handle@@YAX_K0IAEBV?$basic_string@_WU?$char_traits@_W@std@@V?$allocator@_W@2@@std@@11@Z ; handle
+  00335	90		 npad	 1
 ; File c:\users\alist_000\cppmisc\packages\visualcpptools.14.0.24120-pre\lib\native\include\xstring
 
 ; 2249 : 		else if (this->_BUF_SIZE <= this->_Myres())
 
-  002ff	48 8b 45 88	 mov	 rax, QWORD PTR $T2[rbp-232]
-  00303	48 83 f8 08	 cmp	 rax, 8
-  00307	72 41		 jb	 SHORT $LN1865@wmain
+  00336	48 8b 45 88	 mov	 rax, QWORD PTR $T3[rbp-232]
+  0033a	48 83 f8 08	 cmp	 rax, 8
+  0033e	72 49		 jb	 SHORT $LN1865@wmain
 
 ; 2250 : 			{	// copy any leftovers to small buffer and deallocate
 ; 2251 : 			pointer _Ptr = this->_Bx()._Ptr;
@@ -15526,42 +15538,43 @@ $LL6@wmain:
 ; 2255 : 					_Unfancy(_Ptr), _Newsize);
 ; 2256 : 			this->_Getal().deallocate(_Ptr, this->_Myres() + 1);
 
-  00309	48 ff c0	 inc	 rax
+  00340	48 ff c0	 inc	 rax
 ; File c:\users\alist_000\cppmisc\packages\visualcpptools.14.0.24120-pre\lib\native\include\xmemory0
 
 ; 639  : 		_Deallocate(_Ptr, _Count, sizeof (_Ty));
 
-  0030c	48 8b 4c 24 70	 mov	 rcx, QWORD PTR $T2[rsp]
+  00343	48 8b 4c 24 70	 mov	 rcx, QWORD PTR $T3[rsp]
 
 ; 94   : 	_SCL_SECURE_ALWAYS_VALIDATE(_Count <= (size_t)(-1) / _Sz);
 
-  00311	49 3b c7	 cmp	 rax, r15
-  00314	0f 87 95 00 00
+  00348	49 3b c4	 cmp	 rax, r12
+  0034b	0f 87 b3 00 00
 	00		 ja	 $LN2213@wmain
 
 ; 95   : 	const size_t _User_size = _Count * _Sz;
 
-  0031a	48 03 c0	 add	 rax, rax
+  00351	48 03 c0	 add	 rax, rax
 
 ; 96   : 	if (_BIG_ALLOCATION_THRESHOLD <= _User_size)
 
-  0031d	48 3d 00 10 00
+  00354	48 3d 00 10 00
 	00		 cmp	 rax, 4096		; 00001000H
-  00323	72 20		 jb	 SHORT $LN1860@wmain
+  0035a	72 28		 jb	 SHORT $LN1860@wmain
 
 ; 97   : 		{	// deallocate large block
 ; 98   : 		const uintptr_t _Ptr_user = reinterpret_cast<uintptr_t>(_Ptr);
 ; 99   : 		_SCL_SECURE_ALWAYS_VALIDATE(
 
-  00325	f6 c1 1f	 test	 cl, 31
-  00328	75 7f		 jne	 SHORT $LN2214@wmain
+  0035c	f6 c1 1f	 test	 cl, 31
+  0035f	0f 85 99 00 00
+	00		 jne	 $LN2214@wmain
 
 ; 100  : 			(_Ptr_user & (_BIG_ALLOCATION_ALIGNMENT - 1)) == 0);
 ; 101  : 		const uintptr_t _Ptr_ptr = _Ptr_user - sizeof(void *);
 ; 102  : 		const uintptr_t _Ptr_container =
 ; 103  : 			*reinterpret_cast<uintptr_t *>(_Ptr_ptr);
 
-  0032a	48 8b 41 f8	 mov	 rax, QWORD PTR [rcx-8]
+  00365	48 8b 41 f8	 mov	 rax, QWORD PTR [rcx-8]
 
 ; 104  : 
 ; 105  :  #ifdef _DEBUG
@@ -15575,8 +15588,9 @@ $LL6@wmain:
 ; 113  : 		// Extra paranoia on aligned allocation/deallocation
 ; 114  : 		_SCL_SECURE_ALWAYS_VALIDATE(_Ptr_container < _Ptr_user);
 
-  0032e	48 3b c1	 cmp	 rax, rcx
-  00331	73 70		 jae	 SHORT $LN2215@wmain
+  00369	48 3b c1	 cmp	 rax, rcx
+  0036c	0f 83 86 00 00
+	00		 jae	 $LN2215@wmain
 
 ; 115  : 
 ; 116  :  #ifdef _DEBUG
@@ -15586,20 +15600,20 @@ $LL6@wmain:
 ; 120  :  #else /* _DEBUG */
 ; 121  : 		_SCL_SECURE_ALWAYS_VALIDATE(sizeof(void *)
 
-  00333	48 2b c8	 sub	 rcx, rax
-  00336	48 83 f9 08	 cmp	 rcx, 8
-  0033a	72 61		 jb	 SHORT $LN2216@wmain
+  00372	48 2b c8	 sub	 rcx, rax
+  00375	48 83 f9 08	 cmp	 rcx, 8
+  00379	72 77		 jb	 SHORT $LN2216@wmain
 
 ; 125  : 		_SCL_SECURE_ALWAYS_VALIDATE(_Ptr_user - _Ptr_container
 
-  0033c	48 83 f9 27	 cmp	 rcx, 39			; 00000027H
-  00340	77 55		 ja	 SHORT $LN2217@wmain
+  0037b	48 83 f9 27	 cmp	 rcx, 39			; 00000027H
+  0037f	77 6b		 ja	 SHORT $LN2217@wmain
 
 ; 126  : 			<= _NON_USER_SIZE);
 ; 127  : 
 ; 128  : 		_Ptr = reinterpret_cast<void *>(_Ptr_container);
 
-  00342	48 8b c8	 mov	 rcx, rax
+  00381	48 8b c8	 mov	 rcx, rax
 $LN1860@wmain:
 
 ; 129  : 		}
@@ -15607,51 +15621,65 @@ $LN1860@wmain:
 ; 131  : 
 ; 132  : 	::operator delete(_Ptr);
 
-  00345	e8 00 00 00 00	 call	 ??3@YAXPEAX@Z		; operator delete
+  00384	e8 00 00 00 00	 call	 ??3@YAXPEAX@Z		; operator delete
 $LN1865@wmain:
 ; File c:\users\alist_000\cppmisc\wwatch.cc
 
-; 91   :         notifications += notifications->NextEntryOffset;
+; 94   :         notifications += notifications->NextEntryOffset;
 
-  0034a	8b 03		 mov	 eax, DWORD PTR [rbx]
-  0034c	48 c1 e0 04	 shl	 rax, 4
-  00350	48 03 d8	 add	 rbx, rax
+  00389	8b 03		 mov	 eax, DWORD PTR [rbx]
+  0038b	48 c1 e0 04	 shl	 rax, 4
+  0038f	48 03 d8	 add	 rbx, rax
 
-; 92   :       } while (notifications->NextEntryOffset != 0);
+; 95   :       } while (notifications->NextEntryOffset != 0);
 
-  00353	83 3b 00	 cmp	 DWORD PTR [rbx], 0
-  00356	0f 85 5b ff ff
+  00392	83 3b 00	 cmp	 DWORD PTR [rbx], 0
+  00395	0f 85 45 ff ff
 	ff		 jne	 $LL6@wmain
 
-; 74   : 
-; 75   :   while (TRUE) {
-; 76   :     if (ReadDirectoryChangesW(hDir, static_cast<LPVOID>(buffer), sizeof(buffer),
-; 77   :                               FALSE, FILE_NOTIFY_CHANGE_LAST_WRITE,
-; 78   :                               &dwBytesReturned, NULL, NULL) == FALSE) {
+; 73   :   const size_t bufferSize = 4096;
+; 74   :   int8_t buffer[bufferSize];
+; 75   : 
+; 76   :   while (TRUE) {
+; 77   :     memset(buffer, 0, bufferSize);
 
-  0035c	4c 89 74 24 38	 mov	 QWORD PTR [rsp+56], r14
-  00361	4c 89 74 24 30	 mov	 QWORD PTR [rsp+48], r14
-  00366	48 8d 44 24 40	 lea	 rax, QWORD PTR dwBytesReturned$[rsp]
-  0036b	48 89 44 24 28	 mov	 QWORD PTR [rsp+40], rax
-  00370	c7 44 24 20 10
-	00 00 00	 mov	 DWORD PTR [rsp+32], 16
-  00378	45 33 c9	 xor	 r9d, r9d
-  0037b	41 b8 00 10 00
+  0039b	33 d2		 xor	 edx, edx
+  0039d	41 b8 00 10 00
 	00		 mov	 r8d, 4096		; 00001000H
-  00381	48 8d 55 d0	 lea	 rdx, QWORD PTR buffer$[rbp-256]
-  00385	48 8b ce	 mov	 rcx, rsi
-  00388	ff 15 00 00 00
+  003a3	48 8d 4d d0	 lea	 rcx, QWORD PTR buffer$[rbp-256]
+  003a7	e8 00 00 00 00	 call	 memset
+
+; 78   :     DWORD dwBytesReturned = 0;
+
+  003ac	44 89 7c 24 40	 mov	 DWORD PTR dwBytesReturned$1[rsp], r15d
+
+; 79   :     if (ReadDirectoryChangesW(hDir, static_cast<LPVOID>(buffer), bufferSize,
+; 80   :                               FALSE, FILE_NOTIFY_CHANGE_SIZE, &dwBytesReturned,
+; 81   :                               NULL, NULL) == FALSE) {
+
+  003b1	4c 89 7c 24 38	 mov	 QWORD PTR [rsp+56], r15
+  003b6	4c 89 7c 24 30	 mov	 QWORD PTR [rsp+48], r15
+  003bb	48 8d 44 24 40	 lea	 rax, QWORD PTR dwBytesReturned$1[rsp]
+  003c0	48 89 44 24 28	 mov	 QWORD PTR [rsp+40], rax
+  003c5	c7 44 24 20 08
+	00 00 00	 mov	 DWORD PTR [rsp+32], 8
+  003cd	45 33 c9	 xor	 r9d, r9d
+  003d0	41 b8 00 10 00
+	00		 mov	 r8d, 4096		; 00001000H
+  003d6	48 8d 55 d0	 lea	 rdx, QWORD PTR buffer$[rbp-256]
+  003da	49 8b ce	 mov	 rcx, r14
+  003dd	ff 15 00 00 00
 	00		 call	 QWORD PTR __imp_ReadDirectoryChangesW
-  0038e	85 c0		 test	 eax, eax
-  00390	74 23		 je	 SHORT $LN2218@wmain
-  00392	e9 19 ff ff ff	 jmp	 $LL2@wmain
+  003e3	85 c0		 test	 eax, eax
+  003e5	74 23		 je	 SHORT $LN2218@wmain
+  003e7	e9 e4 fe ff ff	 jmp	 $LL2@wmain
 $LN2217@wmain:
 ; File c:\users\alist_000\cppmisc\packages\visualcpptools.14.0.24120-pre\lib\native\include\xmemory0
 
 ; 125  : 		_SCL_SECURE_ALWAYS_VALIDATE(_Ptr_user - _Ptr_container
 
-  00397	e8 00 00 00 00	 call	 _invalid_parameter_noinfo_noreturn
-  0039c	cc		 int	 3
+  003ec	e8 00 00 00 00	 call	 _invalid_parameter_noinfo_noreturn
+  003f1	cc		 int	 3
 $LN2216@wmain:
 
 ; 115  : 
@@ -15662,8 +15690,8 @@ $LN2216@wmain:
 ; 120  :  #else /* _DEBUG */
 ; 121  : 		_SCL_SECURE_ALWAYS_VALIDATE(sizeof(void *)
 
-  0039d	e8 00 00 00 00	 call	 _invalid_parameter_noinfo_noreturn
-  003a2	cc		 int	 3
+  003f2	e8 00 00 00 00	 call	 _invalid_parameter_noinfo_noreturn
+  003f7	cc		 int	 3
 $LN2215@wmain:
 
 ; 104  : 
@@ -15678,76 +15706,76 @@ $LN2215@wmain:
 ; 113  : 		// Extra paranoia on aligned allocation/deallocation
 ; 114  : 		_SCL_SECURE_ALWAYS_VALIDATE(_Ptr_container < _Ptr_user);
 
-  003a3	e8 00 00 00 00	 call	 _invalid_parameter_noinfo_noreturn
-  003a8	cc		 int	 3
+  003f8	e8 00 00 00 00	 call	 _invalid_parameter_noinfo_noreturn
+  003fd	cc		 int	 3
 $LN2214@wmain:
 
 ; 97   : 		{	// deallocate large block
 ; 98   : 		const uintptr_t _Ptr_user = reinterpret_cast<uintptr_t>(_Ptr);
 ; 99   : 		_SCL_SECURE_ALWAYS_VALIDATE(
 
-  003a9	e8 00 00 00 00	 call	 _invalid_parameter_noinfo_noreturn
-  003ae	cc		 int	 3
+  003fe	e8 00 00 00 00	 call	 _invalid_parameter_noinfo_noreturn
+  00403	cc		 int	 3
 $LN2213@wmain:
 
 ; 94   : 	_SCL_SECURE_ALWAYS_VALIDATE(_Count <= (size_t)(-1) / _Sz);
 
-  003af	e8 00 00 00 00	 call	 _invalid_parameter_noinfo_noreturn
-  003b4	cc		 int	 3
+  00404	e8 00 00 00 00	 call	 _invalid_parameter_noinfo_noreturn
+  00409	cc		 int	 3
 $LN2218@wmain:
 ; File c:\users\alist_000\cppmisc\wwatch.cc
 
-; 79   :       printError();
+; 82   :       printError();
 
-  003b5	e8 00 00 00 00	 call	 ?printError@@YAXXZ	; printError
+  0040a	e8 00 00 00 00	 call	 ?printError@@YAXXZ	; printError
 
-; 80   :       wcerr << L"Error Reading Directory Change" << endl;
+; 83   :       wcerr << L"Error Reading Directory Change" << endl;
 
-  003ba	48 8d 15 00 00
-	00 00		 lea	 rdx, OFFSET FLAT:$SG4294967185
-  003c1	48 8d 0d 00 00
+  0040f	48 8d 15 00 00
+	00 00		 lea	 rdx, OFFSET FLAT:$SG4294967183
+  00416	48 8d 0d 00 00
 	00 00		 lea	 rcx, OFFSET FLAT:?wcerr@std@@3V?$basic_ostream@_WU?$char_traits@_W@std@@@1@A ; std::wcerr
-  003c8	e8 00 00 00 00	 call	 ??$?6_WU?$char_traits@_W@std@@@std@@YAAEAV?$basic_ostream@_WU?$char_traits@_W@std@@@0@AEAV10@PEB_W@Z ; std::operator<<<wchar_t,std::char_traits<wchar_t> >
+  0041d	e8 00 00 00 00	 call	 ??$?6_WU?$char_traits@_W@std@@@std@@YAAEAV?$basic_ostream@_WU?$char_traits@_W@std@@@0@AEAV10@PEB_W@Z ; std::operator<<<wchar_t,std::char_traits<wchar_t> >
 $LN2229@wmain:
 ; File c:\users\alist_000\cppmisc\packages\visualcpptools.14.0.24120-pre\lib\native\include\ostream
 
 ; 992  : 	_Ostr.put(_Ostr.widen('\n'));
 
-  003cd	48 8b 08	 mov	 rcx, QWORD PTR [rax]
-  003d0	48 63 49 04	 movsxd	 rcx, DWORD PTR [rcx+4]
+  00422	48 8b 08	 mov	 rcx, QWORD PTR [rax]
+  00425	48 63 49 04	 movsxd	 rcx, DWORD PTR [rcx+4]
 ; File c:\users\alist_000\cppmisc\wwatch.cc
 
-; 80   :       wcerr << L"Error Reading Directory Change" << endl;
+; 83   :       wcerr << L"Error Reading Directory Change" << endl;
 
-  003d4	48 8b d8	 mov	 rbx, rax
+  00429	48 8b d8	 mov	 rbx, rax
 ; File c:\users\alist_000\cppmisc\packages\visualcpptools.14.0.24120-pre\lib\native\include\ostream
 
 ; 992  : 	_Ostr.put(_Ostr.widen('\n'));
 
-  003d7	b2 0a		 mov	 dl, 10
-  003d9	48 03 c8	 add	 rcx, rax
-  003dc	e8 00 00 00 00	 call	 ?widen@?$basic_ios@_WU?$char_traits@_W@std@@@std@@QEBA_WD@Z ; std::basic_ios<wchar_t,std::char_traits<wchar_t> >::widen
-  003e1	0f b7 d0	 movzx	 edx, ax
-  003e4	48 8b cb	 mov	 rcx, rbx
-  003e7	e8 00 00 00 00	 call	 ?put@?$basic_ostream@_WU?$char_traits@_W@std@@@std@@QEAAAEAV12@_W@Z ; std::basic_ostream<wchar_t,std::char_traits<wchar_t> >::put
+  0042c	b2 0a		 mov	 dl, 10
+  0042e	48 03 c8	 add	 rcx, rax
+  00431	e8 00 00 00 00	 call	 ?widen@?$basic_ios@_WU?$char_traits@_W@std@@@std@@QEBA_WD@Z ; std::basic_ios<wchar_t,std::char_traits<wchar_t> >::widen
+  00436	0f b7 d0	 movzx	 edx, ax
+  00439	48 8b cb	 mov	 rcx, rbx
+  0043c	e8 00 00 00 00	 call	 ?put@?$basic_ostream@_WU?$char_traits@_W@std@@@std@@QEAAAEAV12@_W@Z ; std::basic_ostream<wchar_t,std::char_traits<wchar_t> >::put
 
 ; 993  : 	_Ostr.flush();
 
-  003ec	48 8b cb	 mov	 rcx, rbx
-  003ef	e8 00 00 00 00	 call	 ?flush@?$basic_ostream@_WU?$char_traits@_W@std@@@std@@QEAAAEAV12@XZ ; std::basic_ostream<wchar_t,std::char_traits<wchar_t> >::flush
+  00441	48 8b cb	 mov	 rcx, rbx
+  00444	e8 00 00 00 00	 call	 ?flush@?$basic_ostream@_WU?$char_traits@_W@std@@@std@@QEAAAEAV12@XZ ; std::basic_ostream<wchar_t,std::char_traits<wchar_t> >::flush
 ; File c:\users\alist_000\cppmisc\wwatch.cc
 
-; 81   :       return 2;
+; 84   :       return 2;
 
-  003f4	bb 02 00 00 00	 mov	 ebx, 2
+  00449	bb 02 00 00 00	 mov	 ebx, 2
 $LN19@wmain:
 ; File c:\users\alist_000\cppmisc\packages\visualcpptools.14.0.24120-pre\lib\native\include\xstring
 
 ; 2249 : 		else if (this->_BUF_SIZE <= this->_Myres())
 
-  003f9	4c 8b 44 24 68	 mov	 r8, QWORD PTR subcommand$[rsp+24]
-  003fe	49 83 f8 08	 cmp	 r8, 8
-  00402	72 12		 jb	 SHORT $LN1349@wmain
+  0044e	4c 8b 44 24 68	 mov	 r8, QWORD PTR subcommand$[rsp+24]
+  00453	49 83 f8 08	 cmp	 r8, 8
+  00457	72 12		 jb	 SHORT $LN1349@wmain
 
 ; 2250 : 			{	// copy any leftovers to small buffer and deallocate
 ; 2251 : 			pointer _Ptr = this->_Bx()._Ptr;
@@ -15757,33 +15785,33 @@ $LN19@wmain:
 ; 2255 : 					_Unfancy(_Ptr), _Newsize);
 ; 2256 : 			this->_Getal().deallocate(_Ptr, this->_Myres() + 1);
 
-  00404	49 ff c0	 inc	 r8
-  00407	48 8b 54 24 50	 mov	 rdx, QWORD PTR subcommand$[rsp]
-  0040c	48 8d 4c 24 50	 lea	 rcx, QWORD PTR subcommand$[rsp]
-  00411	e8 00 00 00 00	 call	 ?deallocate@?$_Wrap_alloc@V?$allocator@_W@std@@@std@@QEAAXPEA_W_K@Z ; std::_Wrap_alloc<std::allocator<wchar_t> >::deallocate
+  00459	49 ff c0	 inc	 r8
+  0045c	48 8b 54 24 50	 mov	 rdx, QWORD PTR subcommand$[rsp]
+  00461	48 8d 4c 24 50	 lea	 rcx, QWORD PTR subcommand$[rsp]
+  00466	e8 00 00 00 00	 call	 ?deallocate@?$_Wrap_alloc@V?$allocator@_W@std@@@std@@QEAAXPEA_W_K@Z ; std::_Wrap_alloc<std::allocator<wchar_t> >::deallocate
 $LN1349@wmain:
 
 ; 2258 : 		this->_Myres() = this->_BUF_SIZE - 1;
 
-  00416	48 c7 44 24 68
+  0046b	48 c7 44 24 68
 	07 00 00 00	 mov	 QWORD PTR subcommand$[rsp+24], 7
 
 ; 2217 : 		_Traits::assign(_Dx._Myptr()[_Dx._Mysize = _Newsize], _Elem());
 
-  0041f	4c 89 74 24 60	 mov	 QWORD PTR subcommand$[rsp+16], r14
+  00474	4c 89 7c 24 60	 mov	 QWORD PTR subcommand$[rsp+16], r15
 ; File c:\users\alist_000\cppmisc\packages\visualcpptools.14.0.24120-pre\lib\native\include\iosfwd
 
 ; 345  : 		_Left = _Right;
 
-  00424	66 44 89 74 24
-	50		 mov	 WORD PTR subcommand$[rsp], r14w
+  00479	66 44 89 7c 24
+	50		 mov	 WORD PTR subcommand$[rsp], r15w
 ; File c:\users\alist_000\cppmisc\packages\visualcpptools.14.0.24120-pre\lib\native\include\xstring
 
 ; 2249 : 		else if (this->_BUF_SIZE <= this->_Myres())
 
-  0042a	4c 8b 45 a8	 mov	 r8, QWORD PTR extension$[rbp-232]
-  0042e	49 83 f8 08	 cmp	 r8, 8
-  00432	72 10		 jb	 SHORT $LN1452@wmain
+  0047f	4c 8b 45 a8	 mov	 r8, QWORD PTR extension$[rbp-232]
+  00483	49 83 f8 08	 cmp	 r8, 8
+  00487	72 10		 jb	 SHORT $LN1452@wmain
 
 ; 2250 : 			{	// copy any leftovers to small buffer and deallocate
 ; 2251 : 			pointer _Ptr = this->_Bx()._Ptr;
@@ -15793,32 +15821,32 @@ $LN1349@wmain:
 ; 2255 : 					_Unfancy(_Ptr), _Newsize);
 ; 2256 : 			this->_Getal().deallocate(_Ptr, this->_Myres() + 1);
 
-  00434	49 ff c0	 inc	 r8
-  00437	48 8b 55 90	 mov	 rdx, QWORD PTR extension$[rbp-256]
-  0043b	48 8d 4d 90	 lea	 rcx, QWORD PTR extension$[rbp-256]
-  0043f	e8 00 00 00 00	 call	 ?deallocate@?$_Wrap_alloc@V?$allocator@_W@std@@@std@@QEAAXPEA_W_K@Z ; std::_Wrap_alloc<std::allocator<wchar_t> >::deallocate
+  00489	49 ff c0	 inc	 r8
+  0048c	48 8b 55 90	 mov	 rdx, QWORD PTR extension$[rbp-256]
+  00490	48 8d 4d 90	 lea	 rcx, QWORD PTR extension$[rbp-256]
+  00494	e8 00 00 00 00	 call	 ?deallocate@?$_Wrap_alloc@V?$allocator@_W@std@@@std@@QEAAXPEA_W_K@Z ; std::_Wrap_alloc<std::allocator<wchar_t> >::deallocate
 $LN1452@wmain:
 
 ; 2258 : 		this->_Myres() = this->_BUF_SIZE - 1;
 
-  00444	48 c7 45 a8 07
+  00499	48 c7 45 a8 07
 	00 00 00	 mov	 QWORD PTR extension$[rbp-232], 7
 
 ; 2217 : 		_Traits::assign(_Dx._Myptr()[_Dx._Mysize = _Newsize], _Elem());
 
-  0044c	4c 89 75 a0	 mov	 QWORD PTR extension$[rbp-240], r14
+  004a1	4c 89 7d a0	 mov	 QWORD PTR extension$[rbp-240], r15
 ; File c:\users\alist_000\cppmisc\packages\visualcpptools.14.0.24120-pre\lib\native\include\iosfwd
 
 ; 345  : 		_Left = _Right;
 
-  00450	66 44 89 75 90	 mov	 WORD PTR extension$[rbp-256], r14w
+  004a5	66 44 89 7d 90	 mov	 WORD PTR extension$[rbp-256], r15w
 ; File c:\users\alist_000\cppmisc\packages\visualcpptools.14.0.24120-pre\lib\native\include\xstring
 
 ; 2249 : 		else if (this->_BUF_SIZE <= this->_Myres())
 
-  00455	4c 8b 45 c8	 mov	 r8, QWORD PTR dir$[rbp-232]
-  00459	49 83 f8 08	 cmp	 r8, 8
-  0045d	72 10		 jb	 SHORT $LN1555@wmain
+  004aa	4c 8b 45 c8	 mov	 r8, QWORD PTR dir$[rbp-232]
+  004ae	49 83 f8 08	 cmp	 r8, 8
+  004b2	72 10		 jb	 SHORT $LN1555@wmain
 
 ; 2250 : 			{	// copy any leftovers to small buffer and deallocate
 ; 2251 : 			pointer _Ptr = this->_Bx()._Ptr;
@@ -15828,44 +15856,45 @@ $LN1452@wmain:
 ; 2255 : 					_Unfancy(_Ptr), _Newsize);
 ; 2256 : 			this->_Getal().deallocate(_Ptr, this->_Myres() + 1);
 
-  0045f	49 ff c0	 inc	 r8
-  00462	48 8b 55 b0	 mov	 rdx, QWORD PTR dir$[rbp-256]
-  00466	48 8d 4d b0	 lea	 rcx, QWORD PTR dir$[rbp-256]
-  0046a	e8 00 00 00 00	 call	 ?deallocate@?$_Wrap_alloc@V?$allocator@_W@std@@@std@@QEAAXPEA_W_K@Z ; std::_Wrap_alloc<std::allocator<wchar_t> >::deallocate
+  004b4	49 ff c0	 inc	 r8
+  004b7	48 8b 55 b0	 mov	 rdx, QWORD PTR dir$[rbp-256]
+  004bb	48 8d 4d b0	 lea	 rcx, QWORD PTR dir$[rbp-256]
+  004bf	e8 00 00 00 00	 call	 ?deallocate@?$_Wrap_alloc@V?$allocator@_W@std@@@std@@QEAAXPEA_W_K@Z ; std::_Wrap_alloc<std::allocator<wchar_t> >::deallocate
 $LN1555@wmain:
 ; File c:\users\alist_000\cppmisc\wwatch.cc
 
-; 81   :       return 2;
+; 84   :       return 2;
 
-  0046f	8b c3		 mov	 eax, ebx
+  004c4	8b c3		 mov	 eax, ebx
 
-; 93   :     }
-; 94   :   }
-; 95   : }
+; 96   :     }
+; 97   :   }
+; 98   : }
 
-  00471	48 8b 8d d0 0f
+  004c6	48 8b 8d d0 0f
 	00 00		 mov	 rcx, QWORD PTR __$ArrayPad$[rbp-256]
-  00478	48 33 cc	 xor	 rcx, rsp
-  0047b	e8 00 00 00 00	 call	 __security_check_cookie
-  00480	48 8b 9c 24 20
-	11 00 00	 mov	 rbx, QWORD PTR [rsp+4384]
-  00488	48 81 c4 e0 10
-	00 00		 add	 rsp, 4320		; 000010e0H
-  0048f	41 5f		 pop	 r15
-  00491	41 5e		 pop	 r14
-  00493	5f		 pop	 rdi
-  00494	5e		 pop	 rsi
-  00495	5d		 pop	 rbp
-  00496	c3		 ret	 0
+  004cd	48 33 cc	 xor	 rcx, rsp
+  004d0	e8 00 00 00 00	 call	 __security_check_cookie
+  004d5	4c 8d 9c 24 e0
+	10 00 00	 lea	 r11, QWORD PTR [rsp+4320]
+  004dd	49 8b 5b 40	 mov	 rbx, QWORD PTR [r11+64]
+  004e1	49 8b 73 48	 mov	 rsi, QWORD PTR [r11+72]
+  004e5	49 8b e3	 mov	 rsp, r11
+  004e8	41 5f		 pop	 r15
+  004ea	41 5e		 pop	 r14
+  004ec	41 5c		 pop	 r12
+  004ee	5f		 pop	 rdi
+  004ef	5d		 pop	 rbp
+  004f0	c3		 ret	 0
 $LN2228@wmain:
 wmain	ENDP
 _TEXT	ENDS
 text$x	SEGMENT
-dwBytesReturned$ = 64
-$T1 = 72
+dwBytesReturned$1 = 64
+$T2 = 72
 subcommand$ = 80
-$T2 = 112
 $T3 = 112
+$T4 = 112
 extension$ = 144
 dir$ = 176
 buffer$ = 208
@@ -15877,11 +15906,11 @@ wmain$dtor$0 PROC
 	00 00		 lea	 rcx, QWORD PTR dir$[rdx]
   00007	e9 00 00 00 00	 jmp	 ??1?$basic_string@_WU?$char_traits@_W@std@@V?$allocator@_W@2@@std@@QEAA@XZ ; std::basic_string<wchar_t,std::char_traits<wchar_t>,std::allocator<wchar_t> >::~basic_string<wchar_t,std::char_traits<wchar_t>,std::allocator<wchar_t> >
 wmain$dtor$0 ENDP
-dwBytesReturned$ = 64
-$T1 = 72
+dwBytesReturned$1 = 64
+$T2 = 72
 subcommand$ = 80
-$T2 = 112
 $T3 = 112
+$T4 = 112
 extension$ = 144
 dir$ = 176
 buffer$ = 208
@@ -15893,11 +15922,11 @@ wmain$dtor$1 PROC
 	00 00		 lea	 rcx, QWORD PTR extension$[rdx]
   00013	e9 00 00 00 00	 jmp	 ??1?$basic_string@_WU?$char_traits@_W@std@@V?$allocator@_W@2@@std@@QEAA@XZ ; std::basic_string<wchar_t,std::char_traits<wchar_t>,std::allocator<wchar_t> >::~basic_string<wchar_t,std::char_traits<wchar_t>,std::allocator<wchar_t> >
 wmain$dtor$1 ENDP
-dwBytesReturned$ = 64
-$T1 = 72
+dwBytesReturned$1 = 64
+$T2 = 72
 subcommand$ = 80
-$T2 = 112
 $T3 = 112
+$T4 = 112
 extension$ = 144
 dir$ = 176
 buffer$ = 208
@@ -15909,11 +15938,11 @@ wmain$dtor$2 PROC
 	00 00		 lea	 rcx, QWORD PTR subcommand$[rdx]
   0001f	e9 00 00 00 00	 jmp	 ??1?$basic_string@_WU?$char_traits@_W@std@@V?$allocator@_W@2@@std@@QEAA@XZ ; std::basic_string<wchar_t,std::char_traits<wchar_t>,std::allocator<wchar_t> >::~basic_string<wchar_t,std::char_traits<wchar_t>,std::allocator<wchar_t> >
 wmain$dtor$2 ENDP
-dwBytesReturned$ = 64
-$T1 = 72
+dwBytesReturned$1 = 64
+$T2 = 72
 subcommand$ = 80
-$T2 = 112
 $T3 = 112
+$T4 = 112
 extension$ = 144
 dir$ = 176
 buffer$ = 208
@@ -15922,17 +15951,17 @@ argc$ = 4368
 argv$ = 4376
 wmain$dtor$4 PROC
   00024	48 8d 8a 70 00
-	00 00		 lea	 rcx, QWORD PTR $T2[rdx]
+	00 00		 lea	 rcx, QWORD PTR $T3[rdx]
   0002b	e9 00 00 00 00	 jmp	 ??1?$basic_string@_WU?$char_traits@_W@std@@V?$allocator@_W@2@@std@@QEAA@XZ ; std::basic_string<wchar_t,std::char_traits<wchar_t>,std::allocator<wchar_t> >::~basic_string<wchar_t,std::char_traits<wchar_t>,std::allocator<wchar_t> >
 wmain$dtor$4 ENDP
 text$x	ENDS
 ; Function compile flags: /Ogtpy
 text$x	SEGMENT
-dwBytesReturned$ = 64
-$T1 = 72
+dwBytesReturned$1 = 64
+$T2 = 72
 subcommand$ = 80
-$T2 = 112
 $T3 = 112
+$T4 = 112
 extension$ = 144
 dir$ = 176
 buffer$ = 208
@@ -15947,11 +15976,11 @@ wmain$dtor$0 ENDP
 text$x	ENDS
 ; Function compile flags: /Ogtpy
 text$x	SEGMENT
-dwBytesReturned$ = 64
-$T1 = 72
+dwBytesReturned$1 = 64
+$T2 = 72
 subcommand$ = 80
-$T2 = 112
 $T3 = 112
+$T4 = 112
 extension$ = 144
 dir$ = 176
 buffer$ = 208
@@ -15966,11 +15995,11 @@ wmain$dtor$1 ENDP
 text$x	ENDS
 ; Function compile flags: /Ogtpy
 text$x	SEGMENT
-dwBytesReturned$ = 64
-$T1 = 72
+dwBytesReturned$1 = 64
+$T2 = 72
 subcommand$ = 80
-$T2 = 112
 $T3 = 112
+$T4 = 112
 extension$ = 144
 dir$ = 176
 buffer$ = 208
@@ -15985,11 +16014,11 @@ wmain$dtor$2 ENDP
 text$x	ENDS
 ; Function compile flags: /Ogtpy
 text$x	SEGMENT
-dwBytesReturned$ = 64
-$T1 = 72
+dwBytesReturned$1 = 64
+$T2 = 72
 subcommand$ = 80
-$T2 = 112
 $T3 = 112
+$T4 = 112
 extension$ = 144
 dir$ = 176
 buffer$ = 208
@@ -15998,7 +16027,7 @@ argc$ = 4368
 argv$ = 4376
 wmain$dtor$4 PROC
   00024	48 8d 8a 70 00
-	00 00		 lea	 rcx, QWORD PTR $T2[rdx]
+	00 00		 lea	 rcx, QWORD PTR $T3[rdx]
   0002b	e9 00 00 00 00	 jmp	 ??1?$basic_string@_WU?$char_traits@_W@std@@V?$allocator@_W@2@@std@@QEAA@XZ ; std::basic_string<wchar_t,std::char_traits<wchar_t>,std::allocator<wchar_t> >::~basic_string<wchar_t,std::char_traits<wchar_t>,std::allocator<wchar_t> >
 wmain$dtor$4 ENDP
 text$x	ENDS
@@ -17417,6 +17446,583 @@ _TEXT	ENDS
 ; File c:\users\alist_000\cppmisc\packages\visualcpptools.14.0.24120-pre\lib\native\include\ostream
 ; File c:\users\alist_000\cppmisc\packages\visualcpptools.14.0.24120-pre\lib\native\include\ios
 ; File c:\users\alist_000\cppmisc\packages\visualcpptools.14.0.24120-pre\lib\native\include\ostream
+;	COMDAT ??6?$basic_ostream@_WU?$char_traits@_W@std@@@std@@QEAAAEAV01@_K@Z
+_TEXT	SEGMENT
+_State$ = 48
+this$GSCopy$ = 56
+$T1 = 64
+$T2 = 64
+$T3 = 80
+$T4 = 80
+$T5 = 96
+_Ok$ = 104
+this$ = 160
+_Val$ = 168
+??6?$basic_ostream@_WU?$char_traits@_W@std@@@std@@QEAAAEAV01@_K@Z PROC ; std::basic_ostream<wchar_t,std::char_traits<wchar_t> >::operator<<, COMDAT
+
+; 396  : 		{	// insert an unsigned long long
+
+$LN1098:
+  00000	40 56		 push	 rsi
+  00002	57		 push	 rdi
+  00003	41 56		 push	 r14
+  00005	48 81 ec 80 00
+	00 00		 sub	 rsp, 128		; 00000080H
+  0000c	48 c7 44 24 60
+	fe ff ff ff	 mov	 QWORD PTR $T5[rsp], -2
+  00015	48 89 9c 24 b0
+	00 00 00	 mov	 QWORD PTR [rsp+176], rbx
+  0001d	4c 8b f2	 mov	 r14, rdx
+  00020	48 8b d9	 mov	 rbx, rcx
+  00023	48 89 4c 24 38	 mov	 QWORD PTR this$GSCopy$[rsp], rcx
+
+; 397  : 		ios_base::iostate _State = ios_base::goodbit;
+
+  00028	33 ff		 xor	 edi, edi
+  0002a	89 7c 24 30	 mov	 DWORD PTR _State$[rsp], edi
+
+; 99   : 			: _Myostr(_Ostr)
+
+  0002e	48 89 4c 24 68	 mov	 QWORD PTR _Ok$[rsp], rcx
+
+; 101  : 			if (_Myostr.rdbuf() != 0)
+
+  00033	48 8b 01	 mov	 rax, QWORD PTR [rcx]
+  00036	48 63 48 04	 movsxd	 rcx, DWORD PTR [rax+4]
+; File c:\users\alist_000\cppmisc\packages\visualcpptools.14.0.24120-pre\lib\native\include\ios
+
+; 92   : 		return (_Mystrbuf);
+
+  0003a	48 8b 4c 19 48	 mov	 rcx, QWORD PTR [rcx+rbx+72]
+; File c:\users\alist_000\cppmisc\packages\visualcpptools.14.0.24120-pre\lib\native\include\ostream
+
+; 101  : 			if (_Myostr.rdbuf() != 0)
+
+  0003f	48 85 c9	 test	 rcx, rcx
+  00042	74 07		 je	 SHORT $LN19@operator
+
+; 102  : 				_Myostr.rdbuf()->_Lock();
+
+  00044	48 8b 01	 mov	 rax, QWORD PTR [rcx]
+  00047	ff 50 08	 call	 QWORD PTR [rax+8]
+  0004a	90		 npad	 1
+$LN19@operator:
+
+; 124  : 			if (_Ostr.good() && _Ostr.tie() != 0 && _Ostr.tie() != &_Ostr)
+
+  0004b	48 8b 03	 mov	 rax, QWORD PTR [rbx]
+  0004e	48 63 48 04	 movsxd	 rcx, DWORD PTR [rax+4]
+; File c:\users\alist_000\cppmisc\packages\visualcpptools.14.0.24120-pre\lib\native\include\xiosbase
+
+; 339  : 		return (rdstate() == goodbit);
+
+  00052	83 7c 19 10 00	 cmp	 DWORD PTR [rcx+rbx+16], 0
+; File c:\users\alist_000\cppmisc\packages\visualcpptools.14.0.24120-pre\lib\native\include\ostream
+
+; 124  : 			if (_Ostr.good() && _Ostr.tie() != 0 && _Ostr.tie() != &_Ostr)
+
+  00057	75 14		 jne	 SHORT $LN15@operator
+; File c:\users\alist_000\cppmisc\packages\visualcpptools.14.0.24120-pre\lib\native\include\ios
+
+; 80   : 		return (_Tiestr);
+
+  00059	48 8b 4c 19 50	 mov	 rcx, QWORD PTR [rcx+rbx+80]
+; File c:\users\alist_000\cppmisc\packages\visualcpptools.14.0.24120-pre\lib\native\include\ostream
+
+; 124  : 			if (_Ostr.good() && _Ostr.tie() != 0 && _Ostr.tie() != &_Ostr)
+
+  0005e	48 85 c9	 test	 rcx, rcx
+  00061	74 0a		 je	 SHORT $LN15@operator
+  00063	48 3b cb	 cmp	 rcx, rbx
+  00066	74 05		 je	 SHORT $LN15@operator
+
+; 125  : 				_Ostr.tie()->flush();
+
+  00068	e8 00 00 00 00	 call	 ?flush@?$basic_ostream@_WU?$char_traits@_W@std@@@std@@QEAAAEAV12@XZ ; std::basic_ostream<wchar_t,std::char_traits<wchar_t> >::flush
+$LN15@operator:
+
+; 126  : 			_Ok = _Ostr.good();	// store test only after flushing tie
+
+  0006d	48 8b 03	 mov	 rax, QWORD PTR [rbx]
+  00070	48 63 48 04	 movsxd	 rcx, DWORD PTR [rax+4]
+; File c:\users\alist_000\cppmisc\packages\visualcpptools.14.0.24120-pre\lib\native\include\xiosbase
+
+; 315  : 		return (_Mystate);
+
+  00074	48 03 cb	 add	 rcx, rbx
+
+; 339  : 		return (rdstate() == goodbit);
+
+  00077	83 79 10 00	 cmp	 DWORD PTR [rcx+16], 0
+  0007b	0f 94 c0	 sete	 al
+  0007e	88 44 24 70	 mov	 BYTE PTR _Ok$[rsp+8], al
+; File c:\users\alist_000\cppmisc\packages\visualcpptools.14.0.24120-pre\lib\native\include\ostream
+
+; 400  : 		if (_Ok)
+
+  00082	84 c0		 test	 al, al
+  00084	0f 84 9b 00 00
+	00		 je	 $LN12@operator
+
+; 401  : 			{	// state okay, use facet to insert
+; 402  : 			const _Nput& _Nput_fac = _USE(this->getloc(), _Nput);
+
+  0008a	48 8d 54 24 50	 lea	 rdx, QWORD PTR $T4[rsp]
+  0008f	e8 00 00 00 00	 call	 ?getloc@ios_base@std@@QEBA?AVlocale@2@XZ ; std::ios_base::getloc
+  00094	90		 npad	 1
+  00095	48 8b c8	 mov	 rcx, rax
+  00098	e8 00 00 00 00	 call	 ??$use_facet@V?$num_put@_WV?$ostreambuf_iterator@_WU?$char_traits@_W@std@@@std@@@std@@@std@@YAAEBV?$num_put@_WV?$ostreambuf_iterator@_WU?$char_traits@_W@std@@@std@@@0@AEBVlocale@0@@Z ; std::use_facet<std::num_put<wchar_t,std::ostreambuf_iterator<wchar_t,std::char_traits<wchar_t> > > >
+  0009d	48 8b f0	 mov	 rsi, rax
+; File c:\users\alist_000\cppmisc\packages\visualcpptools.14.0.24120-pre\lib\native\include\xlocale
+
+; 431  : 		if (_Ptr != 0)
+
+  000a0	48 8b 4c 24 58	 mov	 rcx, QWORD PTR $T4[rsp+8]
+  000a5	48 85 c9	 test	 rcx, rcx
+  000a8	74 1a		 je	 SHORT $LN44@operator
+
+; 432  : 			delete _Ptr->_Decref();
+
+  000aa	48 8b 01	 mov	 rax, QWORD PTR [rcx]
+  000ad	ff 50 10	 call	 QWORD PTR [rax+16]
+  000b0	48 85 c0	 test	 rax, rax
+  000b3	74 0f		 je	 SHORT $LN44@operator
+  000b5	4c 8b 00	 mov	 r8, QWORD PTR [rax]
+  000b8	ba 01 00 00 00	 mov	 edx, 1
+  000bd	48 8b c8	 mov	 rcx, rax
+  000c0	41 ff 10	 call	 QWORD PTR [r8]
+  000c3	90		 npad	 1
+$LN44@operator:
+; File c:\users\alist_000\cppmisc\packages\visualcpptools.14.0.24120-pre\lib\native\include\ostream
+
+; 406  : 				_Myios::fill(), _Val).failed())
+
+  000c4	48 8b 03	 mov	 rax, QWORD PTR [rbx]
+  000c7	4c 63 48 04	 movsxd	 r9, DWORD PTR [rax+4]
+  000cb	4c 03 cb	 add	 r9, rbx
+; File c:\users\alist_000\cppmisc\packages\visualcpptools.14.0.24120-pre\lib\native\include\ios
+
+; 92   : 		return (_Mystrbuf);
+
+  000ce	49 8b 41 48	 mov	 rax, QWORD PTR [r9+72]
+; File c:\users\alist_000\cppmisc\packages\visualcpptools.14.0.24120-pre\lib\native\include\streambuf
+
+; 627  : 		: _Failed(false), _Strbuf(_Sb)
+
+  000d2	c6 44 24 40 00	 mov	 BYTE PTR $T2[rsp], 0
+  000d7	48 89 44 24 48	 mov	 QWORD PTR $T2[rsp+8], rax
+; File c:\users\alist_000\cppmisc\packages\visualcpptools.14.0.24120-pre\lib\native\include\ios
+
+; 113  : 		return (_Fillch);
+
+  000dc	41 0f b7 49 58	 movzx	 ecx, WORD PTR [r9+88]
+; File c:\users\alist_000\cppmisc\packages\visualcpptools.14.0.24120-pre\lib\native\include\xlocnum
+
+; 1231 : 		return (do_put(_Dest, _Iosbase, _Fill, _Val));
+
+  000e1	0f 28 44 24 40	 movaps	 xmm0, XMMWORD PTR $T2[rsp]
+  000e6	66 0f 7f 44 24
+	40		 movdqa	 XMMWORD PTR $T1[rsp], xmm0
+  000ec	48 8b 06	 mov	 rax, QWORD PTR [rsi]
+  000ef	4c 89 74 24 28	 mov	 QWORD PTR [rsp+40], r14
+  000f4	66 89 4c 24 20	 mov	 WORD PTR [rsp+32], cx
+  000f9	4c 8d 44 24 40	 lea	 r8, QWORD PTR $T1[rsp]
+  000fe	48 8d 54 24 50	 lea	 rdx, QWORD PTR $T3[rsp]
+  00103	48 8b ce	 mov	 rcx, rsi
+  00106	ff 50 30	 call	 QWORD PTR [rax+48]
+; File c:\users\alist_000\cppmisc\packages\visualcpptools.14.0.24120-pre\lib\native\include\ostream
+
+; 406  : 				_Myios::fill(), _Val).failed())
+
+  00109	b8 04 00 00 00	 mov	 eax, 4
+  0010e	80 7c 24 50 00	 cmp	 BYTE PTR $T3[rsp], 0
+  00113	0f 45 f8	 cmovne	 edi, eax
+  00116	89 7c 24 30	 mov	 DWORD PTR _State$[rsp], edi
+  0011a	eb 09		 jmp	 SHORT $LN12@operator
+$LN13@operator:
+
+; 407  : 				_State |= ios_base::badbit;
+; 408  : 			_CATCH_IO_END
+
+  0011c	8b 7c 24 30	 mov	 edi, DWORD PTR _State$[rsp]
+  00120	48 8b 5c 24 38	 mov	 rbx, QWORD PTR this$GSCopy$[rsp]
+$LN12@operator:
+
+; 409  : 			}
+; 410  : 
+; 411  : 		_Myios::setstate(_State);
+
+  00125	48 8b 03	 mov	 rax, QWORD PTR [rbx]
+  00128	48 63 48 04	 movsxd	 rcx, DWORD PTR [rax+4]
+  0012c	48 03 cb	 add	 rcx, rbx
+; File c:\users\alist_000\cppmisc\packages\visualcpptools.14.0.24120-pre\lib\native\include\ios
+
+; 59   : 		if (_State != goodbit)
+
+  0012f	85 ff		 test	 edi, edi
+  00131	74 1b		 je	 SHORT $LN1076@operator
+; File c:\users\alist_000\cppmisc\packages\visualcpptools.14.0.24120-pre\lib\native\include\xiosbase
+
+; 315  : 		return (_Mystate);
+
+  00133	8b 41 10	 mov	 eax, DWORD PTR [rcx+16]
+; File c:\users\alist_000\cppmisc\packages\visualcpptools.14.0.24120-pre\lib\native\include\ios
+
+; 60   : 			clear((iostate)((int)rdstate() | (int)_State), _Reraise);
+
+  00136	0b c7		 or	 eax, edi
+  00138	8b d0		 mov	 edx, eax
+  0013a	83 ca 04	 or	 edx, 4
+  0013d	48 83 79 48 00	 cmp	 QWORD PTR [rcx+72], 0
+  00142	0f 45 d0	 cmovne	 edx, eax
+
+; 45   : 		ios_base::clear((iostate)(_Mystrbuf == 0
+
+  00145	45 33 c0	 xor	 r8d, r8d
+  00148	e8 00 00 00 00	 call	 ?clear@ios_base@std@@QEAAXH_N@Z ; std::ios_base::clear
+  0014d	90		 npad	 1
+$LN1076@operator:
+; File c:\users\alist_000\cppmisc\packages\visualcpptools.14.0.24120-pre\lib\native\include\ostream
+
+; 132  : 			if (!_XSTD uncaught_exception())
+
+  0014e	e8 00 00 00 00	 call	 ?uncaught_exception@std@@YA_NXZ ; std::uncaught_exception
+  00153	84 c0		 test	 al, al
+  00155	75 09		 jne	 SHORT $LN1085@operator
+
+; 133  : 				this->_Myostr._Osfx();
+
+  00157	48 8b cb	 mov	 rcx, rbx
+  0015a	e8 00 00 00 00	 call	 ?_Osfx@?$basic_ostream@_WU?$char_traits@_W@std@@@std@@QEAAXXZ ; std::basic_ostream<wchar_t,std::char_traits<wchar_t> >::_Osfx
+  0015f	90		 npad	 1
+$LN1085@operator:
+
+; 107  : 			if (_Myostr.rdbuf() != 0)
+
+  00160	48 8b 0b	 mov	 rcx, QWORD PTR [rbx]
+  00163	48 63 51 04	 movsxd	 rdx, DWORD PTR [rcx+4]
+; File c:\users\alist_000\cppmisc\packages\visualcpptools.14.0.24120-pre\lib\native\include\ios
+
+; 92   : 		return (_Mystrbuf);
+
+  00167	48 8b 4c 1a 48	 mov	 rcx, QWORD PTR [rdx+rbx+72]
+; File c:\users\alist_000\cppmisc\packages\visualcpptools.14.0.24120-pre\lib\native\include\ostream
+
+; 107  : 			if (_Myostr.rdbuf() != 0)
+
+  0016c	48 85 c9	 test	 rcx, rcx
+  0016f	74 07		 je	 SHORT $LN1089@operator
+
+; 108  : 				_Myostr.rdbuf()->_Unlock();
+
+  00171	48 8b 11	 mov	 rdx, QWORD PTR [rcx]
+  00174	ff 52 10	 call	 QWORD PTR [rdx+16]
+  00177	90		 npad	 1
+$LN1089@operator:
+
+; 412  : 		return (*this);
+
+  00178	48 8b c3	 mov	 rax, rbx
+
+; 413  : 		}
+
+  0017b	48 8b 9c 24 b0
+	00 00 00	 mov	 rbx, QWORD PTR [rsp+176]
+  00183	48 81 c4 80 00
+	00 00		 add	 rsp, 128		; 00000080H
+  0018a	41 5e		 pop	 r14
+  0018c	5f		 pop	 rdi
+  0018d	5e		 pop	 rsi
+  0018e	c3		 ret	 0
+$LN1096@operator:
+??6?$basic_ostream@_WU?$char_traits@_W@std@@@std@@QEAAAEAV01@_K@Z ENDP ; std::basic_ostream<wchar_t,std::char_traits<wchar_t> >::operator<<
+_TEXT	ENDS
+;	COMDAT text$x
+text$x	SEGMENT
+_State$ = 48
+this$GSCopy$ = 56
+$T1 = 64
+$T2 = 64
+$T3 = 80
+$T4 = 80
+$T5 = 96
+_Ok$ = 104
+this$ = 160
+_Val$ = 168
+?dtor$2@?0???6?$basic_ostream@_WU?$char_traits@_W@std@@@std@@QEAAAEAV01@_K@Z@4HA PROC ; `std::basic_ostream<wchar_t,std::char_traits<wchar_t> >::operator<<'::`1'::dtor$2
+  00000	48 8d 8a 68 00
+	00 00		 lea	 rcx, QWORD PTR _Ok$[rdx]
+  00007	e9 00 00 00 00	 jmp	 ??1_Sentry_base@?$basic_ostream@_WU?$char_traits@_W@std@@@std@@QEAA@XZ ; std::basic_ostream<wchar_t,std::char_traits<wchar_t> >::_Sentry_base::~_Sentry_base
+?dtor$2@?0???6?$basic_ostream@_WU?$char_traits@_W@std@@@std@@QEAAAEAV01@_K@Z@4HA ENDP ; `std::basic_ostream<wchar_t,std::char_traits<wchar_t> >::operator<<'::`1'::dtor$2
+_State$ = 48
+this$GSCopy$ = 56
+$T1 = 64
+$T2 = 64
+$T3 = 80
+$T4 = 80
+$T5 = 96
+_Ok$ = 104
+this$ = 160
+_Val$ = 168
+?dtor$0@?0???6?$basic_ostream@_WU?$char_traits@_W@std@@@std@@QEAAAEAV01@_K@Z@4HA PROC ; `std::basic_ostream<wchar_t,std::char_traits<wchar_t> >::operator<<'::`1'::dtor$0
+  0000c	48 8d 8a 68 00
+	00 00		 lea	 rcx, QWORD PTR _Ok$[rdx]
+  00013	e9 00 00 00 00	 jmp	 ??1sentry@?$basic_ostream@_WU?$char_traits@_W@std@@@std@@QEAA@XZ ; std::basic_ostream<wchar_t,std::char_traits<wchar_t> >::sentry::~sentry
+?dtor$0@?0???6?$basic_ostream@_WU?$char_traits@_W@std@@@std@@QEAAAEAV01@_K@Z@4HA ENDP ; `std::basic_ostream<wchar_t,std::char_traits<wchar_t> >::operator<<'::`1'::dtor$0
+_State$ = 48
+this$GSCopy$ = 56
+$T1 = 64
+$T2 = 64
+$T3 = 80
+$T4 = 80
+$T5 = 96
+_Ok$ = 104
+this$ = 160
+_Val$ = 168
+?dtor$1@?0???6?$basic_ostream@_WU?$char_traits@_W@std@@@std@@QEAAAEAV01@_K@Z@4HA PROC ; `std::basic_ostream<wchar_t,std::char_traits<wchar_t> >::operator<<'::`1'::dtor$1
+  00018	48 8d 8a 50 00
+	00 00		 lea	 rcx, QWORD PTR $T4[rdx]
+  0001f	e9 00 00 00 00	 jmp	 ??1locale@std@@QEAA@XZ	; std::locale::~locale
+?dtor$1@?0???6?$basic_ostream@_WU?$char_traits@_W@std@@@std@@QEAAAEAV01@_K@Z@4HA ENDP ; `std::basic_ostream<wchar_t,std::char_traits<wchar_t> >::operator<<'::`1'::dtor$1
+_State$ = 48
+this$GSCopy$ = 56
+$T1 = 64
+$T2 = 64
+$T3 = 80
+$T4 = 80
+$T5 = 96
+_Ok$ = 104
+this$ = 160
+_Val$ = 168
+?catch$228@?0???6?$basic_ostream@_WU?$char_traits@_W@std@@@std@@QEAAAEAV01@_K@Z@4HA PROC ; `std::basic_ostream<wchar_t,std::char_traits<wchar_t> >::operator<<'::`1'::catch$228
+
+; 407  : 				_State |= ios_base::badbit;
+; 408  : 			_CATCH_IO_END
+
+  00024	48 89 54 24 10	 mov	 QWORD PTR [rsp+16], rdx
+  00029	55		 push	 rbp
+  0002a	48 83 ec 30	 sub	 rsp, 48			; 00000030H
+  0002e	48 8b ea	 mov	 rbp, rdx
+__catch$??6?$basic_ostream@_WU?$char_traits@_W@std@@@std@@QEAAAEAV01@_K@Z$0:
+  00031	48 8b 4d 38	 mov	 rcx, QWORD PTR this$GSCopy$[rbp]
+  00035	48 8b 01	 mov	 rax, QWORD PTR [rcx]
+  00038	48 63 50 04	 movsxd	 rdx, DWORD PTR [rax+4]
+  0003c	48 03 d1	 add	 rdx, rcx
+; File c:\users\alist_000\cppmisc\packages\visualcpptools.14.0.24120-pre\lib\native\include\xiosbase
+
+; 315  : 		return (_Mystate);
+
+  0003f	8b 42 10	 mov	 eax, DWORD PTR [rdx+16]
+; File c:\users\alist_000\cppmisc\packages\visualcpptools.14.0.24120-pre\lib\native\include\ios
+
+; 60   : 			clear((iostate)((int)rdstate() | (int)_State), _Reraise);
+
+  00042	83 c8 04	 or	 eax, 4
+
+; 45   : 		ios_base::clear((iostate)(_Mystrbuf == 0
+
+  00045	48 83 7a 48 00	 cmp	 QWORD PTR [rdx+72], 0
+  0004a	75 03		 jne	 SHORT $LN68@catch$228
+  0004c	83 c8 04	 or	 eax, 4
+$LN68@catch$228:
+; File c:\users\alist_000\cppmisc\packages\visualcpptools.14.0.24120-pre\lib\native\include\xiosbase
+
+; 288  : 		_Mystate = (iostate)(_State & _Statmask);
+
+  0004f	83 e0 17	 and	 eax, 23
+  00052	89 42 10	 mov	 DWORD PTR [rdx+16], eax
+
+
+  00055	85 42 14	 test	 DWORD PTR [rdx+20], eax
+  00058	75 09		 jne	 SHORT $LN71@catch$228
+; File c:\users\alist_000\cppmisc\packages\visualcpptools.14.0.24120-pre\lib\native\include\ostream
+
+; 407  : 				_State |= ios_base::badbit;
+; 408  : 			_CATCH_IO_END
+
+  0005a	48 8d 05 00 00
+	00 00		 lea	 rax, $LN13@catch$228
+  00061	eb 0a		 jmp	 SHORT $LN1097@catch$228
+$LN71@catch$228:
+; File c:\users\alist_000\cppmisc\packages\visualcpptools.14.0.24120-pre\lib\native\include\xiosbase
+
+; 292  : 			_RERAISE;
+
+  00063	33 d2		 xor	 edx, edx
+  00065	33 c9		 xor	 ecx, ecx
+  00067	e8 00 00 00 00	 call	 _CxxThrowException
+  0006c	90		 npad	 1
+$LN1097@catch$228:
+  0006d	48 83 c4 30	 add	 rsp, 48			; 00000030H
+  00071	5d		 pop	 rbp
+  00072	c3		 ret	 0
+  00073	cc		 int	 3
+?catch$228@?0???6?$basic_ostream@_WU?$char_traits@_W@std@@@std@@QEAAAEAV01@_K@Z@4HA ENDP ; `std::basic_ostream<wchar_t,std::char_traits<wchar_t> >::operator<<'::`1'::catch$228
+text$x	ENDS
+; Function compile flags: /Ogtpy
+;	COMDAT text$x
+text$x	SEGMENT
+_State$ = 48
+this$GSCopy$ = 56
+$T1 = 64
+$T2 = 64
+$T3 = 80
+$T4 = 80
+$T5 = 96
+_Ok$ = 104
+this$ = 160
+_Val$ = 168
+?dtor$2@?0???6?$basic_ostream@_WU?$char_traits@_W@std@@@std@@QEAAAEAV01@_K@Z@4HA PROC ; `std::basic_ostream<wchar_t,std::char_traits<wchar_t> >::operator<<'::`1'::dtor$2
+  00000	48 8d 8a 68 00
+	00 00		 lea	 rcx, QWORD PTR _Ok$[rdx]
+  00007	e9 00 00 00 00	 jmp	 ??1_Sentry_base@?$basic_ostream@_WU?$char_traits@_W@std@@@std@@QEAA@XZ ; std::basic_ostream<wchar_t,std::char_traits<wchar_t> >::_Sentry_base::~_Sentry_base
+?dtor$2@?0???6?$basic_ostream@_WU?$char_traits@_W@std@@@std@@QEAAAEAV01@_K@Z@4HA ENDP ; `std::basic_ostream<wchar_t,std::char_traits<wchar_t> >::operator<<'::`1'::dtor$2
+text$x	ENDS
+; Function compile flags: /Ogtpy
+;	COMDAT text$x
+text$x	SEGMENT
+_State$ = 48
+this$GSCopy$ = 56
+$T1 = 64
+$T2 = 64
+$T3 = 80
+$T4 = 80
+$T5 = 96
+_Ok$ = 104
+this$ = 160
+_Val$ = 168
+?dtor$0@?0???6?$basic_ostream@_WU?$char_traits@_W@std@@@std@@QEAAAEAV01@_K@Z@4HA PROC ; `std::basic_ostream<wchar_t,std::char_traits<wchar_t> >::operator<<'::`1'::dtor$0
+  0000c	48 8d 8a 68 00
+	00 00		 lea	 rcx, QWORD PTR _Ok$[rdx]
+  00013	e9 00 00 00 00	 jmp	 ??1sentry@?$basic_ostream@_WU?$char_traits@_W@std@@@std@@QEAA@XZ ; std::basic_ostream<wchar_t,std::char_traits<wchar_t> >::sentry::~sentry
+?dtor$0@?0???6?$basic_ostream@_WU?$char_traits@_W@std@@@std@@QEAAAEAV01@_K@Z@4HA ENDP ; `std::basic_ostream<wchar_t,std::char_traits<wchar_t> >::operator<<'::`1'::dtor$0
+text$x	ENDS
+; Function compile flags: /Ogtpy
+;	COMDAT text$x
+text$x	SEGMENT
+_State$ = 48
+this$GSCopy$ = 56
+$T1 = 64
+$T2 = 64
+$T3 = 80
+$T4 = 80
+$T5 = 96
+_Ok$ = 104
+this$ = 160
+_Val$ = 168
+?dtor$1@?0???6?$basic_ostream@_WU?$char_traits@_W@std@@@std@@QEAAAEAV01@_K@Z@4HA PROC ; `std::basic_ostream<wchar_t,std::char_traits<wchar_t> >::operator<<'::`1'::dtor$1
+  00018	48 8d 8a 50 00
+	00 00		 lea	 rcx, QWORD PTR $T4[rdx]
+  0001f	e9 00 00 00 00	 jmp	 ??1locale@std@@QEAA@XZ	; std::locale::~locale
+?dtor$1@?0???6?$basic_ostream@_WU?$char_traits@_W@std@@@std@@QEAAAEAV01@_K@Z@4HA ENDP ; `std::basic_ostream<wchar_t,std::char_traits<wchar_t> >::operator<<'::`1'::dtor$1
+text$x	ENDS
+; Function compile flags: /Ogtpy
+; File c:\users\alist_000\cppmisc\packages\visualcpptools.14.0.24120-pre\lib\native\include\ostream
+; File c:\users\alist_000\cppmisc\packages\visualcpptools.14.0.24120-pre\lib\native\include\xiosbase
+; File c:\users\alist_000\cppmisc\packages\visualcpptools.14.0.24120-pre\lib\native\include\ios
+; File c:\users\alist_000\cppmisc\packages\visualcpptools.14.0.24120-pre\lib\native\include\xiosbase
+; File c:\users\alist_000\cppmisc\packages\visualcpptools.14.0.24120-pre\lib\native\include\ostream
+; File c:\users\alist_000\cppmisc\packages\visualcpptools.14.0.24120-pre\lib\native\include\xiosbase
+;	COMDAT text$x
+text$x	SEGMENT
+_State$ = 48
+this$GSCopy$ = 56
+$T1 = 64
+$T2 = 64
+$T3 = 80
+$T4 = 80
+$T5 = 96
+_Ok$ = 104
+this$ = 160
+_Val$ = 168
+?catch$228@?0???6?$basic_ostream@_WU?$char_traits@_W@std@@@std@@QEAAAEAV01@_K@Z@4HA PROC ; `std::basic_ostream<wchar_t,std::char_traits<wchar_t> >::operator<<'::`1'::catch$228
+; File c:\users\alist_000\cppmisc\packages\visualcpptools.14.0.24120-pre\lib\native\include\ostream
+
+; 408  : 			_CATCH_IO_END
+
+  00024	48 89 54 24 10	 mov	 QWORD PTR [rsp+16], rdx
+  00029	55		 push	 rbp
+  0002a	48 83 ec 30	 sub	 rsp, 48			; 00000030H
+  0002e	48 8b ea	 mov	 rbp, rdx
+__catch$??6?$basic_ostream@_WU?$char_traits@_W@std@@@std@@QEAAAEAV01@_K@Z$0:
+  00031	48 8b 4d 38	 mov	 rcx, QWORD PTR this$GSCopy$[rbp]
+  00035	48 8b 01	 mov	 rax, QWORD PTR [rcx]
+  00038	48 63 50 04	 movsxd	 rdx, DWORD PTR [rax+4]
+  0003c	48 03 d1	 add	 rdx, rcx
+; File c:\users\alist_000\cppmisc\packages\visualcpptools.14.0.24120-pre\lib\native\include\xiosbase
+
+; 315  : 		return (_Mystate);
+
+  0003f	8b 42 10	 mov	 eax, DWORD PTR [rdx+16]
+; File c:\users\alist_000\cppmisc\packages\visualcpptools.14.0.24120-pre\lib\native\include\ios
+
+; 60   : 			clear((iostate)((int)rdstate() | (int)_State), _Reraise);
+
+  00042	83 c8 04	 or	 eax, 4
+
+; 45   : 		ios_base::clear((iostate)(_Mystrbuf == 0
+
+  00045	48 83 7a 48 00	 cmp	 QWORD PTR [rdx+72], 0
+  0004a	75 03		 jne	 SHORT $LN68@catch$228
+  0004c	83 c8 04	 or	 eax, 4
+$LN68@catch$228:
+; File c:\users\alist_000\cppmisc\packages\visualcpptools.14.0.24120-pre\lib\native\include\xiosbase
+
+; 288  : 		_Mystate = (iostate)(_State & _Statmask);
+
+  0004f	83 e0 17	 and	 eax, 23
+  00052	89 42 10	 mov	 DWORD PTR [rdx+16], eax
+
+; 289  : 		if ((_Mystate & _Except) == 0)
+
+  00055	85 42 14	 test	 DWORD PTR [rdx+20], eax
+  00058	75 09		 jne	 SHORT $LN71@catch$228
+; File c:\users\alist_000\cppmisc\packages\visualcpptools.14.0.24120-pre\lib\native\include\ostream
+
+; 408  : 			_CATCH_IO_END
+
+  0005a	48 8d 05 00 00
+	00 00		 lea	 rax, $LN13@catch$228
+  00061	eb 0a		 jmp	 SHORT $LN1097@catch$228
+$LN71@catch$228:
+; File c:\users\alist_000\cppmisc\packages\visualcpptools.14.0.24120-pre\lib\native\include\xiosbase
+
+; 292  : 			_RERAISE;
+
+  00063	33 d2		 xor	 edx, edx
+  00065	33 c9		 xor	 ecx, ecx
+  00067	e8 00 00 00 00	 call	 _CxxThrowException
+  0006c	90		 npad	 1
+$LN1097@catch$228:
+  0006d	48 83 c4 30	 add	 rsp, 48			; 00000030H
+  00071	5d		 pop	 rbp
+  00072	c3		 ret	 0
+  00073	cc		 int	 3
+?catch$228@?0???6?$basic_ostream@_WU?$char_traits@_W@std@@@std@@QEAAAEAV01@_K@Z@4HA ENDP ; `std::basic_ostream<wchar_t,std::char_traits<wchar_t> >::operator<<'::`1'::catch$228
+text$x	ENDS
+; Function compile flags: /Ogtpy
+; File c:\users\alist_000\cppmisc\packages\visualcpptools.14.0.24120-pre\lib\native\include\ostream
+; File c:\users\alist_000\cppmisc\packages\visualcpptools.14.0.24120-pre\lib\native\include\ios
+; File c:\users\alist_000\cppmisc\packages\visualcpptools.14.0.24120-pre\lib\native\include\ostream
+; File c:\users\alist_000\cppmisc\packages\visualcpptools.14.0.24120-pre\lib\native\include\xiosbase
+; File c:\users\alist_000\cppmisc\packages\visualcpptools.14.0.24120-pre\lib\native\include\ostream
+; File c:\users\alist_000\cppmisc\packages\visualcpptools.14.0.24120-pre\lib\native\include\ios
+; File c:\users\alist_000\cppmisc\packages\visualcpptools.14.0.24120-pre\lib\native\include\ostream
+; File c:\users\alist_000\cppmisc\packages\visualcpptools.14.0.24120-pre\lib\native\include\xiosbase
+; File c:\users\alist_000\cppmisc\packages\visualcpptools.14.0.24120-pre\lib\native\include\ostream
+; File c:\users\alist_000\cppmisc\packages\visualcpptools.14.0.24120-pre\lib\native\include\xlocale
+; File c:\users\alist_000\cppmisc\packages\visualcpptools.14.0.24120-pre\lib\native\include\ostream
+; File c:\users\alist_000\cppmisc\packages\visualcpptools.14.0.24120-pre\lib\native\include\ios
+; File c:\users\alist_000\cppmisc\packages\visualcpptools.14.0.24120-pre\lib\native\include\streambuf
+; File c:\users\alist_000\cppmisc\packages\visualcpptools.14.0.24120-pre\lib\native\include\ios
+; File c:\users\alist_000\cppmisc\packages\visualcpptools.14.0.24120-pre\lib\native\include\xlocnum
+; File c:\users\alist_000\cppmisc\packages\visualcpptools.14.0.24120-pre\lib\native\include\ostream
+; File c:\users\alist_000\cppmisc\packages\visualcpptools.14.0.24120-pre\lib\native\include\ios
+; File c:\users\alist_000\cppmisc\packages\visualcpptools.14.0.24120-pre\lib\native\include\xiosbase
+; File c:\users\alist_000\cppmisc\packages\visualcpptools.14.0.24120-pre\lib\native\include\ios
+; File c:\users\alist_000\cppmisc\packages\visualcpptools.14.0.24120-pre\lib\native\include\ostream
+; File c:\users\alist_000\cppmisc\packages\visualcpptools.14.0.24120-pre\lib\native\include\ios
+; File c:\users\alist_000\cppmisc\packages\visualcpptools.14.0.24120-pre\lib\native\include\ostream
 ;	COMDAT ??6?$basic_ostream@_WU?$char_traits@_W@std@@@std@@QEAAAEAV01@I@Z
 _TEXT	SEGMENT
 _State$ = 48
@@ -17970,573 +18576,6 @@ $LN1097@catch$228:
   00072	c3		 ret	 0
   00073	cc		 int	 3
 ?catch$228@?0???6?$basic_ostream@_WU?$char_traits@_W@std@@@std@@QEAAAEAV01@I@Z@4HA ENDP ; `std::basic_ostream<wchar_t,std::char_traits<wchar_t> >::operator<<'::`1'::catch$228
-text$x	ENDS
-; Function compile flags: /Ogtpy
-; File c:\users\alist_000\cppmisc\packages\visualcpptools.14.0.24120-pre\lib\native\include\ostream
-; File c:\users\alist_000\cppmisc\packages\visualcpptools.14.0.24120-pre\lib\native\include\ios
-; File c:\users\alist_000\cppmisc\packages\visualcpptools.14.0.24120-pre\lib\native\include\ostream
-; File c:\users\alist_000\cppmisc\packages\visualcpptools.14.0.24120-pre\lib\native\include\xiosbase
-; File c:\users\alist_000\cppmisc\packages\visualcpptools.14.0.24120-pre\lib\native\include\ostream
-; File c:\users\alist_000\cppmisc\packages\visualcpptools.14.0.24120-pre\lib\native\include\ios
-; File c:\users\alist_000\cppmisc\packages\visualcpptools.14.0.24120-pre\lib\native\include\ostream
-; File c:\users\alist_000\cppmisc\packages\visualcpptools.14.0.24120-pre\lib\native\include\xiosbase
-; File c:\users\alist_000\cppmisc\packages\visualcpptools.14.0.24120-pre\lib\native\include\ostream
-; File c:\users\alist_000\cppmisc\packages\visualcpptools.14.0.24120-pre\lib\native\include\xlocale
-; File c:\users\alist_000\cppmisc\packages\visualcpptools.14.0.24120-pre\lib\native\include\ostream
-; File c:\users\alist_000\cppmisc\packages\visualcpptools.14.0.24120-pre\lib\native\include\ios
-; File c:\users\alist_000\cppmisc\packages\visualcpptools.14.0.24120-pre\lib\native\include\streambuf
-; File c:\users\alist_000\cppmisc\packages\visualcpptools.14.0.24120-pre\lib\native\include\ios
-; File c:\users\alist_000\cppmisc\packages\visualcpptools.14.0.24120-pre\lib\native\include\xlocnum
-; File c:\users\alist_000\cppmisc\packages\visualcpptools.14.0.24120-pre\lib\native\include\ostream
-; File c:\users\alist_000\cppmisc\packages\visualcpptools.14.0.24120-pre\lib\native\include\ios
-; File c:\users\alist_000\cppmisc\packages\visualcpptools.14.0.24120-pre\lib\native\include\xiosbase
-; File c:\users\alist_000\cppmisc\packages\visualcpptools.14.0.24120-pre\lib\native\include\ios
-; File c:\users\alist_000\cppmisc\packages\visualcpptools.14.0.24120-pre\lib\native\include\ostream
-; File c:\users\alist_000\cppmisc\packages\visualcpptools.14.0.24120-pre\lib\native\include\ios
-; File c:\users\alist_000\cppmisc\packages\visualcpptools.14.0.24120-pre\lib\native\include\ostream
-;	COMDAT ??6?$basic_ostream@_WU?$char_traits@_W@std@@@std@@QEAAAEAV01@H@Z
-_TEXT	SEGMENT
-_State$ = 48
-$T1 = 64
-$T2 = 64
-$T3 = 80
-$T4 = 80
-_Ok$ = 104
-this$dead$ = 144
-_Val$ = 152
-??6?$basic_ostream@_WU?$char_traits@_W@std@@@std@@QEAAAEAV01@H@Z PROC ; std::basic_ostream<wchar_t,std::char_traits<wchar_t> >::operator<<, COMDAT
-
-; 291  : 		{	// insert an int
-
-$LN1102:
-  00000	48 8b c4	 mov	 rax, rsp
-  00003	41 56		 push	 r14
-  00005	48 81 ec 80 00
-	00 00		 sub	 rsp, 128		; 00000080H
-  0000c	48 c7 40 d8 fe
-	ff ff ff	 mov	 QWORD PTR [rax-40], -2
-  00014	48 89 58 08	 mov	 QWORD PTR [rax+8], rbx
-  00018	48 89 70 18	 mov	 QWORD PTR [rax+24], rsi
-  0001c	48 89 78 20	 mov	 QWORD PTR [rax+32], rdi
-  00020	44 8b f2	 mov	 r14d, edx
-
-; 292  : 		ios_base::iostate _State = ios_base::goodbit;
-
-  00023	33 ff		 xor	 edi, edi
-  00025	89 7c 24 30	 mov	 DWORD PTR _State$[rsp], edi
-
-; 99   : 			: _Myostr(_Ostr)
-
-  00029	48 8d 1d 00 00
-	00 00		 lea	 rbx, OFFSET FLAT:?wcout@std@@3V?$basic_ostream@_WU?$char_traits@_W@std@@@1@A ; std::wcout
-  00030	48 89 58 e0	 mov	 QWORD PTR [rax-32], rbx
-
-; 101  : 			if (_Myostr.rdbuf() != 0)
-
-  00034	48 8b 05 00 00
-	00 00		 mov	 rax, QWORD PTR ?wcout@std@@3V?$basic_ostream@_WU?$char_traits@_W@std@@@1@A
-  0003b	48 63 48 04	 movsxd	 rcx, DWORD PTR [rax+4]
-; File c:\users\alist_000\cppmisc\packages\visualcpptools.14.0.24120-pre\lib\native\include\ios
-
-; 92   : 		return (_Mystrbuf);
-
-  0003f	48 8b 4c 19 48	 mov	 rcx, QWORD PTR [rcx+rbx+72]
-; File c:\users\alist_000\cppmisc\packages\visualcpptools.14.0.24120-pre\lib\native\include\ostream
-
-; 101  : 			if (_Myostr.rdbuf() != 0)
-
-  00044	48 85 c9	 test	 rcx, rcx
-  00047	74 07		 je	 SHORT $LN21@operator
-
-; 102  : 				_Myostr.rdbuf()->_Lock();
-
-  00049	48 8b 01	 mov	 rax, QWORD PTR [rcx]
-  0004c	ff 50 08	 call	 QWORD PTR [rax+8]
-  0004f	90		 npad	 1
-$LN21@operator:
-
-; 124  : 			if (_Ostr.good() && _Ostr.tie() != 0 && _Ostr.tie() != &_Ostr)
-
-  00050	48 8b 05 00 00
-	00 00		 mov	 rax, QWORD PTR ?wcout@std@@3V?$basic_ostream@_WU?$char_traits@_W@std@@@1@A
-  00057	48 63 48 04	 movsxd	 rcx, DWORD PTR [rax+4]
-; File c:\users\alist_000\cppmisc\packages\visualcpptools.14.0.24120-pre\lib\native\include\xiosbase
-
-; 339  : 		return (rdstate() == goodbit);
-
-  0005b	83 7c 19 10 00	 cmp	 DWORD PTR [rcx+rbx+16], 0
-; File c:\users\alist_000\cppmisc\packages\visualcpptools.14.0.24120-pre\lib\native\include\ostream
-
-; 124  : 			if (_Ostr.good() && _Ostr.tie() != 0 && _Ostr.tie() != &_Ostr)
-
-  00060	75 14		 jne	 SHORT $LN17@operator
-; File c:\users\alist_000\cppmisc\packages\visualcpptools.14.0.24120-pre\lib\native\include\ios
-
-; 80   : 		return (_Tiestr);
-
-  00062	48 8b 4c 19 50	 mov	 rcx, QWORD PTR [rcx+rbx+80]
-; File c:\users\alist_000\cppmisc\packages\visualcpptools.14.0.24120-pre\lib\native\include\ostream
-
-; 124  : 			if (_Ostr.good() && _Ostr.tie() != 0 && _Ostr.tie() != &_Ostr)
-
-  00067	48 85 c9	 test	 rcx, rcx
-  0006a	74 0a		 je	 SHORT $LN17@operator
-  0006c	48 3b cb	 cmp	 rcx, rbx
-  0006f	74 05		 je	 SHORT $LN17@operator
-
-; 125  : 				_Ostr.tie()->flush();
-
-  00071	e8 00 00 00 00	 call	 ?flush@?$basic_ostream@_WU?$char_traits@_W@std@@@std@@QEAAAEAV12@XZ ; std::basic_ostream<wchar_t,std::char_traits<wchar_t> >::flush
-$LN17@operator:
-
-; 126  : 			_Ok = _Ostr.good();	// store test only after flushing tie
-
-  00076	48 8b 05 00 00
-	00 00		 mov	 rax, QWORD PTR ?wcout@std@@3V?$basic_ostream@_WU?$char_traits@_W@std@@@1@A
-  0007d	48 63 48 04	 movsxd	 rcx, DWORD PTR [rax+4]
-; File c:\users\alist_000\cppmisc\packages\visualcpptools.14.0.24120-pre\lib\native\include\xiosbase
-
-; 339  : 		return (rdstate() == goodbit);
-
-  00081	83 7c 19 10 00	 cmp	 DWORD PTR [rcx+rbx+16], 0
-  00086	0f 94 c0	 sete	 al
-  00089	88 44 24 70	 mov	 BYTE PTR _Ok$[rsp+8], al
-; File c:\users\alist_000\cppmisc\packages\visualcpptools.14.0.24120-pre\lib\native\include\ostream
-
-; 295  : 		if (_Ok)
-
-  0008d	84 c0		 test	 al, al
-  0008f	0f 84 a6 00 00
-	00		 je	 $LN14@operator
-
-; 296  : 			{	// state okay, use facet to insert
-; 297  : 			const _Nput& _Nput_fac = _USE(this->getloc(), _Nput);
-
-  00095	48 03 cb	 add	 rcx, rbx
-  00098	48 8d 54 24 50	 lea	 rdx, QWORD PTR $T4[rsp]
-  0009d	e8 00 00 00 00	 call	 ?getloc@ios_base@std@@QEBA?AVlocale@2@XZ ; std::ios_base::getloc
-  000a2	90		 npad	 1
-  000a3	48 8b c8	 mov	 rcx, rax
-  000a6	e8 00 00 00 00	 call	 ??$use_facet@V?$num_put@_WV?$ostreambuf_iterator@_WU?$char_traits@_W@std@@@std@@@std@@@std@@YAAEBV?$num_put@_WV?$ostreambuf_iterator@_WU?$char_traits@_W@std@@@std@@@0@AEBVlocale@0@@Z ; std::use_facet<std::num_put<wchar_t,std::ostreambuf_iterator<wchar_t,std::char_traits<wchar_t> > > >
-  000ab	48 8b f0	 mov	 rsi, rax
-; File c:\users\alist_000\cppmisc\packages\visualcpptools.14.0.24120-pre\lib\native\include\xlocale
-
-; 431  : 		if (_Ptr != 0)
-
-  000ae	48 8b 4c 24 58	 mov	 rcx, QWORD PTR $T4[rsp+8]
-  000b3	48 85 c9	 test	 rcx, rcx
-  000b6	74 1a		 je	 SHORT $LN46@operator
-
-; 432  : 			delete _Ptr->_Decref();
-
-  000b8	48 8b 11	 mov	 rdx, QWORD PTR [rcx]
-  000bb	ff 52 10	 call	 QWORD PTR [rdx+16]
-  000be	48 85 c0	 test	 rax, rax
-  000c1	74 0f		 je	 SHORT $LN46@operator
-  000c3	4c 8b 00	 mov	 r8, QWORD PTR [rax]
-  000c6	ba 01 00 00 00	 mov	 edx, 1
-  000cb	48 8b c8	 mov	 rcx, rax
-  000ce	41 ff 10	 call	 QWORD PTR [r8]
-  000d1	90		 npad	 1
-$LN46@operator:
-; File c:\users\alist_000\cppmisc\packages\visualcpptools.14.0.24120-pre\lib\native\include\ostream
-
-; 306  : 				_Myios::fill(), _Tmp).failed())
-
-  000d2	48 8b 05 00 00
-	00 00		 mov	 rax, QWORD PTR ?wcout@std@@3V?$basic_ostream@_WU?$char_traits@_W@std@@@1@A
-  000d9	48 63 48 04	 movsxd	 rcx, DWORD PTR [rax+4]
-  000dd	4c 8d 0c 19	 lea	 r9, QWORD PTR [rcx+rbx]
-; File c:\users\alist_000\cppmisc\packages\visualcpptools.14.0.24120-pre\lib\native\include\ios
-
-; 92   : 		return (_Mystrbuf);
-
-  000e1	48 8b 44 19 48	 mov	 rax, QWORD PTR [rcx+rbx+72]
-; File c:\users\alist_000\cppmisc\packages\visualcpptools.14.0.24120-pre\lib\native\include\streambuf
-
-; 627  : 		: _Failed(false), _Strbuf(_Sb)
-
-  000e6	c6 44 24 40 00	 mov	 BYTE PTR $T2[rsp], 0
-  000eb	48 89 44 24 48	 mov	 QWORD PTR $T2[rsp+8], rax
-; File c:\users\alist_000\cppmisc\packages\visualcpptools.14.0.24120-pre\lib\native\include\ios
-
-; 113  : 		return (_Fillch);
-
-  000f0	0f b7 4c 19 58	 movzx	 ecx, WORD PTR [rcx+rbx+88]
-; File c:\users\alist_000\cppmisc\packages\visualcpptools.14.0.24120-pre\lib\native\include\xlocnum
-
-; 1213 : 		return (do_put(_Dest, _Iosbase, _Fill, _Val));
-
-  000f5	0f 28 44 24 40	 movaps	 xmm0, XMMWORD PTR $T2[rsp]
-  000fa	66 0f 7f 44 24
-	40		 movdqa	 XMMWORD PTR $T1[rsp], xmm0
-  00100	48 8b 06	 mov	 rax, QWORD PTR [rsi]
-  00103	44 89 74 24 28	 mov	 DWORD PTR [rsp+40], r14d
-  00108	66 89 4c 24 20	 mov	 WORD PTR [rsp+32], cx
-  0010d	4c 8d 44 24 40	 lea	 r8, QWORD PTR $T1[rsp]
-  00112	48 8d 54 24 50	 lea	 rdx, QWORD PTR $T3[rsp]
-  00117	48 8b ce	 mov	 rcx, rsi
-  0011a	ff 50 48	 call	 QWORD PTR [rax+72]
-; File c:\users\alist_000\cppmisc\packages\visualcpptools.14.0.24120-pre\lib\native\include\ostream
-
-; 306  : 				_Myios::fill(), _Tmp).failed())
-
-  0011d	b8 04 00 00 00	 mov	 eax, 4
-  00122	80 7c 24 50 00	 cmp	 BYTE PTR $T3[rsp], 0
-  00127	0f 45 f8	 cmovne	 edi, eax
-  0012a	89 7c 24 30	 mov	 DWORD PTR _State$[rsp], edi
-  0012e	eb 0b		 jmp	 SHORT $LN14@operator
-$LN15@operator:
-
-; 307  : 				_State |= ios_base::badbit;
-; 308  : 			_CATCH_IO_END
-
-  00130	48 8d 1d 00 00
-	00 00		 lea	 rbx, OFFSET FLAT:?wcout@std@@3V?$basic_ostream@_WU?$char_traits@_W@std@@@1@A ; std::wcout
-  00137	8b 7c 24 30	 mov	 edi, DWORD PTR _State$[rsp]
-$LN14@operator:
-
-; 309  : 			}
-; 310  : 
-; 311  : 		_Myios::setstate(_State);
-
-  0013b	48 8b 05 00 00
-	00 00		 mov	 rax, QWORD PTR ?wcout@std@@3V?$basic_ostream@_WU?$char_traits@_W@std@@@1@A
-  00142	48 63 48 04	 movsxd	 rcx, DWORD PTR [rax+4]
-  00146	48 03 cb	 add	 rcx, rbx
-; File c:\users\alist_000\cppmisc\packages\visualcpptools.14.0.24120-pre\lib\native\include\ios
-
-; 59   : 		if (_State != goodbit)
-
-  00149	85 ff		 test	 edi, edi
-  0014b	74 1b		 je	 SHORT $LN1080@operator
-; File c:\users\alist_000\cppmisc\packages\visualcpptools.14.0.24120-pre\lib\native\include\xiosbase
-
-; 315  : 		return (_Mystate);
-
-  0014d	8b 41 10	 mov	 eax, DWORD PTR [rcx+16]
-; File c:\users\alist_000\cppmisc\packages\visualcpptools.14.0.24120-pre\lib\native\include\ios
-
-; 60   : 			clear((iostate)((int)rdstate() | (int)_State), _Reraise);
-
-  00150	0b c7		 or	 eax, edi
-  00152	8b d0		 mov	 edx, eax
-  00154	83 ca 04	 or	 edx, 4
-  00157	48 83 79 48 00	 cmp	 QWORD PTR [rcx+72], 0
-  0015c	0f 45 d0	 cmovne	 edx, eax
-
-; 45   : 		ios_base::clear((iostate)(_Mystrbuf == 0
-
-  0015f	45 33 c0	 xor	 r8d, r8d
-  00162	e8 00 00 00 00	 call	 ?clear@ios_base@std@@QEAAXH_N@Z ; std::ios_base::clear
-  00167	90		 npad	 1
-$LN1080@operator:
-; File c:\users\alist_000\cppmisc\packages\visualcpptools.14.0.24120-pre\lib\native\include\ostream
-
-; 132  : 			if (!_XSTD uncaught_exception())
-
-  00168	e8 00 00 00 00	 call	 ?uncaught_exception@std@@YA_NXZ ; std::uncaught_exception
-  0016d	84 c0		 test	 al, al
-  0016f	75 09		 jne	 SHORT $LN1089@operator
-
-; 133  : 				this->_Myostr._Osfx();
-
-  00171	48 8b cb	 mov	 rcx, rbx
-  00174	e8 00 00 00 00	 call	 ?_Osfx@?$basic_ostream@_WU?$char_traits@_W@std@@@std@@QEAAXXZ ; std::basic_ostream<wchar_t,std::char_traits<wchar_t> >::_Osfx
-  00179	90		 npad	 1
-$LN1089@operator:
-
-; 107  : 			if (_Myostr.rdbuf() != 0)
-
-  0017a	48 8b 05 00 00
-	00 00		 mov	 rax, QWORD PTR ?wcout@std@@3V?$basic_ostream@_WU?$char_traits@_W@std@@@1@A
-  00181	48 63 48 04	 movsxd	 rcx, DWORD PTR [rax+4]
-; File c:\users\alist_000\cppmisc\packages\visualcpptools.14.0.24120-pre\lib\native\include\ios
-
-; 92   : 		return (_Mystrbuf);
-
-  00185	48 8b 4c 19 48	 mov	 rcx, QWORD PTR [rcx+rbx+72]
-; File c:\users\alist_000\cppmisc\packages\visualcpptools.14.0.24120-pre\lib\native\include\ostream
-
-; 107  : 			if (_Myostr.rdbuf() != 0)
-
-  0018a	48 85 c9	 test	 rcx, rcx
-  0018d	74 07		 je	 SHORT $LN1093@operator
-
-; 108  : 				_Myostr.rdbuf()->_Unlock();
-
-  0018f	48 8b 11	 mov	 rdx, QWORD PTR [rcx]
-  00192	ff 52 10	 call	 QWORD PTR [rdx+16]
-  00195	90		 npad	 1
-$LN1093@operator:
-
-; 312  : 		return (*this);
-
-  00196	48 8b c3	 mov	 rax, rbx
-
-; 313  : 		}
-
-  00199	4c 8d 9c 24 80
-	00 00 00	 lea	 r11, QWORD PTR [rsp+128]
-  001a1	49 8b 5b 10	 mov	 rbx, QWORD PTR [r11+16]
-  001a5	49 8b 73 20	 mov	 rsi, QWORD PTR [r11+32]
-  001a9	49 8b 7b 28	 mov	 rdi, QWORD PTR [r11+40]
-  001ad	49 8b e3	 mov	 rsp, r11
-  001b0	41 5e		 pop	 r14
-  001b2	c3		 ret	 0
-$LN1100@operator:
-??6?$basic_ostream@_WU?$char_traits@_W@std@@@std@@QEAAAEAV01@H@Z ENDP ; std::basic_ostream<wchar_t,std::char_traits<wchar_t> >::operator<<
-_TEXT	ENDS
-;	COMDAT text$x
-text$x	SEGMENT
-_State$ = 48
-$T1 = 64
-$T2 = 64
-$T3 = 80
-$T4 = 80
-_Ok$ = 104
-this$dead$ = 144
-_Val$ = 152
-?dtor$2@?0???6?$basic_ostream@_WU?$char_traits@_W@std@@@std@@QEAAAEAV01@H@Z@4HA PROC ; `std::basic_ostream<wchar_t,std::char_traits<wchar_t> >::operator<<'::`1'::dtor$2
-  00000	48 8d 8a 68 00
-	00 00		 lea	 rcx, QWORD PTR _Ok$[rdx]
-  00007	e9 00 00 00 00	 jmp	 ??1_Sentry_base@?$basic_ostream@_WU?$char_traits@_W@std@@@std@@QEAA@XZ ; std::basic_ostream<wchar_t,std::char_traits<wchar_t> >::_Sentry_base::~_Sentry_base
-?dtor$2@?0???6?$basic_ostream@_WU?$char_traits@_W@std@@@std@@QEAAAEAV01@H@Z@4HA ENDP ; `std::basic_ostream<wchar_t,std::char_traits<wchar_t> >::operator<<'::`1'::dtor$2
-_State$ = 48
-$T1 = 64
-$T2 = 64
-$T3 = 80
-$T4 = 80
-_Ok$ = 104
-this$dead$ = 144
-_Val$ = 152
-?dtor$0@?0???6?$basic_ostream@_WU?$char_traits@_W@std@@@std@@QEAAAEAV01@H@Z@4HA PROC ; `std::basic_ostream<wchar_t,std::char_traits<wchar_t> >::operator<<'::`1'::dtor$0
-  0000c	48 8d 8a 68 00
-	00 00		 lea	 rcx, QWORD PTR _Ok$[rdx]
-  00013	e9 00 00 00 00	 jmp	 ??1sentry@?$basic_ostream@_WU?$char_traits@_W@std@@@std@@QEAA@XZ ; std::basic_ostream<wchar_t,std::char_traits<wchar_t> >::sentry::~sentry
-?dtor$0@?0???6?$basic_ostream@_WU?$char_traits@_W@std@@@std@@QEAAAEAV01@H@Z@4HA ENDP ; `std::basic_ostream<wchar_t,std::char_traits<wchar_t> >::operator<<'::`1'::dtor$0
-_State$ = 48
-$T1 = 64
-$T2 = 64
-$T3 = 80
-$T4 = 80
-_Ok$ = 104
-this$dead$ = 144
-_Val$ = 152
-?dtor$1@?0???6?$basic_ostream@_WU?$char_traits@_W@std@@@std@@QEAAAEAV01@H@Z@4HA PROC ; `std::basic_ostream<wchar_t,std::char_traits<wchar_t> >::operator<<'::`1'::dtor$1
-  00018	48 8d 8a 50 00
-	00 00		 lea	 rcx, QWORD PTR $T4[rdx]
-  0001f	e9 00 00 00 00	 jmp	 ??1locale@std@@QEAA@XZ	; std::locale::~locale
-?dtor$1@?0???6?$basic_ostream@_WU?$char_traits@_W@std@@@std@@QEAAAEAV01@H@Z@4HA ENDP ; `std::basic_ostream<wchar_t,std::char_traits<wchar_t> >::operator<<'::`1'::dtor$1
-_State$ = 48
-$T1 = 64
-$T2 = 64
-$T3 = 80
-$T4 = 80
-_Ok$ = 104
-this$dead$ = 144
-_Val$ = 152
-?catch$228@?0???6?$basic_ostream@_WU?$char_traits@_W@std@@@std@@QEAAAEAV01@H@Z@4HA PROC ; `std::basic_ostream<wchar_t,std::char_traits<wchar_t> >::operator<<'::`1'::catch$228
-
-; 307  : 				_State |= ios_base::badbit;
-; 308  : 			_CATCH_IO_END
-
-  00024	48 89 54 24 10	 mov	 QWORD PTR [rsp+16], rdx
-  00029	55		 push	 rbp
-  0002a	48 83 ec 30	 sub	 rsp, 48			; 00000030H
-  0002e	48 8b ea	 mov	 rbp, rdx
-__catch$??6?$basic_ostream@_WU?$char_traits@_W@std@@@std@@QEAAAEAV01@H@Z$0:
-  00031	48 8b 05 00 00
-	00 00		 mov	 rax, QWORD PTR ?wcout@std@@3V?$basic_ostream@_WU?$char_traits@_W@std@@@1@A
-  00038	48 63 48 04	 movsxd	 rcx, DWORD PTR [rax+4]
-  0003c	48 8d 05 00 00
-	00 00		 lea	 rax, OFFSET FLAT:?wcout@std@@3V?$basic_ostream@_WU?$char_traits@_W@std@@@1@A ; std::wcout
-  00043	48 03 c8	 add	 rcx, rax
-; File c:\users\alist_000\cppmisc\packages\visualcpptools.14.0.24120-pre\lib\native\include\xiosbase
-
-; 315  : 		return (_Mystate);
-
-  00046	8b 41 10	 mov	 eax, DWORD PTR [rcx+16]
-; File c:\users\alist_000\cppmisc\packages\visualcpptools.14.0.24120-pre\lib\native\include\ios
-
-; 60   : 			clear((iostate)((int)rdstate() | (int)_State), _Reraise);
-
-  00049	83 c8 04	 or	 eax, 4
-
-; 45   : 		ios_base::clear((iostate)(_Mystrbuf == 0
-
-  0004c	48 83 79 48 00	 cmp	 QWORD PTR [rcx+72], 0
-  00051	75 03		 jne	 SHORT $LN72@catch$228
-  00053	83 c8 04	 or	 eax, 4
-$LN72@catch$228:
-; File c:\users\alist_000\cppmisc\packages\visualcpptools.14.0.24120-pre\lib\native\include\xiosbase
-
-; 288  : 		_Mystate = (iostate)(_State & _Statmask);
-
-  00056	83 e0 17	 and	 eax, 23
-  00059	89 41 10	 mov	 DWORD PTR [rcx+16], eax
-
-
-  0005c	85 41 14	 test	 DWORD PTR [rcx+20], eax
-  0005f	75 09		 jne	 SHORT $LN75@catch$228
-; File c:\users\alist_000\cppmisc\packages\visualcpptools.14.0.24120-pre\lib\native\include\ostream
-
-; 307  : 				_State |= ios_base::badbit;
-; 308  : 			_CATCH_IO_END
-
-  00061	48 8d 05 00 00
-	00 00		 lea	 rax, $LN15@catch$228
-  00068	eb 0a		 jmp	 SHORT $LN1101@catch$228
-$LN75@catch$228:
-; File c:\users\alist_000\cppmisc\packages\visualcpptools.14.0.24120-pre\lib\native\include\xiosbase
-
-; 292  : 			_RERAISE;
-
-  0006a	33 d2		 xor	 edx, edx
-  0006c	33 c9		 xor	 ecx, ecx
-  0006e	e8 00 00 00 00	 call	 _CxxThrowException
-  00073	90		 npad	 1
-$LN1101@catch$228:
-  00074	48 83 c4 30	 add	 rsp, 48			; 00000030H
-  00078	5d		 pop	 rbp
-  00079	c3		 ret	 0
-  0007a	cc		 int	 3
-?catch$228@?0???6?$basic_ostream@_WU?$char_traits@_W@std@@@std@@QEAAAEAV01@H@Z@4HA ENDP ; `std::basic_ostream<wchar_t,std::char_traits<wchar_t> >::operator<<'::`1'::catch$228
-text$x	ENDS
-; Function compile flags: /Ogtpy
-;	COMDAT text$x
-text$x	SEGMENT
-_State$ = 48
-$T1 = 64
-$T2 = 64
-$T3 = 80
-$T4 = 80
-_Ok$ = 104
-this$dead$ = 144
-_Val$ = 152
-?dtor$2@?0???6?$basic_ostream@_WU?$char_traits@_W@std@@@std@@QEAAAEAV01@H@Z@4HA PROC ; `std::basic_ostream<wchar_t,std::char_traits<wchar_t> >::operator<<'::`1'::dtor$2
-  00000	48 8d 8a 68 00
-	00 00		 lea	 rcx, QWORD PTR _Ok$[rdx]
-  00007	e9 00 00 00 00	 jmp	 ??1_Sentry_base@?$basic_ostream@_WU?$char_traits@_W@std@@@std@@QEAA@XZ ; std::basic_ostream<wchar_t,std::char_traits<wchar_t> >::_Sentry_base::~_Sentry_base
-?dtor$2@?0???6?$basic_ostream@_WU?$char_traits@_W@std@@@std@@QEAAAEAV01@H@Z@4HA ENDP ; `std::basic_ostream<wchar_t,std::char_traits<wchar_t> >::operator<<'::`1'::dtor$2
-text$x	ENDS
-; Function compile flags: /Ogtpy
-;	COMDAT text$x
-text$x	SEGMENT
-_State$ = 48
-$T1 = 64
-$T2 = 64
-$T3 = 80
-$T4 = 80
-_Ok$ = 104
-this$dead$ = 144
-_Val$ = 152
-?dtor$0@?0???6?$basic_ostream@_WU?$char_traits@_W@std@@@std@@QEAAAEAV01@H@Z@4HA PROC ; `std::basic_ostream<wchar_t,std::char_traits<wchar_t> >::operator<<'::`1'::dtor$0
-  0000c	48 8d 8a 68 00
-	00 00		 lea	 rcx, QWORD PTR _Ok$[rdx]
-  00013	e9 00 00 00 00	 jmp	 ??1sentry@?$basic_ostream@_WU?$char_traits@_W@std@@@std@@QEAA@XZ ; std::basic_ostream<wchar_t,std::char_traits<wchar_t> >::sentry::~sentry
-?dtor$0@?0???6?$basic_ostream@_WU?$char_traits@_W@std@@@std@@QEAAAEAV01@H@Z@4HA ENDP ; `std::basic_ostream<wchar_t,std::char_traits<wchar_t> >::operator<<'::`1'::dtor$0
-text$x	ENDS
-; Function compile flags: /Ogtpy
-;	COMDAT text$x
-text$x	SEGMENT
-_State$ = 48
-$T1 = 64
-$T2 = 64
-$T3 = 80
-$T4 = 80
-_Ok$ = 104
-this$dead$ = 144
-_Val$ = 152
-?dtor$1@?0???6?$basic_ostream@_WU?$char_traits@_W@std@@@std@@QEAAAEAV01@H@Z@4HA PROC ; `std::basic_ostream<wchar_t,std::char_traits<wchar_t> >::operator<<'::`1'::dtor$1
-  00018	48 8d 8a 50 00
-	00 00		 lea	 rcx, QWORD PTR $T4[rdx]
-  0001f	e9 00 00 00 00	 jmp	 ??1locale@std@@QEAA@XZ	; std::locale::~locale
-?dtor$1@?0???6?$basic_ostream@_WU?$char_traits@_W@std@@@std@@QEAAAEAV01@H@Z@4HA ENDP ; `std::basic_ostream<wchar_t,std::char_traits<wchar_t> >::operator<<'::`1'::dtor$1
-text$x	ENDS
-; Function compile flags: /Ogtpy
-; File c:\users\alist_000\cppmisc\packages\visualcpptools.14.0.24120-pre\lib\native\include\ostream
-; File c:\users\alist_000\cppmisc\packages\visualcpptools.14.0.24120-pre\lib\native\include\xiosbase
-; File c:\users\alist_000\cppmisc\packages\visualcpptools.14.0.24120-pre\lib\native\include\ios
-; File c:\users\alist_000\cppmisc\packages\visualcpptools.14.0.24120-pre\lib\native\include\xiosbase
-; File c:\users\alist_000\cppmisc\packages\visualcpptools.14.0.24120-pre\lib\native\include\ostream
-; File c:\users\alist_000\cppmisc\packages\visualcpptools.14.0.24120-pre\lib\native\include\xiosbase
-;	COMDAT text$x
-text$x	SEGMENT
-_State$ = 48
-$T1 = 64
-$T2 = 64
-$T3 = 80
-$T4 = 80
-_Ok$ = 104
-this$dead$ = 144
-_Val$ = 152
-?catch$228@?0???6?$basic_ostream@_WU?$char_traits@_W@std@@@std@@QEAAAEAV01@H@Z@4HA PROC ; `std::basic_ostream<wchar_t,std::char_traits<wchar_t> >::operator<<'::`1'::catch$228
-; File c:\users\alist_000\cppmisc\packages\visualcpptools.14.0.24120-pre\lib\native\include\ostream
-
-; 308  : 			_CATCH_IO_END
-
-  00024	48 89 54 24 10	 mov	 QWORD PTR [rsp+16], rdx
-  00029	55		 push	 rbp
-  0002a	48 83 ec 30	 sub	 rsp, 48			; 00000030H
-  0002e	48 8b ea	 mov	 rbp, rdx
-__catch$??6?$basic_ostream@_WU?$char_traits@_W@std@@@std@@QEAAAEAV01@H@Z$0:
-  00031	48 8b 05 00 00
-	00 00		 mov	 rax, QWORD PTR ?wcout@std@@3V?$basic_ostream@_WU?$char_traits@_W@std@@@1@A
-  00038	48 63 48 04	 movsxd	 rcx, DWORD PTR [rax+4]
-  0003c	48 8d 05 00 00
-	00 00		 lea	 rax, OFFSET FLAT:?wcout@std@@3V?$basic_ostream@_WU?$char_traits@_W@std@@@1@A ; std::wcout
-  00043	48 03 c8	 add	 rcx, rax
-; File c:\users\alist_000\cppmisc\packages\visualcpptools.14.0.24120-pre\lib\native\include\xiosbase
-
-; 315  : 		return (_Mystate);
-
-  00046	8b 41 10	 mov	 eax, DWORD PTR [rcx+16]
-; File c:\users\alist_000\cppmisc\packages\visualcpptools.14.0.24120-pre\lib\native\include\ios
-
-; 60   : 			clear((iostate)((int)rdstate() | (int)_State), _Reraise);
-
-  00049	83 c8 04	 or	 eax, 4
-
-; 45   : 		ios_base::clear((iostate)(_Mystrbuf == 0
-
-  0004c	48 83 79 48 00	 cmp	 QWORD PTR [rcx+72], 0
-  00051	75 03		 jne	 SHORT $LN72@catch$228
-  00053	83 c8 04	 or	 eax, 4
-$LN72@catch$228:
-; File c:\users\alist_000\cppmisc\packages\visualcpptools.14.0.24120-pre\lib\native\include\xiosbase
-
-; 288  : 		_Mystate = (iostate)(_State & _Statmask);
-
-  00056	83 e0 17	 and	 eax, 23
-  00059	89 41 10	 mov	 DWORD PTR [rcx+16], eax
-
-; 289  : 		if ((_Mystate & _Except) == 0)
-
-  0005c	85 41 14	 test	 DWORD PTR [rcx+20], eax
-  0005f	75 09		 jne	 SHORT $LN75@catch$228
-; File c:\users\alist_000\cppmisc\packages\visualcpptools.14.0.24120-pre\lib\native\include\ostream
-
-; 308  : 			_CATCH_IO_END
-
-  00061	48 8d 05 00 00
-	00 00		 lea	 rax, $LN15@catch$228
-  00068	eb 0a		 jmp	 SHORT $LN1101@catch$228
-$LN75@catch$228:
-; File c:\users\alist_000\cppmisc\packages\visualcpptools.14.0.24120-pre\lib\native\include\xiosbase
-
-; 292  : 			_RERAISE;
-
-  0006a	33 d2		 xor	 edx, edx
-  0006c	33 c9		 xor	 ecx, ecx
-  0006e	e8 00 00 00 00	 call	 _CxxThrowException
-  00073	90		 npad	 1
-$LN1101@catch$228:
-  00074	48 83 c4 30	 add	 rsp, 48			; 00000030H
-  00078	5d		 pop	 rbp
-  00079	c3		 ret	 0
-  0007a	cc		 int	 3
-?catch$228@?0???6?$basic_ostream@_WU?$char_traits@_W@std@@@std@@QEAAAEAV01@H@Z@4HA ENDP ; `std::basic_ostream<wchar_t,std::char_traits<wchar_t> >::operator<<'::`1'::catch$228
 text$x	ENDS
 ; Function compile flags: /Ogtpy
 ; File c:\users\alist_000\cppmisc\packages\visualcpptools.14.0.24120-pre\lib\native\include\ostream
@@ -21499,6 +21538,47 @@ _Val$ = 280
 text$x	ENDS
 ; Function compile flags: /Ogtpy
 ; File c:\users\alist_000\cppmisc\packages\visualcpptools.14.0.24120-pre\lib\native\include\xlocnum
+;	COMDAT ?put@?$num_put@_WV?$ostreambuf_iterator@_WU?$char_traits@_W@std@@@std@@@std@@QEBA?AV?$ostreambuf_iterator@_WU?$char_traits@_W@std@@@2@V32@AEAVios_base@2@_W_K@Z
+_TEXT	SEGMENT
+$T1 = 48
+this$ = 80
+__$ReturnUdt$ = 88
+_Dest$ = 96
+_Iosbase$ = 104
+_Fill$ = 112
+_Val$ = 120
+?put@?$num_put@_WV?$ostreambuf_iterator@_WU?$char_traits@_W@std@@@std@@@std@@QEBA?AV?$ostreambuf_iterator@_WU?$char_traits@_W@std@@@2@V32@AEAVios_base@2@_W_K@Z PROC ; std::num_put<wchar_t,std::ostreambuf_iterator<wchar_t,std::char_traits<wchar_t> > >::put, COMDAT
+
+; 1230 : 		{	// put formatted unsigned long long to _Dest
+
+$LN6:
+  00000	40 53		 push	 rbx
+  00002	48 83 ec 40	 sub	 rsp, 64			; 00000040H
+
+; 1231 : 		return (do_put(_Dest, _Iosbase, _Fill, _Val));
+
+  00006	48 8b 44 24 78	 mov	 rax, QWORD PTR _Val$[rsp]
+  0000b	48 8b da	 mov	 rbx, rdx
+  0000e	41 0f 28 00	 movaps	 xmm0, XMMWORD PTR [r8]
+  00012	4c 8d 44 24 30	 lea	 r8, QWORD PTR $T1[rsp]
+  00017	4c 8b 11	 mov	 r10, QWORD PTR [rcx]
+  0001a	48 89 44 24 28	 mov	 QWORD PTR [rsp+40], rax
+  0001f	0f b7 44 24 70	 movzx	 eax, WORD PTR _Fill$[rsp]
+  00024	66 89 44 24 20	 mov	 WORD PTR [rsp+32], ax
+  00029	66 0f 7f 44 24
+	30		 movdqa	 XMMWORD PTR $T1[rsp], xmm0
+  0002f	41 ff 52 30	 call	 QWORD PTR [r10+48]
+  00033	48 8b c3	 mov	 rax, rbx
+
+; 1232 : 		}
+
+  00036	48 83 c4 40	 add	 rsp, 64			; 00000040H
+  0003a	5b		 pop	 rbx
+  0003b	c3		 ret	 0
+?put@?$num_put@_WV?$ostreambuf_iterator@_WU?$char_traits@_W@std@@@std@@@std@@QEBA?AV?$ostreambuf_iterator@_WU?$char_traits@_W@std@@@2@V32@AEAVios_base@2@_W_K@Z ENDP ; std::num_put<wchar_t,std::ostreambuf_iterator<wchar_t,std::char_traits<wchar_t> > >::put
+_TEXT	ENDS
+; Function compile flags: /Ogtpy
+; File c:\users\alist_000\cppmisc\packages\visualcpptools.14.0.24120-pre\lib\native\include\xlocnum
 ;	COMDAT ?put@?$num_put@_WV?$ostreambuf_iterator@_WU?$char_traits@_W@std@@@std@@@std@@QEBA?AV?$ostreambuf_iterator@_WU?$char_traits@_W@std@@@2@V32@AEAVios_base@2@_WK@Z
 _TEXT	SEGMENT
 $T1 = 48
@@ -21537,47 +21617,6 @@ $LN6:
   00038	5b		 pop	 rbx
   00039	c3		 ret	 0
 ?put@?$num_put@_WV?$ostreambuf_iterator@_WU?$char_traits@_W@std@@@std@@@std@@QEBA?AV?$ostreambuf_iterator@_WU?$char_traits@_W@std@@@2@V32@AEAVios_base@2@_WK@Z ENDP ; std::num_put<wchar_t,std::ostreambuf_iterator<wchar_t,std::char_traits<wchar_t> > >::put
-_TEXT	ENDS
-; Function compile flags: /Ogtpy
-; File c:\users\alist_000\cppmisc\packages\visualcpptools.14.0.24120-pre\lib\native\include\xlocnum
-;	COMDAT ?put@?$num_put@_WV?$ostreambuf_iterator@_WU?$char_traits@_W@std@@@std@@@std@@QEBA?AV?$ostreambuf_iterator@_WU?$char_traits@_W@std@@@2@V32@AEAVios_base@2@_WJ@Z
-_TEXT	SEGMENT
-$T1 = 48
-this$ = 80
-__$ReturnUdt$ = 88
-_Dest$ = 96
-_Iosbase$ = 104
-_Fill$ = 112
-_Val$ = 120
-?put@?$num_put@_WV?$ostreambuf_iterator@_WU?$char_traits@_W@std@@@std@@@std@@QEBA?AV?$ostreambuf_iterator@_WU?$char_traits@_W@std@@@2@V32@AEAVios_base@2@_WJ@Z PROC ; std::num_put<wchar_t,std::ostreambuf_iterator<wchar_t,std::char_traits<wchar_t> > >::put, COMDAT
-
-; 1212 : 		{	// put formatted long to _Dest
-
-$LN6:
-  00000	40 53		 push	 rbx
-  00002	48 83 ec 40	 sub	 rsp, 64			; 00000040H
-
-; 1213 : 		return (do_put(_Dest, _Iosbase, _Fill, _Val));
-
-  00006	8b 44 24 78	 mov	 eax, DWORD PTR _Val$[rsp]
-  0000a	48 8b da	 mov	 rbx, rdx
-  0000d	41 0f 28 00	 movaps	 xmm0, XMMWORD PTR [r8]
-  00011	4c 8d 44 24 30	 lea	 r8, QWORD PTR $T1[rsp]
-  00016	4c 8b 11	 mov	 r10, QWORD PTR [rcx]
-  00019	89 44 24 28	 mov	 DWORD PTR [rsp+40], eax
-  0001d	0f b7 44 24 70	 movzx	 eax, WORD PTR _Fill$[rsp]
-  00022	66 89 44 24 20	 mov	 WORD PTR [rsp+32], ax
-  00027	66 0f 7f 44 24
-	30		 movdqa	 XMMWORD PTR $T1[rsp], xmm0
-  0002d	41 ff 52 48	 call	 QWORD PTR [r10+72]
-  00031	48 8b c3	 mov	 rax, rbx
-
-; 1214 : 		}
-
-  00034	48 83 c4 40	 add	 rsp, 64			; 00000040H
-  00038	5b		 pop	 rbx
-  00039	c3		 ret	 0
-?put@?$num_put@_WV?$ostreambuf_iterator@_WU?$char_traits@_W@std@@@std@@@std@@QEBA?AV?$ostreambuf_iterator@_WU?$char_traits@_W@std@@@2@V32@AEAVios_base@2@_WJ@Z ENDP ; std::num_put<wchar_t,std::ostreambuf_iterator<wchar_t,std::char_traits<wchar_t> > >::put
 _TEXT	ENDS
 ; Function compile flags: /Ogtpy
 ; File c:\users\alist_000\cppmisc\packages\visualcpptools.14.0.24120-pre\lib\native\include\xlocnum
@@ -39907,6 +39946,233 @@ $LN21@Immortaliz:
 ??$_Immortalize@V_Iostream_error_category@std@@@std@@YAAEAV_Iostream_error_category@0@XZ ENDP ; std::_Immortalize<std::_Iostream_error_category>
 _TEXT	ENDS
 ; Function compile flags: /Ogtpy
+; File c:\users\alist_000\cppmisc\packages\visualcpptools.14.0.24120-pre\lib\native\include\xstring
+; File c:\users\alist_000\cppmisc\packages\visualcpptools.14.0.24120-pre\lib\native\include\xstddef
+; File c:\users\alist_000\cppmisc\packages\visualcpptools.14.0.24120-pre\lib\native\include\xstring
+; File c:\users\alist_000\cppmisc\packages\visualcpptools.14.0.24120-pre\lib\native\include\iosfwd
+; File c:\users\alist_000\cppmisc\packages\visualcpptools.14.0.24120-pre\lib\native\include\xstring
+;	COMDAT ??$?H_WU?$char_traits@_W@std@@V?$allocator@_W@1@@std@@YA?AV?$basic_string@_WU?$char_traits@_W@std@@V?$allocator@_W@2@@0@AEBV10@PEB_W@Z
+_TEXT	SEGMENT
+$T1 = 32
+$T2 = 40
+__$ReturnUdt$ = 64
+_Left$ = 72
+_Right$dead$ = 80
+??$?H_WU?$char_traits@_W@std@@V?$allocator@_W@1@@std@@YA?AV?$basic_string@_WU?$char_traits@_W@std@@V?$allocator@_W@2@@0@AEBV10@PEB_W@Z PROC ; std::operator+<wchar_t,std::char_traits<wchar_t>,std::allocator<wchar_t> >, COMDAT
+
+; 2353 : 	{	// return string + NTCS
+
+$LN142:
+  00000	48 89 4c 24 08	 mov	 QWORD PTR [rsp+8], rcx
+  00005	57		 push	 rdi
+  00006	48 83 ec 30	 sub	 rsp, 48			; 00000030H
+  0000a	48 c7 44 24 28
+	fe ff ff ff	 mov	 QWORD PTR $T2[rsp], -2
+  00013	48 89 5c 24 48	 mov	 QWORD PTR [rsp+72], rbx
+  00018	48 8b fa	 mov	 rdi, rdx
+  0001b	48 8b d9	 mov	 rbx, rcx
+  0001e	33 c9		 xor	 ecx, ecx
+  00020	89 4c 24 20	 mov	 DWORD PTR $T1[rsp], ecx
+
+; 2258 : 		this->_Myres() = this->_BUF_SIZE - 1;
+
+  00024	48 c7 43 18 07
+	00 00 00	 mov	 QWORD PTR [rbx+24], 7
+
+; 2217 : 		_Traits::assign(_Dx._Myptr()[_Dx._Mysize = _Newsize], _Elem());
+
+  0002c	48 89 4b 10	 mov	 QWORD PTR [rbx+16], rcx
+
+; 514  : 		return (this->_BUF_SIZE <= _Myres
+
+  00030	48 83 7b 18 08	 cmp	 QWORD PTR [rbx+24], 8
+  00035	72 05		 jb	 SHORT $LN107@operator
+; File c:\users\alist_000\cppmisc\packages\visualcpptools.14.0.24120-pre\lib\native\include\xstddef
+
+; 738  : 	return (_Ptr);
+
+  00037	48 8b 03	 mov	 rax, QWORD PTR [rbx]
+; File c:\users\alist_000\cppmisc\packages\visualcpptools.14.0.24120-pre\lib\native\include\xstring
+
+; 514  : 		return (this->_BUF_SIZE <= _Myres
+
+  0003a	eb 03		 jmp	 SHORT $LN108@operator
+$LN107@operator:
+  0003c	48 8b c3	 mov	 rax, rbx
+$LN108@operator:
+; File c:\users\alist_000\cppmisc\packages\visualcpptools.14.0.24120-pre\lib\native\include\iosfwd
+
+; 345  : 		_Left = _Right;
+
+  0003f	66 89 08	 mov	 WORD PTR [rax], cx
+  00042	c7 44 24 20 01
+	00 00 00	 mov	 DWORD PTR $T1[rsp], 1
+; File c:\users\alist_000\cppmisc\packages\visualcpptools.14.0.24120-pre\lib\native\include\xstring
+
+; 1763 : 		return (this->_Mysize());
+
+  0004a	48 8b 52 10	 mov	 rdx, QWORD PTR [rdx+16]
+
+; 2354 : 	basic_string<_Elem, _Traits, _Alloc> _Ans;
+; 2355 : 	_Ans.reserve(_Left.size() + _Traits::length(_Right));
+
+  0004e	48 ff c2	 inc	 rdx
+  00051	48 8b cb	 mov	 rcx, rbx
+  00054	e8 00 00 00 00	 call	 ?reserve@?$basic_string@_WU?$char_traits@_W@std@@V?$allocator@_W@2@@std@@QEAAX_K@Z ; std::basic_string<wchar_t,std::char_traits<wchar_t>,std::allocator<wchar_t> >::reserve
+
+; 1065 : 		return (append(_Right, 0, npos));
+
+  00059	49 83 c9 ff	 or	 r9, -1
+  0005d	45 33 c0	 xor	 r8d, r8d
+  00060	48 8b d7	 mov	 rdx, rdi
+  00063	48 8b cb	 mov	 rcx, rbx
+  00066	e8 00 00 00 00	 call	 ?append@?$basic_string@_WU?$char_traits@_W@std@@V?$allocator@_W@2@@std@@QEAAAEAV12@AEBV12@_K1@Z ; std::basic_string<wchar_t,std::char_traits<wchar_t>,std::allocator<wchar_t> >::append
+
+; 1107 : 		return (append(_Ptr, _Traits::length(_Ptr)));
+
+  0006b	41 b8 01 00 00
+	00		 mov	 r8d, 1
+  00071	48 8d 15 00 00
+	00 00		 lea	 rdx, OFFSET FLAT:$SG4294967197
+  00078	48 8b cb	 mov	 rcx, rbx
+  0007b	e8 00 00 00 00	 call	 ?append@?$basic_string@_WU?$char_traits@_W@std@@V?$allocator@_W@2@@std@@QEAAAEAV12@PEB_W_K@Z ; std::basic_string<wchar_t,std::char_traits<wchar_t>,std::allocator<wchar_t> >::append
+
+; 2356 : 	_Ans += _Left;
+; 2357 : 	_Ans += _Right;
+; 2358 : 	return (_Ans);
+
+  00080	48 8b c3	 mov	 rax, rbx
+
+; 2359 : 	}
+
+  00083	48 8b 5c 24 48	 mov	 rbx, QWORD PTR [rsp+72]
+  00088	48 83 c4 30	 add	 rsp, 48			; 00000030H
+  0008c	5f		 pop	 rdi
+  0008d	c3		 ret	 0
+  0008e	cc		 int	 3
+??$?H_WU?$char_traits@_W@std@@V?$allocator@_W@1@@std@@YA?AV?$basic_string@_WU?$char_traits@_W@std@@V?$allocator@_W@2@@0@AEBV10@PEB_W@Z ENDP ; std::operator+<wchar_t,std::char_traits<wchar_t>,std::allocator<wchar_t> >
+_TEXT	ENDS
+;	COMDAT text$x
+text$x	SEGMENT
+$T1 = 32
+$T2 = 40
+__$ReturnUdt$ = 64
+_Left$ = 72
+_Right$dead$ = 80
+?dtor$0@?0???$?H_WU?$char_traits@_W@std@@V?$allocator@_W@1@@std@@YA?AV?$basic_string@_WU?$char_traits@_W@std@@V?$allocator@_W@2@@0@AEBV10@PEB_W@Z@4HA PROC ; `std::operator+<wchar_t,std::char_traits<wchar_t>,std::allocator<wchar_t> >'::`1'::dtor$0
+  00000	40 55		 push	 rbp
+  00002	48 83 ec 20	 sub	 rsp, 32			; 00000020H
+  00006	48 8b ea	 mov	 rbp, rdx
+  00009	8b 45 20	 mov	 eax, DWORD PTR $T1[rbp]
+  0000c	83 e0 01	 and	 eax, 1
+  0000f	85 c0		 test	 eax, eax
+  00011	74 0d		 je	 SHORT $LN4@dtor$0
+  00013	83 65 20 fe	 and	 DWORD PTR $T1[rbp], -2
+  00017	48 8b 4d 40	 mov	 rcx, QWORD PTR __$ReturnUdt$[rbp]
+  0001b	e8 00 00 00 00	 call	 ??1?$basic_string@_WU?$char_traits@_W@std@@V?$allocator@_W@2@@std@@QEAA@XZ ; std::basic_string<wchar_t,std::char_traits<wchar_t>,std::allocator<wchar_t> >::~basic_string<wchar_t,std::char_traits<wchar_t>,std::allocator<wchar_t> >
+$LN4@dtor$0:
+  00020	48 83 c4 20	 add	 rsp, 32			; 00000020H
+  00024	5d		 pop	 rbp
+  00025	c3		 ret	 0
+?dtor$0@?0???$?H_WU?$char_traits@_W@std@@V?$allocator@_W@1@@std@@YA?AV?$basic_string@_WU?$char_traits@_W@std@@V?$allocator@_W@2@@0@AEBV10@PEB_W@Z@4HA ENDP ; `std::operator+<wchar_t,std::char_traits<wchar_t>,std::allocator<wchar_t> >'::`1'::dtor$0
+text$x	ENDS
+; Function compile flags: /Ogtpy
+;	COMDAT text$x
+text$x	SEGMENT
+$T1 = 32
+$T2 = 40
+__$ReturnUdt$ = 64
+_Left$ = 72
+_Right$dead$ = 80
+?dtor$0@?0???$?H_WU?$char_traits@_W@std@@V?$allocator@_W@1@@std@@YA?AV?$basic_string@_WU?$char_traits@_W@std@@V?$allocator@_W@2@@0@AEBV10@PEB_W@Z@4HA PROC ; `std::operator+<wchar_t,std::char_traits<wchar_t>,std::allocator<wchar_t> >'::`1'::dtor$0
+  00000	40 55		 push	 rbp
+  00002	48 83 ec 20	 sub	 rsp, 32			; 00000020H
+  00006	48 8b ea	 mov	 rbp, rdx
+  00009	8b 45 20	 mov	 eax, DWORD PTR $T1[rbp]
+  0000c	83 e0 01	 and	 eax, 1
+  0000f	85 c0		 test	 eax, eax
+  00011	74 0d		 je	 SHORT $LN4@dtor$0
+  00013	83 65 20 fe	 and	 DWORD PTR $T1[rbp], -2
+  00017	48 8b 4d 40	 mov	 rcx, QWORD PTR __$ReturnUdt$[rbp]
+  0001b	e8 00 00 00 00	 call	 ??1?$basic_string@_WU?$char_traits@_W@std@@V?$allocator@_W@2@@std@@QEAA@XZ ; std::basic_string<wchar_t,std::char_traits<wchar_t>,std::allocator<wchar_t> >::~basic_string<wchar_t,std::char_traits<wchar_t>,std::allocator<wchar_t> >
+$LN4@dtor$0:
+  00020	48 83 c4 20	 add	 rsp, 32			; 00000020H
+  00024	5d		 pop	 rbp
+  00025	c3		 ret	 0
+?dtor$0@?0???$?H_WU?$char_traits@_W@std@@V?$allocator@_W@1@@std@@YA?AV?$basic_string@_WU?$char_traits@_W@std@@V?$allocator@_W@2@@0@AEBV10@PEB_W@Z@4HA ENDP ; `std::operator+<wchar_t,std::char_traits<wchar_t>,std::allocator<wchar_t> >'::`1'::dtor$0
+text$x	ENDS
+; Function compile flags: /Ogtpy
+; File c:\users\alist_000\cppmisc\packages\visualcpptools.14.0.24120-pre\lib\native\include\xstring
+; File c:\users\alist_000\cppmisc\packages\visualcpptools.14.0.24120-pre\lib\native\include\iosfwd
+; File c:\users\alist_000\cppmisc\packages\visualcpptools.14.0.24120-pre\lib\native\include\xstring
+;	COMDAT ??$?H_WU?$char_traits@_W@std@@V?$allocator@_W@1@@std@@YA?AV?$basic_string@_WU?$char_traits@_W@std@@V?$allocator@_W@2@@0@$$QEAV10@AEBV10@@Z
+_TEXT	SEGMENT
+$T1 = 32
+__$ReturnUdt$ = 64
+_Left$ = 72
+_Right$ = 80
+??$?H_WU?$char_traits@_W@std@@V?$allocator@_W@1@@std@@YA?AV?$basic_string@_WU?$char_traits@_W@std@@V?$allocator@_W@2@@0@$$QEAV10@AEBV10@@Z PROC ; std::operator+<wchar_t,std::char_traits<wchar_t>,std::allocator<wchar_t> >, COMDAT
+
+; 2391 : 	{	// return string + string
+
+$LN138:
+  00000	48 89 5c 24 08	 mov	 QWORD PTR [rsp+8], rbx
+  00005	57		 push	 rdi
+  00006	48 83 ec 30	 sub	 rsp, 48			; 00000030H
+  0000a	49 8b c0	 mov	 rax, r8
+  0000d	4c 8b d2	 mov	 r10, rdx
+  00010	48 8b d9	 mov	 rbx, rcx
+  00013	33 ff		 xor	 edi, edi
+
+; 1065 : 		return (append(_Right, 0, npos));
+
+  00015	48 8b d0	 mov	 rdx, rax
+  00018	89 7c 24 20	 mov	 DWORD PTR $T1[rsp], edi
+  0001c	49 8b ca	 mov	 rcx, r10
+  0001f	49 83 c9 ff	 or	 r9, -1
+  00023	45 33 c0	 xor	 r8d, r8d
+  00026	e8 00 00 00 00	 call	 ?append@?$basic_string@_WU?$char_traits@_W@std@@V?$allocator@_W@2@@std@@QEAAAEAV12@AEBV12@_K1@Z ; std::basic_string<wchar_t,std::char_traits<wchar_t>,std::allocator<wchar_t> >::append
+
+; 2258 : 		this->_Myres() = this->_BUF_SIZE - 1;
+
+  0002b	48 c7 43 18 07
+	00 00 00	 mov	 QWORD PTR [rbx+24], 7
+
+; 913  : 		_Assign_rv(_STD forward<_Myt>(_Right));
+
+  00033	48 8b d0	 mov	 rdx, rax
+
+; 2217 : 		_Traits::assign(_Dx._Myptr()[_Dx._Mysize = _Newsize], _Elem());
+
+  00036	48 89 7b 10	 mov	 QWORD PTR [rbx+16], rdi
+
+; 913  : 		_Assign_rv(_STD forward<_Myt>(_Right));
+
+  0003a	48 8b cb	 mov	 rcx, rbx
+; File c:\users\alist_000\cppmisc\packages\visualcpptools.14.0.24120-pre\lib\native\include\iosfwd
+
+; 345  : 		_Left = _Right;
+
+  0003d	66 89 3b	 mov	 WORD PTR [rbx], di
+; File c:\users\alist_000\cppmisc\packages\visualcpptools.14.0.24120-pre\lib\native\include\xstring
+
+; 913  : 		_Assign_rv(_STD forward<_Myt>(_Right));
+
+  00040	e8 00 00 00 00	 call	 ?_Assign_rv@?$basic_string@_WU?$char_traits@_W@std@@V?$allocator@_W@2@@std@@QEAAX$$QEAV12@@Z ; std::basic_string<wchar_t,std::char_traits<wchar_t>,std::allocator<wchar_t> >::_Assign_rv
+
+; 2392 : 	return (_STD move(_Left.append(_Right)));
+
+  00045	48 8b c3	 mov	 rax, rbx
+
+; 2393 : 	}
+
+  00048	48 8b 5c 24 40	 mov	 rbx, QWORD PTR [rsp+64]
+  0004d	48 83 c4 30	 add	 rsp, 48			; 00000030H
+  00051	5f		 pop	 rdi
+  00052	c3		 ret	 0
+??$?H_WU?$char_traits@_W@std@@V?$allocator@_W@1@@std@@YA?AV?$basic_string@_WU?$char_traits@_W@std@@V?$allocator@_W@2@@0@$$QEAV10@AEBV10@@Z ENDP ; std::operator+<wchar_t,std::char_traits<wchar_t>,std::allocator<wchar_t> >
+_TEXT	ENDS
+; Function compile flags: /Ogtpy
 ; File c:\users\alist_000\cppmisc\packages\visualcpptools.14.0.24120-pre\lib\native\include\ostream
 ; File c:\users\alist_000\cppmisc\packages\visualcpptools.14.0.24120-pre\lib\native\include\xiosbase
 ; File c:\users\alist_000\cppmisc\packages\visualcpptools.14.0.24120-pre\lib\native\include\ostream
@@ -42287,233 +42553,6 @@ $LN4:
   00034	5b		 pop	 rbx
   00035	c3		 ret	 0
 ??$endl@_WU?$char_traits@_W@std@@@std@@YAAEAV?$basic_ostream@_WU?$char_traits@_W@std@@@0@AEAV10@@Z ENDP ; std::endl<wchar_t,std::char_traits<wchar_t> >
-_TEXT	ENDS
-; Function compile flags: /Ogtpy
-; File c:\users\alist_000\cppmisc\packages\visualcpptools.14.0.24120-pre\lib\native\include\xstring
-; File c:\users\alist_000\cppmisc\packages\visualcpptools.14.0.24120-pre\lib\native\include\xstddef
-; File c:\users\alist_000\cppmisc\packages\visualcpptools.14.0.24120-pre\lib\native\include\xstring
-; File c:\users\alist_000\cppmisc\packages\visualcpptools.14.0.24120-pre\lib\native\include\iosfwd
-; File c:\users\alist_000\cppmisc\packages\visualcpptools.14.0.24120-pre\lib\native\include\xstring
-;	COMDAT ??$?H_WU?$char_traits@_W@std@@V?$allocator@_W@1@@std@@YA?AV?$basic_string@_WU?$char_traits@_W@std@@V?$allocator@_W@2@@0@AEBV10@PEB_W@Z
-_TEXT	SEGMENT
-$T1 = 32
-$T2 = 40
-__$ReturnUdt$ = 64
-_Left$ = 72
-_Right$dead$ = 80
-??$?H_WU?$char_traits@_W@std@@V?$allocator@_W@1@@std@@YA?AV?$basic_string@_WU?$char_traits@_W@std@@V?$allocator@_W@2@@0@AEBV10@PEB_W@Z PROC ; std::operator+<wchar_t,std::char_traits<wchar_t>,std::allocator<wchar_t> >, COMDAT
-
-; 2353 : 	{	// return string + NTCS
-
-$LN142:
-  00000	48 89 4c 24 08	 mov	 QWORD PTR [rsp+8], rcx
-  00005	57		 push	 rdi
-  00006	48 83 ec 30	 sub	 rsp, 48			; 00000030H
-  0000a	48 c7 44 24 28
-	fe ff ff ff	 mov	 QWORD PTR $T2[rsp], -2
-  00013	48 89 5c 24 48	 mov	 QWORD PTR [rsp+72], rbx
-  00018	48 8b fa	 mov	 rdi, rdx
-  0001b	48 8b d9	 mov	 rbx, rcx
-  0001e	33 c9		 xor	 ecx, ecx
-  00020	89 4c 24 20	 mov	 DWORD PTR $T1[rsp], ecx
-
-; 2258 : 		this->_Myres() = this->_BUF_SIZE - 1;
-
-  00024	48 c7 43 18 07
-	00 00 00	 mov	 QWORD PTR [rbx+24], 7
-
-; 2217 : 		_Traits::assign(_Dx._Myptr()[_Dx._Mysize = _Newsize], _Elem());
-
-  0002c	48 89 4b 10	 mov	 QWORD PTR [rbx+16], rcx
-
-; 514  : 		return (this->_BUF_SIZE <= _Myres
-
-  00030	48 83 7b 18 08	 cmp	 QWORD PTR [rbx+24], 8
-  00035	72 05		 jb	 SHORT $LN107@operator
-; File c:\users\alist_000\cppmisc\packages\visualcpptools.14.0.24120-pre\lib\native\include\xstddef
-
-; 738  : 	return (_Ptr);
-
-  00037	48 8b 03	 mov	 rax, QWORD PTR [rbx]
-; File c:\users\alist_000\cppmisc\packages\visualcpptools.14.0.24120-pre\lib\native\include\xstring
-
-; 514  : 		return (this->_BUF_SIZE <= _Myres
-
-  0003a	eb 03		 jmp	 SHORT $LN108@operator
-$LN107@operator:
-  0003c	48 8b c3	 mov	 rax, rbx
-$LN108@operator:
-; File c:\users\alist_000\cppmisc\packages\visualcpptools.14.0.24120-pre\lib\native\include\iosfwd
-
-; 345  : 		_Left = _Right;
-
-  0003f	66 89 08	 mov	 WORD PTR [rax], cx
-  00042	c7 44 24 20 01
-	00 00 00	 mov	 DWORD PTR $T1[rsp], 1
-; File c:\users\alist_000\cppmisc\packages\visualcpptools.14.0.24120-pre\lib\native\include\xstring
-
-; 1763 : 		return (this->_Mysize());
-
-  0004a	48 8b 52 10	 mov	 rdx, QWORD PTR [rdx+16]
-
-; 2354 : 	basic_string<_Elem, _Traits, _Alloc> _Ans;
-; 2355 : 	_Ans.reserve(_Left.size() + _Traits::length(_Right));
-
-  0004e	48 ff c2	 inc	 rdx
-  00051	48 8b cb	 mov	 rcx, rbx
-  00054	e8 00 00 00 00	 call	 ?reserve@?$basic_string@_WU?$char_traits@_W@std@@V?$allocator@_W@2@@std@@QEAAX_K@Z ; std::basic_string<wchar_t,std::char_traits<wchar_t>,std::allocator<wchar_t> >::reserve
-
-; 1065 : 		return (append(_Right, 0, npos));
-
-  00059	49 83 c9 ff	 or	 r9, -1
-  0005d	45 33 c0	 xor	 r8d, r8d
-  00060	48 8b d7	 mov	 rdx, rdi
-  00063	48 8b cb	 mov	 rcx, rbx
-  00066	e8 00 00 00 00	 call	 ?append@?$basic_string@_WU?$char_traits@_W@std@@V?$allocator@_W@2@@std@@QEAAAEAV12@AEBV12@_K1@Z ; std::basic_string<wchar_t,std::char_traits<wchar_t>,std::allocator<wchar_t> >::append
-
-; 1107 : 		return (append(_Ptr, _Traits::length(_Ptr)));
-
-  0006b	41 b8 01 00 00
-	00		 mov	 r8d, 1
-  00071	48 8d 15 00 00
-	00 00		 lea	 rdx, OFFSET FLAT:$SG4294967195
-  00078	48 8b cb	 mov	 rcx, rbx
-  0007b	e8 00 00 00 00	 call	 ?append@?$basic_string@_WU?$char_traits@_W@std@@V?$allocator@_W@2@@std@@QEAAAEAV12@PEB_W_K@Z ; std::basic_string<wchar_t,std::char_traits<wchar_t>,std::allocator<wchar_t> >::append
-
-; 2356 : 	_Ans += _Left;
-; 2357 : 	_Ans += _Right;
-; 2358 : 	return (_Ans);
-
-  00080	48 8b c3	 mov	 rax, rbx
-
-; 2359 : 	}
-
-  00083	48 8b 5c 24 48	 mov	 rbx, QWORD PTR [rsp+72]
-  00088	48 83 c4 30	 add	 rsp, 48			; 00000030H
-  0008c	5f		 pop	 rdi
-  0008d	c3		 ret	 0
-  0008e	cc		 int	 3
-??$?H_WU?$char_traits@_W@std@@V?$allocator@_W@1@@std@@YA?AV?$basic_string@_WU?$char_traits@_W@std@@V?$allocator@_W@2@@0@AEBV10@PEB_W@Z ENDP ; std::operator+<wchar_t,std::char_traits<wchar_t>,std::allocator<wchar_t> >
-_TEXT	ENDS
-;	COMDAT text$x
-text$x	SEGMENT
-$T1 = 32
-$T2 = 40
-__$ReturnUdt$ = 64
-_Left$ = 72
-_Right$dead$ = 80
-?dtor$0@?0???$?H_WU?$char_traits@_W@std@@V?$allocator@_W@1@@std@@YA?AV?$basic_string@_WU?$char_traits@_W@std@@V?$allocator@_W@2@@0@AEBV10@PEB_W@Z@4HA PROC ; `std::operator+<wchar_t,std::char_traits<wchar_t>,std::allocator<wchar_t> >'::`1'::dtor$0
-  00000	40 55		 push	 rbp
-  00002	48 83 ec 20	 sub	 rsp, 32			; 00000020H
-  00006	48 8b ea	 mov	 rbp, rdx
-  00009	8b 45 20	 mov	 eax, DWORD PTR $T1[rbp]
-  0000c	83 e0 01	 and	 eax, 1
-  0000f	85 c0		 test	 eax, eax
-  00011	74 0d		 je	 SHORT $LN4@dtor$0
-  00013	83 65 20 fe	 and	 DWORD PTR $T1[rbp], -2
-  00017	48 8b 4d 40	 mov	 rcx, QWORD PTR __$ReturnUdt$[rbp]
-  0001b	e8 00 00 00 00	 call	 ??1?$basic_string@_WU?$char_traits@_W@std@@V?$allocator@_W@2@@std@@QEAA@XZ ; std::basic_string<wchar_t,std::char_traits<wchar_t>,std::allocator<wchar_t> >::~basic_string<wchar_t,std::char_traits<wchar_t>,std::allocator<wchar_t> >
-$LN4@dtor$0:
-  00020	48 83 c4 20	 add	 rsp, 32			; 00000020H
-  00024	5d		 pop	 rbp
-  00025	c3		 ret	 0
-?dtor$0@?0???$?H_WU?$char_traits@_W@std@@V?$allocator@_W@1@@std@@YA?AV?$basic_string@_WU?$char_traits@_W@std@@V?$allocator@_W@2@@0@AEBV10@PEB_W@Z@4HA ENDP ; `std::operator+<wchar_t,std::char_traits<wchar_t>,std::allocator<wchar_t> >'::`1'::dtor$0
-text$x	ENDS
-; Function compile flags: /Ogtpy
-;	COMDAT text$x
-text$x	SEGMENT
-$T1 = 32
-$T2 = 40
-__$ReturnUdt$ = 64
-_Left$ = 72
-_Right$dead$ = 80
-?dtor$0@?0???$?H_WU?$char_traits@_W@std@@V?$allocator@_W@1@@std@@YA?AV?$basic_string@_WU?$char_traits@_W@std@@V?$allocator@_W@2@@0@AEBV10@PEB_W@Z@4HA PROC ; `std::operator+<wchar_t,std::char_traits<wchar_t>,std::allocator<wchar_t> >'::`1'::dtor$0
-  00000	40 55		 push	 rbp
-  00002	48 83 ec 20	 sub	 rsp, 32			; 00000020H
-  00006	48 8b ea	 mov	 rbp, rdx
-  00009	8b 45 20	 mov	 eax, DWORD PTR $T1[rbp]
-  0000c	83 e0 01	 and	 eax, 1
-  0000f	85 c0		 test	 eax, eax
-  00011	74 0d		 je	 SHORT $LN4@dtor$0
-  00013	83 65 20 fe	 and	 DWORD PTR $T1[rbp], -2
-  00017	48 8b 4d 40	 mov	 rcx, QWORD PTR __$ReturnUdt$[rbp]
-  0001b	e8 00 00 00 00	 call	 ??1?$basic_string@_WU?$char_traits@_W@std@@V?$allocator@_W@2@@std@@QEAA@XZ ; std::basic_string<wchar_t,std::char_traits<wchar_t>,std::allocator<wchar_t> >::~basic_string<wchar_t,std::char_traits<wchar_t>,std::allocator<wchar_t> >
-$LN4@dtor$0:
-  00020	48 83 c4 20	 add	 rsp, 32			; 00000020H
-  00024	5d		 pop	 rbp
-  00025	c3		 ret	 0
-?dtor$0@?0???$?H_WU?$char_traits@_W@std@@V?$allocator@_W@1@@std@@YA?AV?$basic_string@_WU?$char_traits@_W@std@@V?$allocator@_W@2@@0@AEBV10@PEB_W@Z@4HA ENDP ; `std::operator+<wchar_t,std::char_traits<wchar_t>,std::allocator<wchar_t> >'::`1'::dtor$0
-text$x	ENDS
-; Function compile flags: /Ogtpy
-; File c:\users\alist_000\cppmisc\packages\visualcpptools.14.0.24120-pre\lib\native\include\xstring
-; File c:\users\alist_000\cppmisc\packages\visualcpptools.14.0.24120-pre\lib\native\include\iosfwd
-; File c:\users\alist_000\cppmisc\packages\visualcpptools.14.0.24120-pre\lib\native\include\xstring
-;	COMDAT ??$?H_WU?$char_traits@_W@std@@V?$allocator@_W@1@@std@@YA?AV?$basic_string@_WU?$char_traits@_W@std@@V?$allocator@_W@2@@0@$$QEAV10@AEBV10@@Z
-_TEXT	SEGMENT
-$T1 = 32
-__$ReturnUdt$ = 64
-_Left$ = 72
-_Right$ = 80
-??$?H_WU?$char_traits@_W@std@@V?$allocator@_W@1@@std@@YA?AV?$basic_string@_WU?$char_traits@_W@std@@V?$allocator@_W@2@@0@$$QEAV10@AEBV10@@Z PROC ; std::operator+<wchar_t,std::char_traits<wchar_t>,std::allocator<wchar_t> >, COMDAT
-
-; 2391 : 	{	// return string + string
-
-$LN138:
-  00000	48 89 5c 24 08	 mov	 QWORD PTR [rsp+8], rbx
-  00005	57		 push	 rdi
-  00006	48 83 ec 30	 sub	 rsp, 48			; 00000030H
-  0000a	49 8b c0	 mov	 rax, r8
-  0000d	4c 8b d2	 mov	 r10, rdx
-  00010	48 8b d9	 mov	 rbx, rcx
-  00013	33 ff		 xor	 edi, edi
-
-; 1065 : 		return (append(_Right, 0, npos));
-
-  00015	48 8b d0	 mov	 rdx, rax
-  00018	89 7c 24 20	 mov	 DWORD PTR $T1[rsp], edi
-  0001c	49 8b ca	 mov	 rcx, r10
-  0001f	49 83 c9 ff	 or	 r9, -1
-  00023	45 33 c0	 xor	 r8d, r8d
-  00026	e8 00 00 00 00	 call	 ?append@?$basic_string@_WU?$char_traits@_W@std@@V?$allocator@_W@2@@std@@QEAAAEAV12@AEBV12@_K1@Z ; std::basic_string<wchar_t,std::char_traits<wchar_t>,std::allocator<wchar_t> >::append
-
-; 2258 : 		this->_Myres() = this->_BUF_SIZE - 1;
-
-  0002b	48 c7 43 18 07
-	00 00 00	 mov	 QWORD PTR [rbx+24], 7
-
-; 913  : 		_Assign_rv(_STD forward<_Myt>(_Right));
-
-  00033	48 8b d0	 mov	 rdx, rax
-
-; 2217 : 		_Traits::assign(_Dx._Myptr()[_Dx._Mysize = _Newsize], _Elem());
-
-  00036	48 89 7b 10	 mov	 QWORD PTR [rbx+16], rdi
-
-; 913  : 		_Assign_rv(_STD forward<_Myt>(_Right));
-
-  0003a	48 8b cb	 mov	 rcx, rbx
-; File c:\users\alist_000\cppmisc\packages\visualcpptools.14.0.24120-pre\lib\native\include\iosfwd
-
-; 345  : 		_Left = _Right;
-
-  0003d	66 89 3b	 mov	 WORD PTR [rbx], di
-; File c:\users\alist_000\cppmisc\packages\visualcpptools.14.0.24120-pre\lib\native\include\xstring
-
-; 913  : 		_Assign_rv(_STD forward<_Myt>(_Right));
-
-  00040	e8 00 00 00 00	 call	 ?_Assign_rv@?$basic_string@_WU?$char_traits@_W@std@@V?$allocator@_W@2@@std@@QEAAX$$QEAV12@@Z ; std::basic_string<wchar_t,std::char_traits<wchar_t>,std::allocator<wchar_t> >::_Assign_rv
-
-; 2392 : 	return (_STD move(_Left.append(_Right)));
-
-  00045	48 8b c3	 mov	 rax, rbx
-
-; 2393 : 	}
-
-  00048	48 8b 5c 24 40	 mov	 rbx, QWORD PTR [rsp+64]
-  0004d	48 83 c4 30	 add	 rsp, 48			; 00000030H
-  00051	5f		 pop	 rdi
-  00052	c3		 ret	 0
-??$?H_WU?$char_traits@_W@std@@V?$allocator@_W@1@@std@@YA?AV?$basic_string@_WU?$char_traits@_W@std@@V?$allocator@_W@2@@0@$$QEAV10@AEBV10@@Z ENDP ; std::operator+<wchar_t,std::char_traits<wchar_t>,std::allocator<wchar_t> >
 _TEXT	ENDS
 ; Function compile flags: /Ogtpy
 ; File c:\users\alist_000\cppmisc\packages\visualcpptools.14.0.24120-pre\lib\native\include\xmemory0

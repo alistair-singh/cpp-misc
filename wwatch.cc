@@ -2,6 +2,7 @@
 #include <Windows.h>
 #include <cstdint>
 #include <iostream>
+#include <memory>
 #include <string>
 
 using namespace std;
@@ -11,16 +12,15 @@ bool hasExtension(const wstring &str, const wstring &suffix) {
          str.compare(str.size() - suffix.size(), suffix.size(), suffix) == 0;
 }
 
-void handle(int iteration, unsigned action, const wstring &name,
+void handle(size_t global, size_t local, unsigned action, const wstring &name,
             const wstring &command, const wstring &extension) {
-  wcout << iteration << ":(" << hex << action << ") " << name << " - "
-        << command << endl;
-  if (hasExtension(name, extension))
-  {wcout << "Executing command: " << command << endl;
-    _wsystem((command + L" " + name).data());
+  if (hasExtension(name, extension)) {
+    auto fullCommand = (command + L" " + name);
+    wcout << "#######" << global << ":" << local << ":(" << hex << action
+          << ") " << name << " - " << fullCommand << endl;
+    _flushall();
+    _wsystem(fullCommand.data());
   }
-  else
-    wcout << "Skipping command." << endl;
 }
 
 void printError() {
@@ -69,23 +69,26 @@ int wmain(int argc, wchar_t *argv[]) {
     return 2;
   }
 
-  int8_t buffer[4096];
-  DWORD dwBytesReturned = 0;
+  size_t globalIteration = 0;
+  const size_t bufferSize = 4096;
+  int8_t buffer[bufferSize];
 
   while (TRUE) {
-    if (ReadDirectoryChangesW(hDir, static_cast<LPVOID>(buffer), sizeof(buffer),
-                              FALSE, FILE_NOTIFY_CHANGE_LAST_WRITE,
-                              &dwBytesReturned, NULL, NULL) == FALSE) {
+    memset(buffer, 0, bufferSize);
+    DWORD dwBytesReturned = 0;
+    if (ReadDirectoryChangesW(hDir, static_cast<LPVOID>(buffer), bufferSize,
+                              FALSE, FILE_NOTIFY_CHANGE_SIZE, &dwBytesReturned,
+                              NULL, NULL) == FALSE) {
       printError();
       wcerr << L"Error Reading Directory Change" << endl;
       return 2;
     } else {
       PFILE_NOTIFY_INFORMATION notifications =
-          reinterpret_cast<PFILE_NOTIFY_INFORMATION>(&buffer[0]);
-      int iteration = 0;
+          reinterpret_cast<PFILE_NOTIFY_INFORMATION>(buffer);
+      size_t localIteration = 0;
       do {
         handle(
-            ++iteration, notifications->Action,
+            ++globalIteration, ++localIteration, notifications->Action,
             wstring(notifications->FileName, notifications->FileNameLength / 2),
             subcommand, extension);
         notifications += notifications->NextEntryOffset;
