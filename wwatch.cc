@@ -1,15 +1,30 @@
 
 #include <Windows.h>
+#include <cstdint>
 #include <iostream>
+#include <string>
 
 using namespace std;
 
-void handle(int iteration, unsigned action, unsigned, wchar_t *name) {
-  wcout << "(" << hex << action << ") " << name << endl;
+bool hasExtension(const wstring &str, const wstring &suffix) {
+  return str.size() >= suffix.size() &&
+         str.compare(str.size() - suffix.size(), suffix.size(), suffix) == 0;
+}
+
+void handle(int iteration, unsigned action, const wstring &name,
+            const wstring &command, const wstring &extension) {
+  wcout << iteration << ":(" << hex << action << ") " << name << " - "
+        << command << endl;
+  if (hasExtension(name, extension))
+  {wcout << "Executing command: " << command << endl;
+    _wsystem((command + L" " + name).data());
+  }
+  else
+    wcout << "Skipping command." << endl;
 }
 
 void printError() {
-  DWORD errorCode = GetLastError();
+  unsigned errorCode = GetLastError();
   const size_t errorMessageSize = 512;
   wchar_t errorMessage[errorMessageSize];
   FormatMessageW(FORMAT_MESSAGE_FROM_SYSTEM, NULL, errorCode,
@@ -19,18 +34,32 @@ void printError() {
   wcerr << "Error Message: " << errorMessage << endl;
 }
 
+wstring joinCommand(int argc, wchar_t **argv) {
+  wstring c;
+  for (int i = 0; i < argc; i++) {
+    c += L" ";
+    c += argv[i];
+  }
+  return c;
+}
+
 int wmain(int argc, wchar_t *argv[]) {
-  LPWSTR lpDir;
-  if (argc != 2) {
+  wstring dir;
+  wstring extension;
+  wstring subcommand;
+
+  if (argc < 4) {
     wcout << "usage:" << endl;
-    wcout << "\t" << argv[0] << " \\dir\\to\\watch" << endl;
+    wcout << "\t" << argv[0] << " \\dir\\to\\watch extension command" << endl;
     return 1;
   } else {
-    lpDir = argv[1];
+    dir = argv[1];
+    extension = argv[2];
+    subcommand = joinCommand(argc - 3, &argv[3]);
   }
 
   HANDLE hDir =
-      CreateFileW(lpDir, FILE_LIST_DIRECTORY,
+      CreateFileW(dir.data(), FILE_LIST_DIRECTORY,
                   FILE_SHARE_WRITE | FILE_SHARE_READ | FILE_SHARE_DELETE, NULL,
                   OPEN_EXISTING, FILE_FLAG_BACKUP_SEMANTICS, NULL);
 
@@ -40,22 +69,25 @@ int wmain(int argc, wchar_t *argv[]) {
     return 2;
   }
 
-  FILE_NOTIFY_INFORMATION strFileNotifyInfo[1024];
+  int8_t buffer[4096];
   DWORD dwBytesReturned = 0;
 
   while (TRUE) {
-    if (ReadDirectoryChangesW(
-            hDir, (LPVOID)&strFileNotifyInfo, sizeof(strFileNotifyInfo), FALSE,
-            FILE_NOTIFY_CHANGE_LAST_WRITE, &dwBytesReturned, NULL, NULL) == 0) {
+    if (ReadDirectoryChangesW(hDir, static_cast<LPVOID>(buffer), sizeof(buffer),
+                              FALSE, FILE_NOTIFY_CHANGE_LAST_WRITE,
+                              &dwBytesReturned, NULL, NULL) == FALSE) {
       printError();
       wcerr << L"Error Reading Directory Change" << endl;
       return 2;
     } else {
-      PFILE_NOTIFY_INFORMATION notifications = strFileNotifyInfo;
+      PFILE_NOTIFY_INFORMATION notifications =
+          reinterpret_cast<PFILE_NOTIFY_INFORMATION>(&buffer[0]);
       int iteration = 0;
       do {
-        handle(iteration++, notifications->Action,
-               notifications->FileNameLength, notifications->FileName);
+        handle(
+            ++iteration, notifications->Action,
+            wstring(notifications->FileName, notifications->FileNameLength / 2),
+            subcommand, extension);
         notifications += notifications->NextEntryOffset;
       } while (notifications->NextEntryOffset != 0);
     }
