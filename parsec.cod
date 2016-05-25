@@ -1754,8 +1754,8 @@ $pdata$??$make_stream@V?$basic_string@_WU?$char_traits@_W@std@@V?$allocator@_W@2
 	DD	imagerel $unwind$??$make_stream@V?$basic_string@_WU?$char_traits@_W@std@@V?$allocator@_W@2@@std@@@@YA?AV?$Stream@V?$_String_const_iterator@V?$_String_val@U?$_Simple_types@_W@std@@@std@@@std@@@@V?$basic_string@_WU?$char_traits@_W@std@@V?$allocator@_W@2@@std@@@Z
 pdata	ENDS
 pdata	SEGMENT
-$pdata$wmain DD	imagerel $LN574
-	DD	imagerel $LN574+503
+$pdata$wmain DD	imagerel $LN576
+	DD	imagerel $LN576+522
 	DD	imagerel $unwind$wmain
 pdata	ENDS
 ;	COMDAT pdata
@@ -2997,20 +2997,20 @@ $unwind$wmain DD 0d3919H
 $stateUnwindMap$wmain DD 0ffffffffH
 	DD	imagerel wmain$dtor$0
 	DD	00H
-	DD	imagerel wmain$dtor$98
+	DD	imagerel wmain$dtor$100
 	DD	00H
 	DD	imagerel __std_terminate
 $ip2state$wmain DD imagerel wmain
 	DD	0ffffffffH
 	DD	imagerel wmain+96
 	DD	00H
-	DD	imagerel wmain+274
+	DD	imagerel wmain+288
 	DD	01H
-	DD	imagerel wmain+285
+	DD	imagerel wmain+299
 	DD	02H
-	DD	imagerel wmain+320
+	DD	imagerel wmain+334
 	DD	00H
-	DD	imagerel wmain+430
+	DD	imagerel wmain+449
 	DD	0ffffffffH
 xdata	ENDS
 ;	COMDAT xdata
@@ -10774,9 +10774,9 @@ text$ = 112
 __$ArrayPad$ = 144
 wmain	PROC
 
-; 80   : int wmain() { 
+; 101  : int wmain() {
 
-$LN574:
+$LN576:
   00000	48 8b c4	 mov	 rax, rsp
   00003	55		 push	 rbp
   00004	41 54		 push	 r12
@@ -10880,147 +10880,153 @@ $LN330@wmain:
 ; 222  : 		return (_Ptr == _Right._Ptr);
 
   000b6	48 3b df	 cmp	 rbx, rdi
+  000b9	0f 94 c0	 sete	 al
 ; File c:\users\alist_000\cppmisc\parsec.cc
 
-; 83   :   while(!stream.end()) {
+; 104  :   while (!stream.end()) {
 
-  000b9	0f 84 ef 00 00
-	00		 je	 $LN3@wmain
-  000bf	41 bd 27 00 00
+  000bc	84 c0		 test	 al, al
+  000be	0f 85 fd 00 00
+	00		 jne	 $LN3@wmain
+  000c4	41 bd 27 00 00
 	00		 mov	 r13d, 39		; 00000027H
-  000c5	4c 8d 3d 00 00
+  000ca	4c 8d 3d 00 00
 	00 00		 lea	 r15, OFFSET FLAT:??_7?$ctype@_W@std@@6B@
-  000cc	41 bc ff ff 00
+  000d1	41 bc ff ff 00
 	00		 mov	 r12d, 65535		; 0000ffffH
+  000d7	66 0f 1f 84 00
+	00 00 00 00	 npad	 9
 $LL2@wmain:
 
-; 13   :   const auto current() const { return *m_front; }
+; 13   :   const auto current() const noexcept { return *m_front; }
 
-  000d2	0f b7 33	 movzx	 esi, WORD PTR [rbx]
+  000e0	0f b7 33	 movzx	 esi, WORD PTR [rbx]
 
-; 84   :     std::wcout << L'\'' << stream.current() << L'\'' << std::endl;
+; 105  :     std::wcout << L'\'' << stream.current() << L'\'' << std::endl;
 
-  000d5	41 8b d5	 mov	 edx, r13d
-  000d8	48 8d 0d 00 00
+  000e3	41 8b d5	 mov	 edx, r13d
+  000e6	48 8d 0d 00 00
 	00 00		 lea	 rcx, OFFSET FLAT:?wcout@std@@3V?$basic_ostream@_WU?$char_traits@_W@std@@@1@A ; std::wcout
-  000df	e8 00 00 00 00	 call	 ??$?6_WU?$char_traits@_W@std@@@std@@YAAEAV?$basic_ostream@_WU?$char_traits@_W@std@@@0@AEAV10@_W@Z ; std::operator<<<wchar_t,std::char_traits<wchar_t> >
-  000e4	48 8b c8	 mov	 rcx, rax
-  000e7	0f b7 d6	 movzx	 edx, si
-  000ea	e8 00 00 00 00	 call	 ??$?6_WU?$char_traits@_W@std@@@std@@YAAEAV?$basic_ostream@_WU?$char_traits@_W@std@@@0@AEAV10@_W@Z ; std::operator<<<wchar_t,std::char_traits<wchar_t> >
-  000ef	48 8b c8	 mov	 rcx, rax
-  000f2	41 0f b7 d5	 movzx	 edx, r13w
-  000f6	e8 00 00 00 00	 call	 ??$?6_WU?$char_traits@_W@std@@@std@@YAAEAV?$basic_ostream@_WU?$char_traits@_W@std@@@0@AEAV10@_W@Z ; std::operator<<<wchar_t,std::char_traits<wchar_t> >
-  000fb	4c 8b f0	 mov	 r14, rax
+  000ed	e8 00 00 00 00	 call	 ??$?6_WU?$char_traits@_W@std@@@std@@YAAEAV?$basic_ostream@_WU?$char_traits@_W@std@@@0@AEAV10@_W@Z ; std::operator<<<wchar_t,std::char_traits<wchar_t> >
+  000f2	48 8b c8	 mov	 rcx, rax
+  000f5	0f b7 d6	 movzx	 edx, si
+  000f8	e8 00 00 00 00	 call	 ??$?6_WU?$char_traits@_W@std@@@std@@YAAEAV?$basic_ostream@_WU?$char_traits@_W@std@@@0@AEAV10@_W@Z ; std::operator<<<wchar_t,std::char_traits<wchar_t> >
+  000fd	48 8b c8	 mov	 rcx, rax
+  00100	41 0f b7 d5	 movzx	 edx, r13w
+  00104	e8 00 00 00 00	 call	 ??$?6_WU?$char_traits@_W@std@@@std@@YAAEAV?$basic_ostream@_WU?$char_traits@_W@std@@@0@AEAV10@_W@Z ; std::operator<<<wchar_t,std::char_traits<wchar_t> >
+  00109	4c 8b f0	 mov	 r14, rax
 ; File c:\users\alist_000\cppmisc\packages\visualcpptools.14.0.24120-pre\lib\native\include\ostream
 
 ; 992  : 	_Ostr.put(_Ostr.widen('\n'));
 
-  000fe	48 8b 08	 mov	 rcx, QWORD PTR [rax]
-  00101	48 63 49 04	 movsxd	 rcx, DWORD PTR [rcx+4]
-  00105	48 03 c8	 add	 rcx, rax
+  0010c	48 8b 08	 mov	 rcx, QWORD PTR [rax]
+  0010f	48 63 49 04	 movsxd	 rcx, DWORD PTR [rcx+4]
+  00113	48 03 c8	 add	 rcx, rax
 ; File c:\users\alist_000\cppmisc\packages\visualcpptools.14.0.24120-pre\lib\native\include\ios
 
 ; 131  : 		const _Ctype& _Ctype_fac = _USE(getloc(), _Ctype);
 
-  00108	48 8d 55 d7	 lea	 rdx, QWORD PTR $T3[rbp-105]
-  0010c	e8 00 00 00 00	 call	 ?getloc@ios_base@std@@QEBA?AVlocale@2@XZ ; std::ios_base::getloc
-  00111	90		 npad	 1
-  00112	48 8b c8	 mov	 rcx, rax
-  00115	e8 00 00 00 00	 call	 ??$use_facet@V?$ctype@_W@std@@@std@@YAAEBV?$ctype@_W@0@AEBVlocale@0@@Z ; std::use_facet<std::ctype<wchar_t> >
-  0011a	48 8b f0	 mov	 rsi, rax
+  00116	48 8d 55 d7	 lea	 rdx, QWORD PTR $T3[rbp-105]
+  0011a	e8 00 00 00 00	 call	 ?getloc@ios_base@std@@QEBA?AVlocale@2@XZ ; std::ios_base::getloc
+  0011f	90		 npad	 1
+  00120	48 8b c8	 mov	 rcx, rax
+  00123	e8 00 00 00 00	 call	 ??$use_facet@V?$ctype@_W@std@@@std@@YAAEBV?$ctype@_W@0@AEBVlocale@0@@Z ; std::use_facet<std::ctype<wchar_t> >
+  00128	48 8b f0	 mov	 rsi, rax
 ; File c:\users\alist_000\cppmisc\packages\visualcpptools.14.0.24120-pre\lib\native\include\xlocale
 
 ; 431  : 		if (_Ptr != 0)
 
-  0011d	48 8b 4d df	 mov	 rcx, QWORD PTR $T3[rbp-97]
-  00121	48 85 c9	 test	 rcx, rcx
-  00124	74 1a		 je	 SHORT $LN447@wmain
+  0012b	48 8b 4d df	 mov	 rcx, QWORD PTR $T3[rbp-97]
+  0012f	48 85 c9	 test	 rcx, rcx
+  00132	74 1a		 je	 SHORT $LN449@wmain
 
 ; 432  : 			delete _Ptr->_Decref();
 
-  00126	48 8b 11	 mov	 rdx, QWORD PTR [rcx]
-  00129	ff 52 10	 call	 QWORD PTR [rdx+16]
-  0012c	48 85 c0	 test	 rax, rax
-  0012f	74 0f		 je	 SHORT $LN447@wmain
-  00131	4c 8b 00	 mov	 r8, QWORD PTR [rax]
-  00134	ba 01 00 00 00	 mov	 edx, 1
-  00139	48 8b c8	 mov	 rcx, rax
-  0013c	41 ff 10	 call	 QWORD PTR [r8]
-  0013f	90		 npad	 1
-$LN447@wmain:
-  00140	48 8b 06	 mov	 rax, QWORD PTR [rsi]
-  00143	4c 8b 40 60	 mov	 r8, QWORD PTR [rax+96]
-  00147	49 3b c7	 cmp	 rax, r15
-  0014a	75 37		 jne	 SHORT $LN453@wmain
+  00134	48 8b 11	 mov	 rdx, QWORD PTR [rcx]
+  00137	ff 52 10	 call	 QWORD PTR [rdx+16]
+  0013a	48 85 c0	 test	 rax, rax
+  0013d	74 0f		 je	 SHORT $LN449@wmain
+  0013f	4c 8b 00	 mov	 r8, QWORD PTR [rax]
+  00142	ba 01 00 00 00	 mov	 edx, 1
+  00147	48 8b c8	 mov	 rcx, rax
+  0014a	41 ff 10	 call	 QWORD PTR [r8]
+  0014d	90		 npad	 1
+$LN449@wmain:
+  0014e	48 8b 06	 mov	 rax, QWORD PTR [rsi]
+  00151	4c 8b 40 60	 mov	 r8, QWORD PTR [rax+96]
+  00155	49 3b c7	 cmp	 rax, r15
+  00158	75 37		 jne	 SHORT $LN455@wmain
 
 ; 2752 : 		return (_Dowiden(_Byte));
 
-  0014c	c6 45 c7 0a	 mov	 BYTE PTR _Byte$1[rbp-105], 10
+  0015a	c6 45 c7 0a	 mov	 BYTE PTR _Byte$1[rbp-105], 10
 
 ; 2744 : 		_Mbstinit(_Mbst);
 
-  00150	33 c0		 xor	 eax, eax
-  00152	48 89 45 f7	 mov	 QWORD PTR _Mbst$5[rbp-105], rax
+  0015e	33 c0		 xor	 eax, eax
+  00160	48 89 45 f7	 mov	 QWORD PTR _Mbst$5[rbp-105], rax
 
 ; 2745 : 		wchar_t _Wc;
 ; 2746 : 		return (_Mbrtowc(&_Wc, &_Byte, 1, &_Mbst, &_Cvt) < 0
 
-  00156	48 8d 46 30	 lea	 rax, QWORD PTR [rsi+48]
-  0015a	48 89 44 24 20	 mov	 QWORD PTR [rsp+32], rax
-  0015f	4c 8d 4d f7	 lea	 r9, QWORD PTR _Mbst$5[rbp-105]
-  00163	41 b8 01 00 00
+  00164	48 8d 46 30	 lea	 rax, QWORD PTR [rsi+48]
+  00168	48 89 44 24 20	 mov	 QWORD PTR [rsp+32], rax
+  0016d	4c 8d 4d f7	 lea	 r9, QWORD PTR _Mbst$5[rbp-105]
+  00171	41 b8 01 00 00
 	00		 mov	 r8d, 1
-  00169	48 8d 55 c7	 lea	 rdx, QWORD PTR _Byte$1[rbp-105]
-  0016d	48 8d 4d cf	 lea	 rcx, QWORD PTR _Wc$2[rbp-105]
-  00171	e8 00 00 00 00	 call	 _Mbrtowc
-  00176	0f b7 55 cf	 movzx	 edx, WORD PTR _Wc$2[rbp-105]
-  0017a	85 c0		 test	 eax, eax
-  0017c	66 41 0f 48 d4	 cmovs	 dx, r12w
-  00181	eb 0b		 jmp	 SHORT $LN452@wmain
-$LN453@wmain:
-  00183	b2 0a		 mov	 dl, 10
-  00185	48 8b ce	 mov	 rcx, rsi
+  00177	48 8d 55 c7	 lea	 rdx, QWORD PTR _Byte$1[rbp-105]
+  0017b	48 8d 4d cf	 lea	 rcx, QWORD PTR _Wc$2[rbp-105]
+  0017f	e8 00 00 00 00	 call	 _Mbrtowc
+  00184	0f b7 55 cf	 movzx	 edx, WORD PTR _Wc$2[rbp-105]
+  00188	85 c0		 test	 eax, eax
+  0018a	66 41 0f 48 d4	 cmovs	 dx, r12w
+  0018f	eb 0b		 jmp	 SHORT $LN454@wmain
+$LN455@wmain:
+  00191	b2 0a		 mov	 dl, 10
+  00193	48 8b ce	 mov	 rcx, rsi
 
 ; 2624 : 		return (do_widen(_Byte));
 
-  00188	41 ff d0	 call	 r8
-  0018b	0f b7 d0	 movzx	 edx, ax
-$LN452@wmain:
+  00196	41 ff d0	 call	 r8
+  00199	0f b7 d0	 movzx	 edx, ax
+$LN454@wmain:
 ; File c:\users\alist_000\cppmisc\packages\visualcpptools.14.0.24120-pre\lib\native\include\ostream
 
 ; 992  : 	_Ostr.put(_Ostr.widen('\n'));
 
-  0018e	49 8b ce	 mov	 rcx, r14
-  00191	e8 00 00 00 00	 call	 ?put@?$basic_ostream@_WU?$char_traits@_W@std@@@std@@QEAAAEAV12@_W@Z ; std::basic_ostream<wchar_t,std::char_traits<wchar_t> >::put
+  0019c	49 8b ce	 mov	 rcx, r14
+  0019f	e8 00 00 00 00	 call	 ?put@?$basic_ostream@_WU?$char_traits@_W@std@@@std@@QEAAAEAV12@_W@Z ; std::basic_ostream<wchar_t,std::char_traits<wchar_t> >::put
 
 ; 993  : 	_Ostr.flush();
 
-  00196	49 8b ce	 mov	 rcx, r14
-  00199	e8 00 00 00 00	 call	 ?flush@?$basic_ostream@_WU?$char_traits@_W@std@@@std@@QEAAAEAV12@XZ ; std::basic_ostream<wchar_t,std::char_traits<wchar_t> >::flush
+  001a4	49 8b ce	 mov	 rcx, r14
+  001a7	e8 00 00 00 00	 call	 ?flush@?$basic_ostream@_WU?$char_traits@_W@std@@@std@@QEAAAEAV12@XZ ; std::basic_ostream<wchar_t,std::char_traits<wchar_t> >::flush
 ; File c:\users\alist_000\cppmisc\packages\visualcpptools.14.0.24120-pre\lib\native\include\xstring
 
 ; 187  : 		_Ptr += _Off;
 
-  0019e	48 8d 43 02	 lea	 rax, QWORD PTR [rbx+2]
-  001a2	48 8b d8	 mov	 rbx, rax
+  001ac	48 8d 43 02	 lea	 rax, QWORD PTR [rbx+2]
+  001b0	48 8b d8	 mov	 rbx, rax
 
 ; 222  : 		return (_Ptr == _Right._Ptr);
 
-  001a5	48 3b c7	 cmp	 rax, rdi
+  001b3	48 3b c7	 cmp	 rax, rdi
+  001b6	0f 94 c0	 sete	 al
 ; File c:\users\alist_000\cppmisc\parsec.cc
 
-; 83   :   while(!stream.end()) {
+; 104  :   while (!stream.end()) {
 
-  001a8	0f 85 24 ff ff
-	ff		 jne	 $LL2@wmain
+  001b9	84 c0		 test	 al, al
+  001bb	0f 84 1f ff ff
+	ff		 je	 $LL2@wmain
 $LN3@wmain:
 ; File c:\users\alist_000\cppmisc\packages\visualcpptools.14.0.24120-pre\lib\native\include\xstring
 
 ; 2249 : 		else if (this->_BUF_SIZE <= this->_Myres())
 
-  001ae	4c 8b 45 1f	 mov	 r8, QWORD PTR text$[rbp-81]
-  001b2	49 83 f8 08	 cmp	 r8, 8
-  001b6	72 10		 jb	 SHORT $LN573@wmain
+  001c1	4c 8b 45 1f	 mov	 r8, QWORD PTR text$[rbp-81]
+  001c5	49 83 f8 08	 cmp	 r8, 8
+  001c9	72 10		 jb	 SHORT $LN575@wmain
 
 ; 2250 : 			{	// copy any leftovers to small buffer and deallocate
 ; 2251 : 			pointer _Ptr = this->_Bx()._Ptr;
@@ -11030,34 +11036,34 @@ $LN3@wmain:
 ; 2255 : 					_Unfancy(_Ptr), _Newsize);
 ; 2256 : 			this->_Getal().deallocate(_Ptr, this->_Myres() + 1);
 
-  001b8	49 ff c0	 inc	 r8
-  001bb	48 8b 55 07	 mov	 rdx, QWORD PTR text$[rbp-105]
-  001bf	48 8d 4d 07	 lea	 rcx, QWORD PTR text$[rbp-105]
-  001c3	e8 00 00 00 00	 call	 ?deallocate@?$_Wrap_alloc@V?$allocator@_W@std@@@std@@QEAAXPEA_W_K@Z ; std::_Wrap_alloc<std::allocator<wchar_t> >::deallocate
-$LN573@wmain:
+  001cb	49 ff c0	 inc	 r8
+  001ce	48 8b 55 07	 mov	 rdx, QWORD PTR text$[rbp-105]
+  001d2	48 8d 4d 07	 lea	 rcx, QWORD PTR text$[rbp-105]
+  001d6	e8 00 00 00 00	 call	 ?deallocate@?$_Wrap_alloc@V?$allocator@_W@std@@@std@@QEAAXPEA_W_K@Z ; std::_Wrap_alloc<std::allocator<wchar_t> >::deallocate
+$LN575@wmain:
 ; File c:\users\alist_000\cppmisc\parsec.cc
 
-; 87   :   return 0; 
+; 108  :   return 0;
 
-  001c8	33 c0		 xor	 eax, eax
+  001db	33 c0		 xor	 eax, eax
 
-; 88   : }
+; 109  : }
 
-  001ca	48 8b 4d 27	 mov	 rcx, QWORD PTR __$ArrayPad$[rbp-105]
-  001ce	48 33 cc	 xor	 rcx, rsp
-  001d1	e8 00 00 00 00	 call	 __security_check_cookie
-  001d6	4c 8d 9c 24 a0
+  001dd	48 8b 4d 27	 mov	 rcx, QWORD PTR __$ArrayPad$[rbp-105]
+  001e1	48 33 cc	 xor	 rcx, rsp
+  001e4	e8 00 00 00 00	 call	 __security_check_cookie
+  001e9	4c 8d 9c 24 a0
 	00 00 00	 lea	 r11, QWORD PTR [rsp+160]
-  001de	49 8b 5b 30	 mov	 rbx, QWORD PTR [r11+48]
-  001e2	49 8b 73 38	 mov	 rsi, QWORD PTR [r11+56]
-  001e6	49 8b 7b 40	 mov	 rdi, QWORD PTR [r11+64]
-  001ea	49 8b e3	 mov	 rsp, r11
-  001ed	41 5f		 pop	 r15
-  001ef	41 5e		 pop	 r14
-  001f1	41 5d		 pop	 r13
-  001f3	41 5c		 pop	 r12
-  001f5	5d		 pop	 rbp
-  001f6	c3		 ret	 0
+  001f1	49 8b 5b 30	 mov	 rbx, QWORD PTR [r11+48]
+  001f5	49 8b 73 38	 mov	 rsi, QWORD PTR [r11+56]
+  001f9	49 8b 7b 40	 mov	 rdi, QWORD PTR [r11+64]
+  001fd	49 8b e3	 mov	 rsp, r11
+  00200	41 5f		 pop	 r15
+  00202	41 5e		 pop	 r14
+  00204	41 5d		 pop	 r13
+  00206	41 5c		 pop	 r12
+  00208	5d		 pop	 rbp
+  00209	c3		 ret	 0
 wmain	ENDP
 _TEXT	ENDS
 text$x	SEGMENT
@@ -11082,11 +11088,11 @@ _Mbst$5 = 96
 $T6 = 104
 text$ = 112
 __$ArrayPad$ = 144
-wmain$dtor$98 PROC
+wmain$dtor$100 PROC
   0000c	48 8d 8a 40 00
 	00 00		 lea	 rcx, QWORD PTR $T3[rdx]
   00013	e9 00 00 00 00	 jmp	 ??1locale@std@@QEAA@XZ	; std::locale::~locale
-wmain$dtor$98 ENDP
+wmain$dtor$100 ENDP
 text$x	ENDS
 ; Function compile flags: /Ogtpy
 text$x	SEGMENT
@@ -11114,11 +11120,11 @@ _Mbst$5 = 96
 $T6 = 104
 text$ = 112
 __$ArrayPad$ = 144
-wmain$dtor$98 PROC
+wmain$dtor$100 PROC
   0000c	48 8d 8a 40 00
 	00 00		 lea	 rcx, QWORD PTR $T3[rdx]
   00013	e9 00 00 00 00	 jmp	 ??1locale@std@@QEAA@XZ	; std::locale::~locale
-wmain$dtor$98 ENDP
+wmain$dtor$100 ENDP
 text$x	ENDS
 ; Function compile flags: /Ogtpy
 ; File c:\users\alist_000\cppmisc\parsec.cc
@@ -11140,7 +11146,7 @@ __$ReturnUdt$ = 48
 container$ = 56
 ??$make_stream@V?$basic_string@_WU?$char_traits@_W@std@@V?$allocator@_W@2@@std@@@@YA?AV?$Stream@V?$_String_const_iterator@V?$_String_val@U?$_Simple_types@_W@std@@@std@@@std@@@@V?$basic_string@_WU?$char_traits@_W@std@@V?$allocator@_W@2@@std@@@Z PROC ; make_stream<std::basic_string<wchar_t,std::char_traits<wchar_t>,std::allocator<wchar_t> > >, COMDAT
 
-; 21   : auto make_stream(T container) {
+; 18   : template <class T> auto make_stream(T container) {
 
 $LN182:
   00000	48 89 5c 24 18	 mov	 QWORD PTR [rsp+24], rbx
@@ -11153,7 +11159,7 @@ $LN182:
   0000a	48 8b 42 18	 mov	 rax, QWORD PTR [rdx+24]
 ; File c:\users\alist_000\cppmisc\parsec.cc
 
-; 21   : auto make_stream(T container) {
+; 18   : template <class T> auto make_stream(T container) {
 
   0000e	48 8b da	 mov	 rbx, rdx
   00011	48 8b f9	 mov	 rdi, rcx
@@ -11251,11 +11257,11 @@ $LN173@make_strea:
   00064	66 89 03	 mov	 WORD PTR [rbx], ax
 ; File c:\users\alist_000\cppmisc\parsec.cc
 
-; 24   :   return Stream<decltype(begin)>(begin, end);
+; 21   :   return Stream<decltype(begin)>(begin, end);
 
   00067	48 8b c7	 mov	 rax, rdi
 
-; 25   : }
+; 22   : }
 
   0006a	48 8b 5c 24 40	 mov	 rbx, QWORD PTR [rsp+64]
   0006f	48 83 c4 20	 add	 rsp, 32			; 00000020H
@@ -11270,7 +11276,7 @@ _TEXT	SEGMENT
 this$ = 8
 ?end@?$Stream@V?$_String_const_iterator@V?$_String_val@U?$_Simple_types@_W@std@@@std@@@std@@@@QEBA_NXZ PROC ; Stream<std::_String_const_iterator<std::_String_val<std::_Simple_types<wchar_t> > > >::end, COMDAT
 
-; 17   :   auto end() const { return m_front == m_back; }
+; 15   :   auto end() const noexcept { return m_front == m_back; }
 
   00000	48 8b 41 08	 mov	 rax, QWORD PTR [rcx+8]
   00004	48 39 01	 cmp	 QWORD PTR [rcx], rax
@@ -11293,7 +11299,7 @@ this$ = 8
   00000	48 8b 01	 mov	 rax, QWORD PTR [rcx]
 ; File c:\users\alist_000\cppmisc\parsec.cc
 
-; 13   :   const auto current() const { return *m_front; }
+; 13   :   const auto current() const noexcept { return *m_front; }
 
   00003	0f b7 00	 movzx	 eax, WORD PTR [rax]
   00006	c3		 ret	 0
@@ -11322,12 +11328,9 @@ __$ReturnUdt$ = 16
   0000a	48 8b 41 08	 mov	 rax, QWORD PTR [rcx+8]
   0000e	48 89 42 08	 mov	 QWORD PTR [rdx+8], rax
 
-; 15   :     return Stream<TStreamType>(m_front+1, m_back); 
+; 14   :   auto next() const { return Stream<TStreamType>(m_front + 1, m_back); }
 
   00012	48 8b c2	 mov	 rax, rdx
-
-; 16   :   }
-
   00015	c3		 ret	 0
 ?next@?$Stream@V?$_String_const_iterator@V?$_String_val@U?$_Simple_types@_W@std@@@std@@@std@@@@QEBA?AV1@XZ ENDP ; Stream<std::_String_const_iterator<std::_String_val<std::_Simple_types<wchar_t> > > >::next
 _TEXT	ENDS
