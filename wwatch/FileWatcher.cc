@@ -19,7 +19,7 @@ PFILE_NOTIFY_INFORMATION FileWatcher::pollInternal() {
   ::memset(buffer_.get(), 0, bufferSize_);
   DWORD dwBytesReturned = 0;
   if (::ReadDirectoryChangesW(directory_, static_cast<LPVOID>(buffer_.get()),
-                              bufferSize_, FALSE, FILE_NOTIFY_CHANGE_SIZE,
+                              bufferSize_, TRUE, FILE_NOTIFY_CHANGE_SIZE,
                               &dwBytesReturned, NULL, NULL) == FALSE) {
     throw Win32Error::GetLastWin32Error();
   }
