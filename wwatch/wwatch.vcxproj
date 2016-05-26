@@ -114,13 +114,15 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="wwatch.cc" />
+    <ClCompile Include="Main.cc" />
     <ClCompile Include="Win32Error.cc" />
     <ClCompile Include="FileWatcher.cc" />
+    <ClCompile Include="Util.cc" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Win32Error.hh" />
     <ClInclude Include="FileWatcher.hh" />
+    <ClInclude Include="Util.hh" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
