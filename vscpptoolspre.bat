@@ -1,17 +1,18 @@
 @echo off
 
-set NUGET=.nuget\nuget.exe
-set VSTOOLSDIR=packages\VisualCppTools
+set NUGET=%~dp0.nuget\nuget.exe
+set PACKAGEDIR=%~dp0packages\
+set VSTOOLSDIR=%PACKAGEDIR%VisualCppTools
 
-if not exist %NUGET% (powershell -Command "wget http://nuget.org/nuget.exe -OutFile .nuget\nuget.exe")
+if not exist %NUGET% (powershell -Command "wget http://nuget.org/nuget.exe -OutFile %NUGET%")
 
 ::if not exist %VSTOOLSDIR%* ( 
 
-%NUGET% install VisualCppTools -SolutionDirectory . -ConfigFile .nuget\nuget.config -NonInteractive -PreRelease -OutputDirectory packages 
+%NUGET% install VisualCppTools -SolutionDirectory . -ConfigFile %~dp0.nuget\nuget.config -NonInteractive -PreRelease -OutputDirectory %PACKAGEDIR% 
 
 ::)
 
-for /D %%i in ( %VSTOOLSDIR%* ) do ( set NVCHOME=%~dp0%%i)
+for /D %%i in ( %VSTOOLSDIR%* ) do ( set NVCHOME=%%i)
 
 echo %NVCHOME%
 
@@ -21,4 +22,5 @@ set PATH=%NVCHOME%\lib\native\bin\amd64;%PATH%
 
 set NUGET=
 set VSTOOLSDIR=
+set PACKAGEDIR=
 set NVCHOME=
