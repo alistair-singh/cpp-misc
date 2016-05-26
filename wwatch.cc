@@ -111,7 +111,7 @@ void handle(size_t global, size_t local, unsigned action,
       std::any_of(std::cbegin(extensions), std::cend(extensions),
                   [&](const auto &ext) { return wwatch::endsWith(name, ext); });
   if (run) {
-    auto fullCommand = (command + L" " + name);
+    auto fullCommand = wwatch::concat({command, name});
     std::wcout << L"#######" << global << L":" << local << L":(" << std::hex
                << action << std::dec << L") " << name << L" - " << fullCommand
                << std::endl;
