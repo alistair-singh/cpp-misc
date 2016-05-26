@@ -26,7 +26,7 @@ public:
     auto actualSize =
         ::FormatMessageW(FORMAT_MESSAGE_FROM_SYSTEM, NULL, error.code_,
                          MAKELANGID(LANG_NEUTRAL, SUBLANG_DEFAULT),
-                         error.message_.data(), reservedSize, NULL);
+                         const_cast<wchar_t*>(error.message_.data()), reservedSize, NULL);
     error.message_.resize(actualSize);
     return error;
   }
