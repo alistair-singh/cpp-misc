@@ -4,7 +4,7 @@
 namespace wwatch {
 
 FileWatcher::FileWatcher(const std::wstring &path, unsigned bufferSize)
-    : bufferSize_(bufferSize), iterations_(0) {
+    : bufferSize_(bufferSize) {
   buffer_ = std::unique_ptr<char>(new char[bufferSize_]);
   directory_ =
       ::CreateFileW(path.data(), FILE_LIST_DIRECTORY,
@@ -24,5 +24,17 @@ PFILE_NOTIFY_INFORMATION FileWatcher::pollInternal() {
     throw Win32Error::GetLastWin32Error();
   }
   return reinterpret_cast<PFILE_NOTIFY_INFORMATION>(buffer_.get());
+}
+
+void FileWatcher::poll(std::function<void(const FileWatchEvent &)> handler) {
+  auto notifications = pollInternal();
+  do {
+    FileWatchEvent event;
+    event.action = notifications->Action;
+    event.path = std::wstring(notifications->FileName,
+                              notifications->FileNameLength / 2);
+    handler(event);
+    notifications += notifications->NextEntryOffset;
+  } while (notifications->NextEntryOffset != 0);
 }
 }

@@ -3,10 +3,17 @@
 
 namespace wwatch {
 
-std::wstring concat(const std::vector<std::wstring> &args) {
+std::wstring concat(const std::vector<std::wstring> &args,
+                    const std::wstring &seperator) {
   std::wstring result;
+
+  auto first = true;
   for (const auto &arg : args) {
-    result += L" ";
+    if (first) {
+      first = false;
+    } else {
+      result += seperator;
+    }
     result += arg;
   }
   return result;

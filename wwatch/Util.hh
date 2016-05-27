@@ -4,7 +4,8 @@
 
 namespace wwatch {
 
-std::wstring concat(const std::vector<std::wstring> &args);
+std::wstring concat(const std::vector<std::wstring> &args,
+                    const std::wstring &seperator);
 bool endsWith(const std::wstring &str, const std::wstring &suffix);
 std::vector<std::wstring> split(std::wstring str, wchar_t delimiter);
 }

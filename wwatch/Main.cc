@@ -1,23 +1,23 @@
 
 #include "FileWatcher.hh"
-#include "Win32Error.hh"
 #include "Util.hh"
+#include "Win32Error.hh"
 
 #include <algorithm>
 #include <iostream>
 #include <string>
 #include <vector>
 
-void handle(size_t global, size_t local, unsigned action,
-            const std::wstring &name, const std::wstring &command,
+void handle(size_t global, unsigned action, const std::wstring &name,
+            const std::wstring &command,
             const std::vector<std::wstring> &extensions) {
   auto run =
       std::any_of(std::cbegin(extensions), std::cend(extensions),
                   [&](const auto &ext) { return wwatch::endsWith(name, ext); });
   if (run) {
-    auto fullCommand = wwatch::concat({command, name});
-    std::wcout << L"#######" << global << L":" << local << L":(" << std::hex
-               << action << std::dec << L") " << name << L" - " << fullCommand
+    auto fullCommand = wwatch::concat({command, name}, L" ");
+    std::wcout << L"#######" << global << L":(" << std::hex << action
+               << std::dec << L") " << name << L" - " << fullCommand
                << std::endl;
     ::_flushall();
     ::_wsystem(fullCommand.data());
@@ -38,13 +38,19 @@ int wmain(int argc, wchar_t *argv[]) {
   auto begin = &argv[3];
   auto end = begin + (argc - 3);
   std::vector<std::wstring> args(begin, end);
-  auto subcommand = wwatch::concat(args);
+  auto subcommand = wwatch::concat(args, L" ");
+
+  std::wcout << L"Watching " << dir << std::endl;
+  std::wcout << L"For extentions \'." << wwatch::concat(extensions, L"\', \'.")
+             << "\'" << std::endl;
+  std::wcout << L"Will execute " << subcommand << L" [filename]" << std::endl;
 
   try {
     wwatch::FileWatcher watcher(dir);
+    size_t gi = 0;
     while (true) {
-      watcher.poll([&](auto gi, auto li, auto action, const auto &path) {
-        handle(gi, li, action, path, subcommand, extensions);
+      watcher.poll([&](const auto &event) {
+        handle(++gi, event.action, event.path, subcommand, extensions);
       });
     }
   } catch (const wwatch::Win32Error &error) {
