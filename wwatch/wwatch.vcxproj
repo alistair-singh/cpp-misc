@@ -23,6 +23,7 @@
     <RootNamespace>wwatch</RootNamespace>
     <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
   </PropertyGroup>
+  <Import Project="..\packages\VisualCppTools.14.0.24127-Pre\build\native\VisualCppTools.props" />
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
