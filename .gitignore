@@ -6,6 +6,7 @@
 *.obj
 *.pdb
 *.ilk
+*.sdf
 *.lnk
 .vs/
 a.out
