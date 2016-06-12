@@ -8,6 +8,7 @@ set VSTOOLSDIR=%PACKAGEDIR%VisualCppTools
 if "%1"=="skip" (goto :SkipDownload)
 
 mkdir %NUGET_DIR%
+mkdir %PACKAGEDIR%
 if not exist %NUGET% (powershell -Command "wget http://nuget.org/nuget.exe -OutFile %NUGET%")
 
 ::if not exist %VSTOOLSDIR%* ( 
