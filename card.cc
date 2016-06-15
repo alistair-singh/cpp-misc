@@ -36,8 +36,8 @@ struct Card {
 
 struct CardHash {
   auto operator()(const Card &c) const {
-    auto hash = static_cast<unsigned char>(c.face) << sizeof(c.face);
-    hash = hash | static_cast<unsigned char>(c.suit);
+    auto hash = static_cast<unsigned char>(c.suit) << (sizeof(c.suit) * 8);
+    hash = hash | static_cast<unsigned char>(c.face);
     return hash;
   }
 };
@@ -53,7 +53,6 @@ bool operator!=(const Card &a, const Card &b) noexcept { return !(a == b); }
 void printcard(Card c) { printf("%c%c", toChar(c.suit), toChar(c.face)); }
 
 std::vector<Card> read_cards(const std::vector<char> &data) {
-  std::vector<Card> result;
   auto start = std::cbegin(data);
   auto end = std::cend(data);
 
@@ -108,8 +107,10 @@ std::vector<Card> read_cards(const std::vector<char> &data) {
     return Card{suit, face};
   };
 
+  std::vector<Card> result;
+  result.reserve(data.size());
   while (start != end) {
-    //Skip Whitespace
+    // Skip Whitespace
     while (space(*start) && start != end)
       start++;
     Card c = getCard();
@@ -129,19 +130,26 @@ int main(int argc, char *argv[]) {
     fprintf(stderr, "\t%s path/to/cards/file.txt\n", *argv);
     return 1;
   }
-  auto buffer = myio::read_all_bytes(argv[1]);
-  auto cards = read_cards(buffer);
-  std::unordered_map<const Card, int, CardHash> stats;
-  for (const auto &c : cards) {
-    stats[c]++;
-  }
+  try {
+    auto buffer = myio::read_all_bytes(argv[1]);
+    auto cards = read_cards(buffer);
+    std::unordered_map<const Card, int, CardHash> stats;
+    for (const auto &c : cards) {
+      stats[c]++;
+    }
 
-  printf("Card Summary\n");
-  printf("#\tCard\tCount\n");
-  int i = 1;
-  CardHash h;
-  for (const auto &p : stats) {
-    printf("%i\t%s\t%i\t%i\n", i++, toString(p.first).c_str(), p.second, h(p.first));
+    printf("Card Summary\n");
+    printf("#\tCard\tCount\n");
+    int i = 1;
+    CardHash h;
+    for (const auto &p : stats) {
+      printf("%i\t%s\t%i\t%i\n", i++, toString(p.first).c_str(), p.second,
+             h(p.first));
+    }
+  } catch (std::runtime_error &e) {
+    fprintf(stderr, "An error occured:\n");
+    fprintf(stderr, "%s\n", e.what());
+    return 2;
   }
   return 0;
 }
