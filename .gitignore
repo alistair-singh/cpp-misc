@@ -8,6 +8,7 @@
 *.ilk
 *.sdf
 *.lnk
+*.debug
 .vs/
 a.out
 *.nativecodeanalysis.xml
