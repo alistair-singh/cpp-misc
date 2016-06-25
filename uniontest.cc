@@ -7,8 +7,10 @@ auto returnVal(int i, char c) {
     char mc;
   } t;
 
-  if(i == 0) t.mc = c;
-  else t.mi = i;
+  if (i == 0)
+    t.mc = c;
+  else
+    t.mi = i;
 
   return t;
 }

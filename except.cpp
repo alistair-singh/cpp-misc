@@ -13,7 +13,8 @@ auto get_seconds_since_epoch() {
 }
 
 int doSomethingElse() {
-  if (get_seconds_since_epoch()%5 == 3) throw 999;
+  if (get_seconds_since_epoch() % 5 == 3)
+    throw 999;
   return 0;
 }
 

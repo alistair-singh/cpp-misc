@@ -17,7 +17,7 @@ int rank(Face f) noexcept {
 }
 
 char toChar(Suit s) noexcept {
-  static std::array<char, 5> suits = {{'\0', 'H', 'C', 'D', 'S'}};
+  static std::array<char, 5> suits = {{'\0', 'S', 'D', 'H', 'C'}};
   return suits[static_cast<size_t>(s)];
 }
 
@@ -52,7 +52,7 @@ bool operator!=(const Card &a, const Card &b) noexcept { return !(a == b); }
 
 void printcard(Card c) { printf("%c%c", toChar(c.suit), toChar(c.face)); }
 
-std::vector<Card> read_cards(const std::vector<char> &data) {
+std::vector<Card> read_cards(const myio::Span<char> &data) {
   auto start = std::cbegin(data);
   auto end = std::cend(data);
 
@@ -61,6 +61,8 @@ std::vector<Card> read_cards(const std::vector<char> &data) {
     return c == ' ' || c == '\n' || c == '\r' || c == '\t' || c == '\v';
   };
   auto toFace = [&](char s) noexcept {
+    if (s == '9')
+      return Face::Nine;
     s = static_cast<char>(upper(s));
     switch (s) {
     case 'Q':
@@ -71,8 +73,6 @@ std::vector<Card> read_cards(const std::vector<char> &data) {
       return Face::Ten;
     case 'A':
       return Face::Ace;
-    case '9':
-      return Face::Nine;
     case 'J':
       return Face::Jack;
     default:
@@ -108,7 +108,7 @@ std::vector<Card> read_cards(const std::vector<char> &data) {
   };
 
   std::vector<Card> result;
-  result.reserve(data.size());
+  result.reserve(data.length());
   while (start != end) {
     // Skip Whitespace
     while (space(*start) && start != end)
@@ -131,8 +131,23 @@ int main(int argc, char *argv[]) {
     return 1;
   }
   try {
-    auto buffer = myio::read_all_bytes(argv[1]);
-    auto cards = read_cards(buffer);
+    std::vector<char> buffer;
+    if (std::string(argv[1]) == std::string("-")) {
+      buffer.reserve(4096);
+      myio::CFile f(stdin, false);
+      myio::read_block_by_block(
+          f,
+          [&](myio::Span<char> s) {
+            buffer.insert(std::end(buffer), std::cbegin(s), std::cend(s));
+            printf("%.*s %zi\n", static_cast<int>(s.length()), s.begin(),
+                   s.length());
+            return 10;
+          },
+          20);
+    } else {
+      buffer = myio::read_all_bytes(argv[1]);
+    }
+    auto cards = read_cards(myio::Span<char>(buffer.data(), buffer.size()));
     std::unordered_map<const Card, int, CardHash> stats;
     for (const auto &c : cards) {
       stats[c]++;
@@ -143,7 +158,7 @@ int main(int argc, char *argv[]) {
     int i = 1;
     CardHash h;
     for (const auto &p : stats) {
-      printf("%i\t%s\t%i\t%i\n", i++, toString(p.first).c_str(), p.second,
+      printf("%i\t%s\t%i\t%x\n", i++, toString(p.first).c_str(), p.second,
              h(p.first));
     }
   } catch (std::runtime_error &e) {

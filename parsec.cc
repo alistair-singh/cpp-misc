@@ -83,18 +83,18 @@ public:
                                            StreamPos position) const;
 };
 
-template <class TStreamType>
-class ElementParser {
+template <class TStreamType> class ElementParser {
 public:
   const Result<TStreamType, TStreamType> &parse(Stream<TStreamType> stream,
-                                           StreamPos position) const {
+                                                StreamPos position) const {
     if (stream.end()) {
-      return Result<TStreamType, decltype(stream.current())>(stream.next(), position,
-                                         Error("End of Stream"));
+      return Result<TStreamType, decltype(stream.current())>(
+          stream.next(), position, Error("End of Stream"));
     } else {
       auto element = stream.current();
       auto nextPosition = position; // TODO: Calculate next
-      return Result<TStreamType, decltype(stream.current())>(stream.next(), nextPosition, element);
+      return Result<TStreamType, decltype(stream.current())>(
+          stream.next(), nextPosition, element);
     }
   }
 };

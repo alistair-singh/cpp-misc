@@ -1,15 +1,15 @@
 
-#include <vector>
-#include <iterator>
 #include <algorithm>
 #include <iostream>
+#include <iterator>
 #include <string>
+#include <vector>
 
 auto run1(int num) {
   std::vector<int> v;
   v.reserve(num);
-  //std::generate_n(std::back_inserter(v), num, std::rand);
-  std::generate_n(std::back_inserter(v), num, [=]{ return num*4; });
+  // std::generate_n(std::back_inserter(v), num, std::rand);
+  std::generate_n(std::back_inserter(v), num, [=] { return num * 4; });
   return v;
 }
 
@@ -17,7 +17,7 @@ auto run2(int num) {
   std::vector<int> v;
   v.reserve(num);
   for (int i = 0; i < num; i++)
-    v.push_back(num*4);
+    v.push_back(num * 4);
   return v;
 }
 
@@ -33,7 +33,7 @@ int main(int argc, char *argv[]) {
     std::cout << "number of items " << num << std::endl;
     auto v1 = run1(num);
     auto v2 = run2(num);
-    std::cout << "Length equal " <<  (v1 == v2) << std::endl;
+    std::cout << "Length equal " << (v1 == v2) << std::endl;
   } catch (std::exception &e) {
     std::cout << "!!! Exception :" << e.what() << std::endl;
     return 2;

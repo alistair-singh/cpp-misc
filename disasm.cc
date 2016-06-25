@@ -56,7 +56,7 @@ int main() {
 
   auto data = (unsigned char const *)(&print_hex);
   auto body = print_hex(data, data + 120, print_options{});
-  std::cout << (void*)(&print_hex) << std::endl;
+  std::cout << (void *)(&print_hex) << std::endl;
   std::cout << body << std::endl;
   std::cout << body.length() << std::endl;
   return 0;

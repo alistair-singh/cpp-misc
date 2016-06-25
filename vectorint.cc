@@ -28,7 +28,7 @@ int main(int argc, char **argv) {
   cout << "number of items " << num << endl;
   auto v = run(num);
   cout << "memory reserved, press enter to quit." << endl;
-  
+
   string line;
   getline(cin, line);
   return 0;
