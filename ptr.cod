@@ -1097,11 +1097,23 @@ $SG4294967237 DB 'f ', 00H
 	ORG $+1
 $SG4294967236 DB 's ', 00H
 	ORG $+1
-$SG4294967235 DB 'p ', 00H
+$SG4294967235 DB 't ', 00H
 	ORG $+1
-$SG4294967234 DB 'f ', 00H
+$SG4294967234 DB 'p ', 00H
 	ORG $+1
-$SG4294967233 DB 's ', 00H
+$SG4294967233 DB 'f ', 00H
+	ORG $+1
+$SG4294967232 DB 's ', 00H
+	ORG $+1
+$SG4294967231 DB 't ', 00H
+	ORG $+1
+$SG4294967230 DB 'p ', 00H
+	ORG $+1
+$SG4294967229 DB 'c ', 00H
+	ORG $+1
+$SG4294967228 DB 'p ', 00H
+	ORG $+1
+$SG4294967227 DB 'c ', 00H
 CONST	ENDS
 ;	COMDAT ??_C@_0BF@OOHOMBOF@ios_base?3?3eofbit?5set?$AA@
 CONST	SEGMENT
@@ -1586,8 +1598,8 @@ $pdata$??$use_facet@V?$num_put@DV?$ostreambuf_iterator@DU?$char_traits@D@std@@@s
 pdata	ENDS
 ;	COMDAT pdata
 pdata	SEGMENT
-$pdata$??$?6U?$char_traits@D@std@@@std@@YAAEAV?$basic_ostream@DU?$char_traits@D@std@@@0@AEAV10@D@Z DD imagerel $LN1188
-	DD	imagerel $LN1188+612
+$pdata$??$?6U?$char_traits@D@std@@@std@@YAAEAV?$basic_ostream@DU?$char_traits@D@std@@@0@AEAV10@D@Z DD imagerel $LN1185
+	DD	imagerel $LN1185+622
 	DD	imagerel $unwind$??$?6U?$char_traits@D@std@@@std@@YAAEAV?$basic_ostream@DU?$char_traits@D@std@@@0@AEAV10@D@Z
 pdata	ENDS
 ;	COMDAT pdata
@@ -2120,7 +2132,7 @@ $pdata$??1?$_Yarn@_W@std@@QEAA@XZ DD imagerel $LN8
 pdata	ENDS
 pdata	SEGMENT
 $pdata$main DD	imagerel $LN4
-	DD	imagerel $LN4+346
+	DD	imagerel $LN4+578
 	DD	imagerel $unwind$main
 pdata	ENDS
 ;	COMDAT pdata
@@ -3143,10 +3155,10 @@ $unwind$??0_System_error@std@@QEAA@AEBV01@@Z DD 040a01H
 	DD	07006320aH
 xdata	ENDS
 xdata	SEGMENT
-$unwind$main DD	011319H
-	DD	0a204H
+$unwind$main DD	021719H
+	DD	05002b209H
 	DD	imagerel __GSHandlerCheck
-	DD	048H
+	DD	058H
 xdata	ENDS
 ;	COMDAT xdata
 xdata	SEGMENT
@@ -4478,19 +4490,19 @@ xdata	ENDS
 xdata	SEGMENT
 $ip2state$??$?6U?$char_traits@D@std@@@std@@YAAEAV?$basic_ostream@DU?$char_traits@D@std@@@0@AEAV10@D@Z DD imagerel ??$?6U?$char_traits@D@std@@@std@@YAAEAV?$basic_ostream@DU?$char_traits@D@std@@@0@AEAV10@D@Z
 	DD	0ffffffffH
-	DD	imagerel ??$?6U?$char_traits@D@std@@@std@@YAAEAV?$basic_ostream@DU?$char_traits@D@std@@@0@AEAV10@D@Z+82
+	DD	imagerel ??$?6U?$char_traits@D@std@@@std@@YAAEAV?$basic_ostream@DU?$char_traits@D@std@@@0@AEAV10@D@Z+85
 	DD	00H
-	DD	imagerel ??$?6U?$char_traits@D@std@@@std@@YAAEAV?$basic_ostream@DU?$char_traits@D@std@@@0@AEAV10@D@Z+135
+	DD	imagerel ??$?6U?$char_traits@D@std@@@std@@YAAEAV?$basic_ostream@DU?$char_traits@D@std@@@0@AEAV10@D@Z+138
 	DD	01H
-	DD	imagerel ??$?6U?$char_traits@D@std@@@std@@YAAEAV?$basic_ostream@DU?$char_traits@D@std@@@0@AEAV10@D@Z+162
+	DD	imagerel ??$?6U?$char_traits@D@std@@@std@@YAAEAV?$basic_ostream@DU?$char_traits@D@std@@@0@AEAV10@D@Z+165
 	DD	02H
-	DD	imagerel ??$?6U?$char_traits@D@std@@@std@@YAAEAV?$basic_ostream@DU?$char_traits@D@std@@@0@AEAV10@D@Z+467
+	DD	imagerel ??$?6U?$char_traits@D@std@@@std@@YAAEAV?$basic_ostream@DU?$char_traits@D@std@@@0@AEAV10@D@Z+478
 	DD	01H
-	DD	imagerel ??$?6U?$char_traits@D@std@@@std@@YAAEAV?$basic_ostream@DU?$char_traits@D@std@@@0@AEAV10@D@Z+539
+	DD	imagerel ??$?6U?$char_traits@D@std@@@std@@YAAEAV?$basic_ostream@DU?$char_traits@D@std@@@0@AEAV10@D@Z+550
 	DD	06H
-	DD	imagerel ??$?6U?$char_traits@D@std@@@std@@YAAEAV?$basic_ostream@DU?$char_traits@D@std@@@0@AEAV10@D@Z+557
+	DD	imagerel ??$?6U?$char_traits@D@std@@@std@@YAAEAV?$basic_ostream@DU?$char_traits@D@std@@@0@AEAV10@D@Z+568
 	DD	07H
-	DD	imagerel ??$?6U?$char_traits@D@std@@@std@@YAAEAV?$basic_ostream@DU?$char_traits@D@std@@@0@AEAV10@D@Z+582
+	DD	imagerel ??$?6U?$char_traits@D@std@@@std@@YAAEAV?$basic_ostream@DU?$char_traits@D@std@@@0@AEAV10@D@Z+593
 	DD	0ffffffffH
 	DD	imagerel ?catch$236@?0???$?6U?$char_traits@D@std@@@std@@YAAEAV?$basic_ostream@DU?$char_traits@D@std@@@0@AEAV10@D@Z@4HA
 	DD	00H
@@ -4553,12 +4565,12 @@ $cppxdata$??$?6U?$char_traits@D@std@@@std@@YAAEAV?$basic_ostream@DU?$char_traits
 CONST	ENDS
 ;	COMDAT xdata
 xdata	SEGMENT
-$unwind$??$?6U?$char_traits@D@std@@@std@@YAAEAV?$basic_ostream@DU?$char_traits@D@std@@@0@AEAV10@D@Z DD 0a2119H
-	DD	0117421H
-	DD	010641dH
-	DD	0f3419H
-	DD	0f009920dH
-	DD	0c005e007H
+$unwind$??$?6U?$char_traits@D@std@@@std@@YAAEAV?$basic_ostream@DU?$char_traits@D@std@@@0@AEAV10@D@Z DD 0a2019H
+	DD	0136420H
+	DD	012341cH
+	DD	0f00c9210H
+	DD	0d008e00aH
+	DD	07004c006H
 	DD	imagerel __CxxFrameHandler3
 	DD	imagerel $cppxdata$??$?6U?$char_traits@D@std@@@std@@YAAEAV?$basic_ostream@DU?$char_traits@D@std@@@0@AEAV10@D@Z
 xdata	ENDS
@@ -11118,141 +11130,238 @@ _TEXT	ENDS
 ; File c:\users\alist_000\cppmisc\ptr.cc
 _TEXT	SEGMENT
 arr$ = 32
-__$ArrayPad$ = 72
+ccc$ = 72
+__$ArrayPad$ = 88
 main	PROC
 
-; 9    : int main() {
+; 12   : int main() {
 
 $LN4:
-  00000	48 83 ec 58	 sub	 rsp, 88			; 00000058H
-  00004	48 8b 05 00 00
+  00000	40 55		 push	 rbp
+  00002	48 8b ec	 mov	 rbp, rsp
+  00005	48 83 ec 60	 sub	 rsp, 96			; 00000060H
+  00009	48 8b 05 00 00
 	00 00		 mov	 rax, QWORD PTR __security_cookie
-  0000b	48 33 c4	 xor	 rax, rsp
-  0000e	48 89 44 24 48	 mov	 QWORD PTR __$ArrayPad$[rsp], rax
+  00010	48 33 c4	 xor	 rax, rsp
+  00013	48 89 45 f8	 mov	 QWORD PTR __$ArrayPad$[rbp-96], rax
 
-; 10   :   std::cout << __FILE__ << '\n';
+; 13   :   std::cout << __FILE__ << '\n';
 
-  00013	48 8d 15 00 00
+  00017	48 8d 15 00 00
 	00 00		 lea	 rdx, OFFSET FLAT:$SG4294967239
-  0001a	e8 00 00 00 00	 call	 ??$?6U?$char_traits@D@std@@@std@@YAAEAV?$basic_ostream@DU?$char_traits@D@std@@@0@AEAV10@PEBD@Z ; std::operator<<<std::char_traits<char> >
-  0001f	48 8b c8	 mov	 rcx, rax
-  00022	e8 00 00 00 00	 call	 ??$?6U?$char_traits@D@std@@@std@@YAAEAV?$basic_ostream@DU?$char_traits@D@std@@@0@AEAV10@D@Z ; std::operator<<<std::char_traits<char> >
-  00027	66 0f 6f 05 00
+  0001e	e8 00 00 00 00	 call	 ??$?6U?$char_traits@D@std@@@std@@YAAEAV?$basic_ostream@DU?$char_traits@D@std@@@0@AEAV10@PEBD@Z ; std::operator<<<std::char_traits<char> >
+  00023	48 8b c8	 mov	 rcx, rax
+  00026	b2 0a		 mov	 dl, 10
+  00028	e8 00 00 00 00	 call	 ??$?6U?$char_traits@D@std@@@std@@YAAEAV?$basic_ostream@DU?$char_traits@D@std@@@0@AEAV10@D@Z ; std::operator<<<std::char_traits<char> >
+  0002d	66 0f 6f 05 00
 	00 00 00	 movdqa	 xmm0, XMMWORD PTR __xmm@00000003000000020000000100000000
 
-; 11   :   
-; 12   :   int arr[] = {0,1,2,3,4,5,6,7,8,9};
-; 13   :   int* ptr = &arr[4];
-; 14   :   std::cout << ptr << '\n';
+; 14   :   
+; 15   :   int arr[] = {0,1,2,3,4,5,6,7,8,9};
+; 16   :   int* ptr = &arr[4];
+; 17   :   std::cout << ptr << '\n';
 
-  0002f	48 8d 54 24 30	 lea	 rdx, QWORD PTR arr$[rsp+16]
-  00034	66 0f 6f 0d 00
+  00035	48 8d 55 d0	 lea	 rdx, QWORD PTR arr$[rbp-80]
+  00039	66 0f 6f 0d 00
 	00 00 00	 movdqa	 xmm1, XMMWORD PTR __xmm@00000007000000060000000500000004
-  0003c	48 8d 0d 00 00
+  00041	48 8d 0d 00 00
 	00 00		 lea	 rcx, OFFSET FLAT:?cout@std@@3V?$basic_ostream@DU?$char_traits@D@std@@@1@A ; std::cout
-  00043	f3 0f 7f 44 24
-	20		 movdqu	 XMMWORD PTR arr$[rsp], xmm0
-  00049	c7 44 24 40 08
-	00 00 00	 mov	 DWORD PTR arr$[rsp+32], 8
-  00051	f3 0f 7f 4c 24
-	30		 movdqu	 XMMWORD PTR arr$[rsp+16], xmm1
-  00057	c7 44 24 44 09
-	00 00 00	 mov	 DWORD PTR arr$[rsp+36], 9
-  0005f	e8 00 00 00 00	 call	 ??6?$basic_ostream@DU?$char_traits@D@std@@@std@@QEAAAEAV01@PEBX@Z ; std::basic_ostream<char,std::char_traits<char> >::operator<<
-  00064	48 8b c8	 mov	 rcx, rax
-  00067	e8 00 00 00 00	 call	 ??$?6U?$char_traits@D@std@@@std@@YAAEAV?$basic_ostream@DU?$char_traits@D@std@@@0@AEAV10@D@Z ; std::operator<<<std::char_traits<char> >
+  00048	f3 0f 7f 45 c0	 movdqu	 XMMWORD PTR arr$[rbp-96], xmm0
+  0004d	c7 45 e0 08 00
+	00 00		 mov	 DWORD PTR arr$[rbp-64], 8
+  00054	f3 0f 7f 4d d0	 movdqu	 XMMWORD PTR arr$[rbp-80], xmm1
+  00059	c7 45 e4 09 00
+	00 00		 mov	 DWORD PTR arr$[rbp-60], 9
+  00060	e8 00 00 00 00	 call	 ??6?$basic_ostream@DU?$char_traits@D@std@@@std@@QEAAAEAV01@PEBX@Z ; std::basic_ostream<char,std::char_traits<char> >::operator<<
+  00065	48 8b c8	 mov	 rcx, rax
+  00068	b2 0a		 mov	 dl, 10
+  0006a	e8 00 00 00 00	 call	 ??$?6U?$char_traits@D@std@@@std@@YAAEAV?$basic_ostream@DU?$char_traits@D@std@@@0@AEAV10@D@Z ; std::operator<<<std::char_traits<char> >
 
-; 15   :   std::cout << *ptr << '\n';
+; 18   :   std::cout << *ptr << '\n';
 
-  0006c	8b 54 24 30	 mov	 edx, DWORD PTR arr$[rsp+16]
-  00070	48 8d 0d 00 00
+  0006f	8b 55 d0	 mov	 edx, DWORD PTR arr$[rbp-80]
+  00072	48 8d 0d 00 00
 	00 00		 lea	 rcx, OFFSET FLAT:?cout@std@@3V?$basic_ostream@DU?$char_traits@D@std@@@1@A ; std::cout
-  00077	e8 00 00 00 00	 call	 ??6?$basic_ostream@DU?$char_traits@D@std@@@std@@QEAAAEAV01@H@Z ; std::basic_ostream<char,std::char_traits<char> >::operator<<
-  0007c	48 8b c8	 mov	 rcx, rax
-  0007f	e8 00 00 00 00	 call	 ??$?6U?$char_traits@D@std@@@std@@YAAEAV?$basic_ostream@DU?$char_traits@D@std@@@0@AEAV10@D@Z ; std::operator<<<std::char_traits<char> >
+  00079	e8 00 00 00 00	 call	 ??6?$basic_ostream@DU?$char_traits@D@std@@@std@@QEAAAEAV01@H@Z ; std::basic_ostream<char,std::char_traits<char> >::operator<<
+  0007e	48 8b c8	 mov	 rcx, rax
+  00081	b2 0a		 mov	 dl, 10
+  00083	e8 00 00 00 00	 call	 ??$?6U?$char_traits@D@std@@@std@@YAAEAV?$basic_ostream@DU?$char_traits@D@std@@@0@AEAV10@D@Z ; std::operator<<<std::char_traits<char> >
 
-; 16   : 
-; 17   :   Pair* p;
-; 18   :   p = reinterpret_cast<Pair*>(ptr);
-; 19   :   std::cout << "p " << p << '\n';
+; 19   : 
+; 20   :   Pair* p;
+; 21   :   p = reinterpret_cast<Pair*>(ptr);
+; 22   :   std::cout << "p " << p << '\n';
 
-  00084	48 8d 15 00 00
+  00088	48 8d 15 00 00
 	00 00		 lea	 rdx, OFFSET FLAT:$SG4294967238
-  0008b	e8 00 00 00 00	 call	 ??$?6U?$char_traits@D@std@@@std@@YAAEAV?$basic_ostream@DU?$char_traits@D@std@@@0@AEAV10@PEBD@Z ; std::operator<<<std::char_traits<char> >
-  00090	48 8b c8	 mov	 rcx, rax
-  00093	48 8d 54 24 30	 lea	 rdx, QWORD PTR arr$[rsp+16]
-  00098	e8 00 00 00 00	 call	 ??6?$basic_ostream@DU?$char_traits@D@std@@@std@@QEAAAEAV01@PEBX@Z ; std::basic_ostream<char,std::char_traits<char> >::operator<<
-  0009d	48 8b c8	 mov	 rcx, rax
-  000a0	e8 00 00 00 00	 call	 ??$?6U?$char_traits@D@std@@@std@@YAAEAV?$basic_ostream@DU?$char_traits@D@std@@@0@AEAV10@D@Z ; std::operator<<<std::char_traits<char> >
+  0008f	e8 00 00 00 00	 call	 ??$?6U?$char_traits@D@std@@@std@@YAAEAV?$basic_ostream@DU?$char_traits@D@std@@@0@AEAV10@PEBD@Z ; std::operator<<<std::char_traits<char> >
+  00094	48 8b c8	 mov	 rcx, rax
+  00097	48 8d 55 d0	 lea	 rdx, QWORD PTR arr$[rbp-80]
+  0009b	e8 00 00 00 00	 call	 ??6?$basic_ostream@DU?$char_traits@D@std@@@std@@QEAAAEAV01@PEBX@Z ; std::basic_ostream<char,std::char_traits<char> >::operator<<
+  000a0	48 8b c8	 mov	 rcx, rax
+  000a3	b2 0a		 mov	 dl, 10
+  000a5	e8 00 00 00 00	 call	 ??$?6U?$char_traits@D@std@@@std@@YAAEAV?$basic_ostream@DU?$char_traits@D@std@@@0@AEAV10@D@Z ; std::operator<<<std::char_traits<char> >
 
-; 20   :   std::cout << "f " << p->first << '\n';
+; 23   :   std::cout << "f " << p->first << '\n';
 
-  000a5	48 8d 15 00 00
+  000aa	48 8d 15 00 00
 	00 00		 lea	 rdx, OFFSET FLAT:$SG4294967237
-  000ac	e8 00 00 00 00	 call	 ??$?6U?$char_traits@D@std@@@std@@YAAEAV?$basic_ostream@DU?$char_traits@D@std@@@0@AEAV10@PEBD@Z ; std::operator<<<std::char_traits<char> >
-  000b1	8b 54 24 30	 mov	 edx, DWORD PTR arr$[rsp+16]
-  000b5	48 8b c8	 mov	 rcx, rax
-  000b8	e8 00 00 00 00	 call	 ??6?$basic_ostream@DU?$char_traits@D@std@@@std@@QEAAAEAV01@H@Z ; std::basic_ostream<char,std::char_traits<char> >::operator<<
-  000bd	48 8b c8	 mov	 rcx, rax
-  000c0	e8 00 00 00 00	 call	 ??$?6U?$char_traits@D@std@@@std@@YAAEAV?$basic_ostream@DU?$char_traits@D@std@@@0@AEAV10@D@Z ; std::operator<<<std::char_traits<char> >
+  000b1	e8 00 00 00 00	 call	 ??$?6U?$char_traits@D@std@@@std@@YAAEAV?$basic_ostream@DU?$char_traits@D@std@@@0@AEAV10@PEBD@Z ; std::operator<<<std::char_traits<char> >
+  000b6	8b 55 d0	 mov	 edx, DWORD PTR arr$[rbp-80]
+  000b9	48 8b c8	 mov	 rcx, rax
+  000bc	e8 00 00 00 00	 call	 ??6?$basic_ostream@DU?$char_traits@D@std@@@std@@QEAAAEAV01@H@Z ; std::basic_ostream<char,std::char_traits<char> >::operator<<
+  000c1	48 8b c8	 mov	 rcx, rax
+  000c4	b2 0a		 mov	 dl, 10
+  000c6	e8 00 00 00 00	 call	 ??$?6U?$char_traits@D@std@@@std@@YAAEAV?$basic_ostream@DU?$char_traits@D@std@@@0@AEAV10@D@Z ; std::operator<<<std::char_traits<char> >
 
-; 21   :   std::cout << "s " << p->second << '\n';
+; 24   :   std::cout << "s " << p->second << '\n';
 
-  000c5	48 8d 15 00 00
+  000cb	48 8d 15 00 00
 	00 00		 lea	 rdx, OFFSET FLAT:$SG4294967236
-  000cc	e8 00 00 00 00	 call	 ??$?6U?$char_traits@D@std@@@std@@YAAEAV?$basic_ostream@DU?$char_traits@D@std@@@0@AEAV10@PEBD@Z ; std::operator<<<std::char_traits<char> >
-  000d1	8b 54 24 34	 mov	 edx, DWORD PTR arr$[rsp+20]
-  000d5	48 8b c8	 mov	 rcx, rax
-  000d8	e8 00 00 00 00	 call	 ??6?$basic_ostream@DU?$char_traits@D@std@@@std@@QEAAAEAV01@H@Z ; std::basic_ostream<char,std::char_traits<char> >::operator<<
-  000dd	48 8b c8	 mov	 rcx, rax
-  000e0	e8 00 00 00 00	 call	 ??$?6U?$char_traits@D@std@@@std@@YAAEAV?$basic_ostream@DU?$char_traits@D@std@@@0@AEAV10@D@Z ; std::operator<<<std::char_traits<char> >
+  000d2	e8 00 00 00 00	 call	 ??$?6U?$char_traits@D@std@@@std@@YAAEAV?$basic_ostream@DU?$char_traits@D@std@@@0@AEAV10@PEBD@Z ; std::operator<<<std::char_traits<char> >
+  000d7	8b 55 d4	 mov	 edx, DWORD PTR arr$[rbp-76]
+  000da	48 8b c8	 mov	 rcx, rax
+  000dd	e8 00 00 00 00	 call	 ??6?$basic_ostream@DU?$char_traits@D@std@@@std@@QEAAAEAV01@H@Z ; std::basic_ostream<char,std::char_traits<char> >::operator<<
+  000e2	48 8b c8	 mov	 rcx, rax
+  000e5	b2 0a		 mov	 dl, 10
+  000e7	e8 00 00 00 00	 call	 ??$?6U?$char_traits@D@std@@@std@@YAAEAV?$basic_ostream@DU?$char_traits@D@std@@@0@AEAV10@D@Z ; std::operator<<<std::char_traits<char> >
 
-; 22   :   p = reinterpret_cast<Pair*>(ptr) - 1;
-; 23   :   std::cout << "p " << p << '\n';
+; 25   : #ifdef THIRD
+; 26   :   std::cout << "t " << p->third << '\n';
 
-  000e5	48 8d 15 00 00
+  000ec	48 8d 15 00 00
 	00 00		 lea	 rdx, OFFSET FLAT:$SG4294967235
-  000ec	e8 00 00 00 00	 call	 ??$?6U?$char_traits@D@std@@@std@@YAAEAV?$basic_ostream@DU?$char_traits@D@std@@@0@AEAV10@PEBD@Z ; std::operator<<<std::char_traits<char> >
-  000f1	48 8b c8	 mov	 rcx, rax
-  000f4	48 8d 54 24 28	 lea	 rdx, QWORD PTR arr$[rsp+8]
-  000f9	e8 00 00 00 00	 call	 ??6?$basic_ostream@DU?$char_traits@D@std@@@std@@QEAAAEAV01@PEBX@Z ; std::basic_ostream<char,std::char_traits<char> >::operator<<
-  000fe	48 8b c8	 mov	 rcx, rax
-  00101	e8 00 00 00 00	 call	 ??$?6U?$char_traits@D@std@@@std@@YAAEAV?$basic_ostream@DU?$char_traits@D@std@@@0@AEAV10@D@Z ; std::operator<<<std::char_traits<char> >
+  000f3	e8 00 00 00 00	 call	 ??$?6U?$char_traits@D@std@@@std@@YAAEAV?$basic_ostream@DU?$char_traits@D@std@@@0@AEAV10@PEBD@Z ; std::operator<<<std::char_traits<char> >
+  000f8	8b 55 d8	 mov	 edx, DWORD PTR arr$[rbp-72]
+  000fb	48 8b c8	 mov	 rcx, rax
+  000fe	e8 00 00 00 00	 call	 ??6?$basic_ostream@DU?$char_traits@D@std@@@std@@QEAAAEAV01@H@Z ; std::basic_ostream<char,std::char_traits<char> >::operator<<
+  00103	48 8b c8	 mov	 rcx, rax
+  00106	b2 0a		 mov	 dl, 10
+  00108	e8 00 00 00 00	 call	 ??$?6U?$char_traits@D@std@@@std@@YAAEAV?$basic_ostream@DU?$char_traits@D@std@@@0@AEAV10@D@Z ; std::operator<<<std::char_traits<char> >
 
-; 24   :   std::cout << "f " << p->first << '\n';
+; 27   : #endif
+; 28   :   p = reinterpret_cast<Pair*>(ptr) - 1;
+; 29   :   std::cout << "p " << p << '\n';
 
-  00106	48 8d 15 00 00
+  0010d	48 8d 15 00 00
 	00 00		 lea	 rdx, OFFSET FLAT:$SG4294967234
-  0010d	e8 00 00 00 00	 call	 ??$?6U?$char_traits@D@std@@@std@@YAAEAV?$basic_ostream@DU?$char_traits@D@std@@@0@AEAV10@PEBD@Z ; std::operator<<<std::char_traits<char> >
-  00112	8b 54 24 28	 mov	 edx, DWORD PTR arr$[rsp+8]
-  00116	48 8b c8	 mov	 rcx, rax
-  00119	e8 00 00 00 00	 call	 ??6?$basic_ostream@DU?$char_traits@D@std@@@std@@QEAAAEAV01@H@Z ; std::basic_ostream<char,std::char_traits<char> >::operator<<
-  0011e	48 8b c8	 mov	 rcx, rax
-  00121	e8 00 00 00 00	 call	 ??$?6U?$char_traits@D@std@@@std@@YAAEAV?$basic_ostream@DU?$char_traits@D@std@@@0@AEAV10@D@Z ; std::operator<<<std::char_traits<char> >
+  00114	e8 00 00 00 00	 call	 ??$?6U?$char_traits@D@std@@@std@@YAAEAV?$basic_ostream@DU?$char_traits@D@std@@@0@AEAV10@PEBD@Z ; std::operator<<<std::char_traits<char> >
+  00119	48 8b c8	 mov	 rcx, rax
+  0011c	48 8d 55 c4	 lea	 rdx, QWORD PTR arr$[rbp-92]
+  00120	e8 00 00 00 00	 call	 ??6?$basic_ostream@DU?$char_traits@D@std@@@std@@QEAAAEAV01@PEBX@Z ; std::basic_ostream<char,std::char_traits<char> >::operator<<
+  00125	48 8b c8	 mov	 rcx, rax
+  00128	b2 0a		 mov	 dl, 10
+  0012a	e8 00 00 00 00	 call	 ??$?6U?$char_traits@D@std@@@std@@YAAEAV?$basic_ostream@DU?$char_traits@D@std@@@0@AEAV10@D@Z ; std::operator<<<std::char_traits<char> >
 
-; 25   :   std::cout << "s " << p->second << '\n';
+; 30   :   std::cout << "f " << p->first << '\n';
 
-  00126	48 8d 15 00 00
+  0012f	48 8d 15 00 00
 	00 00		 lea	 rdx, OFFSET FLAT:$SG4294967233
-  0012d	e8 00 00 00 00	 call	 ??$?6U?$char_traits@D@std@@@std@@YAAEAV?$basic_ostream@DU?$char_traits@D@std@@@0@AEAV10@PEBD@Z ; std::operator<<<std::char_traits<char> >
-  00132	8b 54 24 2c	 mov	 edx, DWORD PTR arr$[rsp+12]
-  00136	48 8b c8	 mov	 rcx, rax
-  00139	e8 00 00 00 00	 call	 ??6?$basic_ostream@DU?$char_traits@D@std@@@std@@QEAAAEAV01@H@Z ; std::basic_ostream<char,std::char_traits<char> >::operator<<
+  00136	e8 00 00 00 00	 call	 ??$?6U?$char_traits@D@std@@@std@@YAAEAV?$basic_ostream@DU?$char_traits@D@std@@@0@AEAV10@PEBD@Z ; std::operator<<<std::char_traits<char> >
+  0013b	8b 55 c4	 mov	 edx, DWORD PTR arr$[rbp-92]
   0013e	48 8b c8	 mov	 rcx, rax
-  00141	e8 00 00 00 00	 call	 ??$?6U?$char_traits@D@std@@@std@@YAAEAV?$basic_ostream@DU?$char_traits@D@std@@@0@AEAV10@D@Z ; std::operator<<<std::char_traits<char> >
+  00141	e8 00 00 00 00	 call	 ??6?$basic_ostream@DU?$char_traits@D@std@@@std@@QEAAAEAV01@H@Z ; std::basic_ostream<char,std::char_traits<char> >::operator<<
+  00146	48 8b c8	 mov	 rcx, rax
+  00149	b2 0a		 mov	 dl, 10
+  0014b	e8 00 00 00 00	 call	 ??$?6U?$char_traits@D@std@@@std@@YAAEAV?$basic_ostream@DU?$char_traits@D@std@@@0@AEAV10@D@Z ; std::operator<<<std::char_traits<char> >
 
-; 26   : 
-; 27   :   return 0;
+; 31   :   std::cout << "s " << p->second << '\n';
 
-  00146	33 c0		 xor	 eax, eax
+  00150	48 8d 15 00 00
+	00 00		 lea	 rdx, OFFSET FLAT:$SG4294967232
+  00157	e8 00 00 00 00	 call	 ??$?6U?$char_traits@D@std@@@std@@YAAEAV?$basic_ostream@DU?$char_traits@D@std@@@0@AEAV10@PEBD@Z ; std::operator<<<std::char_traits<char> >
+  0015c	8b 55 c8	 mov	 edx, DWORD PTR arr$[rbp-88]
+  0015f	48 8b c8	 mov	 rcx, rax
+  00162	e8 00 00 00 00	 call	 ??6?$basic_ostream@DU?$char_traits@D@std@@@std@@QEAAAEAV01@H@Z ; std::basic_ostream<char,std::char_traits<char> >::operator<<
+  00167	48 8b c8	 mov	 rcx, rax
+  0016a	b2 0a		 mov	 dl, 10
+  0016c	e8 00 00 00 00	 call	 ??$?6U?$char_traits@D@std@@@std@@YAAEAV?$basic_ostream@DU?$char_traits@D@std@@@0@AEAV10@D@Z ; std::operator<<<std::char_traits<char> >
 
-; 28   : }
+; 32   : #ifdef THIRD
+; 33   :   std::cout << "t " << p->third << '\n';
 
-  00148	48 8b 4c 24 48	 mov	 rcx, QWORD PTR __$ArrayPad$[rsp]
-  0014d	48 33 cc	 xor	 rcx, rsp
-  00150	e8 00 00 00 00	 call	 __security_check_cookie
-  00155	48 83 c4 58	 add	 rsp, 88			; 00000058H
-  00159	c3		 ret	 0
+  00171	48 8d 15 00 00
+	00 00		 lea	 rdx, OFFSET FLAT:$SG4294967231
+  00178	e8 00 00 00 00	 call	 ??$?6U?$char_traits@D@std@@@std@@YAAEAV?$basic_ostream@DU?$char_traits@D@std@@@0@AEAV10@PEBD@Z ; std::operator<<<std::char_traits<char> >
+  0017d	8b 55 cc	 mov	 edx, DWORD PTR arr$[rbp-84]
+  00180	48 8b c8	 mov	 rcx, rax
+  00183	e8 00 00 00 00	 call	 ??6?$basic_ostream@DU?$char_traits@D@std@@@std@@QEAAAEAV01@H@Z ; std::basic_ostream<char,std::char_traits<char> >::operator<<
+  00188	48 8b c8	 mov	 rcx, rax
+  0018b	b2 0a		 mov	 dl, 10
+  0018d	e8 00 00 00 00	 call	 ??$?6U?$char_traits@D@std@@@std@@YAAEAV?$basic_ostream@DU?$char_traits@D@std@@@0@AEAV10@D@Z ; std::operator<<<std::char_traits<char> >
+
+; 34   : #endif
+; 35   : 
+; 36   :   char ccc[] = {'a','b','c','d','e','f','g','h','i','j'};
+; 37   :   char* cptr = &ccc[4];
+; 38   :   std::cout << "p " << static_cast<void*>(cptr) << '\n';
+
+  00192	48 8d 15 00 00
+	00 00		 lea	 rdx, OFFSET FLAT:$SG4294967230
+  00199	c7 45 e8 61 62
+	63 64		 mov	 DWORD PTR ccc$[rbp-96], 1684234849 ; 64636261H
+  001a0	c7 45 ec 65 66
+	67 68		 mov	 DWORD PTR ccc$[rbp-92], 1751606885 ; 68676665H
+  001a7	66 c7 45 f0 69
+	6a		 mov	 WORD PTR ccc$[rbp-88], 27241 ; 00006a69H
+  001ad	e8 00 00 00 00	 call	 ??$?6U?$char_traits@D@std@@@std@@YAAEAV?$basic_ostream@DU?$char_traits@D@std@@@0@AEAV10@PEBD@Z ; std::operator<<<std::char_traits<char> >
+  001b2	48 8b c8	 mov	 rcx, rax
+  001b5	48 8d 55 ec	 lea	 rdx, QWORD PTR ccc$[rbp-92]
+  001b9	e8 00 00 00 00	 call	 ??6?$basic_ostream@DU?$char_traits@D@std@@@std@@QEAAAEAV01@PEBX@Z ; std::basic_ostream<char,std::char_traits<char> >::operator<<
+  001be	48 8b c8	 mov	 rcx, rax
+  001c1	b2 0a		 mov	 dl, 10
+  001c3	e8 00 00 00 00	 call	 ??$?6U?$char_traits@D@std@@@std@@YAAEAV?$basic_ostream@DU?$char_traits@D@std@@@0@AEAV10@D@Z ; std::operator<<<std::char_traits<char> >
+
+; 39   :   std::cout << "c " << *cptr << '\n';
+
+  001c8	48 8d 15 00 00
+	00 00		 lea	 rdx, OFFSET FLAT:$SG4294967229
+  001cf	e8 00 00 00 00	 call	 ??$?6U?$char_traits@D@std@@@std@@YAAEAV?$basic_ostream@DU?$char_traits@D@std@@@0@AEAV10@PEBD@Z ; std::operator<<<std::char_traits<char> >
+  001d4	0f b6 55 ec	 movzx	 edx, BYTE PTR ccc$[rbp-92]
+  001d8	48 8b c8	 mov	 rcx, rax
+  001db	e8 00 00 00 00	 call	 ??$?6U?$char_traits@D@std@@@std@@YAAEAV?$basic_ostream@DU?$char_traits@D@std@@@0@AEAV10@D@Z ; std::operator<<<std::char_traits<char> >
+  001e0	48 8b c8	 mov	 rcx, rax
+  001e3	b2 0a		 mov	 dl, 10
+  001e5	e8 00 00 00 00	 call	 ??$?6U?$char_traits@D@std@@@std@@YAAEAV?$basic_ostream@DU?$char_traits@D@std@@@0@AEAV10@D@Z ; std::operator<<<std::char_traits<char> >
+
+; 40   :   cptr = cptr - 1;
+; 41   :   std::cout << "p " << static_cast<void*>(cptr) << '\n';
+
+  001ea	48 8d 15 00 00
+	00 00		 lea	 rdx, OFFSET FLAT:$SG4294967228
+  001f1	e8 00 00 00 00	 call	 ??$?6U?$char_traits@D@std@@@std@@YAAEAV?$basic_ostream@DU?$char_traits@D@std@@@0@AEAV10@PEBD@Z ; std::operator<<<std::char_traits<char> >
+  001f6	48 8b c8	 mov	 rcx, rax
+  001f9	48 8d 55 eb	 lea	 rdx, QWORD PTR ccc$[rbp-93]
+  001fd	e8 00 00 00 00	 call	 ??6?$basic_ostream@DU?$char_traits@D@std@@@std@@QEAAAEAV01@PEBX@Z ; std::basic_ostream<char,std::char_traits<char> >::operator<<
+  00202	48 8b c8	 mov	 rcx, rax
+  00205	b2 0a		 mov	 dl, 10
+  00207	e8 00 00 00 00	 call	 ??$?6U?$char_traits@D@std@@@std@@YAAEAV?$basic_ostream@DU?$char_traits@D@std@@@0@AEAV10@D@Z ; std::operator<<<std::char_traits<char> >
+
+; 42   :   std::cout << "c " << *cptr << '\n';
+
+  0020c	48 8d 15 00 00
+	00 00		 lea	 rdx, OFFSET FLAT:$SG4294967227
+  00213	e8 00 00 00 00	 call	 ??$?6U?$char_traits@D@std@@@std@@YAAEAV?$basic_ostream@DU?$char_traits@D@std@@@0@AEAV10@PEBD@Z ; std::operator<<<std::char_traits<char> >
+  00218	0f b6 55 eb	 movzx	 edx, BYTE PTR ccc$[rbp-93]
+  0021c	48 8b c8	 mov	 rcx, rax
+  0021f	e8 00 00 00 00	 call	 ??$?6U?$char_traits@D@std@@@std@@YAAEAV?$basic_ostream@DU?$char_traits@D@std@@@0@AEAV10@D@Z ; std::operator<<<std::char_traits<char> >
+  00224	48 8b c8	 mov	 rcx, rax
+  00227	b2 0a		 mov	 dl, 10
+  00229	e8 00 00 00 00	 call	 ??$?6U?$char_traits@D@std@@@std@@YAAEAV?$basic_ostream@DU?$char_traits@D@std@@@0@AEAV10@D@Z ; std::operator<<<std::char_traits<char> >
+
+; 43   : 
+; 44   :   return 0;
+
+  0022e	33 c0		 xor	 eax, eax
+
+; 45   : }
+
+  00230	48 8b 4d f8	 mov	 rcx, QWORD PTR __$ArrayPad$[rbp-96]
+  00234	48 33 cc	 xor	 rcx, rsp
+  00237	e8 00 00 00 00	 call	 __security_check_cookie
+  0023c	48 83 c4 60	 add	 rsp, 96			; 00000060H
+  00240	5d		 pop	 rbp
+  00241	c3		 ret	 0
 main	ENDP
 _TEXT	ENDS
 ; Function compile flags: /Ogtpy
@@ -30688,6 +30797,10 @@ text$x	ENDS
 ; File c:\program files (x86)\microsoft visual studio 14.0\vc\include\ostream
 ; File c:\program files (x86)\microsoft visual studio 14.0\vc\include\ios
 ; File c:\program files (x86)\microsoft visual studio 14.0\vc\include\streambuf
+; File c:\program files (x86)\microsoft visual studio 14.0\vc\include\iosfwd
+; File c:\program files (x86)\microsoft visual studio 14.0\vc\include\streambuf
+; File c:\program files (x86)\microsoft visual studio 14.0\vc\include\iosfwd
+; File c:\program files (x86)\microsoft visual studio 14.0\vc\include\streambuf
 ; File c:\program files (x86)\microsoft visual studio 14.0\vc\include\ostream
 ; File c:\program files (x86)\microsoft visual studio 14.0\vc\include\ios
 ; File c:\program files (x86)\microsoft visual studio 14.0\vc\include\streambuf
@@ -30709,486 +30822,504 @@ _TEXT	SEGMENT
 _State$ = 32
 _Ostr$GSCopy$ = 40
 _Ok$ = 48
-_Ostr$ = 112
-_Ch$dead$ = 120
+_Ostr$ = 128
+_Ch$ = 136
 ??$?6U?$char_traits@D@std@@@std@@YAAEAV?$basic_ostream@DU?$char_traits@D@std@@@0@AEAV10@D@Z PROC ; std::operator<<<std::char_traits<char> >, COMDAT
 
 ; 826  : 	{	// insert a char into char stream
 
-$LN1188:
+$LN1185:
   00000	48 8b c4	 mov	 rax, rsp
-  00003	41 54		 push	 r12
-  00005	41 56		 push	 r14
-  00007	41 57		 push	 r15
-  00009	48 83 ec 50	 sub	 rsp, 80			; 00000050H
-  0000d	48 c7 40 d8 fe
-	ff ff ff	 mov	 QWORD PTR [rax-40], -2
-  00015	48 89 58 10	 mov	 QWORD PTR [rax+16], rbx
-  00019	48 89 70 18	 mov	 QWORD PTR [rax+24], rsi
-  0001d	48 89 78 20	 mov	 QWORD PTR [rax+32], rdi
-  00021	48 8b f1	 mov	 rsi, rcx
-  00024	48 89 4c 24 28	 mov	 QWORD PTR _Ostr$GSCopy$[rsp], rcx
+  00003	57		 push	 rdi
+  00004	41 54		 push	 r12
+  00006	41 55		 push	 r13
+  00008	41 56		 push	 r14
+  0000a	41 57		 push	 r15
+  0000c	48 83 ec 50	 sub	 rsp, 80			; 00000050H
+  00010	48 c7 40 c8 fe
+	ff ff ff	 mov	 QWORD PTR [rax-56], -2
+  00018	48 89 58 18	 mov	 QWORD PTR [rax+24], rbx
+  0001c	48 89 70 20	 mov	 QWORD PTR [rax+32], rsi
+  00020	44 0f b6 ea	 movzx	 r13d, dl
+  00024	48 8b f1	 mov	 rsi, rcx
+  00027	48 89 4c 24 28	 mov	 QWORD PTR _Ostr$GSCopy$[rsp], rcx
 
 ; 827  : 	typedef char _Elem;
 ; 828  : 	typedef basic_ostream<_Elem, _Traits> _Myos;
 ; 829  : 	ios_base::iostate _State = ios_base::goodbit;
 
-  00029	45 33 f6	 xor	 r14d, r14d
-  0002c	41 8b de	 mov	 ebx, r14d
-  0002f	89 5c 24 20	 mov	 DWORD PTR _State$[rsp], ebx
+  0002c	45 33 f6	 xor	 r14d, r14d
+  0002f	41 8b de	 mov	 ebx, r14d
+  00032	89 5c 24 20	 mov	 DWORD PTR _State$[rsp], ebx
 
 ; 99   : 			: _Myostr(_Ostr)
 
-  00033	4c 8b e1	 mov	 r12, rcx
-  00036	48 89 48 c8	 mov	 QWORD PTR [rax-56], rcx
+  00036	4c 8b e1	 mov	 r12, rcx
+  00039	48 89 48 b8	 mov	 QWORD PTR [rax-72], rcx
 
 ; 101  : 			if (_Myostr.rdbuf() != 0)
 
-  0003a	48 8b 01	 mov	 rax, QWORD PTR [rcx]
-  0003d	48 63 48 04	 movsxd	 rcx, DWORD PTR [rax+4]
+  0003d	48 8b 01	 mov	 rax, QWORD PTR [rcx]
+  00040	48 63 48 04	 movsxd	 rcx, DWORD PTR [rax+4]
 ; File c:\program files (x86)\microsoft visual studio 14.0\vc\include\ios
 
 ; 92   : 		return (_Mystrbuf);
 
-  00041	4a 8b 4c 21 48	 mov	 rcx, QWORD PTR [rcx+r12+72]
+  00044	4a 8b 4c 21 48	 mov	 rcx, QWORD PTR [rcx+r12+72]
 ; File c:\program files (x86)\microsoft visual studio 14.0\vc\include\ostream
 
 ; 101  : 			if (_Myostr.rdbuf() != 0)
 
-  00046	48 85 c9	 test	 rcx, rcx
-  00049	74 07		 je	 SHORT $LN27@operator
+  00049	48 85 c9	 test	 rcx, rcx
+  0004c	74 07		 je	 SHORT $LN27@operator
 
 ; 102  : 				_Myostr.rdbuf()->_Lock();
 
-  0004b	48 8b 01	 mov	 rax, QWORD PTR [rcx]
-  0004e	ff 50 08	 call	 QWORD PTR [rax+8]
-  00051	90		 npad	 1
+  0004e	48 8b 01	 mov	 rax, QWORD PTR [rcx]
+  00051	ff 50 08	 call	 QWORD PTR [rax+8]
+  00054	90		 npad	 1
 $LN27@operator:
 
 ; 124  : 			if (_Ostr.good() && _Ostr.tie() != 0 && _Ostr.tie() != &_Ostr)
 
-  00052	48 8b 06	 mov	 rax, QWORD PTR [rsi]
-  00055	48 63 48 04	 movsxd	 rcx, DWORD PTR [rax+4]
+  00055	48 8b 06	 mov	 rax, QWORD PTR [rsi]
+  00058	48 63 48 04	 movsxd	 rcx, DWORD PTR [rax+4]
 ; File c:\program files (x86)\microsoft visual studio 14.0\vc\include\xiosbase
 
 ; 339  : 		return (rdstate() == goodbit);
 
-  00059	83 7c 31 10 00	 cmp	 DWORD PTR [rcx+rsi+16], 0
+  0005c	83 7c 31 10 00	 cmp	 DWORD PTR [rcx+rsi+16], 0
 ; File c:\program files (x86)\microsoft visual studio 14.0\vc\include\ostream
 
 ; 124  : 			if (_Ostr.good() && _Ostr.tie() != 0 && _Ostr.tie() != &_Ostr)
 
-  0005e	75 14		 jne	 SHORT $LN23@operator
+  00061	75 14		 jne	 SHORT $LN23@operator
 ; File c:\program files (x86)\microsoft visual studio 14.0\vc\include\ios
 
 ; 80   : 		return (_Tiestr);
 
-  00060	48 8b 4c 31 50	 mov	 rcx, QWORD PTR [rcx+rsi+80]
+  00063	48 8b 4c 31 50	 mov	 rcx, QWORD PTR [rcx+rsi+80]
 ; File c:\program files (x86)\microsoft visual studio 14.0\vc\include\ostream
 
 ; 124  : 			if (_Ostr.good() && _Ostr.tie() != 0 && _Ostr.tie() != &_Ostr)
 
-  00065	48 85 c9	 test	 rcx, rcx
-  00068	74 0a		 je	 SHORT $LN23@operator
-  0006a	48 3b ce	 cmp	 rcx, rsi
-  0006d	74 05		 je	 SHORT $LN23@operator
+  00068	48 85 c9	 test	 rcx, rcx
+  0006b	74 0a		 je	 SHORT $LN23@operator
+  0006d	48 3b ce	 cmp	 rcx, rsi
+  00070	74 05		 je	 SHORT $LN23@operator
 
 ; 125  : 				_Ostr.tie()->flush();
 
-  0006f	e8 00 00 00 00	 call	 ?flush@?$basic_ostream@DU?$char_traits@D@std@@@std@@QEAAAEAV12@XZ ; std::basic_ostream<char,std::char_traits<char> >::flush
+  00072	e8 00 00 00 00	 call	 ?flush@?$basic_ostream@DU?$char_traits@D@std@@@std@@QEAAAEAV12@XZ ; std::basic_ostream<char,std::char_traits<char> >::flush
 $LN23@operator:
 
 ; 126  : 			_Ok = _Ostr.good();	// store test only after flushing tie
 
-  00074	48 8b 06	 mov	 rax, QWORD PTR [rsi]
-  00077	48 63 48 04	 movsxd	 rcx, DWORD PTR [rax+4]
+  00077	48 8b 06	 mov	 rax, QWORD PTR [rsi]
+  0007a	48 63 48 04	 movsxd	 rcx, DWORD PTR [rax+4]
 ; File c:\program files (x86)\microsoft visual studio 14.0\vc\include\xiosbase
 
 ; 339  : 		return (rdstate() == goodbit);
 
-  0007b	83 7c 31 10 00	 cmp	 DWORD PTR [rcx+rsi+16], 0
-  00080	0f 94 c0	 sete	 al
-  00083	88 44 24 38	 mov	 BYTE PTR _Ok$[rsp+8], al
+  0007e	83 7c 31 10 00	 cmp	 DWORD PTR [rcx+rsi+16], 0
+  00083	0f 94 c0	 sete	 al
+  00086	88 44 24 38	 mov	 BYTE PTR _Ok$[rsp+8], al
 ; File c:\program files (x86)\microsoft visual studio 14.0\vc\include\ostream
 
 ; 832  : 	if (_Ok)
 
-  00087	84 c0		 test	 al, al
-  00089	0f 84 57 01 00
+  0008a	84 c0		 test	 al, al
+  0008c	0f 84 5f 01 00
 	00		 je	 $LN20@operator
 ; File c:\program files (x86)\microsoft visual studio 14.0\vc\include\xiosbase
 
 ; 423  : 		return (_Wide);
 
-  0008f	48 8b 7c 31 28	 mov	 rdi, QWORD PTR [rcx+rsi+40]
+  00092	48 8b 7c 31 28	 mov	 rdi, QWORD PTR [rcx+rsi+40]
 ; File c:\program files (x86)\microsoft visual studio 14.0\vc\include\ostream
 
 ; 834  : 		streamsize _Pad = _Ostr.width() <= 1 ? 0 : _Ostr.width() - 1;
 
-  00094	48 83 ff 01	 cmp	 rdi, 1
-  00098	7f 05		 jg	 SHORT $LN15@operator
-  0009a	49 8b fe	 mov	 rdi, r14
-  0009d	eb 03		 jmp	 SHORT $LN16@operator
+  00097	48 83 ff 01	 cmp	 rdi, 1
+  0009b	7f 05		 jg	 SHORT $LN15@operator
+  0009d	49 8b fe	 mov	 rdi, r14
+  000a0	eb 03		 jmp	 SHORT $LN16@operator
 $LN15@operator:
-  0009f	48 ff cf	 dec	 rdi
+  000a2	48 ff cf	 dec	 rdi
 $LN16@operator:
 ; File c:\program files (x86)\microsoft visual studio 14.0\vc\include\xiosbase
 
 ; 378  : 		return (_Fmtfl);
 
-  000a2	8b 44 31 18	 mov	 eax, DWORD PTR [rcx+rsi+24]
+  000a5	8b 44 31 18	 mov	 eax, DWORD PTR [rcx+rsi+24]
 ; File c:\program files (x86)\microsoft visual studio 14.0\vc\include\ostream
 
 ; 837  : 		if ((_Ostr.flags() & ios_base::adjustfield) != ios_base::left)
 
-  000a6	25 c0 01 00 00	 and	 eax, 448		; 000001c0H
-  000ab	41 bf 04 00 00
+  000a9	25 c0 01 00 00	 and	 eax, 448		; 000001c0H
+  000ae	41 bf 04 00 00
 	00		 mov	 r15d, 4
-  000b1	83 f8 40	 cmp	 eax, 64			; 00000040H
-  000b4	74 6b		 je	 SHORT $LN1178@operator
+  000b4	83 f8 40	 cmp	 eax, 64			; 00000040H
+  000b7	74 72		 je	 SHORT $LN1178@operator
+  000b9	0f 1f 80 00 00
+	00 00		 npad	 7
 $LL4@operator:
 
 ; 838  : 			for (; _State == ios_base::goodbit && 0 < _Pad;
 
-  000b6	85 db		 test	 ebx, ebx
-  000b8	0f 85 15 01 00
+  000c0	85 db		 test	 ebx, ebx
+  000c2	0f 85 16 01 00
 	00		 jne	 $LN6@operator
-  000be	48 85 ff	 test	 rdi, rdi
-  000c1	7e 5e		 jle	 SHORT $LN1178@operator
+  000c8	48 85 ff	 test	 rdi, rdi
+  000cb	7e 5e		 jle	 SHORT $LN1178@operator
 
 ; 840  : 				if (_Traits::eq_int_type(_Traits::eof(),
 
-  000c3	48 8b 06	 mov	 rax, QWORD PTR [rsi]
-  000c6	48 63 48 04	 movsxd	 rcx, DWORD PTR [rax+4]
+  000cd	48 8b 06	 mov	 rax, QWORD PTR [rsi]
+  000d0	48 63 48 04	 movsxd	 rcx, DWORD PTR [rax+4]
 ; File c:\program files (x86)\microsoft visual studio 14.0\vc\include\ios
 
 ; 113  : 		return (_Fillch);
 
-  000ca	44 0f b6 44 31
+  000d4	44 0f b6 44 31
 	58		 movzx	 r8d, BYTE PTR [rcx+rsi+88]
 
 ; 92   : 		return (_Mystrbuf);
 
-  000d0	48 8b 4c 31 48	 mov	 rcx, QWORD PTR [rcx+rsi+72]
+  000da	48 8b 4c 31 48	 mov	 rcx, QWORD PTR [rcx+rsi+72]
 ; File c:\program files (x86)\microsoft visual studio 14.0\vc\include\streambuf
 
 ; 314  : 		return (*_IPnext != 0 ? *_IPcount : 0);
 
-  000d5	48 8b 41 40	 mov	 rax, QWORD PTR [rcx+64]
-  000d9	48 83 38 00	 cmp	 QWORD PTR [rax], 0
-  000dd	74 25		 je	 SHORT $LN61@operator
-  000df	48 8b 51 58	 mov	 rdx, QWORD PTR [rcx+88]
-  000e3	8b 02		 mov	 eax, DWORD PTR [rdx]
+  000df	48 8b 41 40	 mov	 rax, QWORD PTR [rcx+64]
+  000e3	48 83 38 00	 cmp	 QWORD PTR [rax], 0
+  000e7	74 25		 je	 SHORT $LN61@operator
+  000e9	48 8b 51 58	 mov	 rdx, QWORD PTR [rcx+88]
+  000ed	8b 02		 mov	 eax, DWORD PTR [rdx]
 
 ; 200  : 		return (0 < _Pnavail()
 
-  000e5	85 c0		 test	 eax, eax
-  000e7	7e 1b		 jle	 SHORT $LN61@operator
+  000ef	85 c0		 test	 eax, eax
+  000f1	7e 1b		 jle	 SHORT $LN61@operator
 
 ; 308  : 		--*_IPcount;
 
-  000e9	ff c8		 dec	 eax
-  000eb	89 02		 mov	 DWORD PTR [rdx], eax
+  000f3	ff c8		 dec	 eax
+  000f5	89 02		 mov	 DWORD PTR [rdx], eax
 
 ; 309  : 		return ((*_IPnext)++);
 
-  000ed	48 8b 49 40	 mov	 rcx, QWORD PTR [rcx+64]
-  000f1	48 8b 11	 mov	 rdx, QWORD PTR [rcx]
-  000f4	48 8d 42 01	 lea	 rax, QWORD PTR [rdx+1]
-  000f8	48 89 01	 mov	 QWORD PTR [rcx], rax
+  000f7	48 8b 49 40	 mov	 rcx, QWORD PTR [rcx+64]
+  000fb	48 8b 11	 mov	 rdx, QWORD PTR [rcx]
+  000fe	48 8d 42 01	 lea	 rax, QWORD PTR [rdx+1]
+  00102	48 89 01	 mov	 QWORD PTR [rcx], rax
 
 ; 200  : 		return (0 < _Pnavail()
 
-  000fb	44 88 02	 mov	 BYTE PTR [rdx], r8b
+  00105	44 88 02	 mov	 BYTE PTR [rdx], r8b
 ; File c:\program files (x86)\microsoft visual studio 14.0\vc\include\iosfwd
 
 ; 589  : 		return ((unsigned char)_Ch);
 
-  000fe	41 0f b6 c0	 movzx	 eax, r8b
+  00108	41 0f b6 c0	 movzx	 eax, r8b
 ; File c:\program files (x86)\microsoft visual studio 14.0\vc\include\streambuf
 
 ; 200  : 		return (0 < _Pnavail()
 
-  00102	eb 0a		 jmp	 SHORT $LN2@operator
+  0010c	eb 0a		 jmp	 SHORT $LN2@operator
 $LN61@operator:
 ; File c:\program files (x86)\microsoft visual studio 14.0\vc\include\iosfwd
 
 ; 589  : 		return ((unsigned char)_Ch);
 
-  00104	41 0f b6 d0	 movzx	 edx, r8b
+  0010e	41 0f b6 d0	 movzx	 edx, r8b
 ; File c:\program files (x86)\microsoft visual studio 14.0\vc\include\streambuf
 
 ; 200  : 		return (0 < _Pnavail()
 
-  00108	48 8b 01	 mov	 rax, QWORD PTR [rcx]
-  0010b	ff 50 18	 call	 QWORD PTR [rax+24]
+  00112	48 8b 01	 mov	 rax, QWORD PTR [rcx]
+  00115	ff 50 18	 call	 QWORD PTR [rax+24]
 $LN2@operator:
 ; File c:\program files (x86)\microsoft visual studio 14.0\vc\include\ostream
 
 ; 839  : 				--_Pad)	// pad on left
 
-  0010e	48 ff cf	 dec	 rdi
-  00111	41 8b df	 mov	 ebx, r15d
-  00114	83 f8 ff	 cmp	 eax, -1
-  00117	41 0f 45 de	 cmovne	 ebx, r14d
-  0011b	89 5c 24 20	 mov	 DWORD PTR _State$[rsp], ebx
-  0011f	eb 95		 jmp	 SHORT $LL4@operator
+  00118	48 ff cf	 dec	 rdi
+  0011b	41 8b df	 mov	 ebx, r15d
+  0011e	83 f8 ff	 cmp	 eax, -1
+  00121	41 0f 45 de	 cmovne	 ebx, r14d
+  00125	89 5c 24 20	 mov	 DWORD PTR _State$[rsp], ebx
+  00129	eb 95		 jmp	 SHORT $LL4@operator
 $LN1178@operator:
 
 ; 845  : 			&& _Traits::eq_int_type(_Traits::eof(),
 
-  00121	48 8b 06	 mov	 rax, QWORD PTR [rsi]
-  00124	48 63 48 04	 movsxd	 rcx, DWORD PTR [rax+4]
+  0012b	48 8b 06	 mov	 rax, QWORD PTR [rsi]
+  0012e	48 63 48 04	 movsxd	 rcx, DWORD PTR [rax+4]
 ; File c:\program files (x86)\microsoft visual studio 14.0\vc\include\ios
 
 ; 92   : 		return (_Mystrbuf);
 
-  00128	48 8b 4c 31 48	 mov	 rcx, QWORD PTR [rcx+rsi+72]
+  00132	48 8b 4c 31 48	 mov	 rcx, QWORD PTR [rcx+rsi+72]
 ; File c:\program files (x86)\microsoft visual studio 14.0\vc\include\streambuf
 
 ; 314  : 		return (*_IPnext != 0 ? *_IPcount : 0);
 
-  0012d	48 8b 41 40	 mov	 rax, QWORD PTR [rcx+64]
-  00131	48 83 38 00	 cmp	 QWORD PTR [rax], 0
-  00135	74 21		 je	 SHORT $LN85@operator
-  00137	48 8b 51 58	 mov	 rdx, QWORD PTR [rcx+88]
-  0013b	8b 02		 mov	 eax, DWORD PTR [rdx]
+  00137	48 8b 41 40	 mov	 rax, QWORD PTR [rcx+64]
+  0013b	48 83 38 00	 cmp	 QWORD PTR [rax], 0
+  0013f	74 25		 je	 SHORT $LN85@operator
+  00141	48 8b 51 58	 mov	 rdx, QWORD PTR [rcx+88]
+  00145	8b 02		 mov	 eax, DWORD PTR [rdx]
 
 ; 200  : 		return (0 < _Pnavail()
 
-  0013d	85 c0		 test	 eax, eax
-  0013f	7e 17		 jle	 SHORT $LN85@operator
+  00147	85 c0		 test	 eax, eax
+  00149	7e 1b		 jle	 SHORT $LN85@operator
 
 ; 308  : 		--*_IPcount;
 
-  00141	ff c8		 dec	 eax
-  00143	89 02		 mov	 DWORD PTR [rdx], eax
+  0014b	ff c8		 dec	 eax
+  0014d	89 02		 mov	 DWORD PTR [rdx], eax
 
 ; 309  : 		return ((*_IPnext)++);
 
-  00145	48 8b 49 40	 mov	 rcx, QWORD PTR [rcx+64]
-  00149	48 8b 11	 mov	 rdx, QWORD PTR [rcx]
-  0014c	48 8d 42 01	 lea	 rax, QWORD PTR [rdx+1]
-  00150	48 89 01	 mov	 QWORD PTR [rcx], rax
-  00153	c6 02 0a	 mov	 BYTE PTR [rdx], 10
+  0014f	48 8b 49 40	 mov	 rcx, QWORD PTR [rcx+64]
+  00153	48 8b 11	 mov	 rdx, QWORD PTR [rcx]
+  00156	48 8d 42 01	 lea	 rax, QWORD PTR [rdx+1]
+  0015a	48 89 01	 mov	 QWORD PTR [rcx], rax
+  0015d	44 88 2a	 mov	 BYTE PTR [rdx], r13b
+; File c:\program files (x86)\microsoft visual studio 14.0\vc\include\iosfwd
+
+; 589  : 		return ((unsigned char)_Ch);
+
+  00160	41 0f b6 c5	 movzx	 eax, r13b
+; File c:\program files (x86)\microsoft visual studio 14.0\vc\include\streambuf
 
 ; 200  : 		return (0 < _Pnavail()
 
-  00156	eb 18		 jmp	 SHORT $LL1182@operator
+  00164	eb 0a		 jmp	 SHORT $LN86@operator
 $LN85@operator:
-  00158	48 8b 01	 mov	 rax, QWORD PTR [rcx]
-  0015b	ba 0a 00 00 00	 mov	 edx, 10
-  00160	ff 50 18	 call	 QWORD PTR [rax+24]
-  00163	83 f8 ff	 cmp	 eax, -1
+; File c:\program files (x86)\microsoft visual studio 14.0\vc\include\iosfwd
+
+; 589  : 		return ((unsigned char)_Ch);
+
+  00166	41 0f b6 d5	 movzx	 edx, r13b
+; File c:\program files (x86)\microsoft visual studio 14.0\vc\include\streambuf
+
+; 200  : 		return (0 < _Pnavail()
+
+  0016a	48 8b 01	 mov	 rax, QWORD PTR [rcx]
+  0016d	ff 50 18	 call	 QWORD PTR [rax+24]
+$LN86@operator:
+  00170	83 f8 ff	 cmp	 eax, -1
 ; File c:\program files (x86)\microsoft visual studio 14.0\vc\include\ostream
 
 ; 845  : 			&& _Traits::eq_int_type(_Traits::eof(),
 
-  00166	41 0f 44 df	 cmove	 ebx, r15d
-$LN1186@operator:
-  0016a	89 5c 24 20	 mov	 DWORD PTR _State$[rsp], ebx
-  0016e	66 90		 npad	 2
-$LL1182@operator:
+  00173	41 0f 44 df	 cmove	 ebx, r15d
+$LN1183@operator:
+  00177	89 5c 24 20	 mov	 DWORD PTR _State$[rsp], ebx
 
 ; 846  : 				_Ostr.rdbuf()->sputc(_Ch)))
 ; 847  : 			_State |= ios_base::badbit;
 ; 848  : 
 ; 849  : 		for (; _State == ios_base::goodbit && 0 < _Pad;
 
-  00170	85 db		 test	 ebx, ebx
-  00172	75 5f		 jne	 SHORT $LN6@operator
-  00174	48 85 ff	 test	 rdi, rdi
-  00177	7e 5a		 jle	 SHORT $LN6@operator
+  0017b	85 db		 test	 ebx, ebx
+  0017d	75 5f		 jne	 SHORT $LN6@operator
+  0017f	48 85 ff	 test	 rdi, rdi
+  00182	7e 5a		 jle	 SHORT $LN6@operator
 
 ; 851  : 			if (_Traits::eq_int_type(_Traits::eof(),
 
-  00179	48 8b 06	 mov	 rax, QWORD PTR [rsi]
-  0017c	48 63 48 04	 movsxd	 rcx, DWORD PTR [rax+4]
+  00184	48 8b 06	 mov	 rax, QWORD PTR [rsi]
+  00187	48 63 48 04	 movsxd	 rcx, DWORD PTR [rax+4]
 ; File c:\program files (x86)\microsoft visual studio 14.0\vc\include\ios
 
 ; 113  : 		return (_Fillch);
 
-  00180	44 0f b6 44 31
+  0018b	44 0f b6 44 31
 	58		 movzx	 r8d, BYTE PTR [rcx+rsi+88]
 
 ; 92   : 		return (_Mystrbuf);
 
-  00186	48 8b 4c 31 48	 mov	 rcx, QWORD PTR [rcx+rsi+72]
+  00191	48 8b 4c 31 48	 mov	 rcx, QWORD PTR [rcx+rsi+72]
 ; File c:\program files (x86)\microsoft visual studio 14.0\vc\include\streambuf
 
 ; 314  : 		return (*_IPnext != 0 ? *_IPcount : 0);
 
-  0018b	48 8b 41 40	 mov	 rax, QWORD PTR [rcx+64]
-  0018f	48 83 38 00	 cmp	 QWORD PTR [rax], 0
-  00193	74 25		 je	 SHORT $LN111@operator
-  00195	48 8b 51 58	 mov	 rdx, QWORD PTR [rcx+88]
-  00199	8b 02		 mov	 eax, DWORD PTR [rdx]
+  00196	48 8b 41 40	 mov	 rax, QWORD PTR [rcx+64]
+  0019a	48 83 38 00	 cmp	 QWORD PTR [rax], 0
+  0019e	74 25		 je	 SHORT $LN111@operator
+  001a0	48 8b 51 58	 mov	 rdx, QWORD PTR [rcx+88]
+  001a4	8b 02		 mov	 eax, DWORD PTR [rdx]
 
 ; 200  : 		return (0 < _Pnavail()
 
-  0019b	85 c0		 test	 eax, eax
-  0019d	7e 1b		 jle	 SHORT $LN111@operator
+  001a6	85 c0		 test	 eax, eax
+  001a8	7e 1b		 jle	 SHORT $LN111@operator
 
 ; 308  : 		--*_IPcount;
 
-  0019f	ff c8		 dec	 eax
-  001a1	89 02		 mov	 DWORD PTR [rdx], eax
+  001aa	ff c8		 dec	 eax
+  001ac	89 02		 mov	 DWORD PTR [rdx], eax
 
 ; 309  : 		return ((*_IPnext)++);
 
-  001a3	48 8b 49 40	 mov	 rcx, QWORD PTR [rcx+64]
-  001a7	48 8b 11	 mov	 rdx, QWORD PTR [rcx]
-  001aa	48 8d 42 01	 lea	 rax, QWORD PTR [rdx+1]
-  001ae	48 89 01	 mov	 QWORD PTR [rcx], rax
+  001ae	48 8b 49 40	 mov	 rcx, QWORD PTR [rcx+64]
+  001b2	48 8b 11	 mov	 rdx, QWORD PTR [rcx]
+  001b5	48 8d 42 01	 lea	 rax, QWORD PTR [rdx+1]
+  001b9	48 89 01	 mov	 QWORD PTR [rcx], rax
 
 ; 200  : 		return (0 < _Pnavail()
 
-  001b1	44 88 02	 mov	 BYTE PTR [rdx], r8b
+  001bc	44 88 02	 mov	 BYTE PTR [rdx], r8b
 ; File c:\program files (x86)\microsoft visual studio 14.0\vc\include\iosfwd
 
 ; 589  : 		return ((unsigned char)_Ch);
 
-  001b4	41 0f b6 c0	 movzx	 eax, r8b
+  001bf	41 0f b6 c0	 movzx	 eax, r8b
 ; File c:\program files (x86)\microsoft visual studio 14.0\vc\include\streambuf
 
 ; 200  : 		return (0 < _Pnavail()
 
-  001b8	eb 0a		 jmp	 SHORT $LN5@operator
+  001c3	eb 0a		 jmp	 SHORT $LN5@operator
 $LN111@operator:
 ; File c:\program files (x86)\microsoft visual studio 14.0\vc\include\iosfwd
 
 ; 589  : 		return ((unsigned char)_Ch);
 
-  001ba	41 0f b6 d0	 movzx	 edx, r8b
+  001c5	41 0f b6 d0	 movzx	 edx, r8b
 ; File c:\program files (x86)\microsoft visual studio 14.0\vc\include\streambuf
 
 ; 200  : 		return (0 < _Pnavail()
 
-  001be	48 8b 01	 mov	 rax, QWORD PTR [rcx]
-  001c1	ff 50 18	 call	 QWORD PTR [rax+24]
+  001c9	48 8b 01	 mov	 rax, QWORD PTR [rcx]
+  001cc	ff 50 18	 call	 QWORD PTR [rax+24]
 $LN5@operator:
 ; File c:\program files (x86)\microsoft visual studio 14.0\vc\include\ostream
 
 ; 850  : 			--_Pad)	// pad on right
 
-  001c4	48 ff cf	 dec	 rdi
-  001c7	41 8b df	 mov	 ebx, r15d
-  001ca	83 f8 ff	 cmp	 eax, -1
-  001cd	41 0f 45 de	 cmovne	 ebx, r14d
-  001d1	eb 97		 jmp	 SHORT $LN1186@operator
+  001cf	48 ff cf	 dec	 rdi
+  001d2	41 8b df	 mov	 ebx, r15d
+  001d5	83 f8 ff	 cmp	 eax, -1
+  001d8	41 0f 45 de	 cmovne	 ebx, r14d
+  001dc	eb 99		 jmp	 SHORT $LN1183@operator
 $LN6@operator:
-  001d3	eb 11		 jmp	 SHORT $LN20@operator
+  001de	eb 11		 jmp	 SHORT $LN20@operator
 $LN21@operator:
 
 ; 852  : 				_Ostr.rdbuf()->sputc(_Ostr.fill())))
 ; 853  : 				_State |= ios_base::badbit;
 ; 854  : 		_CATCH_IO_(_Ostr)
 
-  001d5	45 33 f6	 xor	 r14d, r14d
-  001d8	8b 5c 24 20	 mov	 ebx, DWORD PTR _State$[rsp]
-  001dc	4c 8b 64 24 30	 mov	 r12, QWORD PTR _Ok$[rsp]
-  001e1	48 8b 74 24 28	 mov	 rsi, QWORD PTR _Ostr$GSCopy$[rsp]
+  001e0	45 33 f6	 xor	 r14d, r14d
+  001e3	8b 5c 24 20	 mov	 ebx, DWORD PTR _State$[rsp]
+  001e7	4c 8b 64 24 30	 mov	 r12, QWORD PTR _Ok$[rsp]
+  001ec	48 8b 74 24 28	 mov	 rsi, QWORD PTR _Ostr$GSCopy$[rsp]
 $LN20@operator:
 
 ; 855  : 		}
 ; 856  : 
 ; 857  : 	_Ostr.width(0);
 
-  001e6	48 8b 06	 mov	 rax, QWORD PTR [rsi]
-  001e9	48 63 48 04	 movsxd	 rcx, DWORD PTR [rax+4]
+  001f1	48 8b 06	 mov	 rax, QWORD PTR [rsi]
+  001f4	48 63 48 04	 movsxd	 rcx, DWORD PTR [rax+4]
 ; File c:\program files (x86)\microsoft visual studio 14.0\vc\include\xiosbase
 
 ; 429  : 		_Wide = _Newwidth;
 
-  001ed	4c 89 74 31 28	 mov	 QWORD PTR [rcx+rsi+40], r14
+  001f8	4c 89 74 31 28	 mov	 QWORD PTR [rcx+rsi+40], r14
 ; File c:\program files (x86)\microsoft visual studio 14.0\vc\include\ostream
 
 ; 858  : 	_Ostr.setstate(_State);
 
-  001f2	48 8b 06	 mov	 rax, QWORD PTR [rsi]
-  001f5	48 63 48 04	 movsxd	 rcx, DWORD PTR [rax+4]
-  001f9	48 03 ce	 add	 rcx, rsi
+  001fd	48 8b 06	 mov	 rax, QWORD PTR [rsi]
+  00200	48 63 48 04	 movsxd	 rcx, DWORD PTR [rax+4]
+  00204	48 03 ce	 add	 rcx, rsi
 ; File c:\program files (x86)\microsoft visual studio 14.0\vc\include\ios
 
 ; 59   : 		if (_State != goodbit)
 
-  001fc	85 db		 test	 ebx, ebx
-  001fe	74 1b		 je	 SHORT $LN1148@operator
+  00207	85 db		 test	 ebx, ebx
+  00209	74 1b		 je	 SHORT $LN1148@operator
 ; File c:\program files (x86)\microsoft visual studio 14.0\vc\include\xiosbase
 
 ; 315  : 		return (_Mystate);
 
-  00200	8b 41 10	 mov	 eax, DWORD PTR [rcx+16]
+  0020b	8b 41 10	 mov	 eax, DWORD PTR [rcx+16]
 ; File c:\program files (x86)\microsoft visual studio 14.0\vc\include\ios
 
 ; 60   : 			clear((iostate)((int)rdstate() | (int)_State), _Reraise);
 
-  00203	0b c3		 or	 eax, ebx
-  00205	8b d0		 mov	 edx, eax
-  00207	83 ca 04	 or	 edx, 4
-  0020a	48 83 79 48 00	 cmp	 QWORD PTR [rcx+72], 0
-  0020f	0f 45 d0	 cmovne	 edx, eax
+  0020e	0b c3		 or	 eax, ebx
+  00210	8b d0		 mov	 edx, eax
+  00212	83 ca 04	 or	 edx, 4
+  00215	48 83 79 48 00	 cmp	 QWORD PTR [rcx+72], 0
+  0021a	0f 45 d0	 cmovne	 edx, eax
 
 ; 45   : 		ios_base::clear((iostate)(_Mystrbuf == 0
 
-  00212	45 33 c0	 xor	 r8d, r8d
-  00215	e8 00 00 00 00	 call	 ?clear@ios_base@std@@QEAAXH_N@Z ; std::ios_base::clear
-  0021a	90		 npad	 1
+  0021d	45 33 c0	 xor	 r8d, r8d
+  00220	e8 00 00 00 00	 call	 ?clear@ios_base@std@@QEAAXH_N@Z ; std::ios_base::clear
+  00225	90		 npad	 1
 $LN1148@operator:
 ; File c:\program files (x86)\microsoft visual studio 14.0\vc\include\ostream
 
 ; 132  : 			if (!_XSTD uncaught_exception())
 
-  0021b	e8 00 00 00 00	 call	 ?uncaught_exception@std@@YA_NXZ ; std::uncaught_exception
-  00220	84 c0		 test	 al, al
-  00222	75 09		 jne	 SHORT $LN1157@operator
+  00226	e8 00 00 00 00	 call	 ?uncaught_exception@std@@YA_NXZ ; std::uncaught_exception
+  0022b	84 c0		 test	 al, al
+  0022d	75 09		 jne	 SHORT $LN1157@operator
 
 ; 133  : 				this->_Myostr._Osfx();
 
-  00224	49 8b cc	 mov	 rcx, r12
-  00227	e8 00 00 00 00	 call	 ?_Osfx@?$basic_ostream@DU?$char_traits@D@std@@@std@@QEAAXXZ ; std::basic_ostream<char,std::char_traits<char> >::_Osfx
-  0022c	90		 npad	 1
+  0022f	49 8b cc	 mov	 rcx, r12
+  00232	e8 00 00 00 00	 call	 ?_Osfx@?$basic_ostream@DU?$char_traits@D@std@@@std@@QEAAXXZ ; std::basic_ostream<char,std::char_traits<char> >::_Osfx
+  00237	90		 npad	 1
 $LN1157@operator:
 
 ; 107  : 			if (_Myostr.rdbuf() != 0)
 
-  0022d	49 8b 0c 24	 mov	 rcx, QWORD PTR [r12]
-  00231	48 63 51 04	 movsxd	 rdx, DWORD PTR [rcx+4]
+  00238	49 8b 0c 24	 mov	 rcx, QWORD PTR [r12]
+  0023c	48 63 51 04	 movsxd	 rdx, DWORD PTR [rcx+4]
 ; File c:\program files (x86)\microsoft visual studio 14.0\vc\include\ios
 
 ; 92   : 		return (_Mystrbuf);
 
-  00235	4a 8b 4c 22 48	 mov	 rcx, QWORD PTR [rdx+r12+72]
+  00240	4a 8b 4c 22 48	 mov	 rcx, QWORD PTR [rdx+r12+72]
 ; File c:\program files (x86)\microsoft visual studio 14.0\vc\include\ostream
 
 ; 107  : 			if (_Myostr.rdbuf() != 0)
 
-  0023a	48 85 c9	 test	 rcx, rcx
-  0023d	74 07		 je	 SHORT $LN1161@operator
+  00245	48 85 c9	 test	 rcx, rcx
+  00248	74 07		 je	 SHORT $LN1161@operator
 
 ; 108  : 				_Myostr.rdbuf()->_Unlock();
 
-  0023f	48 8b 11	 mov	 rdx, QWORD PTR [rcx]
-  00242	ff 52 10	 call	 QWORD PTR [rdx+16]
-  00245	90		 npad	 1
+  0024a	48 8b 11	 mov	 rdx, QWORD PTR [rcx]
+  0024d	ff 52 10	 call	 QWORD PTR [rdx+16]
+  00250	90		 npad	 1
 $LN1161@operator:
 
 ; 859  : 	return (_Ostr);
 
-  00246	48 8b c6	 mov	 rax, rsi
+  00251	48 8b c6	 mov	 rax, rsi
 
 ; 860  : 	}
 
-  00249	4c 8d 5c 24 50	 lea	 r11, QWORD PTR [rsp+80]
-  0024e	49 8b 5b 28	 mov	 rbx, QWORD PTR [r11+40]
-  00252	49 8b 73 30	 mov	 rsi, QWORD PTR [r11+48]
-  00256	49 8b 7b 38	 mov	 rdi, QWORD PTR [r11+56]
-  0025a	49 8b e3	 mov	 rsp, r11
-  0025d	41 5f		 pop	 r15
-  0025f	41 5e		 pop	 r14
-  00261	41 5c		 pop	 r12
-  00263	c3		 ret	 0
-$LN1185@operator:
+  00254	4c 8d 5c 24 50	 lea	 r11, QWORD PTR [rsp+80]
+  00259	49 8b 5b 40	 mov	 rbx, QWORD PTR [r11+64]
+  0025d	49 8b 73 48	 mov	 rsi, QWORD PTR [r11+72]
+  00261	49 8b e3	 mov	 rsp, r11
+  00264	41 5f		 pop	 r15
+  00266	41 5e		 pop	 r14
+  00268	41 5d		 pop	 r13
+  0026a	41 5c		 pop	 r12
+  0026c	5f		 pop	 rdi
+  0026d	c3		 ret	 0
+$LN1182@operator:
 ??$?6U?$char_traits@D@std@@@std@@YAAEAV?$basic_ostream@DU?$char_traits@D@std@@@0@AEAV10@D@Z ENDP ; std::operator<<<std::char_traits<char> >
 _TEXT	ENDS
 ;	COMDAT text$x
@@ -31196,8 +31327,8 @@ text$x	SEGMENT
 _State$ = 32
 _Ostr$GSCopy$ = 40
 _Ok$ = 48
-_Ostr$ = 112
-_Ch$dead$ = 120
+_Ostr$ = 128
+_Ch$ = 136
 ?dtor$1@?0???$?6U?$char_traits@D@std@@@std@@YAAEAV?$basic_ostream@DU?$char_traits@D@std@@@0@AEAV10@D@Z@4HA PROC ; `std::operator<<<std::char_traits<char> >'::`1'::dtor$1
   00000	48 8d 8a 30 00
 	00 00		 lea	 rcx, QWORD PTR _Ok$[rdx]
@@ -31206,8 +31337,8 @@ _Ch$dead$ = 120
 _State$ = 32
 _Ostr$GSCopy$ = 40
 _Ok$ = 48
-_Ostr$ = 112
-_Ch$dead$ = 120
+_Ostr$ = 128
+_Ch$ = 136
 ?dtor$0@?0???$?6U?$char_traits@D@std@@@std@@YAAEAV?$basic_ostream@DU?$char_traits@D@std@@@0@AEAV10@D@Z@4HA PROC ; `std::operator<<<std::char_traits<char> >'::`1'::dtor$0
   0000c	48 8d 8a 30 00
 	00 00		 lea	 rcx, QWORD PTR _Ok$[rdx]
@@ -31216,8 +31347,8 @@ _Ch$dead$ = 120
 _State$ = 32
 _Ostr$GSCopy$ = 40
 _Ok$ = 48
-_Ostr$ = 112
-_Ch$dead$ = 120
+_Ostr$ = 128
+_Ch$ = 136
 ?catch$236@?0???$?6U?$char_traits@D@std@@@std@@YAAEAV?$basic_ostream@DU?$char_traits@D@std@@@0@AEAV10@D@Z@4HA PROC ; `std::operator<<<std::char_traits<char> >'::`1'::catch$236
 
 ; 852  : 				_Ostr.rdbuf()->sputc(_Ostr.fill())))
@@ -31268,7 +31399,7 @@ $LN138@catch$236:
 
   0004e	48 8d 05 00 00
 	00 00		 lea	 rax, $LN21@catch$236
-  00055	eb 0a		 jmp	 SHORT $LN1187@catch$236
+  00055	eb 0a		 jmp	 SHORT $LN1184@catch$236
 $LN141@catch$236:
 ; File c:\program files (x86)\microsoft visual studio 14.0\vc\include\xiosbase
 
@@ -31278,7 +31409,7 @@ $LN141@catch$236:
   00059	33 c9		 xor	 ecx, ecx
   0005b	e8 00 00 00 00	 call	 _CxxThrowException
   00060	90		 npad	 1
-$LN1187@catch$236:
+$LN1184@catch$236:
   00061	48 83 c4 20	 add	 rsp, 32			; 00000020H
   00065	5d		 pop	 rbp
   00066	c3		 ret	 0
@@ -31291,8 +31422,8 @@ text$x	SEGMENT
 _State$ = 32
 _Ostr$GSCopy$ = 40
 _Ok$ = 48
-_Ostr$ = 112
-_Ch$dead$ = 120
+_Ostr$ = 128
+_Ch$ = 136
 ?dtor$1@?0???$?6U?$char_traits@D@std@@@std@@YAAEAV?$basic_ostream@DU?$char_traits@D@std@@@0@AEAV10@D@Z@4HA PROC ; `std::operator<<<std::char_traits<char> >'::`1'::dtor$1
   00000	48 8d 8a 30 00
 	00 00		 lea	 rcx, QWORD PTR _Ok$[rdx]
@@ -31305,8 +31436,8 @@ text$x	SEGMENT
 _State$ = 32
 _Ostr$GSCopy$ = 40
 _Ok$ = 48
-_Ostr$ = 112
-_Ch$dead$ = 120
+_Ostr$ = 128
+_Ch$ = 136
 ?dtor$0@?0???$?6U?$char_traits@D@std@@@std@@YAAEAV?$basic_ostream@DU?$char_traits@D@std@@@0@AEAV10@D@Z@4HA PROC ; `std::operator<<<std::char_traits<char> >'::`1'::dtor$0
   0000c	48 8d 8a 30 00
 	00 00		 lea	 rcx, QWORD PTR _Ok$[rdx]
@@ -31325,8 +31456,8 @@ text$x	SEGMENT
 _State$ = 32
 _Ostr$GSCopy$ = 40
 _Ok$ = 48
-_Ostr$ = 112
-_Ch$dead$ = 120
+_Ostr$ = 128
+_Ch$ = 136
 ?catch$236@?0???$?6U?$char_traits@D@std@@@std@@YAAEAV?$basic_ostream@DU?$char_traits@D@std@@@0@AEAV10@D@Z@4HA PROC ; `std::operator<<<std::char_traits<char> >'::`1'::catch$236
 ; File c:\program files (x86)\microsoft visual studio 14.0\vc\include\ostream
 
@@ -31375,7 +31506,7 @@ $LN138@catch$236:
 
   0004e	48 8d 05 00 00
 	00 00		 lea	 rax, $LN21@catch$236
-  00055	eb 0a		 jmp	 SHORT $LN1187@catch$236
+  00055	eb 0a		 jmp	 SHORT $LN1184@catch$236
 $LN141@catch$236:
 ; File c:\program files (x86)\microsoft visual studio 14.0\vc\include\xiosbase
 
@@ -31385,7 +31516,7 @@ $LN141@catch$236:
   00059	33 c9		 xor	 ecx, ecx
   0005b	e8 00 00 00 00	 call	 _CxxThrowException
   00060	90		 npad	 1
-$LN1187@catch$236:
+$LN1184@catch$236:
   00061	48 83 c4 20	 add	 rsp, 32			; 00000020H
   00065	5d		 pop	 rbp
   00066	c3		 ret	 0
