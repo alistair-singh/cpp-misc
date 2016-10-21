@@ -2,115 +2,164 @@
 #include <iostream>
 #include <stdexcept>
 #include <string>
-#include <vector>
 
 template <class TIterator> class Stream {
   TIterator m_front;
   TIterator m_back;
 
 public:
-  Stream(TIterator front, TIterator back) : m_front(front), m_back(back) {}
-  const auto current() const noexcept { return *m_front; }
+  explicit Stream(const TIterator &front, const TIterator &back)
+      : m_front(front), m_back(back) {}
+  const auto &current() const noexcept { return *m_front; }
   auto next() const { return Stream<TIterator>(std::next(m_front), m_back); }
   auto end() const noexcept { return m_front == m_back; }
-
-  typedef decltype(Stream<TIterator>::current()) type;
 };
 
-template <class T> auto make_stream(T &container) {
-  auto begin = std::cbegin(container);
-  auto end = std::cend(container);
-  return Stream<decltype(begin)>(begin, end);
+template <typename T> auto make_stream(const T &iterable) {
+  return Stream<T::const_iterator>(std::cbegin(iterable), std::cend(iterable));
 }
 
-class StreamPos {
-  size_t m_absolute;
-  size_t m_line;
-  size_t m_column;
-
-public:
-  StreamPos(size_t absolute) : m_absolute(absolute) {}
-  size_t absolute() const noexcept { return m_absolute; }
-  size_t line() const noexcept { return m_line; }
-  size_t column() const noexcept { return m_column; }
-};
-
-enum class ResultType { Success, Error };
-
-class Message {
+class Error {
+  int m_line;
+  int m_column;
   std::string m_message;
 
 public:
-  explicit Message(const std::string &message) : m_message(message) {}
-  const std::string &message() const noexcept { return m_message; }
+  Error(int line, int column, const std::string &message)
+      : m_line(line), m_column(column), m_message(message) {}
+
+  auto line() const noexcept { return m_line; }
+  auto column() const noexcept { return m_column; }
+  auto message() const noexcept { return &m_message; }
+  std::string formattedMessage() const {
+    return "(" + std::to_string(m_line) + ", " + std::to_string(m_column) +
+           "): " + m_message;
+  }
 };
 
-template <class TStream, class TValue> class Result {
-  TStream m_stream;
-  ResultType m_type;
+template <class TItem, class TStream> class Result {
+  bool m_hasError;
   union {
-    TValue m_value;
-    Message m_error;
+    TItem m_item;
+    Error m_error;
   };
-  StreamPos m_postion;
+  TStream m_stream;
 
 public:
-  Result(const TStream &stream, const StreamPos &position,
-         TValue &value)
-      : m_stream(stream), m_postion(position), m_type(ResultType::Success),
-        m_value(value) {}
-  Result(const TStream &stream, const StreamPos &position,
-         Message &error)
-      : m_stream(stream), m_postion(position), m_type(ResultType::Error),
-        m_error(error) {}
-  ~Result() {}
-  const TStream &stream() const noexcept { return m_stream; }
-  const StreamPos &postion() const noexcept { return m_postion; }
-  const ResultType type() const noexcept { return m_type; }
-  const TValue &value() const {
-    if (m_type == ResultType::Error)
-      throw std::logic_error("Invoking the Result::value() on error result.");
-    return m_value;
+  explicit Result(const TItem &item, const TStream &stream)
+      : m_item(item), m_stream(stream), m_hasError(false) {}
+  explicit Result(const Error &error, const TStream &stream)
+      : m_error(error), m_stream(stream), m_hasError(true) {}
+  Result(const Result<TItem, TStream> &result)
+      : m_stream(result.m_stream), m_hasError(result.m_hasError) {
+    if (m_hasError) {
+      m_error = result.m_error;
+    } else {
+      m_item = result.m_item;
+    }
   }
-  const Message error() const {
-    if (m_type == ResultType::Success)
-      throw std::logic_error("Invoking the Result::error() on success result.");
+  ~Result() {
+    if (m_hasError) {
+      m_error.~Error();
+    } else {
+      m_item.~TItem();
+    }
+    m_stream.~TStream();
+  }
+  auto item() const {
+    if (m_hasError)
+      throw std::runtime_error(
+          "Result::item() called on a result with error: " +
+          m_error.formattedMessage());
+    return m_item;
+  }
+  auto hasError() const noexcept { return m_hasError; }
+  auto error() const {
+    if (!m_hasError)
+      throw std::runtime_error(
+          "Result::error() called on a result without error.");
     return m_error;
   }
 };
 
-template <class TStream, class TValue> class Parser {
+template <class TStream> class EosParser {
 public:
-  const Result<TStream, TValue> &parse(const TStream &stream,
-                                           const StreamPos &position) const;
-};
-
-template <class TStream, class TType = TStream::type> class ElementParser : Parser<TStream, TType> {
-public:
-  const Result<TStream, TStream> &parse(TStream stream,
-                                                StreamPos position) const override {
-    if (stream.end()) {
-      return Result<TStream, decltype(stream.current())>(
-          stream.next(), position, Error("End of Stream"));
-    } else {
-      auto element = stream.current();
-      auto nextPosition = position; // TODO: Calculate next
-      return Result<TStream, decltype(stream.current())>(
-          stream.next(), nextPosition, element);
+  Result<char, TStream> RunParser(const TStream &stream) {
+    if (!stream.end()) {
+      Error error{0, 0, "End of stream expected."};
+      return Result<char, TStream>(error, stream);
     }
+    return Result<char, TStream>(0, stream);
   }
 };
 
-int wmain() {
-  std::wstring text = L"Hello World";
-  auto stream = make_stream(text);
+template <class TItem, class TStream> class ItemParser {
+public:
+  Result<TItem, TStream> RunParser(const TStream &stream) {
+    if (stream.end()) {
+      Error error{0, 0, "End of stream."};
+      return Result<TItem, TStream>(error, stream);
+    }
+    return Result<TItem, TStream>(stream.current(), stream.next());
+  }
+};
+
+template <class TItem, class TStream, class TParserLeft, class TParserRight>
+class OrParser {
+  TParserLeft m_left;
+  TParserRight m_right;
+
+public:
+  OrParser(TParserLeft left, TParserRight right)
+      : m_left(left), m_right(right){};
+  Result<TItem, TStream> RunParser(const TStream &stream) {
+    auto leftResult = m_left.RunParser(stream);
+    if (!leftResult.hasError())
+      return leftResult;
+    return m_right.RunParser(stream);
+  }
+};
+
+int main() {
+  std::string source = "hello world";
+  auto stream = make_stream(source);
   while (!stream.end()) {
-    std::wcout << L'\'' << stream.current() << L'\'' << std::endl;
+    auto c = stream.current();
+    std::cout << '\'' << c << '\'' << std::endl;
     stream = stream.next();
   }
+  Error error(1, 2, "err");
+  std::cout << error.formattedMessage() << std::endl;
+  Result<char, Stream<std::string::const_iterator>> resErr(error, stream);
 
-  //  StreamPos position(0);
-  //  ElementParser<wchar_t> parser;
-  //  auto result = parser.parse(stream, position);
+  try {
+    resErr.error();
+    resErr.item();
+  } catch (std::runtime_error &error) {
+    std::cerr << error.what() << std::endl;
+  }
+  Result<char, Stream<std::string::const_iterator>> res1('a', stream);
+  try {
+    if ('a' == res1.item())
+      std::wcout << "equal a" << std::endl;
+    res1.error();
+  } catch (std::runtime_error &error) {
+    std::cerr << error.what() << std::endl;
+  }
+
+  auto stream2 = make_stream(source);
+  ItemParser<char, Stream<std::string::const_iterator>> parser1;
+  auto res2 = parser1.RunParser(stream2);
+  std::cout << res2.item() << std::endl;
+
+  EosParser<Stream<std::string::const_iterator>> parser2;
+  auto res3 = parser2.RunParser(stream);
+  std::cout << res3.item() << std::endl;
+
+  OrParser<char, Stream<std::string::const_iterator>,
+           ItemParser<char, Stream<std::string::const_iterator>>,
+           EosParser<Stream<std::string::const_iterator>>>
+      parser3(parser1, parser2);
+  parser3.RunParser(stream2);
   return 0;
 }
