@@ -80,15 +80,119 @@ public:
   void reset() {}
 };
 
+template <typename TAction> struct NewAction {
+  TAction action;
+
+  template <typename T> void operator()(T t) { action(t); }
+
+  void reset() {}
+};
+
+template <typename TAction> auto fromAction(TAction a) {
+  return [&] { return NewAction<TAction>{std::move(a)}; };
+};
+
+template <typename TPredicate, typename TAction> struct NewPredicate {
+  TPredicate predicate;
+  TAction action;
+
+  template <typename T> void operator()(T t) {
+    if (predicate(T))
+      action(t);
+  }
+
+  void reset() {}
+};
+
+template <typename TAction, typename TPredicate>
+auto wherePredicate(TPredicate p) {
+  return [&](TAction a) {
+    return NewPredicate<TPredicate, TAction>{std::move(p), std::move(a)};
+  };
+};
+
+//---------------------------------------------------------------------------
+
+struct StartAction {
+  template <typename TBuilder> auto operator & (TBuilder builder) const {
+    return builder.build(*this);
+  }
+};
+
+template <typename TAction> struct ActionAction {
+  TAction action;
+
+  void reset() {}
+
+  template <typename T> void next(const T &t) { action(t); }
+
+  template <typename TBuilder> auto operator & (TBuilder builder) const {
+    return builder.build(*this);
+  }
+};
+
+template <typename TAction, typename TPredicate> struct WhereAction {
+  TPredicate predicate;
+  TAction action;
+
+  void reset() {}
+
+  template <typename T> void next(const T &t) {
+    if (predicate(t))
+      action(t);
+  }
+
+  template <typename TBuilder> auto operator & (TBuilder builder) const {
+    return builder.build(*this);
+  }
+};
+
+template <typename TPredicate> struct WhereBuilder {
+  TPredicate predicate;
+
+  template <typename TAction>
+  WhereAction<TAction, TPredicate> build(TAction action) const {
+    return WhereAction<TAction, TPredicate>{predicate, std::move(action)};
+  }
+};
+
+template <typename TAction> struct ActionBuilder {
+  TAction action;
+
+  template <typename TAction>
+  ActionAction<TAction> build(TAction action) const {
+    return ActionAction<TAction>{std::move(action)};
+  }
+};
+
+template <typename TPredicate>
+WhereBuilder<TPredicate> where(TPredicate predicate) {
+  return WhereBuilder<TPredicate>{std::move(predicate)};
+}
+
+template <typename TAction> auto complete(TAction a) {
+  return ActionBuilder<TAction>{std::move(a)};
+}
+
 int main() {
   std::cout << "A" << std::endl;
-
   ActionObserver<std::vector<char>> dooo{[](const std::vector<char> &v) {
     for (const auto &c : v) {
       std::cout << "#" << c;
     }
     std::cout << std::endl;
   }};
+
+  auto b = 
+    StartAction() &
+      where([](const char &c) { return c != 'a'; }) &
+      where([](const char &c) { return c != 'v'; }) &
+      complete([](const char &c) { std::cout << c << std::endl; });
+  char c='a';
+  b.next('a');
+  // auto a1 = ActionAction([](const char &c) { std::cout << c << std::endl; });
+  // auto a2 = wherePredicate([](const char &c) { return c != 'a'; });
+
   BufferObserver<char, ActionObserver<std::vector<char>>> buffer{dooo, 3};
   WindowObserver<char, ActionObserver<std::vector<char>>> window{dooo, 3};
 
