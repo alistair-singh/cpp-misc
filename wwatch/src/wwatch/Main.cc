@@ -8,6 +8,13 @@
 #include <string>
 #include <vector>
 
+/* TODO: Things to do
+ * Add proper args parsing
+ * Add timer delay firing
+ *  * make events asynchronous
+ *  * buffer events
+ */
+
 void handle(size_t global, unsigned action, const std::wstring &name,
             const std::wstring &command,
             const std::vector<std::wstring> &extensions) {

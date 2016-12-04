@@ -113,8 +113,12 @@ auto wherePredicate(TPredicate p) {
 
 //---------------------------------------------------------------------------
 
-struct StartAction {
-  template <typename TBuilder> auto operator & (TBuilder builder) const {
+template <typename TItem>
+struct CallBack {
+  void reset() {}
+  void next(TItem t) { }
+
+  template <typename TBuilder> auto operator&(TBuilder builder) const {
     return builder.build(*this);
   }
 };
@@ -124,9 +128,9 @@ template <typename TAction> struct ActionAction {
 
   void reset() {}
 
-  template <typename T> void next(const T &t) { action(t); }
+  template <typename TItem> void next(TItem t) { action(t); }
 
-  template <typename TBuilder> auto operator & (TBuilder builder) const {
+  template <typename TBuilder> auto operator&(TBuilder builder) const {
     return builder.build(*this);
   }
 };
@@ -137,12 +141,12 @@ template <typename TAction, typename TPredicate> struct WhereAction {
 
   void reset() {}
 
-  template <typename T> void next(const T &t) {
+  template <typename TItem> void next(TItem t) {
     if (predicate(t))
       action(t);
   }
 
-  template <typename TBuilder> auto operator & (TBuilder builder) const {
+  template <typename TBuilder> auto operator&(TBuilder builder) const {
     return builder.build(*this);
   }
 };
@@ -159,8 +163,7 @@ template <typename TPredicate> struct WhereBuilder {
 template <typename TAction> struct ActionBuilder {
   TAction action;
 
-  template <typename TAction>
-  ActionAction<TAction> build(TAction action) const {
+  auto build() const {
     return ActionAction<TAction>{std::move(action)};
   }
 };
@@ -174,38 +177,46 @@ template <typename TAction> auto complete(TAction a) {
   return ActionBuilder<TAction>{std::move(a)};
 }
 
-int main() {
-  std::cout << "A" << std::endl;
-  ActionObserver<std::vector<char>> dooo{[](const std::vector<char> &v) {
-    for (const auto &c : v) {
-      std::cout << "#" << c;
-    }
-    std::cout << std::endl;
-  }};
+template <typename TItem, typename TBuilder> auto callback(TBuilder b) {
+  return [&](TItem t) {a;};
+}
 
-  auto b = 
-    StartAction() &
-      where([](const char &c) { return c != 'a'; }) &
-      where([](const char &c) { return c != 'v'; }) &
-      complete([](const char &c) { std::cout << c << std::endl; });
-  char c='a';
+template <typename TItem, typename TBuilder> auto aaaa(TBuilder b) {
+  return [&](TItem t) {a;};
+}
+
+int main() {
+  //std::cout << "A" << std::endl;
+  //ActionObserver<std::vector<char>> dooo{[](const std::vector<char> &v) {
+  //  for (const auto &c : v) {
+  //    std::cout << "#" << c;
+  //  }
+  //  std::cout << std::endl;
+  //}};
+
+           // where([](const char &c) { return c != 'a'; }) &
+           // where([](const char &c) { return c != 'v'; }) &
+  auto b = callback<char>() & complete([](char c) { std::cout << c << std::endl; });
   b.next('a');
+  b.next('b');
+  //char c = 'a';
+  //b(c);
   // auto a1 = ActionAction([](const char &c) { std::cout << c << std::endl; });
   // auto a2 = wherePredicate([](const char &c) { return c != 'a'; });
 
-  BufferObserver<char, ActionObserver<std::vector<char>>> buffer{dooo, 3};
-  WindowObserver<char, ActionObserver<std::vector<char>>> window{dooo, 3};
+  //BufferObserver<char, ActionObserver<std::vector<char>>> buffer{dooo, 3};
+  //WindowObserver<char, ActionObserver<std::vector<char>>> window{dooo, 3};
 
-  BroadcastObserver<char,
-                    BufferObserver<char, ActionObserver<std::vector<char>>>,
-                    WindowObserver<char, ActionObserver<std::vector<char>>>>
-      broadcast(buffer, window);
+  //BroadcastObserver<char,
+  //                  BufferObserver<char, ActionObserver<std::vector<char>>>,
+  //                  WindowObserver<char, ActionObserver<std::vector<char>>>>
+  //    broadcast(buffer, window);
 
-  for (int i = 65; i < 65 + 15; ++i) {
-    std::cout << "@" << i << std::endl;
-    broadcast(static_cast<char>(i));
-  }
+  //for (int i = 65; i < 65 + 15; ++i) {
+  //  std::cout << "@" << i << std::endl;
+  //  broadcast(static_cast<char>(i));
+  //}
 
-  broadcast.reset();
-  return 0;
+  //broadcast.reset();
+  //return 0;
 }
