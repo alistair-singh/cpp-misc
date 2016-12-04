@@ -54,21 +54,25 @@ auto operator >> (TBuild1 t1, TBuild2 t2) {
   return CompositionBuilder<TBuild1, TBuild2> { std::move(t1), std::move(t2) };
 }
 
-template <typename TITem, typename TBuild, typename Action>
-auto operator >> (TBuild t, Action action) {
-  return std::function<void(TItem)>(action);
+template <typename TBuild, typename TAction>
+auto operator >> (TBuild t, Action<TAction> action) {
+  return t(action);
+}
+
+bool sampleFunc(int i) {
+  std::cout << "3rd" << std::endl; 
+  return i % 5 == 0;
 }
 
 int main() {
-  std::cout << "4" << std::endl;
+  std::cout << "4\n";
   
   //auto f = action()([](int i){ std::cout << i << std::endl;});
 
-  auto f =  (where([](int i){ std::cout << "1st" << std::endl; return i % 2 == 1; }) >>
-              where([](int i){ std::cout << "2nd" << std::endl; return i % 3 == 0; }) >>
-              where([](int i){ std::cout << "3rd" << std::endl; return i % 5 == 0; })
-              )
-                ([](int i){ std::cout << i << std::endl; });
+  auto f = where([](int i){ return i % 2 == 1; })
+         >> where([](int i){ return i % 3 == 0; })
+         >> where(sampleFunc)
+         >> callable([](int i){ std::cout << i << "\n"; });
 
   std::function<void(int)> g(f);
   g(12);
