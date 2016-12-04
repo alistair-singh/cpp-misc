@@ -9,6 +9,13 @@ template <typename TItem, typename TAction> struct Action {
   }
 };
 
+template <typename TItem, typename TAction1, typename TAction2> struct Action2 {
+  TAction1 action1;
+  TAction2 action2;
+  void operator()(TItem item) {
+  }
+};
+
 template <typename TItem, typename TAction> auto as_callable(TAction a) {
   return Action<TItem, decltype(a)> { std::move(a) };
 }
@@ -45,7 +52,7 @@ int main() {
 
   auto f = action<int>()
            >>= where<int>([](int &i) { return i % 2 == 0; }) 
-           //>>= where<int>([](int &i) { return i % 3 == 0; }) 
+           >>= where<int>([](int &i) { return i % 3 == 0; }) 
            >>= as_callable<int>([](int &i) { std::cout << i << std::endl; });
   f(12);
   f(23);
