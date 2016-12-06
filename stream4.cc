@@ -99,7 +99,7 @@ auto operator>>(TBuild &&t, Action<TAction> &&action) {
 template <typename TAction, typename TItem> class Buffer {
   TAction action_;
   std::vector<TItem> items_;
-  // std::mutex lock;
+  std::mutex lock_;
 
 public:
   Buffer(TAction &&action, size_t size)
@@ -107,8 +107,12 @@ public:
     items_.reserve(size);
   }
 
+  Buffer(Buffer<TAction, TItem> &&buffer)
+      : action_(std::forward<TAction>(buffer.action_)),
+        items_(std::forward<std::vector<TItem>>(buffer.items_)) {}
+
   void operator()(TItem item) {
-    // std::lock_guard<std::mutex> guard(lock);
+    std::lock_guard<std::mutex> guard(lock_);
     items_.push_back(item);
     if (items_.size() >= items_.capacity()) {
       action_(items_);
@@ -118,7 +122,7 @@ public:
   }
 
   void Reset() {
-    // std::lock_guard<std::mutex> guard(lock);
+    std::lock_guard<std::mutex> guard(lock_);
     items_.clear();
     action_.reset();
   }
@@ -139,35 +143,42 @@ template <typename TItem> auto buffer(size_t size) {
 
 //------------------------------------------------------------- WINDOW
 
-template <typename TAction, typename TItem> struct Window {
-  TAction action;
-  std::vector<TItem> items;
-  // std::mutex lock;
+template <typename TAction, typename TItem> class Window {
+  TAction action_;
+  std::vector<TItem> items_;
+  std::mutex lock_;
+
+public:
+  Window(TAction &&action, size_t size)
+      : action_(std::forward<TAction>(action)) {
+    items_.reserve(size);
+  }
+
+  Window(Window<TAction, TItem> &&window)
+      : action_(std::forward<TAction>(window.action_)),
+        items_(std::forward<std::vector<TItem>>(window.items_)) {}
 
   void operator()(TItem item) {
-    // std::lock_guard<std::mutex> guard(lock);
+    std::lock_guard<std::mutex> guard(lock_);
 
-    if (items.size() >= items.capacity()) {
-      items.erase(items.begin());
+    if (items_.size() >= items_.capacity()) {
+      items_.erase(items_.begin());
     }
-    items.push_back(item);
-    action(items);
+    items_.push_back(item);
+    action_(items_);
   }
 
   void Reset() {
-    // std::lock_guard<std::mutex> guard(lock);
-    items.clear();
-    action.reset();
+    std::lock_guard<std::mutex> guard(lock_);
+    items_.clear();
+    action_.reset();
   }
 };
 
 template <typename TItem> struct WindowBuilder {
   size_t size;
   template <typename TAction> auto operator()(TAction &&action) {
-    std::vector<TItem> items;
-    items.reserve(size);
-    return Window<TAction, TItem>{std::forward<TAction>(action),
-                                  std::move(items)};
+    return Window<TAction, TItem>{std::forward<TAction>(action), size};
   }
 };
 
