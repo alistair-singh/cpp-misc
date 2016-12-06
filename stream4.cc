@@ -197,9 +197,13 @@ bool sampleFunc(int i) {
 int main() {
   std::cout << "4\n";
 
-  // auto f = action()([](int i){ std::cout << i << std::endl;});
+  auto a =
+      stream::action([](int i) { std::cout << "a(" << i << ")" << std::endl; });
+  a(12);
+  a(34);
 
-  auto b = stream::buffer<int>(2) >> stream::window<std::vector<int>>(2) >>
+  auto b = stream::buffer<int>(2) >> 
+           stream::window<std::vector<int>>(2) >>
            stream::action([](auto i) {
 
              std::cout << "[\n";
@@ -222,13 +226,12 @@ int main() {
   b(7);
   b(8);
   b(9);
+
   auto f = stream::where([](auto i) { return i % 2 == 1; }) >>
            stream::where([](auto i) { return i % 3 == 0; }) >>
            stream::where(sampleFunc) >>
-           stream::select([](auto i) { return std::to_string(i); }) >>
-           stream::action([](const auto &i) {
-             std::cout << i.size() << ", " << i << '\n';
-           });
+           stream::select([](auto i) { return i * 1.1; }) >>
+           stream::action([](const auto &i) { std::cout << i << '\n'; });
 
   std::function<void(int)> g(f);
   g(12);
