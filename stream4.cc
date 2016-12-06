@@ -1,7 +1,9 @@
 
 #include <functional>
 #include <iostream>
+#include <mutex>
 #include <string>
+#include <utility>
 #include <vector>
 
 namespace stream {
@@ -13,8 +15,8 @@ template <typename TAction> struct Action {
   template <typename TItem> void operator()(TItem item) { action(item); }
 };
 
-template <typename TAction> Action<TAction> action(TAction action) {
-  return Action<TAction>{std::move(action)};
+template <typename TAction> Action<TAction> action(TAction &&action) {
+  return Action<TAction>{std::forward<TAction>(action)};
 }
 
 //------------------------------------------------------------- ACTION
@@ -33,13 +35,14 @@ template <typename TAction, typename TPredicate> struct Where {
 
 template <typename TPredicate> struct WhereBuilder {
   TPredicate predicate;
-  template <typename TAction> auto operator()(TAction a) {
-    return Where<TAction, TPredicate>{std::move(a), std::move(predicate)};
+  template <typename TAction> auto operator()(TAction &&action) {
+    return Where<TAction, TPredicate>{std::forward<TAction>(action),
+                                      std::move(predicate)};
   }
 };
 
 template <typename TPredicate> auto where(TPredicate predicate) {
-  return WhereBuilder<TPredicate>{std::move(predicate)};
+  return WhereBuilder<TPredicate>{std::forward<TPredicate>(predicate)};
 }
 
 //------------------------------------------------------------- WHERE
@@ -57,13 +60,14 @@ template <typename TAction, typename TMapper> struct Select {
 
 template <typename TMapper> struct SelectBuilder {
   TMapper mapper;
-  template <typename TAction> auto operator()(TAction a) {
-    return Select<TAction, TMapper>{std::move(a), std::move(mapper)};
+  template <typename TAction> auto operator()(TAction &&action) {
+    return Select<TAction, TMapper>{std::forward<TAction>(action),
+                                    std::move(mapper)};
   }
 };
 
-template <typename TMapper> auto select(TMapper mapper) {
-  return SelectBuilder<TMapper>{std::move(mapper)};
+template <typename TMapper> auto select(TMapper &&mapper) {
+  return SelectBuilder<TMapper>{std::forward<TMapper>(mapper)};
 }
 
 //------------------------------------------------------------- SELECT
@@ -72,18 +76,19 @@ template <typename TMapper> auto select(TMapper mapper) {
 template <typename TBuild1, typename TBuild2> struct CompositionBuilder {
   TBuild1 first;
   TBuild2 second;
-  template <typename TAction> auto operator()(TAction a) {
-    return first(second(a));
+  template <typename TAction> auto operator()(TAction &&action) {
+    return first(std::move(second(std::forward<TAction>(action))));
   }
 };
 
 template <typename TBuild1, typename TBuild2>
-auto operator>>(TBuild1 t1, TBuild2 t2) {
-  return CompositionBuilder<TBuild1, TBuild2>{std::move(t1), std::move(t2)};
+auto operator>>(TBuild1 &&t1, TBuild2 &&t2) {
+  return CompositionBuilder<TBuild1, TBuild2>{std::forward<TBuild1>(t1),
+                                              std::forward<TBuild2>(t2)};
 }
 
 template <typename TBuild, typename TAction>
-auto operator>>(TBuild t, Action<TAction> action) {
+auto operator>>(TBuild &&t, Action<TAction> &&action) {
   return t(action);
 }
 
@@ -91,34 +96,38 @@ auto operator>>(TBuild t, Action<TAction> action) {
 
 //------------------------------------------------------------- BUFFER
 
-template <typename TAction, typename TItem> struct Buffer {
-  TAction action;
-  std::vector<TItem> items;
+template <typename TAction, typename TItem> class Buffer {
+  TAction action_;
+  std::vector<TItem> items_;
   // std::mutex lock;
+
+public:
+  Buffer(TAction &&action, size_t size)
+      : action_(std::forward<TAction>(action)) {
+    items_.reserve(size);
+  }
 
   void operator()(TItem item) {
     // std::lock_guard<std::mutex> guard(lock);
-    items.push_back(item);
-    if (items.size() >= items.capacity()) {
-      action(items);
-      items.clear();
+    items_.push_back(item);
+    if (items_.size() >= items_.capacity()) {
+      action_(items_);
+      items_.clear();
       return;
     }
   }
 
   void Reset() {
     // std::lock_guard<std::mutex> guard(lock);
-    items.clear();
-    action.reset();
+    items_.clear();
+    action_.reset();
   }
 };
 
 template <typename TItem> struct BufferBuilder {
   size_t size;
-  template <typename TAction> auto operator()(TAction a) {
-    std::vector<TItem> items;
-    items.reserve(size);
-    return Buffer<TAction, TItem>{std::move(a), std::move(items)};
+  template <typename TAction> auto operator()(TAction &&action) {
+    return Buffer<TAction, TItem>{std::forward<TAction>(action), size};
   }
 };
 
@@ -154,10 +163,11 @@ template <typename TAction, typename TItem> struct Window {
 
 template <typename TItem> struct WindowBuilder {
   size_t size;
-  template <typename TAction> auto operator()(TAction a) {
+  template <typename TAction> auto operator()(TAction &&action) {
     std::vector<TItem> items;
     items.reserve(size);
-    return Window<TAction, TItem>{std::move(a), std::move(items)};
+    return Window<TAction, TItem>{std::forward<TAction>(action),
+                                  std::move(items)};
   }
 };
 
@@ -178,8 +188,7 @@ int main() {
 
   // auto f = action()([](int i){ std::cout << i << std::endl;});
 
-  auto b = stream::buffer<int>(2) >> 
-           stream::window<std::vector<int>>(2) >>
+  auto b = stream::buffer<int>(2) >> stream::window<std::vector<int>>(2) >>
            stream::action([](auto i) {
 
              std::cout << "[\n";
