@@ -5,9 +5,11 @@
 *.o
 *.obj
 *.pdb
+*.pyc
 *.ilk
 *.sdf
 *.lnk
+*.db
 *.debug
 .vs/
 a.out

@@ -1,14 +1,15 @@
 
+OUTPUT=rep.cc.exe
 OBJS=rep.s.o rep.cc.o
 
-run: rep.exe
-	gdb ./rep.exe
+run: $(OUTPUT)
+	gdb $(OUTPUT)
 
-rep.exe : $(OBJS)
-	g++ -O3 -flto -g $(OBJS) -o rep.exe
+rep.cc.exe : $(OBJS)
+	g++ -std=c++0x -Wall -O3 -flto -g $(OBJS) -o $(OUTPUT)
 
 clean :
-	rm -rf $(OBJS)
+	rm -rf $(OBJS) $(OUTPUT)
 
 rep.cc.o : rep.cc
 	g++ -O3 -flto -g -c rep.cc -o rep.cc.o

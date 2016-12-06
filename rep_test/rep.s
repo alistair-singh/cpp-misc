@@ -4,10 +4,15 @@
 .text
 
 movMov:
+  movq %rcx, %rax
+  movq %rdx, %rcx
   movq $123, %rax
   retq
 
 repMov:
-  movq $789, %rax
+  movq %rcx, %rdi
+  movq %rdx, %rcx
+  movb $61, %al
+  rep stosq
   retq
 

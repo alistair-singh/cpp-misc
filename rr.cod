@@ -4,20 +4,205 @@ include listing.inc
 
 INCLUDELIB OLDNAMES
 
+EXTRN	getenv:PROC
+EXTRN	__stdio_common_vfprintf:PROC
+EXTRN	__acrt_iob_func:PROC
 EXTRN	__security_check_cookie:PROC
+$SG4294967289 DB 'USERPROFILE', 00H
+_DATA	ENDS
 PUBLIC	main
+PUBLIC	get_home_dir
+PUBLIC	printf
+PUBLIC	_vfprintf_l
+PUBLIC	__local_stdio_printf_options
+COMM	?_OptionsStorage@?1??__local_stdio_printf_options@@9@9:QWORD							; `__local_stdio_printf_options'::`2'::_OptionsStorage
+_DATA	ENDS
+pdata	SEGMENT
+$pdata$main DD	imagerel $LN6
+	DD	imagerel $LN6+31
+	DD	imagerel $unwind$main
+pdata	ENDS
+;	COMDAT pdata
+pdata	SEGMENT
+$pdata$printf DD imagerel $LN6
+	DD	imagerel $LN6+83
+	DD	imagerel $unwind$printf
+pdata	ENDS
+;	COMDAT pdata
+pdata	SEGMENT
+$pdata$_vfprintf_l DD imagerel $LN4
+	DD	imagerel $LN4+67
+	DD	imagerel $unwind$_vfprintf_l
+pdata	ENDS
+;	COMDAT xdata
+xdata	SEGMENT
+$unwind$_vfprintf_l DD 060f01H
+	DD	09640fH
+	DD	08340fH
+	DD	0700b520fH
+xdata	ENDS
+;	COMDAT xdata
+xdata	SEGMENT
+$unwind$printf DD 041b01H
+	DD	07017521bH
+	DD	030156016H
+xdata	ENDS
+xdata	SEGMENT
+$unwind$main DD	010401H
+	DD	04204H
+xdata	ENDS
+; Function compile flags: /Ogtpy
+; File c:\program files (x86)\windows kits\10\include\10.0.10586.0\ucrt\corecrt_stdio_config.h
+;	COMDAT __local_stdio_printf_options
+_TEXT	SEGMENT
+__local_stdio_printf_options PROC			; COMDAT
+
+; 81   :     static unsigned __int64 _OptionsStorage;
+; 82   :     return &_OptionsStorage;
+
+  00000	48 8d 05 00 00
+	00 00		 lea	 rax, OFFSET FLAT:?_OptionsStorage@?1??__local_stdio_printf_options@@9@9 ; `__local_stdio_printf_options'::`2'::_OptionsStorage
+
+; 83   : }
+
+  00007	c3		 ret	 0
+__local_stdio_printf_options ENDP
+_TEXT	ENDS
+; Function compile flags: /Ogtpy
+; File c:\program files (x86)\windows kits\10\include\10.0.10586.0\ucrt\stdio.h
+;	COMDAT _vfprintf_l
+_TEXT	SEGMENT
+_Stream$ = 64
+_Format$ = 72
+_Locale$dead$ = 80
+_ArgList$ = 88
+_vfprintf_l PROC					; COMDAT
+
+; 638  : {
+
+$LN4:
+  00000	48 89 5c 24 08	 mov	 QWORD PTR [rsp+8], rbx
+  00005	48 89 74 24 10	 mov	 QWORD PTR [rsp+16], rsi
+  0000a	57		 push	 rdi
+  0000b	48 83 ec 30	 sub	 rsp, 48			; 00000030H
+  0000f	49 8b d9	 mov	 rbx, r9
+  00012	48 8b fa	 mov	 rdi, rdx
+  00015	48 8b f1	 mov	 rsi, rcx
+
+; 639  :     return __stdio_common_vfprintf(_CRT_INTERNAL_LOCAL_PRINTF_OPTIONS, _Stream, _Format, _Locale, _ArgList);
+
+  00018	e8 00 00 00 00	 call	 __local_stdio_printf_options
+  0001d	45 33 c9	 xor	 r9d, r9d
+  00020	48 89 5c 24 20	 mov	 QWORD PTR [rsp+32], rbx
+  00025	4c 8b c7	 mov	 r8, rdi
+  00028	48 8b d6	 mov	 rdx, rsi
+  0002b	48 8b 08	 mov	 rcx, QWORD PTR [rax]
+  0002e	e8 00 00 00 00	 call	 __stdio_common_vfprintf
+
+; 640  : }
+
+  00033	48 8b 5c 24 40	 mov	 rbx, QWORD PTR [rsp+64]
+  00038	48 8b 74 24 48	 mov	 rsi, QWORD PTR [rsp+72]
+  0003d	48 83 c4 30	 add	 rsp, 48			; 00000030H
+  00041	5f		 pop	 rdi
+  00042	c3		 ret	 0
+_vfprintf_l ENDP
+_TEXT	ENDS
+; Function compile flags: /Ogtpy
+; File c:\program files (x86)\windows kits\10\include\10.0.10586.0\ucrt\stdio.h
+;	COMDAT printf
+_TEXT	SEGMENT
+_Format$ = 80
+printf	PROC						; COMDAT
+
+; 950  : {
+
+$LN6:
+  00000	48 89 4c 24 08	 mov	 QWORD PTR [rsp+8], rcx
+  00005	48 89 54 24 10	 mov	 QWORD PTR [rsp+16], rdx
+  0000a	4c 89 44 24 18	 mov	 QWORD PTR [rsp+24], r8
+  0000f	4c 89 4c 24 20	 mov	 QWORD PTR [rsp+32], r9
+  00014	53		 push	 rbx
+  00015	56		 push	 rsi
+  00016	57		 push	 rdi
+  00017	48 83 ec 30	 sub	 rsp, 48			; 00000030H
+  0001b	48 8b f9	 mov	 rdi, rcx
+
+; 951  :     int _Result;
+; 952  :     va_list _ArgList;
+; 953  :     __crt_va_start(_ArgList, _Format);
+
+  0001e	48 8d 74 24 58	 lea	 rsi, QWORD PTR _Format$[rsp+8]
+
+; 954  :     _Result = _vfprintf_l(stdout, _Format, NULL, _ArgList);
+
+  00023	b9 01 00 00 00	 mov	 ecx, 1
+  00028	e8 00 00 00 00	 call	 __acrt_iob_func
+  0002d	48 8b d8	 mov	 rbx, rax
+
+; 639  :     return __stdio_common_vfprintf(_CRT_INTERNAL_LOCAL_PRINTF_OPTIONS, _Stream, _Format, _Locale, _ArgList);
+
+  00030	e8 00 00 00 00	 call	 __local_stdio_printf_options
+  00035	45 33 c9	 xor	 r9d, r9d
+  00038	48 89 74 24 20	 mov	 QWORD PTR [rsp+32], rsi
+  0003d	4c 8b c7	 mov	 r8, rdi
+  00040	48 8b d3	 mov	 rdx, rbx
+  00043	48 8b 08	 mov	 rcx, QWORD PTR [rax]
+  00046	e8 00 00 00 00	 call	 __stdio_common_vfprintf
+
+; 955  :     __crt_va_end(_ArgList);
+; 956  :     return _Result;
+; 957  : }
+
+  0004b	48 83 c4 30	 add	 rsp, 48			; 00000030H
+  0004f	5f		 pop	 rdi
+  00050	5e		 pop	 rsi
+  00051	5b		 pop	 rbx
+  00052	c3		 ret	 0
+printf	ENDP
+_TEXT	ENDS
+; Function compile flags: /Ogtpy
+; File c:\users\alist_000\cppmisc\rr.c
+_TEXT	SEGMENT
+get_home_dir PROC
+
+; 10   : #ifdef _WIN32
+; 11   :   return getenv("USERPROFILE");
+
+  00000	48 8d 0d 00 00
+	00 00		 lea	 rcx, OFFSET FLAT:$SG4294967289
+  00007	e9 00 00 00 00	 jmp	 getenv
+get_home_dir ENDP
+_TEXT	ENDS
 ; Function compile flags: /Ogtpy
 ; File c:\users\alist_000\cppmisc\rr.c
 _TEXT	SEGMENT
 main	PROC
 
-; 5    :   return 0;
+; 17   : int main() {
 
-  00000	33 c0		 xor	 eax, eax
+$LN6:
+  00000	48 83 ec 28	 sub	 rsp, 40			; 00000028H
 
-; 6    : }
+; 11   :   return getenv("USERPROFILE");
 
-  00002	c3		 ret	 0
+  00004	48 8d 0d 00 00
+	00 00		 lea	 rcx, OFFSET FLAT:$SG4294967289
+  0000b	e8 00 00 00 00	 call	 getenv
+  00010	48 8b c8	 mov	 rcx, rax
+
+; 18   :   printf(get_home_dir());
+
+  00013	e8 00 00 00 00	 call	 printf
+
+; 19   :   return 0;
+
+  00018	33 c0		 xor	 eax, eax
+
+; 20   : }
+
+  0001a	48 83 c4 28	 add	 rsp, 40			; 00000028H
+  0001e	c3		 ret	 0
 main	ENDP
 _TEXT	ENDS
 END
