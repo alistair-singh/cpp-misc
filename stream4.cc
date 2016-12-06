@@ -12,7 +12,7 @@ namespace stream {
 template <typename TAction> struct Action {
   TAction action;
 
-  template <typename TItem> void operator()(TItem item) { action(item); }
+  template <typename TItem> inline void operator()(TItem item) { action(item); }
 };
 
 template <typename TAction> Action<TAction> action(TAction &&action) {
@@ -27,7 +27,7 @@ template <typename TAction, typename TPredicate> struct Where {
   TAction action;
   TPredicate predicate;
 
-  template <typename TItem> void operator()(TItem item) {
+  template <typename TItem> inline void operator()(TItem item) {
     if (predicate(item))
       action(item);
   }
@@ -35,7 +35,7 @@ template <typename TAction, typename TPredicate> struct Where {
 
 template <typename TPredicate> struct WhereBuilder {
   TPredicate predicate;
-  template <typename TAction> auto operator()(TAction &&action) {
+  template <typename TAction> inline auto operator()(TAction &&action) {
     return Where<TAction, TPredicate>{std::forward<TAction>(action),
                                       std::move(predicate)};
   }
@@ -53,14 +53,14 @@ template <typename TAction, typename TMapper> struct Select {
   TAction action;
   TMapper mapper;
 
-  template <typename TItem> void operator()(TItem item) {
+  template <typename TItem> inline void operator()(TItem item) {
     action(mapper(item));
   }
 };
 
 template <typename TMapper> struct SelectBuilder {
   TMapper mapper;
-  template <typename TAction> auto operator()(TAction &&action) {
+  template <typename TAction> inline auto operator()(TAction &&action) {
     return Select<TAction, TMapper>{std::forward<TAction>(action),
                                     std::move(mapper)};
   }
@@ -76,19 +76,19 @@ template <typename TMapper> auto select(TMapper &&mapper) {
 template <typename TBuild1, typename TBuild2> struct CompositionBuilder {
   TBuild1 first;
   TBuild2 second;
-  template <typename TAction> auto operator()(TAction &&action) {
+  template <typename TAction> inline auto operator()(TAction &&action) {
     return first(std::move(second(std::forward<TAction>(action))));
   }
 };
 
 template <typename TBuild1, typename TBuild2>
-auto operator>>(TBuild1 &&t1, TBuild2 &&t2) {
+inline auto operator>>(TBuild1 &&t1, TBuild2 &&t2) {
   return CompositionBuilder<TBuild1, TBuild2>{std::forward<TBuild1>(t1),
                                               std::forward<TBuild2>(t2)};
 }
 
 template <typename TBuild, typename TAction>
-auto operator>>(TBuild &&t, Action<TAction> &&action) {
+inline auto operator>>(TBuild &&t, Action<TAction> &&action) {
   return t(action);
 }
 
@@ -111,7 +111,7 @@ public:
       : action_(std::forward<TAction>(buffer.action_)),
         items_(std::forward<std::vector<TItem>>(buffer.items_)) {}
 
-  void operator()(TItem item) {
+  inline void operator()(TItem item) {
     std::lock_guard<std::mutex> guard(lock_);
     items_.push_back(item);
     if (items_.size() >= items_.capacity()) {
@@ -121,7 +121,7 @@ public:
     }
   }
 
-  void Reset() {
+  inline void Reset() {
     std::lock_guard<std::mutex> guard(lock_);
     items_.clear();
     action_.reset();
@@ -130,7 +130,7 @@ public:
 
 template <typename TItem> struct BufferBuilder {
   size_t size;
-  template <typename TAction> auto operator()(TAction &&action) {
+  template <typename TAction> inline auto operator()(TAction &&action) {
     return Buffer<TAction, TItem>{std::forward<TAction>(action), size};
   }
 };
@@ -158,7 +158,7 @@ public:
       : action_(std::forward<TAction>(window.action_)),
         items_(std::forward<std::vector<TItem>>(window.items_)) {}
 
-  void operator()(TItem item) {
+  inline void operator()(TItem item) {
     std::lock_guard<std::mutex> guard(lock_);
 
     if (items_.size() >= items_.capacity()) {
@@ -168,7 +168,7 @@ public:
     action_(items_);
   }
 
-  void Reset() {
+  inline void Reset() {
     std::lock_guard<std::mutex> guard(lock_);
     items_.clear();
     action_.reset();
@@ -177,7 +177,7 @@ public:
 
 template <typename TItem> struct WindowBuilder {
   size_t size;
-  template <typename TAction> auto operator()(TAction &&action) {
+  template <typename TAction> inline auto operator()(TAction &&action) {
     return Window<TAction, TItem>{std::forward<TAction>(action), size};
   }
 };
@@ -202,8 +202,7 @@ int main() {
   a(12);
   a(34);
 
-  auto b = stream::buffer<int>(2) >> 
-           stream::window<std::vector<int>>(2) >>
+  auto b = stream::buffer<int>(2) >> stream::window<std::vector<int>>(2) >>
            stream::action([](auto i) {
 
              std::cout << "[\n";

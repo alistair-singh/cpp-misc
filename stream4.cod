@@ -14477,8 +14477,7 @@ $LN700:
 ; 202  :   a(12);
 ; 203  :   a(34);
 ; 204  : 
-; 205  :   auto b = stream::buffer<int>(2) >> 
-; 206  :            stream::window<std::vector<int>>(2) >>
+; 205  :   auto b = stream::buffer<int>(2) >> stream::window<std::vector<int>>(2) >>
 
   000c6	0f 28 44 24 30	 movaps	 xmm0, XMMWORD PTR $T5[rsp]
   000cb	66 0f 7f 44 24
@@ -14492,8 +14491,7 @@ $LN700:
 ; 202  :   a(12);
 ; 203  :   a(34);
 ; 204  : 
-; 205  :   auto b = stream::buffer<int>(2) >> 
-; 206  :            stream::window<std::vector<int>>(2) >>
+; 205  :   auto b = stream::buffer<int>(2) >> stream::window<std::vector<int>>(2) >>
 
   000da	4c 8d 44 24 20	 lea	 r8, QWORD PTR $T3[rsp]
   000df	48 8d 54 24 30	 lea	 rdx, QWORD PTR $T6[rsp]
@@ -14501,68 +14499,68 @@ $LN700:
   000e8	e8 00 00 00 00	 call	 ??$?5U?$CompositionBuilder@U?$BufferBuilder@H@stream@@U?$WindowBuilder@V?$vector@HV?$allocator@H@std@@@std@@@2@@stream@@V<lambda_cffe59b91f15e7b90ef16ff48daf597b>@@@stream@@YA?AV?$Buffer@V?$Window@AEAU?$Action@V<lambda_cffe59b91f15e7b90ef16ff48daf597b>@@@stream@@V?$vector@HV?$allocator@H@std@@@std@@@stream@@H@0@$$QEAU?$CompositionBuilder@U?$BufferBuilder@H@stream@@U?$WindowBuilder@V?$vector@HV?$allocator@H@std@@@std@@@2@@0@$$QEAU?$Action@V<lambda_cffe59b91f15e7b90ef16ff48daf597b>@@@0@@Z ; stream::operator>><stream::CompositionBuilder<stream::BufferBuilder<int>,stream::WindowBuilder<std::vector<int,std::allocator<int> > > >,<lambda_cffe59b91f15e7b90ef16ff48daf597b> >
   000ed	90		 npad	 1
 
-; 207  :            stream::action([](auto i) {
-; 208  : 
-; 209  :              std::cout << "[\n";
-; 210  :              for (const auto &si : i) {
-; 211  :                std::cout << "[";
-; 212  :                for (const auto &sii : si) {
-; 213  :                  std::cout << '\t' << sii;
-; 214  :                }
-; 215  :                std::cout << "]\n";
-; 216  :              }
-; 217  :              std::cout << "]\n";
-; 218  : 
-; 219  :            });
-; 220  :   b(1);
+; 206  :            stream::action([](auto i) {
+; 207  : 
+; 208  :              std::cout << "[\n";
+; 209  :              for (const auto &si : i) {
+; 210  :                std::cout << "[";
+; 211  :                for (const auto &sii : si) {
+; 212  :                  std::cout << '\t' << sii;
+; 213  :                }
+; 214  :                std::cout << "]\n";
+; 215  :              }
+; 216  :              std::cout << "]\n";
+; 217  : 
+; 218  :            });
+; 219  :   b(1);
 
   000ee	ba 01 00 00 00	 mov	 edx, 1
   000f3	48 8d 4d b0	 lea	 rcx, QWORD PTR b$[rbp-256]
   000f7	e8 00 00 00 00	 call	 ??R?$Buffer@V?$Window@AEAU?$Action@V<lambda_cffe59b91f15e7b90ef16ff48daf597b>@@@stream@@V?$vector@HV?$allocator@H@std@@@std@@@stream@@H@stream@@QEAAXH@Z ; stream::Buffer<stream::Window<stream::Action<<lambda_cffe59b91f15e7b90ef16ff48daf597b> > & __ptr64,std::vector<int,std::allocator<int> > >,int>::operator()
 
-; 221  :   b(2);
+; 220  :   b(2);
 
   000fc	ba 02 00 00 00	 mov	 edx, 2
   00101	48 8d 4d b0	 lea	 rcx, QWORD PTR b$[rbp-256]
   00105	e8 00 00 00 00	 call	 ??R?$Buffer@V?$Window@AEAU?$Action@V<lambda_cffe59b91f15e7b90ef16ff48daf597b>@@@stream@@V?$vector@HV?$allocator@H@std@@@std@@@stream@@H@stream@@QEAAXH@Z ; stream::Buffer<stream::Window<stream::Action<<lambda_cffe59b91f15e7b90ef16ff48daf597b> > & __ptr64,std::vector<int,std::allocator<int> > >,int>::operator()
 
-; 222  :   b(3);
+; 221  :   b(3);
 
   0010a	ba 03 00 00 00	 mov	 edx, 3
   0010f	48 8d 4d b0	 lea	 rcx, QWORD PTR b$[rbp-256]
   00113	e8 00 00 00 00	 call	 ??R?$Buffer@V?$Window@AEAU?$Action@V<lambda_cffe59b91f15e7b90ef16ff48daf597b>@@@stream@@V?$vector@HV?$allocator@H@std@@@std@@@stream@@H@stream@@QEAAXH@Z ; stream::Buffer<stream::Window<stream::Action<<lambda_cffe59b91f15e7b90ef16ff48daf597b> > & __ptr64,std::vector<int,std::allocator<int> > >,int>::operator()
 
-; 223  :   b(4);
+; 222  :   b(4);
 
   00118	ba 04 00 00 00	 mov	 edx, 4
   0011d	48 8d 4d b0	 lea	 rcx, QWORD PTR b$[rbp-256]
   00121	e8 00 00 00 00	 call	 ??R?$Buffer@V?$Window@AEAU?$Action@V<lambda_cffe59b91f15e7b90ef16ff48daf597b>@@@stream@@V?$vector@HV?$allocator@H@std@@@std@@@stream@@H@stream@@QEAAXH@Z ; stream::Buffer<stream::Window<stream::Action<<lambda_cffe59b91f15e7b90ef16ff48daf597b> > & __ptr64,std::vector<int,std::allocator<int> > >,int>::operator()
 
-; 224  :   b(5);
+; 223  :   b(5);
 
   00126	ba 05 00 00 00	 mov	 edx, 5
   0012b	48 8d 4d b0	 lea	 rcx, QWORD PTR b$[rbp-256]
   0012f	e8 00 00 00 00	 call	 ??R?$Buffer@V?$Window@AEAU?$Action@V<lambda_cffe59b91f15e7b90ef16ff48daf597b>@@@stream@@V?$vector@HV?$allocator@H@std@@@std@@@stream@@H@stream@@QEAAXH@Z ; stream::Buffer<stream::Window<stream::Action<<lambda_cffe59b91f15e7b90ef16ff48daf597b> > & __ptr64,std::vector<int,std::allocator<int> > >,int>::operator()
 
-; 225  :   b(6);
+; 224  :   b(6);
 
   00134	ba 06 00 00 00	 mov	 edx, 6
   00139	48 8d 4d b0	 lea	 rcx, QWORD PTR b$[rbp-256]
   0013d	e8 00 00 00 00	 call	 ??R?$Buffer@V?$Window@AEAU?$Action@V<lambda_cffe59b91f15e7b90ef16ff48daf597b>@@@stream@@V?$vector@HV?$allocator@H@std@@@std@@@stream@@H@stream@@QEAAXH@Z ; stream::Buffer<stream::Window<stream::Action<<lambda_cffe59b91f15e7b90ef16ff48daf597b> > & __ptr64,std::vector<int,std::allocator<int> > >,int>::operator()
 
-; 226  :   b(7);
+; 225  :   b(7);
 
   00142	ba 07 00 00 00	 mov	 edx, 7
   00147	48 8d 4d b0	 lea	 rcx, QWORD PTR b$[rbp-256]
   0014b	e8 00 00 00 00	 call	 ??R?$Buffer@V?$Window@AEAU?$Action@V<lambda_cffe59b91f15e7b90ef16ff48daf597b>@@@stream@@V?$vector@HV?$allocator@H@std@@@std@@@stream@@H@stream@@QEAAXH@Z ; stream::Buffer<stream::Window<stream::Action<<lambda_cffe59b91f15e7b90ef16ff48daf597b> > & __ptr64,std::vector<int,std::allocator<int> > >,int>::operator()
 
-; 227  :   b(8);
+; 226  :   b(8);
 
   00150	ba 08 00 00 00	 mov	 edx, 8
   00155	48 8d 4d b0	 lea	 rcx, QWORD PTR b$[rbp-256]
   00159	e8 00 00 00 00	 call	 ??R?$Buffer@V?$Window@AEAU?$Action@V<lambda_cffe59b91f15e7b90ef16ff48daf597b>@@@stream@@V?$vector@HV?$allocator@H@std@@@std@@@stream@@H@stream@@QEAAXH@Z ; stream::Buffer<stream::Window<stream::Action<<lambda_cffe59b91f15e7b90ef16ff48daf597b> > & __ptr64,std::vector<int,std::allocator<int> > >,int>::operator()
 
-; 228  :   b(9);
+; 227  :   b(9);
 
   0015e	ba 09 00 00 00	 mov	 edx, 9
   00163	48 8d 4d b0	 lea	 rcx, QWORD PTR b$[rbp-256]
@@ -14621,7 +14619,7 @@ $LN700:
   001cd	84 c0		 test	 al, al
   001cf	74 17		 je	 SHORT $LN513@main
 
-; 234  :            stream::action([](const auto &i) { std::cout << i << '\n'; });
+; 233  :            stream::action([](const auto &i) { std::cout << i << '\n'; });
 
   001d1	f2 0f 10 0d 00
 	00 00 00	 movsd	 xmm1, QWORD PTR __real@4030800000000000
@@ -14693,11 +14691,11 @@ $LN659@main:
   00237	e8 00 00 00 00	 call	 ?_Tidy@?$vector@V?$vector@HV?$allocator@H@std@@@std@@V?$allocator@V?$vector@HV?$allocator@H@std@@@std@@@2@@std@@IEAAXXZ ; std::vector<std::vector<int,std::allocator<int> >,std::allocator<std::vector<int,std::allocator<int> > > >::_Tidy
 ; File c:\users\alist_000\cppmisc\stream4.cc
 
-; 243  :   return 0;
+; 242  :   return 0;
 
   0023c	33 c0		 xor	 eax, eax
 
-; 244  : }
+; 243  : }
 
   0023e	48 8b 8d 90 00
 	00 00		 mov	 rcx, QWORD PTR __$ArrayPad$[rbp-256]
@@ -14904,7 +14902,7 @@ t$ = 72
 action$ = 80
 ??$?5U?$CompositionBuilder@U?$BufferBuilder@H@stream@@U?$WindowBuilder@V?$vector@HV?$allocator@H@std@@@std@@@2@@stream@@V<lambda_cffe59b91f15e7b90ef16ff48daf597b>@@@stream@@YA?AV?$Buffer@V?$Window@AEAU?$Action@V<lambda_cffe59b91f15e7b90ef16ff48daf597b>@@@stream@@V?$vector@HV?$allocator@H@std@@@std@@@stream@@H@0@$$QEAU?$CompositionBuilder@U?$BufferBuilder@H@stream@@U?$WindowBuilder@V?$vector@HV?$allocator@H@std@@@std@@@2@@0@$$QEAU?$Action@V<lambda_cffe59b91f15e7b90ef16ff48daf597b>@@@0@@Z PROC ; stream::operator>><stream::CompositionBuilder<stream::BufferBuilder<int>,stream::WindowBuilder<std::vector<int,std::allocator<int> > > >,<lambda_cffe59b91f15e7b90ef16ff48daf597b> >, COMDAT
 
-; 91   : auto operator>>(TBuild &&t, Action<TAction> &&action) {
+; 91   : inline auto operator>>(TBuild &&t, Action<TAction> &&action) {
 
 $LN6:
   00000	40 53		 push	 rbx
@@ -14944,7 +14942,7 @@ __$ReturnUdt$ = 200
 action$ = 208
 ??$?RAEAU?$Action@V<lambda_cffe59b91f15e7b90ef16ff48daf597b>@@@stream@@@?$CompositionBuilder@U?$BufferBuilder@H@stream@@U?$WindowBuilder@V?$vector@HV?$allocator@H@std@@@std@@@2@@stream@@QEAA?AV?$Buffer@V?$Window@AEAU?$Action@V<lambda_cffe59b91f15e7b90ef16ff48daf597b>@@@stream@@V?$vector@HV?$allocator@H@std@@@std@@@stream@@H@1@AEAU?$Action@V<lambda_cffe59b91f15e7b90ef16ff48daf597b>@@@1@@Z PROC ; stream::CompositionBuilder<stream::BufferBuilder<int>,stream::WindowBuilder<std::vector<int,std::allocator<int> > > >::operator()<stream::Action<<lambda_cffe59b91f15e7b90ef16ff48daf597b> > & __ptr64>, COMDAT
 
-; 79   :   template <typename TAction> auto operator()(TAction &&action) {
+; 79   :   template <typename TAction> inline auto operator()(TAction &&action) {
 
 $LN27:
   00000	40 57		 push	 rdi
@@ -15054,7 +15052,7 @@ __$ReturnUdt$ = 72
 action$ = 80
 ??$?RAEAU?$Action@V<lambda_cffe59b91f15e7b90ef16ff48daf597b>@@@stream@@@?$WindowBuilder@V?$vector@HV?$allocator@H@std@@@std@@@stream@@QEAA?AV?$Window@AEAU?$Action@V<lambda_cffe59b91f15e7b90ef16ff48daf597b>@@@stream@@V?$vector@HV?$allocator@H@std@@@std@@@1@AEAU?$Action@V<lambda_cffe59b91f15e7b90ef16ff48daf597b>@@@1@@Z PROC ; stream::WindowBuilder<std::vector<int,std::allocator<int> > >::operator()<stream::Action<<lambda_cffe59b91f15e7b90ef16ff48daf597b> > & __ptr64>, COMDAT
 
-; 180  :   template <typename TAction> auto operator()(TAction &&action) {
+; 180  :   template <typename TAction> inline auto operator()(TAction &&action) {
 
 $LN82:
   00000	48 89 54 24 10	 mov	 QWORD PTR [rsp+16], rdx
@@ -15223,7 +15221,7 @@ __$ReturnUdt$ = 72
 action$ = 80
 ??$?RV?$Window@AEAU?$Action@V<lambda_cffe59b91f15e7b90ef16ff48daf597b>@@@stream@@V?$vector@HV?$allocator@H@std@@@std@@@stream@@@?$BufferBuilder@H@stream@@QEAA?AV?$Buffer@V?$Window@AEAU?$Action@V<lambda_cffe59b91f15e7b90ef16ff48daf597b>@@@stream@@V?$vector@HV?$allocator@H@std@@@std@@@stream@@H@1@$$QEAV?$Window@AEAU?$Action@V<lambda_cffe59b91f15e7b90ef16ff48daf597b>@@@stream@@V?$vector@HV?$allocator@H@std@@@std@@@1@@Z PROC ; stream::BufferBuilder<int>::operator()<stream::Window<stream::Action<<lambda_cffe59b91f15e7b90ef16ff48daf597b> > & __ptr64,std::vector<int,std::allocator<int> > > >, COMDAT
 
-; 133  :   template <typename TAction> auto operator()(TAction &&action) {
+; 133  :   template <typename TAction> inline auto operator()(TAction &&action) {
 
 $LN9:
   00000	40 53		 push	 rbx
@@ -15341,7 +15339,7 @@ t1$ = 40
 t2$ = 48
 ??$?5U?$CompositionBuilder@U?$WhereBuilder@V<lambda_598d4e86815a438fd4e7e6d387cce0a6>@@@stream@@U?$WhereBuilder@V<lambda_cf2fcaad270884dc65f997dc259408a9>@@@2@@stream@@U?$WhereBuilder@P6A_NH@Z@1@@stream@@YA?AU?$CompositionBuilder@U?$CompositionBuilder@U?$WhereBuilder@V<lambda_598d4e86815a438fd4e7e6d387cce0a6>@@@stream@@U?$WhereBuilder@V<lambda_cf2fcaad270884dc65f997dc259408a9>@@@2@@stream@@U?$WhereBuilder@P6A_NH@Z@2@@0@$$QEAU?$CompositionBuilder@U?$WhereBuilder@V<lambda_598d4e86815a438fd4e7e6d387cce0a6>@@@stream@@U?$WhereBuilder@V<lambda_cf2fcaad270884dc65f997dc259408a9>@@@2@@0@$$QEAU?$WhereBuilder@P6A_NH@Z@0@@Z PROC ; stream::operator>><stream::CompositionBuilder<stream::WhereBuilder<<lambda_598d4e86815a438fd4e7e6d387cce0a6> >,stream::WhereBuilder<<lambda_cf2fcaad270884dc65f997dc259408a9> > >,stream::WhereBuilder<bool (__cdecl*)(int)> >, COMDAT
 
-; 85   : auto operator>>(TBuild1 &&t1, TBuild2 &&t2) {
+; 85   : inline auto operator>>(TBuild1 &&t1, TBuild2 &&t2) {
 
 $LN10:
   00000	48 83 ec 18	 sub	 rsp, 24
@@ -15397,7 +15395,7 @@ t1$ = 56
 t2$ = 64
 ??$?5U?$CompositionBuilder@U?$CompositionBuilder@U?$WhereBuilder@V<lambda_598d4e86815a438fd4e7e6d387cce0a6>@@@stream@@U?$WhereBuilder@V<lambda_cf2fcaad270884dc65f997dc259408a9>@@@2@@stream@@U?$WhereBuilder@P6A_NH@Z@2@@stream@@U?$SelectBuilder@V<lambda_8aa7c2fd8bb2d5404825e9f0eb58c65c>@@@1@@stream@@YA?AU?$CompositionBuilder@U?$CompositionBuilder@U?$CompositionBuilder@U?$WhereBuilder@V<lambda_598d4e86815a438fd4e7e6d387cce0a6>@@@stream@@U?$WhereBuilder@V<lambda_cf2fcaad270884dc65f997dc259408a9>@@@2@@stream@@U?$WhereBuilder@P6A_NH@Z@2@@stream@@U?$SelectBuilder@V<lambda_8aa7c2fd8bb2d5404825e9f0eb58c65c>@@@2@@0@$$QEAU?$CompositionBuilder@U?$CompositionBuilder@U?$WhereBuilder@V<lambda_598d4e86815a438fd4e7e6d387cce0a6>@@@stream@@U?$WhereBuilder@V<lambda_cf2fcaad270884dc65f997dc259408a9>@@@2@@stream@@U?$WhereBuilder@P6A_NH@Z@2@@0@$$QEAU?$SelectBuilder@V<lambda_8aa7c2fd8bb2d5404825e9f0eb58c65c>@@@0@@Z PROC ; stream::operator>><stream::CompositionBuilder<stream::CompositionBuilder<stream::WhereBuilder<<lambda_598d4e86815a438fd4e7e6d387cce0a6> >,stream::WhereBuilder<<lambda_cf2fcaad270884dc65f997dc259408a9> > >,stream::WhereBuilder<bool (__cdecl*)(int)> >,stream::SelectBuilder<<lambda_8aa7c2fd8bb2d5404825e9f0eb58c65c> > >, COMDAT
 
-; 85   : auto operator>>(TBuild1 &&t1, TBuild2 &&t2) {
+; 85   : inline auto operator>>(TBuild1 &&t1, TBuild2 &&t2) {
 
 $LN10:
   00000	48 83 ec 28	 sub	 rsp, 40			; 00000028H
@@ -15435,7 +15433,7 @@ t$ = 88
 action$ = 96
 ??$?5U?$CompositionBuilder@U?$CompositionBuilder@U?$CompositionBuilder@U?$WhereBuilder@V<lambda_598d4e86815a438fd4e7e6d387cce0a6>@@@stream@@U?$WhereBuilder@V<lambda_cf2fcaad270884dc65f997dc259408a9>@@@2@@stream@@U?$WhereBuilder@P6A_NH@Z@2@@stream@@U?$SelectBuilder@V<lambda_8aa7c2fd8bb2d5404825e9f0eb58c65c>@@@2@@stream@@V<lambda_cab8f82deed967cef2bbf07a7cd63dbc>@@@stream@@YA?AU?$Where@U?$Where@U?$Where@U?$Select@AEAU?$Action@V<lambda_cab8f82deed967cef2bbf07a7cd63dbc>@@@stream@@V<lambda_8aa7c2fd8bb2d5404825e9f0eb58c65c>@@@stream@@P6A_NH@Z@stream@@V<lambda_cf2fcaad270884dc65f997dc259408a9>@@@stream@@V<lambda_598d4e86815a438fd4e7e6d387cce0a6>@@@0@$$QEAU?$CompositionBuilder@U?$CompositionBuilder@U?$CompositionBuilder@U?$WhereBuilder@V<lambda_598d4e86815a438fd4e7e6d387cce0a6>@@@stream@@U?$WhereBuilder@V<lambda_cf2fcaad270884dc65f997dc259408a9>@@@2@@stream@@U?$WhereBuilder@P6A_NH@Z@2@@stream@@U?$SelectBuilder@V<lambda_8aa7c2fd8bb2d5404825e9f0eb58c65c>@@@2@@0@$$QEAU?$Action@V<lambda_cab8f82deed967cef2bbf07a7cd63dbc>@@@0@@Z PROC ; stream::operator>><stream::CompositionBuilder<stream::CompositionBuilder<stream::CompositionBuilder<stream::WhereBuilder<<lambda_598d4e86815a438fd4e7e6d387cce0a6> >,stream::WhereBuilder<<lambda_cf2fcaad270884dc65f997dc259408a9> > >,stream::WhereBuilder<bool (__cdecl*)(int)> >,stream::SelectBuilder<<lambda_8aa7c2fd8bb2d5404825e9f0eb58c65c> > >,<lambda_cab8f82deed967cef2bbf07a7cd63dbc> >, COMDAT
 
-; 91   : auto operator>>(TBuild &&t, Action<TAction> &&action) {
+; 91   : inline auto operator>>(TBuild &&t, Action<TAction> &&action) {
 
 $LN60:
   00000	48 83 ec 48	 sub	 rsp, 72			; 00000048H
@@ -15493,7 +15491,7 @@ __$ReturnUdt$ = 88
 action$ = 96
 ??$?RAEAU?$Action@V<lambda_cab8f82deed967cef2bbf07a7cd63dbc>@@@stream@@@?$CompositionBuilder@U?$CompositionBuilder@U?$CompositionBuilder@U?$WhereBuilder@V<lambda_598d4e86815a438fd4e7e6d387cce0a6>@@@stream@@U?$WhereBuilder@V<lambda_cf2fcaad270884dc65f997dc259408a9>@@@2@@stream@@U?$WhereBuilder@P6A_NH@Z@2@@stream@@U?$SelectBuilder@V<lambda_8aa7c2fd8bb2d5404825e9f0eb58c65c>@@@2@@stream@@QEAA?AU?$Where@U?$Where@U?$Where@U?$Select@AEAU?$Action@V<lambda_cab8f82deed967cef2bbf07a7cd63dbc>@@@stream@@V<lambda_8aa7c2fd8bb2d5404825e9f0eb58c65c>@@@stream@@P6A_NH@Z@stream@@V<lambda_cf2fcaad270884dc65f997dc259408a9>@@@stream@@V<lambda_598d4e86815a438fd4e7e6d387cce0a6>@@@1@AEAU?$Action@V<lambda_cab8f82deed967cef2bbf07a7cd63dbc>@@@1@@Z PROC ; stream::CompositionBuilder<stream::CompositionBuilder<stream::CompositionBuilder<stream::WhereBuilder<<lambda_598d4e86815a438fd4e7e6d387cce0a6> >,stream::WhereBuilder<<lambda_cf2fcaad270884dc65f997dc259408a9> > >,stream::WhereBuilder<bool (__cdecl*)(int)> >,stream::SelectBuilder<<lambda_8aa7c2fd8bb2d5404825e9f0eb58c65c> > >::operator()<stream::Action<<lambda_cab8f82deed967cef2bbf07a7cd63dbc> > & __ptr64>, COMDAT
 
-; 79   :   template <typename TAction> auto operator()(TAction &&action) {
+; 79   :   template <typename TAction> inline auto operator()(TAction &&action) {
 
 $LN58:
   00000	48 83 ec 48	 sub	 rsp, 72			; 00000048H
@@ -15548,7 +15546,7 @@ __$ReturnUdt$ = 40
 action$ = 48
 ??$?RAEAU?$Action@V<lambda_cab8f82deed967cef2bbf07a7cd63dbc>@@@stream@@@?$SelectBuilder@V<lambda_8aa7c2fd8bb2d5404825e9f0eb58c65c>@@@stream@@QEAA?AU?$Select@AEAU?$Action@V<lambda_cab8f82deed967cef2bbf07a7cd63dbc>@@@stream@@V<lambda_8aa7c2fd8bb2d5404825e9f0eb58c65c>@@@1@AEAU?$Action@V<lambda_cab8f82deed967cef2bbf07a7cd63dbc>@@@1@@Z PROC ; stream::SelectBuilder<<lambda_8aa7c2fd8bb2d5404825e9f0eb58c65c> >::operator()<stream::Action<<lambda_cab8f82deed967cef2bbf07a7cd63dbc> > & __ptr64>, COMDAT
 
-; 63   :   template <typename TAction> auto operator()(TAction &&action) {
+; 63   :   template <typename TAction> inline auto operator()(TAction &&action) {
 
 $LN10:
   00000	48 83 ec 18	 sub	 rsp, 24
@@ -15584,7 +15582,7 @@ __$ReturnUdt$ = 72
 action$ = 80
 ??$?RU?$Select@AEAU?$Action@V<lambda_cab8f82deed967cef2bbf07a7cd63dbc>@@@stream@@V<lambda_8aa7c2fd8bb2d5404825e9f0eb58c65c>@@@stream@@@?$CompositionBuilder@U?$CompositionBuilder@U?$WhereBuilder@V<lambda_598d4e86815a438fd4e7e6d387cce0a6>@@@stream@@U?$WhereBuilder@V<lambda_cf2fcaad270884dc65f997dc259408a9>@@@2@@stream@@U?$WhereBuilder@P6A_NH@Z@2@@stream@@QEAA?AU?$Where@U?$Where@U?$Where@U?$Select@AEAU?$Action@V<lambda_cab8f82deed967cef2bbf07a7cd63dbc>@@@stream@@V<lambda_8aa7c2fd8bb2d5404825e9f0eb58c65c>@@@stream@@P6A_NH@Z@stream@@V<lambda_cf2fcaad270884dc65f997dc259408a9>@@@stream@@V<lambda_598d4e86815a438fd4e7e6d387cce0a6>@@@1@$$QEAU?$Select@AEAU?$Action@V<lambda_cab8f82deed967cef2bbf07a7cd63dbc>@@@stream@@V<lambda_8aa7c2fd8bb2d5404825e9f0eb58c65c>@@@1@@Z PROC ; stream::CompositionBuilder<stream::CompositionBuilder<stream::WhereBuilder<<lambda_598d4e86815a438fd4e7e6d387cce0a6> >,stream::WhereBuilder<<lambda_cf2fcaad270884dc65f997dc259408a9> > >,stream::WhereBuilder<bool (__cdecl*)(int)> >::operator()<stream::Select<stream::Action<<lambda_cab8f82deed967cef2bbf07a7cd63dbc> > & __ptr64,<lambda_8aa7c2fd8bb2d5404825e9f0eb58c65c> > >, COMDAT
 
-; 79   :   template <typename TAction> auto operator()(TAction &&action) {
+; 79   :   template <typename TAction> inline auto operator()(TAction &&action) {
 
 $LN42:
   00000	48 83 ec 38	 sub	 rsp, 56			; 00000038H
@@ -15628,7 +15626,7 @@ __$ReturnUdt$ = 56
 action$ = 64
 ??$?RU?$Select@AEAU?$Action@V<lambda_cab8f82deed967cef2bbf07a7cd63dbc>@@@stream@@V<lambda_8aa7c2fd8bb2d5404825e9f0eb58c65c>@@@stream@@@?$WhereBuilder@P6A_NH@Z@stream@@QEAA?AU?$Where@U?$Select@AEAU?$Action@V<lambda_cab8f82deed967cef2bbf07a7cd63dbc>@@@stream@@V<lambda_8aa7c2fd8bb2d5404825e9f0eb58c65c>@@@stream@@P6A_NH@Z@1@$$QEAU?$Select@AEAU?$Action@V<lambda_cab8f82deed967cef2bbf07a7cd63dbc>@@@stream@@V<lambda_8aa7c2fd8bb2d5404825e9f0eb58c65c>@@@1@@Z PROC ; stream::WhereBuilder<bool (__cdecl*)(int)>::operator()<stream::Select<stream::Action<<lambda_cab8f82deed967cef2bbf07a7cd63dbc> > & __ptr64,<lambda_8aa7c2fd8bb2d5404825e9f0eb58c65c> > >, COMDAT
 
-; 38   :   template <typename TAction> auto operator()(TAction &&action) {
+; 38   :   template <typename TAction> inline auto operator()(TAction &&action) {
 
 $LN10:
   00000	48 83 ec 28	 sub	 rsp, 40			; 00000028H
@@ -15662,7 +15660,7 @@ __$ReturnUdt$ = 72
 action$ = 80
 ??$?RU?$Where@U?$Select@AEAU?$Action@V<lambda_cab8f82deed967cef2bbf07a7cd63dbc>@@@stream@@V<lambda_8aa7c2fd8bb2d5404825e9f0eb58c65c>@@@stream@@P6A_NH@Z@stream@@@?$CompositionBuilder@U?$WhereBuilder@V<lambda_598d4e86815a438fd4e7e6d387cce0a6>@@@stream@@U?$WhereBuilder@V<lambda_cf2fcaad270884dc65f997dc259408a9>@@@2@@stream@@QEAA?AU?$Where@U?$Where@U?$Where@U?$Select@AEAU?$Action@V<lambda_cab8f82deed967cef2bbf07a7cd63dbc>@@@stream@@V<lambda_8aa7c2fd8bb2d5404825e9f0eb58c65c>@@@stream@@P6A_NH@Z@stream@@V<lambda_cf2fcaad270884dc65f997dc259408a9>@@@stream@@V<lambda_598d4e86815a438fd4e7e6d387cce0a6>@@@1@$$QEAU?$Where@U?$Select@AEAU?$Action@V<lambda_cab8f82deed967cef2bbf07a7cd63dbc>@@@stream@@V<lambda_8aa7c2fd8bb2d5404825e9f0eb58c65c>@@@stream@@P6A_NH@Z@1@@Z PROC ; stream::CompositionBuilder<stream::WhereBuilder<<lambda_598d4e86815a438fd4e7e6d387cce0a6> >,stream::WhereBuilder<<lambda_cf2fcaad270884dc65f997dc259408a9> > >::operator()<stream::Where<stream::Select<stream::Action<<lambda_cab8f82deed967cef2bbf07a7cd63dbc> > & __ptr64,<lambda_8aa7c2fd8bb2d5404825e9f0eb58c65c> >,bool (__cdecl*)(int)> >, COMDAT
 
-; 79   :   template <typename TAction> auto operator()(TAction &&action) {
+; 79   :   template <typename TAction> inline auto operator()(TAction &&action) {
 
 $LN26:
   00000	48 83 ec 38	 sub	 rsp, 56			; 00000038H
@@ -15704,7 +15702,7 @@ __$ReturnUdt$ = 56
 action$ = 64
 ??$?RU?$Where@U?$Select@AEAU?$Action@V<lambda_cab8f82deed967cef2bbf07a7cd63dbc>@@@stream@@V<lambda_8aa7c2fd8bb2d5404825e9f0eb58c65c>@@@stream@@P6A_NH@Z@stream@@@?$WhereBuilder@V<lambda_cf2fcaad270884dc65f997dc259408a9>@@@stream@@QEAA?AU?$Where@U?$Where@U?$Select@AEAU?$Action@V<lambda_cab8f82deed967cef2bbf07a7cd63dbc>@@@stream@@V<lambda_8aa7c2fd8bb2d5404825e9f0eb58c65c>@@@stream@@P6A_NH@Z@stream@@V<lambda_cf2fcaad270884dc65f997dc259408a9>@@@1@$$QEAU?$Where@U?$Select@AEAU?$Action@V<lambda_cab8f82deed967cef2bbf07a7cd63dbc>@@@stream@@V<lambda_8aa7c2fd8bb2d5404825e9f0eb58c65c>@@@stream@@P6A_NH@Z@1@@Z PROC ; stream::WhereBuilder<<lambda_cf2fcaad270884dc65f997dc259408a9> >::operator()<stream::Where<stream::Select<stream::Action<<lambda_cab8f82deed967cef2bbf07a7cd63dbc> > & __ptr64,<lambda_8aa7c2fd8bb2d5404825e9f0eb58c65c> >,bool (__cdecl*)(int)> >, COMDAT
 
-; 38   :   template <typename TAction> auto operator()(TAction &&action) {
+; 38   :   template <typename TAction> inline auto operator()(TAction &&action) {
 
 $LN10:
   00000	48 83 ec 28	 sub	 rsp, 40			; 00000028H
@@ -15738,7 +15736,7 @@ __$ReturnUdt$ = 72
 action$ = 80
 ??$?RU?$Where@U?$Where@U?$Select@AEAU?$Action@V<lambda_cab8f82deed967cef2bbf07a7cd63dbc>@@@stream@@V<lambda_8aa7c2fd8bb2d5404825e9f0eb58c65c>@@@stream@@P6A_NH@Z@stream@@V<lambda_cf2fcaad270884dc65f997dc259408a9>@@@stream@@@?$WhereBuilder@V<lambda_598d4e86815a438fd4e7e6d387cce0a6>@@@stream@@QEAA?AU?$Where@U?$Where@U?$Where@U?$Select@AEAU?$Action@V<lambda_cab8f82deed967cef2bbf07a7cd63dbc>@@@stream@@V<lambda_8aa7c2fd8bb2d5404825e9f0eb58c65c>@@@stream@@P6A_NH@Z@stream@@V<lambda_cf2fcaad270884dc65f997dc259408a9>@@@stream@@V<lambda_598d4e86815a438fd4e7e6d387cce0a6>@@@1@$$QEAU?$Where@U?$Where@U?$Select@AEAU?$Action@V<lambda_cab8f82deed967cef2bbf07a7cd63dbc>@@@stream@@V<lambda_8aa7c2fd8bb2d5404825e9f0eb58c65c>@@@stream@@P6A_NH@Z@stream@@V<lambda_cf2fcaad270884dc65f997dc259408a9>@@@1@@Z PROC ; stream::WhereBuilder<<lambda_598d4e86815a438fd4e7e6d387cce0a6> >::operator()<stream::Where<stream::Where<stream::Select<stream::Action<<lambda_cab8f82deed967cef2bbf07a7cd63dbc> > & __ptr64,<lambda_8aa7c2fd8bb2d5404825e9f0eb58c65c> >,bool (__cdecl*)(int)>,<lambda_cf2fcaad270884dc65f997dc259408a9> > >, COMDAT
 
-; 38   :   template <typename TAction> auto operator()(TAction &&action) {
+; 38   :   template <typename TAction> inline auto operator()(TAction &&action) {
 
 $LN10:
   00000	48 83 ec 38	 sub	 rsp, 56			; 00000038H
@@ -15874,7 +15872,7 @@ $LN76:
   0000f	74 5e		 je	 SHORT $LN74@operator
 ; File c:\users\alist_000\cppmisc\stream4.cc
 
-; 230  :   auto f = stream::where([](auto i) { return i % 2 == 1; }) >>
+; 229  :   auto f = stream::where([](auto i) { return i % 2 == 1; }) >>
 
   00011	8b c2		 mov	 eax, edx
   00013	25 01 00 00 80	 and	 eax, -2147483647	; ffffffff80000001H
@@ -15889,7 +15887,7 @@ $LN72@operator:
 
   00024	75 43		 jne	 SHORT $LN62@operator
 
-; 231  :            stream::where([](auto i) { return i % 3 == 0; }) >>
+; 230  :            stream::where([](auto i) { return i % 3 == 0; }) >>
 
   00026	b8 56 55 55 55	 mov	 eax, 1431655766		; 55555556H
   0002b	f7 eb		 imul	 ebx
@@ -15908,13 +15906,13 @@ $LN72@operator:
   00043	74 24		 je	 SHORT $LN62@operator
   00045	66 0f 6e cb	 movd	 xmm1, ebx
 
-; 233  :            stream::select([](auto i) { return i * 1.1; }) >>
+; 232  :            stream::select([](auto i) { return i * 1.1; }) >>
 
   00049	f3 0f e6 c9	 cvtdq2pd xmm1, xmm1
   0004d	f2 0f 59 0d 00
 	00 00 00	 mulsd	 xmm1, QWORD PTR __real@3ff199999999999a
 
-; 234  :            stream::action([](const auto &i) { std::cout << i << '\n'; });
+; 233  :            stream::action([](const auto &i) { std::cout << i << '\n'; });
 
   00055	e8 00 00 00 00	 call	 ??6?$basic_ostream@DU?$char_traits@D@std@@@std@@QEAAAEAV01@N@Z ; std::basic_ostream<char,std::char_traits<char> >::operator<<
   0005a	48 8b c8	 mov	 rcx, rax
@@ -15927,7 +15925,7 @@ $LN72@operator:
   00063	5b		 pop	 rbx
 ; File c:\users\alist_000\cppmisc\stream4.cc
 
-; 234  :            stream::action([](const auto &i) { std::cout << i << '\n'; });
+; 233  :            stream::action([](const auto &i) { std::cout << i << '\n'; });
 
   00064	e9 00 00 00 00	 jmp	 ??$?6U?$char_traits@D@std@@@std@@YAAEAV?$basic_ostream@DU?$char_traits@D@std@@@0@AEAV10@D@Z ; std::operator<<<std::char_traits<char> >
 $LN62@operator:
@@ -16029,7 +16027,7 @@ this$ = 96
 item$ = 104
 ??R?$Buffer@V?$Window@AEAU?$Action@V<lambda_cffe59b91f15e7b90ef16ff48daf597b>@@@stream@@V?$vector@HV?$allocator@H@std@@@std@@@stream@@H@stream@@QEAAXH@Z PROC ; stream::Buffer<stream::Window<stream::Action<<lambda_cffe59b91f15e7b90ef16ff48daf597b> > & __ptr64,std::vector<int,std::allocator<int> > >,int>::operator(), COMDAT
 
-; 114  :   void operator()(TItem item) {
+; 114  :   inline void operator()(TItem item) {
 
 $LN352:
   00000	89 54 24 10	 mov	 DWORD PTR [rsp+16], edx
@@ -18700,7 +18698,7 @@ item$ = 136
 $T4 = 144
 ??R?$Window@AEAU?$Action@V<lambda_cffe59b91f15e7b90ef16ff48daf597b>@@@stream@@V?$vector@HV?$allocator@H@std@@@std@@@stream@@QEAAXV?$vector@HV?$allocator@H@std@@@std@@@Z PROC ; stream::Window<stream::Action<<lambda_cffe59b91f15e7b90ef16ff48daf597b> > & __ptr64,std::vector<int,std::allocator<int> > >::operator(), COMDAT
 
-; 161  :   void operator()(TItem item) {
+; 161  :   inline void operator()(TItem item) {
 
 $LN174:
   00000	48 89 54 24 10	 mov	 QWORD PTR [rsp+16], rdx
@@ -18817,7 +18815,7 @@ $LN2@operator:
   000c5	48 89 84 24 90
 	00 00 00	 mov	 QWORD PTR $T4[rsp], rax
 
-; 15   :   template <typename TItem> void operator()(TItem item) { action(item); }
+; 15   :   template <typename TItem> inline void operator()(TItem item) { action(item); }
 
   000cd	48 8b d0	 mov	 rdx, rax
   000d0	48 8d 4c 24 40	 lea	 rcx, QWORD PTR $T3[rsp]
@@ -41354,7 +41352,7 @@ this$dead$ = 48
 item$ = 56
 ??$?RH@?$Action@V<lambda_c9d0c2bc87ed4f42a0fcb05fbb579a63>@@@stream@@QEAAXH@Z PROC ; stream::Action<<lambda_c9d0c2bc87ed4f42a0fcb05fbb579a63> >::operator()<int>, COMDAT
 
-; 15   :   template <typename TItem> void operator()(TItem item) { action(item); }
+; 15   :   template <typename TItem> inline void operator()(TItem item) { action(item); }
 
 $LN8:
   00000	40 53		 push	 rbx
@@ -41382,7 +41380,7 @@ $LN8:
   00034	48 8b c8	 mov	 rcx, rax
 ; File c:\users\alist_000\cppmisc\stream4.cc
 
-; 15   :   template <typename TItem> void operator()(TItem item) { action(item); }
+; 15   :   template <typename TItem> inline void operator()(TItem item) { action(item); }
 
   00037	48 83 c4 20	 add	 rsp, 32			; 00000020H
   0003b	5b		 pop	 rbx
@@ -42588,7 +42586,7 @@ this$dead$ = 80
 item$ = 88
 ??$?RV?$vector@V?$vector@HV?$allocator@H@std@@@std@@V?$allocator@V?$vector@HV?$allocator@H@std@@@std@@@2@@std@@@?$Action@V<lambda_cffe59b91f15e7b90ef16ff48daf597b>@@@stream@@QEAAXV?$vector@V?$vector@HV?$allocator@H@std@@@std@@V?$allocator@V?$vector@HV?$allocator@H@std@@@std@@@2@@std@@@Z PROC ; stream::Action<<lambda_cffe59b91f15e7b90ef16ff48daf597b> >::operator()<std::vector<std::vector<int,std::allocator<int> >,std::allocator<std::vector<int,std::allocator<int> > > > >, COMDAT
 
-; 15   :   template <typename TItem> void operator()(TItem item) { action(item); }
+; 15   :   template <typename TItem> inline void operator()(TItem item) { action(item); }
 
 $LN8:
   00000	48 89 54 24 10	 mov	 QWORD PTR [rsp+16], rdx
@@ -42609,7 +42607,7 @@ $LN8:
   00029	48 8b cb	 mov	 rcx, rbx
 ; File c:\users\alist_000\cppmisc\stream4.cc
 
-; 15   :   template <typename TItem> void operator()(TItem item) { action(item); }
+; 15   :   template <typename TItem> inline void operator()(TItem item) { action(item); }
 
   0002c	48 83 c4 40	 add	 rsp, 64			; 00000040H
   00030	5b		 pop	 rbx
@@ -42666,7 +42664,7 @@ this$dead$ = 96
 i$ = 104
 ??$?RV?$vector@V?$vector@HV?$allocator@H@std@@@std@@V?$allocator@V?$vector@HV?$allocator@H@std@@@std@@@2@@std@@@<lambda_cffe59b91f15e7b90ef16ff48daf597b>@@QEBAXV?$vector@V?$vector@HV?$allocator@H@std@@@std@@V?$allocator@V?$vector@HV?$allocator@H@std@@@std@@@2@@std@@@Z PROC ; <lambda_cffe59b91f15e7b90ef16ff48daf597b>::operator()<std::vector<std::vector<int,std::allocator<int> >,std::allocator<std::vector<int,std::allocator<int> > > > >, COMDAT
 
-; 207  :            stream::action([](auto i) {
+; 206  :            stream::action([](auto i) {
 
   00000	48 89 54 24 10	 mov	 QWORD PTR [rsp+16], rdx
   00005	56		 push	 rsi
@@ -42681,8 +42679,8 @@ i$ = 104
   0001f	48 89 6c 24 70	 mov	 QWORD PTR [rsp+112], rbp
   00024	4c 8b fa	 mov	 r15, rdx
 
-; 208  : 
-; 209  :              std::cout << "[\n";
+; 207  : 
+; 208  :              std::cout << "[\n";
 
   00027	48 8d 15 00 00
 	00 00		 lea	 rdx, OFFSET FLAT:??_C@_02JKLIAPDG@?$FL?6?$AA@
@@ -42696,7 +42694,7 @@ i$ = 104
   0003a	49 8b 77 08	 mov	 rsi, QWORD PTR [r15+8]
 ; File c:\users\alist_000\cppmisc\stream4.cc
 
-; 210  :              for (const auto &si : i) {
+; 209  :              for (const auto &si : i) {
 
   0003e	49 8b 3f	 mov	 rdi, QWORD PTR [r15]
   00041	48 3b fe	 cmp	 rdi, rsi
@@ -42706,7 +42704,7 @@ i$ = 104
   0004d	0f 1f 00	 npad	 3
 $LL4@operator:
 
-; 211  :                std::cout << "[";
+; 210  :                std::cout << "[";
 
   00050	48 8d 15 00 00
 	00 00		 lea	 rdx, OFFSET FLAT:??_C@_01OHGJGJJP@?$FL?$AA@
@@ -42727,7 +42725,7 @@ $LL4@operator:
   0007c	4d 0f 47 f4	 cmova	 r14, r12
 ; File c:\users\alist_000\cppmisc\stream4.cc
 
-; 212  :                for (const auto &sii : si) {
+; 211  :                for (const auto &sii : si) {
 
   00080	4d 85 f6	 test	 r14, r14
   00083	74 2f		 je	 SHORT $LN6@operator
@@ -42736,7 +42734,7 @@ $LL4@operator:
 	00		 npad	 11
 $LL7@operator:
 
-; 213  :                  std::cout << '\t' << sii;
+; 212  :                  std::cout << '\t' << sii;
 
   00090	b2 09		 mov	 dl, 9
   00092	48 8d 0d 00 00
@@ -42753,14 +42751,14 @@ $LL7@operator:
   000ac	48 ff c5	 inc	 rbp
 ; File c:\users\alist_000\cppmisc\stream4.cc
 
-; 212  :                for (const auto &sii : si) {
+; 211  :                for (const auto &sii : si) {
 
   000af	49 3b ee	 cmp	 rbp, r14
   000b2	75 dc		 jne	 SHORT $LL7@operator
 $LN6@operator:
 
-; 214  :                }
-; 215  :                std::cout << "]\n";
+; 213  :                }
+; 214  :                std::cout << "]\n";
 
   000b4	48 8d 15 00 00
 	00 00		 lea	 rdx, OFFSET FLAT:??_C@_02JODFHDIE@?$FN?6?$AA@
@@ -42774,14 +42772,14 @@ $LN6@operator:
   000c7	48 83 c7 18	 add	 rdi, 24
 ; File c:\users\alist_000\cppmisc\stream4.cc
 
-; 210  :              for (const auto &si : i) {
+; 209  :              for (const auto &si : i) {
 
   000cb	48 3b fe	 cmp	 rdi, rsi
   000ce	75 80		 jne	 SHORT $LL4@operator
 $LN3@operator:
 
-; 216  :              }
-; 217  :              std::cout << "]\n";
+; 215  :              }
+; 216  :              std::cout << "]\n";
 
   000d0	48 8d 15 00 00
 	00 00		 lea	 rdx, OFFSET FLAT:??_C@_02JODFHDIE@?$FN?6?$AA@
@@ -42796,7 +42794,7 @@ $LN3@operator:
   000e4	49 8b cf	 mov	 rcx, r15
 ; File c:\users\alist_000\cppmisc\stream4.cc
 
-; 219  :            });
+; 218  :            });
 
   000e7	48 8b 5c 24 60	 mov	 rbx, QWORD PTR [rsp+96]
   000ec	48 8b 6c 24 70	 mov	 rbp, QWORD PTR [rsp+112]
@@ -49561,7 +49559,7 @@ $LN59:
   00008	4c 8b c1	 mov	 r8, rcx
 ; File c:\users\alist_000\cppmisc\stream4.cc
 
-; 230  :   auto f = stream::where([](auto i) { return i % 2 == 1; }) >>
+; 229  :   auto f = stream::where([](auto i) { return i % 2 == 1; }) >>
 
   0000b	8b c3		 mov	 eax, ebx
   0000d	25 01 00 00 80	 and	 eax, -2147483647	; ffffffff80000001H
@@ -49576,7 +49574,7 @@ $LN57@Do_call:
 
   0001e	75 43		 jne	 SHORT $LN47@Do_call
 
-; 231  :            stream::where([](auto i) { return i % 3 == 0; }) >>
+; 230  :            stream::where([](auto i) { return i % 3 == 0; }) >>
 
   00020	b8 56 55 55 55	 mov	 eax, 1431655766		; 55555556H
   00025	f7 eb		 imul	 ebx
@@ -49595,13 +49593,13 @@ $LN57@Do_call:
   0003d	74 24		 je	 SHORT $LN47@Do_call
   0003f	66 0f 6e cb	 movd	 xmm1, ebx
 
-; 233  :            stream::select([](auto i) { return i * 1.1; }) >>
+; 232  :            stream::select([](auto i) { return i * 1.1; }) >>
 
   00043	f3 0f e6 c9	 cvtdq2pd xmm1, xmm1
   00047	f2 0f 59 0d 00
 	00 00 00	 mulsd	 xmm1, QWORD PTR __real@3ff199999999999a
 
-; 234  :            stream::action([](const auto &i) { std::cout << i << '\n'; });
+; 233  :            stream::action([](const auto &i) { std::cout << i << '\n'; });
 
   0004f	e8 00 00 00 00	 call	 ??6?$basic_ostream@DU?$char_traits@D@std@@@std@@QEAAAEAV01@N@Z ; std::basic_ostream<char,std::char_traits<char> >::operator<<
   00054	48 8b c8	 mov	 rcx, rax
@@ -49614,7 +49612,7 @@ $LN57@Do_call:
   0005d	5b		 pop	 rbx
 ; File c:\users\alist_000\cppmisc\stream4.cc
 
-; 234  :            stream::action([](const auto &i) { std::cout << i << '\n'; });
+; 233  :            stream::action([](const auto &i) { std::cout << i << '\n'; });
 
   0005e	e9 00 00 00 00	 jmp	 ??$?6U?$char_traits@D@std@@@std@@YAAEAV?$basic_ostream@DU?$char_traits@D@std@@@0@AEAV10@D@Z ; std::operator<<<std::char_traits<char> >
 $LN47@Do_call:
@@ -50567,7 +50565,7 @@ $LN48:
   00009	4c 8b ca	 mov	 r9, rdx
 ; File c:\users\alist_000\cppmisc\stream4.cc
 
-; 230  :   auto f = stream::where([](auto i) { return i % 2 == 1; }) >>
+; 229  :   auto f = stream::where([](auto i) { return i % 2 == 1; }) >>
 
   0000c	8b c3		 mov	 eax, ebx
   0000e	25 01 00 00 80	 and	 eax, -2147483647	; ffffffff80000001H
@@ -50582,7 +50580,7 @@ $LN46@Invoke_ret:
 
   0001f	75 3e		 jne	 SHORT $LN36@Invoke_ret
 
-; 231  :            stream::where([](auto i) { return i % 3 == 0; }) >>
+; 230  :            stream::where([](auto i) { return i % 3 == 0; }) >>
 
   00021	b8 56 55 55 55	 mov	 eax, 1431655766		; 55555556H
   00026	f7 eb		 imul	 ebx
@@ -50601,13 +50599,13 @@ $LN46@Invoke_ret:
   0003e	74 1f		 je	 SHORT $LN36@Invoke_ret
   00040	66 0f 6e cb	 movd	 xmm1, ebx
 
-; 233  :            stream::select([](auto i) { return i * 1.1; }) >>
+; 232  :            stream::select([](auto i) { return i * 1.1; }) >>
 
   00044	f3 0f e6 c9	 cvtdq2pd xmm1, xmm1
   00048	f2 0f 59 0d 00
 	00 00 00	 mulsd	 xmm1, QWORD PTR __real@3ff199999999999a
 
-; 234  :            stream::action([](const auto &i) { std::cout << i << '\n'; });
+; 233  :            stream::action([](const auto &i) { std::cout << i << '\n'; });
 
   00050	e8 00 00 00 00	 call	 ??6?$basic_ostream@DU?$char_traits@D@std@@@std@@QEAAAEAV01@N@Z ; std::basic_ostream<char,std::char_traits<char> >::operator<<
   00055	48 8b c8	 mov	 rcx, rax
@@ -50838,7 +50836,7 @@ $LN40:
   00008	4c 8b c1	 mov	 r8, rcx
 ; File c:\users\alist_000\cppmisc\stream4.cc
 
-; 230  :   auto f = stream::where([](auto i) { return i % 2 == 1; }) >>
+; 229  :   auto f = stream::where([](auto i) { return i % 2 == 1; }) >>
 
   0000b	8b c3		 mov	 eax, ebx
   0000d	25 01 00 00 80	 and	 eax, -2147483647	; ffffffff80000001H
@@ -50853,7 +50851,7 @@ $LN38@invoke:
 
   0001e	75 43		 jne	 SHORT $LN28@invoke
 
-; 231  :            stream::where([](auto i) { return i % 3 == 0; }) >>
+; 230  :            stream::where([](auto i) { return i % 3 == 0; }) >>
 
   00020	b8 56 55 55 55	 mov	 eax, 1431655766		; 55555556H
   00025	f7 eb		 imul	 ebx
@@ -50872,13 +50870,13 @@ $LN38@invoke:
   0003d	74 24		 je	 SHORT $LN28@invoke
   0003f	66 0f 6e cb	 movd	 xmm1, ebx
 
-; 233  :            stream::select([](auto i) { return i * 1.1; }) >>
+; 232  :            stream::select([](auto i) { return i * 1.1; }) >>
 
   00043	f3 0f e6 c9	 cvtdq2pd xmm1, xmm1
   00047	f2 0f 59 0d 00
 	00 00 00	 mulsd	 xmm1, QWORD PTR __real@3ff199999999999a
 
-; 234  :            stream::action([](const auto &i) { std::cout << i << '\n'; });
+; 233  :            stream::action([](const auto &i) { std::cout << i << '\n'; });
 
   0004f	e8 00 00 00 00	 call	 ??6?$basic_ostream@DU?$char_traits@D@std@@@std@@QEAAAEAV01@N@Z ; std::basic_ostream<char,std::char_traits<char> >::operator<<
   00054	48 8b c8	 mov	 rcx, rax
@@ -50891,7 +50889,7 @@ $LN38@invoke:
   0005d	5b		 pop	 rbx
 ; File c:\users\alist_000\cppmisc\stream4.cc
 
-; 234  :            stream::action([](const auto &i) { std::cout << i << '\n'; });
+; 233  :            stream::action([](const auto &i) { std::cout << i << '\n'; });
 
   0005e	e9 00 00 00 00	 jmp	 ??$?6U?$char_traits@D@std@@@std@@YAAEAV?$basic_ostream@DU?$char_traits@D@std@@@0@AEAV10@D@Z ; std::operator<<<std::char_traits<char> >
 $LN28@invoke:
@@ -51351,7 +51349,7 @@ $LN32:
   00008	4c 8b c1	 mov	 r8, rcx
 ; File c:\users\alist_000\cppmisc\stream4.cc
 
-; 230  :   auto f = stream::where([](auto i) { return i % 2 == 1; }) >>
+; 229  :   auto f = stream::where([](auto i) { return i % 2 == 1; }) >>
 
   0000b	8b c3		 mov	 eax, ebx
   0000d	25 01 00 00 80	 and	 eax, -2147483647	; ffffffff80000001H
@@ -51366,7 +51364,7 @@ $LN30@Call:
 
   0001e	75 43		 jne	 SHORT $LN20@Call
 
-; 231  :            stream::where([](auto i) { return i % 3 == 0; }) >>
+; 230  :            stream::where([](auto i) { return i % 3 == 0; }) >>
 
   00020	b8 56 55 55 55	 mov	 eax, 1431655766		; 55555556H
   00025	f7 eb		 imul	 ebx
@@ -51385,13 +51383,13 @@ $LN30@Call:
   0003d	74 24		 je	 SHORT $LN20@Call
   0003f	66 0f 6e cb	 movd	 xmm1, ebx
 
-; 233  :            stream::select([](auto i) { return i * 1.1; }) >>
+; 232  :            stream::select([](auto i) { return i * 1.1; }) >>
 
   00043	f3 0f e6 c9	 cvtdq2pd xmm1, xmm1
   00047	f2 0f 59 0d 00
 	00 00 00	 mulsd	 xmm1, QWORD PTR __real@3ff199999999999a
 
-; 234  :            stream::action([](const auto &i) { std::cout << i << '\n'; });
+; 233  :            stream::action([](const auto &i) { std::cout << i << '\n'; });
 
   0004f	e8 00 00 00 00	 call	 ??6?$basic_ostream@DU?$char_traits@D@std@@@std@@QEAAAEAV01@N@Z ; std::basic_ostream<char,std::char_traits<char> >::operator<<
   00054	48 8b c8	 mov	 rcx, rax
@@ -51404,7 +51402,7 @@ $LN30@Call:
   0005d	5b		 pop	 rbx
 ; File c:\users\alist_000\cppmisc\stream4.cc
 
-; 234  :            stream::action([](const auto &i) { std::cout << i << '\n'; });
+; 233  :            stream::action([](const auto &i) { std::cout << i << '\n'; });
 
   0005e	e9 00 00 00 00	 jmp	 ??$?6U?$char_traits@D@std@@@std@@YAAEAV?$basic_ostream@DU?$char_traits@D@std@@@0@AEAV10@D@Z ; std::operator<<<std::char_traits<char> >
 $LN20@Call:
@@ -51711,22 +51709,22 @@ this$ = 48
 item$ = 56
 ??$?RH@?$Where@U?$Where@U?$Where@U?$Select@AEAU?$Action@V<lambda_cab8f82deed967cef2bbf07a7cd63dbc>@@@stream@@V<lambda_8aa7c2fd8bb2d5404825e9f0eb58c65c>@@@stream@@P6A_NH@Z@stream@@V<lambda_cf2fcaad270884dc65f997dc259408a9>@@@stream@@V<lambda_598d4e86815a438fd4e7e6d387cce0a6>@@@stream@@QEAAXH@Z PROC ; stream::Where<stream::Where<stream::Where<stream::Select<stream::Action<<lambda_cab8f82deed967cef2bbf07a7cd63dbc> > & __ptr64,<lambda_8aa7c2fd8bb2d5404825e9f0eb58c65c> >,bool (__cdecl*)(int)>,<lambda_cf2fcaad270884dc65f997dc259408a9> >,<lambda_598d4e86815a438fd4e7e6d387cce0a6> >::operator()<int>, COMDAT
 
-; 30   :   template <typename TItem> void operator()(TItem item) {
+; 30   :   template <typename TItem> inline void operator()(TItem item) {
 
 $LN24:
   00000	40 53		 push	 rbx
   00002	48 83 ec 20	 sub	 rsp, 32			; 00000020H
 
-; 230  :   auto f = stream::where([](auto i) { return i % 2 == 1; }) >>
+; 229  :   auto f = stream::where([](auto i) { return i % 2 == 1; }) >>
 
   00006	8b c2		 mov	 eax, edx
 
-; 30   :   template <typename TItem> void operator()(TItem item) {
+; 30   :   template <typename TItem> inline void operator()(TItem item) {
 
   00008	8b da		 mov	 ebx, edx
   0000a	4c 8b c1	 mov	 r8, rcx
 
-; 230  :   auto f = stream::where([](auto i) { return i % 2 == 1; }) >>
+; 229  :   auto f = stream::where([](auto i) { return i % 2 == 1; }) >>
 
   0000d	25 01 00 00 80	 and	 eax, -2147483647	; ffffffff80000001H
   00012	7d 07		 jge	 SHORT $LN22@operator
@@ -51740,7 +51738,7 @@ $LN22@operator:
 
   0001e	75 43		 jne	 SHORT $LN12@operator
 
-; 231  :            stream::where([](auto i) { return i % 3 == 0; }) >>
+; 230  :            stream::where([](auto i) { return i % 3 == 0; }) >>
 
   00020	b8 56 55 55 55	 mov	 eax, 1431655766		; 55555556H
   00025	f7 eb		 imul	 ebx
@@ -51759,13 +51757,13 @@ $LN22@operator:
   0003d	74 24		 je	 SHORT $LN12@operator
   0003f	66 0f 6e cb	 movd	 xmm1, ebx
 
-; 233  :            stream::select([](auto i) { return i * 1.1; }) >>
+; 232  :            stream::select([](auto i) { return i * 1.1; }) >>
 
   00043	f3 0f e6 c9	 cvtdq2pd xmm1, xmm1
   00047	f2 0f 59 0d 00
 	00 00 00	 mulsd	 xmm1, QWORD PTR __real@3ff199999999999a
 
-; 234  :            stream::action([](const auto &i) { std::cout << i << '\n'; });
+; 233  :            stream::action([](const auto &i) { std::cout << i << '\n'; });
 
   0004f	e8 00 00 00 00	 call	 ??6?$basic_ostream@DU?$char_traits@D@std@@@std@@QEAAAEAV01@N@Z ; std::basic_ostream<char,std::char_traits<char> >::operator<<
   00054	48 8b c8	 mov	 rcx, rax
@@ -51777,7 +51775,7 @@ $LN22@operator:
   00059	48 83 c4 20	 add	 rsp, 32			; 00000020H
   0005d	5b		 pop	 rbx
 
-; 234  :            stream::action([](const auto &i) { std::cout << i << '\n'; });
+; 233  :            stream::action([](const auto &i) { std::cout << i << '\n'; });
 
   0005e	e9 00 00 00 00	 jmp	 ??$?6U?$char_traits@D@std@@@std@@YAAEAV?$basic_ostream@DU?$char_traits@D@std@@@0@AEAV10@D@Z ; std::operator<<<std::char_traits<char> >
 $LN12@operator:
@@ -51798,7 +51796,7 @@ this$dead$ = 8
 i$ = 16
 ??$?RH@<lambda_598d4e86815a438fd4e7e6d387cce0a6>@@QEBA_NH@Z PROC ; <lambda_598d4e86815a438fd4e7e6d387cce0a6>::operator()<int>, COMDAT
 
-; 230  :   auto f = stream::where([](auto i) { return i % 2 == 1; }) >>
+; 229  :   auto f = stream::where([](auto i) { return i % 2 == 1; }) >>
 
   00000	81 e2 01 00 00
 	80		 and	 edx, -2147483647	; ffffffff80000001H
@@ -52081,23 +52079,23 @@ this$ = 48
 item$ = 56
 ??$?RH@?$Where@U?$Where@U?$Select@AEAU?$Action@V<lambda_cab8f82deed967cef2bbf07a7cd63dbc>@@@stream@@V<lambda_8aa7c2fd8bb2d5404825e9f0eb58c65c>@@@stream@@P6A_NH@Z@stream@@V<lambda_cf2fcaad270884dc65f997dc259408a9>@@@stream@@QEAAXH@Z PROC ; stream::Where<stream::Where<stream::Select<stream::Action<<lambda_cab8f82deed967cef2bbf07a7cd63dbc> > & __ptr64,<lambda_8aa7c2fd8bb2d5404825e9f0eb58c65c> >,bool (__cdecl*)(int)>,<lambda_cf2fcaad270884dc65f997dc259408a9> >::operator()<int>, COMDAT
 
-; 30   :   template <typename TItem> void operator()(TItem item) {
+; 30   :   template <typename TItem> inline void operator()(TItem item) {
 
 $LN18:
   00000	40 53		 push	 rbx
   00002	48 83 ec 20	 sub	 rsp, 32			; 00000020H
   00006	8b da		 mov	 ebx, edx
 
-; 231  :            stream::where([](auto i) { return i % 3 == 0; }) >>
+; 230  :            stream::where([](auto i) { return i % 3 == 0; }) >>
 
   00008	b8 56 55 55 55	 mov	 eax, 1431655766		; 55555556H
   0000d	f7 ea		 imul	 edx
 
-; 30   :   template <typename TItem> void operator()(TItem item) {
+; 30   :   template <typename TItem> inline void operator()(TItem item) {
 
   0000f	4c 8b c9	 mov	 r9, rcx
 
-; 231  :            stream::where([](auto i) { return i % 3 == 0; }) >>
+; 230  :            stream::where([](auto i) { return i % 3 == 0; }) >>
 
   00012	8b c2		 mov	 eax, edx
   00014	c1 e8 1f	 shr	 eax, 31
@@ -52114,13 +52112,13 @@ $LN18:
   0002a	74 24		 je	 SHORT $LN7@operator
   0002c	66 0f 6e cb	 movd	 xmm1, ebx
 
-; 233  :            stream::select([](auto i) { return i * 1.1; }) >>
+; 232  :            stream::select([](auto i) { return i * 1.1; }) >>
 
   00030	f3 0f e6 c9	 cvtdq2pd xmm1, xmm1
   00034	f2 0f 59 0d 00
 	00 00 00	 mulsd	 xmm1, QWORD PTR __real@3ff199999999999a
 
-; 234  :            stream::action([](const auto &i) { std::cout << i << '\n'; });
+; 233  :            stream::action([](const auto &i) { std::cout << i << '\n'; });
 
   0003c	e8 00 00 00 00	 call	 ??6?$basic_ostream@DU?$char_traits@D@std@@@std@@QEAAAEAV01@N@Z ; std::basic_ostream<char,std::char_traits<char> >::operator<<
   00041	48 8b c8	 mov	 rcx, rax
@@ -52132,7 +52130,7 @@ $LN18:
   00046	48 83 c4 20	 add	 rsp, 32			; 00000020H
   0004a	5b		 pop	 rbx
 
-; 234  :            stream::action([](const auto &i) { std::cout << i << '\n'; });
+; 233  :            stream::action([](const auto &i) { std::cout << i << '\n'; });
 
   0004b	e9 00 00 00 00	 jmp	 ??$?6U?$char_traits@D@std@@@std@@YAAEAV?$basic_ostream@DU?$char_traits@D@std@@@0@AEAV10@D@Z ; std::operator<<<std::char_traits<char> >
 $LN7@operator:
@@ -52153,7 +52151,7 @@ this$dead$ = 8
 i$ = 16
 ??$?RH@<lambda_cf2fcaad270884dc65f997dc259408a9>@@QEBA_NH@Z PROC ; <lambda_cf2fcaad270884dc65f997dc259408a9>::operator()<int>, COMDAT
 
-; 231  :            stream::where([](auto i) { return i % 3 == 0; }) >>
+; 230  :            stream::where([](auto i) { return i % 3 == 0; }) >>
 
   00000	44 8b c2	 mov	 r8d, edx
   00003	b8 56 55 55 55	 mov	 eax, 1431655766		; 55555556H
@@ -52275,7 +52273,7 @@ this$ = 48
 item$ = 56
 ??$?RH@?$Where@U?$Select@AEAU?$Action@V<lambda_cab8f82deed967cef2bbf07a7cd63dbc>@@@stream@@V<lambda_8aa7c2fd8bb2d5404825e9f0eb58c65c>@@@stream@@P6A_NH@Z@stream@@QEAAXH@Z PROC ; stream::Where<stream::Select<stream::Action<<lambda_cab8f82deed967cef2bbf07a7cd63dbc> > & __ptr64,<lambda_8aa7c2fd8bb2d5404825e9f0eb58c65c> >,bool (__cdecl*)(int)>::operator()<int>, COMDAT
 
-; 30   :   template <typename TItem> void operator()(TItem item) {
+; 30   :   template <typename TItem> inline void operator()(TItem item) {
 
 $LN13:
   00000	40 53		 push	 rbx
@@ -52291,13 +52289,13 @@ $LN13:
   00012	74 24		 je	 SHORT $LN2@operator
   00014	66 0f 6e cb	 movd	 xmm1, ebx
 
-; 233  :            stream::select([](auto i) { return i * 1.1; }) >>
+; 232  :            stream::select([](auto i) { return i * 1.1; }) >>
 
   00018	f3 0f e6 c9	 cvtdq2pd xmm1, xmm1
   0001c	f2 0f 59 0d 00
 	00 00 00	 mulsd	 xmm1, QWORD PTR __real@3ff199999999999a
 
-; 234  :            stream::action([](const auto &i) { std::cout << i << '\n'; });
+; 233  :            stream::action([](const auto &i) { std::cout << i << '\n'; });
 
   00024	e8 00 00 00 00	 call	 ??6?$basic_ostream@DU?$char_traits@D@std@@@std@@QEAAAEAV01@N@Z ; std::basic_ostream<char,std::char_traits<char> >::operator<<
   00029	48 8b c8	 mov	 rcx, rax
@@ -52309,7 +52307,7 @@ $LN13:
   0002e	48 83 c4 20	 add	 rsp, 32			; 00000020H
   00032	5b		 pop	 rbx
 
-; 234  :            stream::action([](const auto &i) { std::cout << i << '\n'; });
+; 233  :            stream::action([](const auto &i) { std::cout << i << '\n'; });
 
   00033	e9 00 00 00 00	 jmp	 ??$?6U?$char_traits@D@std@@@std@@YAAEAV?$basic_ostream@DU?$char_traits@D@std@@@0@AEAV10@D@Z ; std::operator<<<std::char_traits<char> >
 $LN2@operator:
@@ -52382,19 +52380,19 @@ this$dead$ = 48
 item$ = 56
 ??$?RH@?$Select@AEAU?$Action@V<lambda_cab8f82deed967cef2bbf07a7cd63dbc>@@@stream@@V<lambda_8aa7c2fd8bb2d5404825e9f0eb58c65c>@@@stream@@QEAAXH@Z PROC ; stream::Select<stream::Action<<lambda_cab8f82deed967cef2bbf07a7cd63dbc> > & __ptr64,<lambda_8aa7c2fd8bb2d5404825e9f0eb58c65c> >::operator()<int>, COMDAT
 
-; 56   :   template <typename TItem> void operator()(TItem item) {
+; 56   :   template <typename TItem> inline void operator()(TItem item) {
 
 $LN10:
   00000	48 83 ec 28	 sub	 rsp, 40			; 00000028H
   00004	66 0f 6e ca	 movd	 xmm1, edx
 
-; 233  :            stream::select([](auto i) { return i * 1.1; }) >>
+; 232  :            stream::select([](auto i) { return i * 1.1; }) >>
 
   00008	f3 0f e6 c9	 cvtdq2pd xmm1, xmm1
   0000c	f2 0f 59 0d 00
 	00 00 00	 mulsd	 xmm1, QWORD PTR __real@3ff199999999999a
 
-; 234  :            stream::action([](const auto &i) { std::cout << i << '\n'; });
+; 233  :            stream::action([](const auto &i) { std::cout << i << '\n'; });
 
   00014	e8 00 00 00 00	 call	 ??6?$basic_ostream@DU?$char_traits@D@std@@@std@@QEAAAEAV01@N@Z ; std::basic_ostream<char,std::char_traits<char> >::operator<<
   00019	48 8b c8	 mov	 rcx, rax
@@ -52405,7 +52403,7 @@ $LN10:
 
   0001e	48 83 c4 28	 add	 rsp, 40			; 00000028H
 
-; 234  :            stream::action([](const auto &i) { std::cout << i << '\n'; });
+; 233  :            stream::action([](const auto &i) { std::cout << i << '\n'; });
 
   00022	e9 00 00 00 00	 jmp	 ??$?6U?$char_traits@D@std@@@std@@YAAEAV?$basic_ostream@DU?$char_traits@D@std@@@0@AEAV10@D@Z ; std::operator<<<std::char_traits<char> >
 ??$?RH@?$Select@AEAU?$Action@V<lambda_cab8f82deed967cef2bbf07a7cd63dbc>@@@stream@@V<lambda_8aa7c2fd8bb2d5404825e9f0eb58c65c>@@@stream@@QEAAXH@Z ENDP ; stream::Select<stream::Action<<lambda_cab8f82deed967cef2bbf07a7cd63dbc> > & __ptr64,<lambda_8aa7c2fd8bb2d5404825e9f0eb58c65c> >::operator()<int>
@@ -52418,7 +52416,7 @@ this$dead$ = 8
 i$ = 16
 ??$?RH@<lambda_8aa7c2fd8bb2d5404825e9f0eb58c65c>@@QEBANH@Z PROC ; <lambda_8aa7c2fd8bb2d5404825e9f0eb58c65c>::operator()<int>, COMDAT
 
-; 233  :            stream::select([](auto i) { return i * 1.1; }) >>
+; 232  :            stream::select([](auto i) { return i * 1.1; }) >>
 
   00000	66 0f 6e c2	 movd	 xmm0, edx
   00004	f3 0f e6 c0	 cvtdq2pd xmm0, xmm0
@@ -52435,22 +52433,22 @@ this$dead$ = 48
 item$ = 56
 ??$?RN@?$Action@V<lambda_cab8f82deed967cef2bbf07a7cd63dbc>@@@stream@@QEAAXN@Z PROC ; stream::Action<<lambda_cab8f82deed967cef2bbf07a7cd63dbc> >::operator()<double>, COMDAT
 
-; 15   :   template <typename TItem> void operator()(TItem item) { action(item); }
+; 15   :   template <typename TItem> inline void operator()(TItem item) { action(item); }
 
 $LN6:
   00000	48 83 ec 28	 sub	 rsp, 40			; 00000028H
 
-; 234  :            stream::action([](const auto &i) { std::cout << i << '\n'; });
+; 233  :            stream::action([](const auto &i) { std::cout << i << '\n'; });
 
   00004	e8 00 00 00 00	 call	 ??6?$basic_ostream@DU?$char_traits@D@std@@@std@@QEAAAEAV01@N@Z ; std::basic_ostream<char,std::char_traits<char> >::operator<<
   00009	48 8b c8	 mov	 rcx, rax
   0000c	b2 0a		 mov	 dl, 10
 
-; 15   :   template <typename TItem> void operator()(TItem item) { action(item); }
+; 15   :   template <typename TItem> inline void operator()(TItem item) { action(item); }
 
   0000e	48 83 c4 28	 add	 rsp, 40			; 00000028H
 
-; 234  :            stream::action([](const auto &i) { std::cout << i << '\n'; });
+; 233  :            stream::action([](const auto &i) { std::cout << i << '\n'; });
 
   00012	e9 00 00 00 00	 jmp	 ??$?6U?$char_traits@D@std@@@std@@YAAEAV?$basic_ostream@DU?$char_traits@D@std@@@0@AEAV10@D@Z ; std::operator<<<std::char_traits<char> >
 ??$?RN@?$Action@V<lambda_cab8f82deed967cef2bbf07a7cd63dbc>@@@stream@@QEAAXN@Z ENDP ; stream::Action<<lambda_cab8f82deed967cef2bbf07a7cd63dbc> >::operator()<double>
@@ -52463,7 +52461,7 @@ this$dead$ = 48
 i$ = 56
 ??$?RN@<lambda_cab8f82deed967cef2bbf07a7cd63dbc>@@QEBAXAEBN@Z PROC ; <lambda_cab8f82deed967cef2bbf07a7cd63dbc>::operator()<double>, COMDAT
 
-; 234  :            stream::action([](const auto &i) { std::cout << i << '\n'; });
+; 233  :            stream::action([](const auto &i) { std::cout << i << '\n'; });
 
   00000	48 83 ec 28	 sub	 rsp, 40			; 00000028H
   00004	f2 0f 10 0a	 movsd	 xmm1, QWORD PTR [rdx]
