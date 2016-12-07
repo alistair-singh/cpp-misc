@@ -6,6 +6,8 @@
 #include <utility>
 #include <vector>
 
+#include "timer_w32.cc"
+
 namespace stream {
 //------------------------------------------------------------- ACTION
 
@@ -13,6 +15,7 @@ template <typename TAction> struct Action {
   TAction action;
 
   template <typename TItem> inline void operator()(TItem item) { action(item); }
+  void reset(){}
 };
 
 template <typename TAction> Action<TAction> action(TAction &&action) {
@@ -31,6 +34,7 @@ template <typename TAction, typename TPredicate> struct Where {
     if (predicate(item))
       action(item);
   }
+  void reset(){}
 };
 
 template <typename TPredicate> struct WhereBuilder {
@@ -56,6 +60,7 @@ template <typename TAction, typename TMapper> struct Select {
   template <typename TItem> inline void operator()(TItem item) {
     action(mapper(item));
   }
+  void reset(){}
 };
 
 template <typename TMapper> struct SelectBuilder {
@@ -121,7 +126,7 @@ public:
     }
   }
 
-  inline void Reset() {
+  inline void reset() {
     std::lock_guard<std::mutex> guard(lock_);
     items_.clear();
     action_.reset();
@@ -168,7 +173,7 @@ public:
     action_(items_);
   }
 
-  inline void Reset() {
+  inline void reset() {
     std::lock_guard<std::mutex> guard(lock_);
     items_.clear();
     action_.reset();
@@ -187,6 +192,65 @@ template <typename TItem> auto window(size_t size) {
 }
 
 //------------------------------------------------------------- WINDOW
+
+//------------------------------------------------------------- TIMECLUSTER
+
+template <typename TAction, typename TItem> class TimeCluster {
+  TAction action_;
+  std::vector<TItem> items_;
+  std::recursive_mutex lock_;
+
+  bool first_;
+  int milliseconds_;
+  Timer timer_;
+
+public:
+  TimeCluster(TAction &&action, int milliseconds)
+      : action_(std::forward<TAction>(action)), first_(true),
+        milliseconds_(milliseconds) {}
+
+  TimeCluster(TimeCluster<TAction, TItem> &&window)
+      : action_(std::forward<TAction>(window.action_)),
+        items_(std::forward<std::vector<TItem>>(window.items_)),
+        first_(window.first_) {}
+
+  inline void operator()(TItem item) {
+    std::lock_guard<std::recursive_mutex> guard(lock_);
+    if (first_) {
+      timer_.once(milliseconds_, [&](auto){flushAndReset();});
+      first_ = false;
+    }
+    items_.push_back(item);
+  }
+
+  inline void flushAndReset() {
+    std::lock_guard<std::recursive_mutex> guard(lock_);
+    if (!items_.empty())
+      action_(items_);
+    reset();
+  }
+
+  inline void reset() {
+    std::lock_guard<std::recursive_mutex> guard(lock_);
+    timer_.stop();
+    items_.clear();
+    action_.reset();
+    first_ = true;
+  }
+};
+
+template <typename TItem> struct TimeClusterBuilder {
+  int milliseconds;
+  template <typename TAction> inline auto operator()(TAction &&action) {
+    return TimeCluster<TAction, TItem>{std::forward<TAction>(action), milliseconds};
+  }
+};
+
+template <typename TItem> auto time_cluster(int milliseconds) {
+  return TimeClusterBuilder<TItem>{milliseconds};
+}
+
+//------------------------------------------------------------- TIMECLUSTER
 }
 
 bool sampleFunc(int i) {
@@ -197,8 +261,24 @@ bool sampleFunc(int i) {
 int main() {
   std::cout << "4\n";
 
-  auto a =
-      stream::action([](int i) { std::cout << "a(" << i << ")" << std::endl; });
+  auto t = stream::time_cluster<int>(300) 
+           >> stream::select([](const auto& i) { return i; }) // dedupe
+           >> stream::where([](const auto& i) { return !i.empty(); })
+           >> stream::action([](const auto& i) {
+             for (const auto &si : i) {
+               std::cout << '\t' << "t(" <<si << ")";
+             }
+             std::cout << '\n';
+           });
+  for (int i = 0; i < 1; i++)
+  {
+    t(i);
+    Sleep(100);
+  }
+
+  Sleep(1000);
+  auto a = stream::action(
+      [](int i) { std::cout << "a(" << i << ")" << std::endl; });
   a(12);
   a(34);
 

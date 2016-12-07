@@ -6,25 +6,26 @@
 #include <string>
 #include <windows.h>
 
-std::chrono::milliseconds milli_epoch() {
+struct TimeEvent {
+  long long epoch_ms;
+};
+
+auto milli_epoch() {
   using namespace std::chrono;
-  return duration_cast<milliseconds>(system_clock::now().time_since_epoch());
+  TimeEvent event{
+      duration_cast<milliseconds>(system_clock::now().time_since_epoch())
+          .count()};
+  return event;
 }
 
 VOID CALLBACK timer_tick(PVOID lpParam, BOOLEAN timerOrWaitFired);
 
-class timer {
-  std::function<void(std::chrono::milliseconds)> action_;
+class Timer {
+  std::function<void(TimeEvent)> action_;
   HANDLE timerHandle_;
   bool disposed_;
 
-public:
-  timer(unsigned int milli,
-        std::function<void(std::chrono::milliseconds)> action)
-      : timer(milli, milli, action) {}
-  timer(unsigned int startMilli, unsigned int repeatMilli,
-        std::function<void(std::chrono::milliseconds)> action)
-      : action_(action) {
+  void init(unsigned int startMilli, unsigned int repeatMilli) {
     disposed_ = false;
 
     if (!::CreateTimerQueueTimer(&timerHandle_, NULL, timer_tick, this,
@@ -33,20 +34,33 @@ public:
     }
   }
 
-  static timer once(unsigned int milli,
-                    std::function<void(std::chrono::milliseconds)> action) {
-    return timer(milli, 0, action);
+public:
+  Timer()
+      : action_(nullptr), timerHandle_(INVALID_HANDLE_VALUE), disposed_(true) {}
+
+  void start(unsigned int startMilli, unsigned int repeatMilli,
+             std::function<void(TimeEvent)> action) {
+    action_ = action;
+    init(startMilli, repeatMilli);
   }
 
-  void tick() const { action_(milli_epoch()); }
+  void start(unsigned int milli, std::function<void(TimeEvent)> action) {
+    action_ = action;
+    init(milli, milli);
+  }
 
-  timer(const timer &) = delete;
-  timer(timer &&other) {
-    timerHandle_ = other.timerHandle_;
-    action_ = other.action_;
-    disposed_ = false;
-    other.disposed_ = true;
-  };
+  void once(unsigned int milli, std::function<void(TimeEvent)> action) {
+    action_ = action;
+    init(milli, 0);
+  }
+
+  void tick() const {
+    if (action_ != nullptr)
+      action_(milli_epoch());
+  }
+
+  Timer(const Timer &) = delete;
+  Timer(Timer &&other) = delete;
 
   void stop() {
     if (!disposed_) {
@@ -55,27 +69,27 @@ public:
     }
   }
 
-  ~timer() { stop(); }
+  ~Timer() { stop(); }
 };
 
 VOID CALLBACK timer_tick(PVOID lpParam, BOOLEAN timerOrWaitFired) {
   if (lpParam != nullptr && timerOrWaitFired) {
-    static_cast<timer *>(lpParam)->tick();
+    static_cast<Timer *>(lpParam)->tick();
   }
 }
 
 int test(int, char **) {
-  timer t{200, [](std::chrono::milliseconds m) {
-            std::cout << "hello1: " << m.count() << std::endl;
-          }};
-  timer t2 = timer::once(700, [](std::chrono::milliseconds m) {
-    std::cout << "hello2: " << m.count() << std::endl;
-  });
+  Timer t1;
+  t1.start(200, 200,
+           [](auto m) { std::cout << "hello1: " << m.epoch_ms << std::endl; });
+  Timer t2;
+  t2.once(700,
+          [](auto m) { std::cout << "hello2: " << m.epoch_ms << std::endl; });
   std::cout << "timer begin" << std::endl;
   // std::string line;
   // std::getline(std::cin, line);
   Sleep(1000);
-  t.stop();
+  t1.stop();
   Sleep(1000);
   // std::getline(std::cin, line);
   std::cout << "timer end" << std::endl;
