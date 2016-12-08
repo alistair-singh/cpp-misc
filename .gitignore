@@ -4,6 +4,7 @@
 *.lib
 *.o
 *.obj
+*.vscode
 *.pdb
 *.log
 *.pyc
