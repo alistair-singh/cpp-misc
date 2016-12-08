@@ -5,6 +5,7 @@
 #include <string>
 #include <utility>
 #include <vector>
+#include <algorithm>
 
 #include "timer_w32.cc"
 
@@ -261,8 +262,12 @@ bool sampleFunc(int i) {
 int main() {
   std::cout << "4\n";
 
-  auto t = stream::time_cluster<int>(300) 
-           >> stream::select([](const auto& i) { return i; }) // dedupe
+  auto t = stream::time_cluster<int>(200) 
+           >> stream::select([](auto i) { 
+               std::sort(i.begin(), i.end());
+               i.erase(std::unique(i.begin(), i.end()), i.end());
+               return i; 
+               }) // dedupe
            >> stream::where([](const auto& i) { return !i.empty(); })
            >> stream::action([](const auto& i) {
              for (const auto &si : i) {
@@ -270,9 +275,10 @@ int main() {
              }
              std::cout << '\n';
            });
-  for (int i = 0; i < 1; i++)
+
+  for (int i = 0; i < 20; i++)
   {
-    t(i);
+    t(i%3);
     Sleep(100);
   }
 
