@@ -5,6 +5,7 @@
 *.o
 *.obj
 *.pdb
+*.log
 *.pyc
 *.ilk
 *.sdf

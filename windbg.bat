@@ -1,1 +1,1 @@
-"%DEBUGGERS%\x64\windbg" -g -G -c "$<windbg.txt" -logo windbg.log %* &
+"%DEBUGGERS%\x64\windbg" -c "$<windbg.txt" -logo windbg.log %* &
