@@ -4278,7 +4278,7 @@ $pdata$??$?5U?$CompositionBuilder@U?$TimeClusterBuilder@H@stream@@U?$SelectBuild
 pdata	ENDS
 pdata	SEGMENT
 $pdata$main DD	imagerel $LN1041
-	DD	imagerel $LN1041+1324
+	DD	imagerel $LN1041+1310
 	DD	imagerel $unwind$main
 $pdata$?sampleFunc@@YA_NH@Z DD imagerel $LN6
 	DD	imagerel $LN6+65
@@ -5557,27 +5557,27 @@ $ip2state$main DD imagerel main
 	DD	0ffffffffH
 	DD	imagerel main+163
 	DD	00H
-	DD	imagerel main+304
+	DD	imagerel main+290
 	DD	01H
-	DD	imagerel main+315
+	DD	imagerel main+301
 	DD	02H
-	DD	imagerel main+351
+	DD	imagerel main+337
 	DD	00H
-	DD	imagerel main+472
+	DD	imagerel main+458
 	DD	03H
-	DD	imagerel main+483
+	DD	imagerel main+469
 	DD	04H
-	DD	imagerel main+519
+	DD	imagerel main+505
 	DD	00H
-	DD	imagerel main+620
+	DD	imagerel main+606
 	DD	05H
-	DD	imagerel main+828
+	DD	imagerel main+814
 	DD	06H
-	DD	imagerel main+882
+	DD	imagerel main+868
 	DD	05H
-	DD	imagerel main+914
+	DD	imagerel main+900
 	DD	00H
-	DD	imagerel main+1076
+	DD	imagerel main+1062
 	DD	0ffffffffH
 $unwind$?sampleFunc@@YA_NH@Z DD 020601H
 	DD	030023206H
@@ -17065,8 +17065,8 @@ $LN1041:
 
 ; 92   :   return CompositionBuilder<TBuild1, TBuild2>{std::forward<TBuild1>(t1),
 
-  00054	c7 44 24 60 c8
-	00 00 00	 mov	 DWORD PTR $T18[rsp], 200 ; 000000c8H
+  00054	c7 44 24 60 f4
+	01 00 00	 mov	 DWORD PTR $T18[rsp], 500 ; 000001f4H
   0005c	0f b6 44 24 20	 movzx	 eax, BYTE PTR $T2[rsp]
   00061	88 44 24 64	 mov	 BYTE PTR $T18[rsp+4], al
   00065	48 8b 44 24 60	 mov	 rax, QWORD PTR $T18[rsp]
@@ -17081,7 +17081,7 @@ $LN1041:
   00088	89 44 24 38	 mov	 DWORD PTR $T15[rsp+8], eax
 
 ; 264  : 
-; 265  :   auto t = stream::time_cluster<int>(200) 
+; 265  :   auto t = stream::time_cluster<int>(500) 
 ; 266  :            >> stream::select([](auto i) { 
 ; 267  :                std::sort(i.begin(), i.end());
 ; 268  :                i.erase(std::unique(i.begin(), i.end()), i.end());
@@ -17112,22 +17112,17 @@ $LN1041:
 $LL4@main:
 
 ; 280  :   {
-; 281  :     t(i%3);
+; 281  :     t(i);
 
-  000b0	b8 ab aa aa aa	 mov	 eax, -1431655765	; aaaaaaabH
-  000b5	f7 e3		 mul	 ebx
-  000b7	d1 ea		 shr	 edx, 1
-  000b9	8d 04 52	 lea	 eax, DWORD PTR [rdx+rdx*2]
-  000bc	8b d3		 mov	 edx, ebx
-  000be	2b d0		 sub	 edx, eax
-  000c0	48 8d 8d a0 00
+  000b0	8b d3		 mov	 edx, ebx
+  000b2	48 8d 8d a0 00
 	00 00		 lea	 rcx, QWORD PTR t$[rbp-256]
-  000c7	e8 00 00 00 00	 call	 ??R?$TimeCluster@U?$Select@U?$Where@AEAU?$Action@V<lambda_226068125211672a33394ec51affba9f>@@@stream@@V<lambda_1ca77e6fa0eb399ab46f5a9bddaf5720>@@@stream@@V<lambda_5687bef2e18b712e195865427f6c7c32>@@@stream@@H@stream@@QEAAXH@Z ; stream::TimeCluster<stream::Select<stream::Where<stream::Action<<lambda_226068125211672a33394ec51affba9f> > & __ptr64,<lambda_1ca77e6fa0eb399ab46f5a9bddaf5720> >,<lambda_5687bef2e18b712e195865427f6c7c32> >,int>::operator()
+  000b9	e8 00 00 00 00	 call	 ??R?$TimeCluster@U?$Select@U?$Where@AEAU?$Action@V<lambda_226068125211672a33394ec51affba9f>@@@stream@@V<lambda_1ca77e6fa0eb399ab46f5a9bddaf5720>@@@stream@@V<lambda_5687bef2e18b712e195865427f6c7c32>@@@stream@@H@stream@@QEAAXH@Z ; stream::TimeCluster<stream::Select<stream::Where<stream::Action<<lambda_226068125211672a33394ec51affba9f> > & __ptr64,<lambda_1ca77e6fa0eb399ab46f5a9bddaf5720> >,<lambda_5687bef2e18b712e195865427f6c7c32> >,int>::operator()
 
-; 282  :     Sleep(100);
+; 282  :     Sleep(70);
 
-  000cc	b9 64 00 00 00	 mov	 ecx, 100		; 00000064H
-  000d1	ff 15 00 00 00
+  000be	b9 46 00 00 00	 mov	 ecx, 70			; 00000046H
+  000c3	ff 15 00 00 00
 	00		 call	 QWORD PTR __imp_Sleep
 
 ; 273  :              for (const auto &si : i) {
@@ -17138,185 +17133,185 @@ $LL4@main:
 ; 278  : 
 ; 279  :   for (int i = 0; i < 20; i++)
 
-  000d7	ff c3		 inc	 ebx
-  000d9	83 fb 14	 cmp	 ebx, 20
-  000dc	7c d2		 jl	 SHORT $LL4@main
+  000c9	ff c3		 inc	 ebx
+  000cb	83 fb 14	 cmp	 ebx, 20
+  000ce	7c e0		 jl	 SHORT $LL4@main
 
 ; 283  :   }
 ; 284  : 
 ; 285  :   Sleep(1000);
 
-  000de	b9 e8 03 00 00	 mov	 ecx, 1000		; 000003e8H
-  000e3	ff 15 00 00 00
+  000d0	b9 e8 03 00 00	 mov	 ecx, 1000		; 000003e8H
+  000d5	ff 15 00 00 00
 	00		 call	 QWORD PTR __imp_Sleep
 
 ; 287  :       [](int i) { std::cout << "a(" << i << ")" << std::endl; });
 
-  000e9	48 8d 15 00 00
+  000db	48 8d 15 00 00
 	00 00		 lea	 rdx, OFFSET FLAT:??_C@_02BEPGCJFA@a?$CI?$AA@
-  000f0	48 8d 0d 00 00
+  000e2	48 8d 0d 00 00
 	00 00		 lea	 rcx, OFFSET FLAT:?cout@std@@3V?$basic_ostream@DU?$char_traits@D@std@@@1@A ; std::cout
-  000f7	e8 00 00 00 00	 call	 ??$?6U?$char_traits@D@std@@@std@@YAAEAV?$basic_ostream@DU?$char_traits@D@std@@@0@AEAV10@PEBD@Z ; std::operator<<<std::char_traits<char> >
-  000fc	48 8b c8	 mov	 rcx, rax
-  000ff	ba 0c 00 00 00	 mov	 edx, 12
-  00104	e8 00 00 00 00	 call	 ??6?$basic_ostream@DU?$char_traits@D@std@@@std@@QEAAAEAV01@H@Z ; std::basic_ostream<char,std::char_traits<char> >::operator<<
-  00109	48 8b c8	 mov	 rcx, rax
-  0010c	48 8d 15 00 00
+  000e9	e8 00 00 00 00	 call	 ??$?6U?$char_traits@D@std@@@std@@YAAEAV?$basic_ostream@DU?$char_traits@D@std@@@0@AEAV10@PEBD@Z ; std::operator<<<std::char_traits<char> >
+  000ee	48 8b c8	 mov	 rcx, rax
+  000f1	ba 0c 00 00 00	 mov	 edx, 12
+  000f6	e8 00 00 00 00	 call	 ??6?$basic_ostream@DU?$char_traits@D@std@@@std@@QEAAAEAV01@H@Z ; std::basic_ostream<char,std::char_traits<char> >::operator<<
+  000fb	48 8b c8	 mov	 rcx, rax
+  000fe	48 8d 15 00 00
 	00 00		 lea	 rdx, OFFSET FLAT:??_C@_01PKGAHCOL@?$CJ?$AA@
-  00113	e8 00 00 00 00	 call	 ??$?6U?$char_traits@D@std@@@std@@YAAEAV?$basic_ostream@DU?$char_traits@D@std@@@0@AEAV10@PEBD@Z ; std::operator<<<std::char_traits<char> >
-  00118	48 8b d8	 mov	 rbx, rax
+  00105	e8 00 00 00 00	 call	 ??$?6U?$char_traits@D@std@@@std@@YAAEAV?$basic_ostream@DU?$char_traits@D@std@@@0@AEAV10@PEBD@Z ; std::operator<<<std::char_traits<char> >
+  0010a	48 8b d8	 mov	 rbx, rax
 ; File c:\program files (x86)\microsoft visual studio 14.0\vc\include\ostream
 
 ; 992  : 	_Ostr.put(_Ostr.widen('\n'));
 
-  0011b	48 8b 08	 mov	 rcx, QWORD PTR [rax]
-  0011e	48 63 49 04	 movsxd	 rcx, DWORD PTR [rcx+4]
-  00122	48 03 c8	 add	 rcx, rax
+  0010d	48 8b 08	 mov	 rcx, QWORD PTR [rax]
+  00110	48 63 49 04	 movsxd	 rcx, DWORD PTR [rcx+4]
+  00114	48 03 c8	 add	 rcx, rax
 ; File c:\program files (x86)\microsoft visual studio 14.0\vc\include\ios
 
 ; 131  : 		const _Ctype& _Ctype_fac = _USE(getloc(), _Ctype);
 
-  00125	48 8d 54 24 30	 lea	 rdx, QWORD PTR $T12[rsp]
-  0012a	e8 00 00 00 00	 call	 ?getloc@ios_base@std@@QEBA?AVlocale@2@XZ ; std::ios_base::getloc
-  0012f	90		 npad	 1
-  00130	48 8b c8	 mov	 rcx, rax
-  00133	e8 00 00 00 00	 call	 ??$use_facet@V?$ctype@D@std@@@std@@YAAEBV?$ctype@D@0@AEBVlocale@0@@Z ; std::use_facet<std::ctype<char> >
-  00138	48 8b f8	 mov	 rdi, rax
+  00117	48 8d 54 24 30	 lea	 rdx, QWORD PTR $T12[rsp]
+  0011c	e8 00 00 00 00	 call	 ?getloc@ios_base@std@@QEBA?AVlocale@2@XZ ; std::ios_base::getloc
+  00121	90		 npad	 1
+  00122	48 8b c8	 mov	 rcx, rax
+  00125	e8 00 00 00 00	 call	 ??$use_facet@V?$ctype@D@std@@@std@@YAAEBV?$ctype@D@0@AEBVlocale@0@@Z ; std::use_facet<std::ctype<char> >
+  0012a	48 8b f8	 mov	 rdi, rax
 ; File c:\program files (x86)\microsoft visual studio 14.0\vc\include\xlocale
 
 ; 431  : 		if (_Ptr != 0)
 
-  0013b	48 8b 4c 24 38	 mov	 rcx, QWORD PTR $T12[rsp+8]
-  00140	48 85 c9	 test	 rcx, rcx
-  00143	74 1a		 je	 SHORT $LN61@main
+  0012d	48 8b 4c 24 38	 mov	 rcx, QWORD PTR $T12[rsp+8]
+  00132	48 85 c9	 test	 rcx, rcx
+  00135	74 1a		 je	 SHORT $LN61@main
 
 ; 432  : 			delete _Ptr->_Decref();
 
-  00145	48 8b 11	 mov	 rdx, QWORD PTR [rcx]
-  00148	ff 52 10	 call	 QWORD PTR [rdx+16]
-  0014b	48 85 c0	 test	 rax, rax
-  0014e	74 0f		 je	 SHORT $LN61@main
-  00150	4c 8b 00	 mov	 r8, QWORD PTR [rax]
-  00153	ba 01 00 00 00	 mov	 edx, 1
-  00158	48 8b c8	 mov	 rcx, rax
-  0015b	41 ff 10	 call	 QWORD PTR [r8]
-  0015e	90		 npad	 1
+  00137	48 8b 11	 mov	 rdx, QWORD PTR [rcx]
+  0013a	ff 52 10	 call	 QWORD PTR [rdx+16]
+  0013d	48 85 c0	 test	 rax, rax
+  00140	74 0f		 je	 SHORT $LN61@main
+  00142	4c 8b 00	 mov	 r8, QWORD PTR [rax]
+  00145	ba 01 00 00 00	 mov	 edx, 1
+  0014a	48 8b c8	 mov	 rcx, rax
+  0014d	41 ff 10	 call	 QWORD PTR [r8]
+  00150	90		 npad	 1
 $LN61@main:
-  0015f	48 8b 07	 mov	 rax, QWORD PTR [rdi]
-  00162	4c 8b 40 40	 mov	 r8, QWORD PTR [rax+64]
-  00166	4c 8d 35 00 00
+  00151	48 8b 07	 mov	 rax, QWORD PTR [rdi]
+  00154	4c 8b 40 40	 mov	 r8, QWORD PTR [rax+64]
+  00158	4c 8d 35 00 00
 	00 00		 lea	 r14, OFFSET FLAT:??_7?$ctype@D@std@@6B@
-  0016d	49 3b c6	 cmp	 rax, r14
-  00170	75 04		 jne	 SHORT $LN67@main
-  00172	b0 0a		 mov	 al, 10
-  00174	eb 08		 jmp	 SHORT $LN66@main
+  0015f	49 3b c6	 cmp	 rax, r14
+  00162	75 04		 jne	 SHORT $LN67@main
+  00164	b0 0a		 mov	 al, 10
+  00166	eb 08		 jmp	 SHORT $LN66@main
 $LN67@main:
-  00176	b2 0a		 mov	 dl, 10
-  00178	48 8b cf	 mov	 rcx, rdi
+  00168	b2 0a		 mov	 dl, 10
+  0016a	48 8b cf	 mov	 rcx, rdi
 
 ; 2416 : 		return (do_widen(_Byte));
 
-  0017b	41 ff d0	 call	 r8
+  0016d	41 ff d0	 call	 r8
 $LN66@main:
 ; File c:\program files (x86)\microsoft visual studio 14.0\vc\include\ostream
 
 ; 992  : 	_Ostr.put(_Ostr.widen('\n'));
 
-  0017e	0f b6 d0	 movzx	 edx, al
-  00181	48 8b cb	 mov	 rcx, rbx
-  00184	e8 00 00 00 00	 call	 ?put@?$basic_ostream@DU?$char_traits@D@std@@@std@@QEAAAEAV12@D@Z ; std::basic_ostream<char,std::char_traits<char> >::put
+  00170	0f b6 d0	 movzx	 edx, al
+  00173	48 8b cb	 mov	 rcx, rbx
+  00176	e8 00 00 00 00	 call	 ?put@?$basic_ostream@DU?$char_traits@D@std@@@std@@QEAAAEAV12@D@Z ; std::basic_ostream<char,std::char_traits<char> >::put
 
 ; 993  : 	_Ostr.flush();
 
-  00189	48 8b cb	 mov	 rcx, rbx
-  0018c	e8 00 00 00 00	 call	 ?flush@?$basic_ostream@DU?$char_traits@D@std@@@std@@QEAAAEAV12@XZ ; std::basic_ostream<char,std::char_traits<char> >::flush
+  0017b	48 8b cb	 mov	 rcx, rbx
+  0017e	e8 00 00 00 00	 call	 ?flush@?$basic_ostream@DU?$char_traits@D@std@@@std@@QEAAAEAV12@XZ ; std::basic_ostream<char,std::char_traits<char> >::flush
 ; File c:\users\alist_000\cppmisc\stream4.cc
 
 ; 287  :       [](int i) { std::cout << "a(" << i << ")" << std::endl; });
 
-  00191	48 8d 15 00 00
+  00183	48 8d 15 00 00
 	00 00		 lea	 rdx, OFFSET FLAT:??_C@_02BEPGCJFA@a?$CI?$AA@
-  00198	48 8d 0d 00 00
+  0018a	48 8d 0d 00 00
 	00 00		 lea	 rcx, OFFSET FLAT:?cout@std@@3V?$basic_ostream@DU?$char_traits@D@std@@@1@A ; std::cout
-  0019f	e8 00 00 00 00	 call	 ??$?6U?$char_traits@D@std@@@std@@YAAEAV?$basic_ostream@DU?$char_traits@D@std@@@0@AEAV10@PEBD@Z ; std::operator<<<std::char_traits<char> >
-  001a4	48 8b c8	 mov	 rcx, rax
-  001a7	ba 22 00 00 00	 mov	 edx, 34			; 00000022H
-  001ac	e8 00 00 00 00	 call	 ??6?$basic_ostream@DU?$char_traits@D@std@@@std@@QEAAAEAV01@H@Z ; std::basic_ostream<char,std::char_traits<char> >::operator<<
-  001b1	48 8b c8	 mov	 rcx, rax
-  001b4	48 8d 15 00 00
+  00191	e8 00 00 00 00	 call	 ??$?6U?$char_traits@D@std@@@std@@YAAEAV?$basic_ostream@DU?$char_traits@D@std@@@0@AEAV10@PEBD@Z ; std::operator<<<std::char_traits<char> >
+  00196	48 8b c8	 mov	 rcx, rax
+  00199	ba 22 00 00 00	 mov	 edx, 34			; 00000022H
+  0019e	e8 00 00 00 00	 call	 ??6?$basic_ostream@DU?$char_traits@D@std@@@std@@QEAAAEAV01@H@Z ; std::basic_ostream<char,std::char_traits<char> >::operator<<
+  001a3	48 8b c8	 mov	 rcx, rax
+  001a6	48 8d 15 00 00
 	00 00		 lea	 rdx, OFFSET FLAT:??_C@_01PKGAHCOL@?$CJ?$AA@
-  001bb	e8 00 00 00 00	 call	 ??$?6U?$char_traits@D@std@@@std@@YAAEAV?$basic_ostream@DU?$char_traits@D@std@@@0@AEAV10@PEBD@Z ; std::operator<<<std::char_traits<char> >
-  001c0	48 8b f8	 mov	 rdi, rax
+  001ad	e8 00 00 00 00	 call	 ??$?6U?$char_traits@D@std@@@std@@YAAEAV?$basic_ostream@DU?$char_traits@D@std@@@0@AEAV10@PEBD@Z ; std::operator<<<std::char_traits<char> >
+  001b2	48 8b f8	 mov	 rdi, rax
 ; File c:\program files (x86)\microsoft visual studio 14.0\vc\include\ostream
 
 ; 992  : 	_Ostr.put(_Ostr.widen('\n'));
 
-  001c3	48 8b 08	 mov	 rcx, QWORD PTR [rax]
-  001c6	48 63 49 04	 movsxd	 rcx, DWORD PTR [rcx+4]
-  001ca	48 03 c8	 add	 rcx, rax
+  001b5	48 8b 08	 mov	 rcx, QWORD PTR [rax]
+  001b8	48 63 49 04	 movsxd	 rcx, DWORD PTR [rcx+4]
+  001bc	48 03 c8	 add	 rcx, rax
 ; File c:\program files (x86)\microsoft visual studio 14.0\vc\include\ios
 
 ; 131  : 		const _Ctype& _Ctype_fac = _USE(getloc(), _Ctype);
 
-  001cd	48 8d 54 24 30	 lea	 rdx, QWORD PTR $T11[rsp]
-  001d2	e8 00 00 00 00	 call	 ?getloc@ios_base@std@@QEBA?AVlocale@2@XZ ; std::ios_base::getloc
-  001d7	90		 npad	 1
-  001d8	48 8b c8	 mov	 rcx, rax
-  001db	e8 00 00 00 00	 call	 ??$use_facet@V?$ctype@D@std@@@std@@YAAEBV?$ctype@D@0@AEBVlocale@0@@Z ; std::use_facet<std::ctype<char> >
-  001e0	48 8b d8	 mov	 rbx, rax
+  001bf	48 8d 54 24 30	 lea	 rdx, QWORD PTR $T11[rsp]
+  001c4	e8 00 00 00 00	 call	 ?getloc@ios_base@std@@QEBA?AVlocale@2@XZ ; std::ios_base::getloc
+  001c9	90		 npad	 1
+  001ca	48 8b c8	 mov	 rcx, rax
+  001cd	e8 00 00 00 00	 call	 ??$use_facet@V?$ctype@D@std@@@std@@YAAEBV?$ctype@D@0@AEBVlocale@0@@Z ; std::use_facet<std::ctype<char> >
+  001d2	48 8b d8	 mov	 rbx, rax
 ; File c:\program files (x86)\microsoft visual studio 14.0\vc\include\xlocale
 
 ; 431  : 		if (_Ptr != 0)
 
-  001e3	48 8b 4c 24 38	 mov	 rcx, QWORD PTR $T11[rsp+8]
-  001e8	48 85 c9	 test	 rcx, rcx
-  001eb	74 1a		 je	 SHORT $LN84@main
+  001d5	48 8b 4c 24 38	 mov	 rcx, QWORD PTR $T11[rsp+8]
+  001da	48 85 c9	 test	 rcx, rcx
+  001dd	74 1a		 je	 SHORT $LN84@main
 
 ; 432  : 			delete _Ptr->_Decref();
 
-  001ed	48 8b 11	 mov	 rdx, QWORD PTR [rcx]
-  001f0	ff 52 10	 call	 QWORD PTR [rdx+16]
-  001f3	48 85 c0	 test	 rax, rax
-  001f6	74 0f		 je	 SHORT $LN84@main
-  001f8	4c 8b 00	 mov	 r8, QWORD PTR [rax]
-  001fb	ba 01 00 00 00	 mov	 edx, 1
-  00200	48 8b c8	 mov	 rcx, rax
-  00203	41 ff 10	 call	 QWORD PTR [r8]
-  00206	90		 npad	 1
+  001df	48 8b 11	 mov	 rdx, QWORD PTR [rcx]
+  001e2	ff 52 10	 call	 QWORD PTR [rdx+16]
+  001e5	48 85 c0	 test	 rax, rax
+  001e8	74 0f		 je	 SHORT $LN84@main
+  001ea	4c 8b 00	 mov	 r8, QWORD PTR [rax]
+  001ed	ba 01 00 00 00	 mov	 edx, 1
+  001f2	48 8b c8	 mov	 rcx, rax
+  001f5	41 ff 10	 call	 QWORD PTR [r8]
+  001f8	90		 npad	 1
 $LN84@main:
-  00207	48 8b 03	 mov	 rax, QWORD PTR [rbx]
-  0020a	4c 8b 40 40	 mov	 r8, QWORD PTR [rax+64]
-  0020e	49 3b c6	 cmp	 rax, r14
-  00211	75 04		 jne	 SHORT $LN90@main
-  00213	b0 0a		 mov	 al, 10
-  00215	eb 08		 jmp	 SHORT $LN89@main
+  001f9	48 8b 03	 mov	 rax, QWORD PTR [rbx]
+  001fc	4c 8b 40 40	 mov	 r8, QWORD PTR [rax+64]
+  00200	49 3b c6	 cmp	 rax, r14
+  00203	75 04		 jne	 SHORT $LN90@main
+  00205	b0 0a		 mov	 al, 10
+  00207	eb 08		 jmp	 SHORT $LN89@main
 $LN90@main:
-  00217	b2 0a		 mov	 dl, 10
-  00219	48 8b cb	 mov	 rcx, rbx
+  00209	b2 0a		 mov	 dl, 10
+  0020b	48 8b cb	 mov	 rcx, rbx
 
 ; 2416 : 		return (do_widen(_Byte));
 
-  0021c	41 ff d0	 call	 r8
+  0020e	41 ff d0	 call	 r8
 $LN89@main:
 ; File c:\program files (x86)\microsoft visual studio 14.0\vc\include\ostream
 
 ; 992  : 	_Ostr.put(_Ostr.widen('\n'));
 
-  0021f	0f b6 d0	 movzx	 edx, al
-  00222	48 8b cf	 mov	 rcx, rdi
-  00225	e8 00 00 00 00	 call	 ?put@?$basic_ostream@DU?$char_traits@D@std@@@std@@QEAAAEAV12@D@Z ; std::basic_ostream<char,std::char_traits<char> >::put
+  00211	0f b6 d0	 movzx	 edx, al
+  00214	48 8b cf	 mov	 rcx, rdi
+  00217	e8 00 00 00 00	 call	 ?put@?$basic_ostream@DU?$char_traits@D@std@@@std@@QEAAAEAV12@D@Z ; std::basic_ostream<char,std::char_traits<char> >::put
 
 ; 993  : 	_Ostr.flush();
 
-  0022a	48 8b cf	 mov	 rcx, rdi
-  0022d	e8 00 00 00 00	 call	 ?flush@?$basic_ostream@DU?$char_traits@D@std@@@std@@QEAAAEAV12@XZ ; std::basic_ostream<char,std::char_traits<char> >::flush
+  0021c	48 8b cf	 mov	 rcx, rdi
+  0021f	e8 00 00 00 00	 call	 ?flush@?$basic_ostream@DU?$char_traits@D@std@@@std@@QEAAAEAV12@XZ ; std::basic_ostream<char,std::char_traits<char> >::flush
 ; File c:\users\alist_000\cppmisc\stream4.cc
 
 ; 92   :   return CompositionBuilder<TBuild1, TBuild2>{std::forward<TBuild1>(t1),
 
-  00232	48 c7 44 24 30
+  00224	48 c7 44 24 30
 	02 00 00 00	 mov	 QWORD PTR $T13[rsp], 2
-  0023b	48 c7 44 24 38
+  0022d	48 c7 44 24 38
 	02 00 00 00	 mov	 QWORD PTR $T13[rsp+8], 2
 
 ; 288  :   a(12);
@@ -17324,25 +17319,25 @@ $LN89@main:
 ; 290  : 
 ; 291  :   auto b = stream::buffer<int>(2) >> stream::window<std::vector<int>>(2) >>
 
-  00244	0f 28 44 24 30	 movaps	 xmm0, XMMWORD PTR $T13[rsp]
-  00249	66 0f 7f 44 24
+  00236	0f 28 44 24 30	 movaps	 xmm0, XMMWORD PTR $T13[rsp]
+  0023b	66 0f 7f 44 24
 	30		 movdqa	 XMMWORD PTR $T14[rsp], xmm0
 
 ; 23   :   return Action<TAction>{std::forward<TAction>(action)};
 
-  0024f	0f b6 44 24 20	 movzx	 eax, BYTE PTR $T1[rsp]
-  00254	88 44 24 20	 mov	 BYTE PTR $T6[rsp], al
+  00241	0f b6 44 24 20	 movzx	 eax, BYTE PTR $T1[rsp]
+  00246	88 44 24 20	 mov	 BYTE PTR $T6[rsp], al
 
 ; 288  :   a(12);
 ; 289  :   a(34);
 ; 290  : 
 ; 291  :   auto b = stream::buffer<int>(2) >> stream::window<std::vector<int>>(2) >>
 
-  00258	4c 8d 44 24 20	 lea	 r8, QWORD PTR $T6[rsp]
-  0025d	48 8d 54 24 30	 lea	 rdx, QWORD PTR $T14[rsp]
-  00262	48 8d 4d c0	 lea	 rcx, QWORD PTR b$[rbp-256]
-  00266	e8 00 00 00 00	 call	 ??$?5U?$CompositionBuilder@U?$BufferBuilder@H@stream@@U?$WindowBuilder@V?$vector@HV?$allocator@H@std@@@std@@@2@@stream@@V<lambda_cffe59b91f15e7b90ef16ff48daf597b>@@@stream@@YA?AV?$Buffer@V?$Window@AEAU?$Action@V<lambda_cffe59b91f15e7b90ef16ff48daf597b>@@@stream@@V?$vector@HV?$allocator@H@std@@@std@@@stream@@H@0@$$QEAU?$CompositionBuilder@U?$BufferBuilder@H@stream@@U?$WindowBuilder@V?$vector@HV?$allocator@H@std@@@std@@@2@@0@$$QEAU?$Action@V<lambda_cffe59b91f15e7b90ef16ff48daf597b>@@@0@@Z ; stream::operator>><stream::CompositionBuilder<stream::BufferBuilder<int>,stream::WindowBuilder<std::vector<int,std::allocator<int> > > >,<lambda_cffe59b91f15e7b90ef16ff48daf597b> >
-  0026b	90		 npad	 1
+  0024a	4c 8d 44 24 20	 lea	 r8, QWORD PTR $T6[rsp]
+  0024f	48 8d 54 24 30	 lea	 rdx, QWORD PTR $T14[rsp]
+  00254	48 8d 4d c0	 lea	 rcx, QWORD PTR b$[rbp-256]
+  00258	e8 00 00 00 00	 call	 ??$?5U?$CompositionBuilder@U?$BufferBuilder@H@stream@@U?$WindowBuilder@V?$vector@HV?$allocator@H@std@@@std@@@2@@stream@@V<lambda_cffe59b91f15e7b90ef16ff48daf597b>@@@stream@@YA?AV?$Buffer@V?$Window@AEAU?$Action@V<lambda_cffe59b91f15e7b90ef16ff48daf597b>@@@stream@@V?$vector@HV?$allocator@H@std@@@std@@@stream@@H@0@$$QEAU?$CompositionBuilder@U?$BufferBuilder@H@stream@@U?$WindowBuilder@V?$vector@HV?$allocator@H@std@@@std@@@2@@0@$$QEAU?$Action@V<lambda_cffe59b91f15e7b90ef16ff48daf597b>@@@0@@Z ; stream::operator>><stream::CompositionBuilder<stream::BufferBuilder<int>,stream::WindowBuilder<std::vector<int,std::allocator<int> > > >,<lambda_cffe59b91f15e7b90ef16ff48daf597b> >
+  0025d	90		 npad	 1
 
 ; 292  :            stream::action([](auto i) {
 ; 293  : 
@@ -17359,210 +17354,210 @@ $LN89@main:
 ; 304  :            });
 ; 305  :   b(1);
 
-  0026c	ba 01 00 00 00	 mov	 edx, 1
-  00271	48 8d 4d c0	 lea	 rcx, QWORD PTR b$[rbp-256]
-  00275	e8 00 00 00 00	 call	 ??R?$Buffer@V?$Window@AEAU?$Action@V<lambda_cffe59b91f15e7b90ef16ff48daf597b>@@@stream@@V?$vector@HV?$allocator@H@std@@@std@@@stream@@H@stream@@QEAAXH@Z ; stream::Buffer<stream::Window<stream::Action<<lambda_cffe59b91f15e7b90ef16ff48daf597b> > & __ptr64,std::vector<int,std::allocator<int> > >,int>::operator()
+  0025e	ba 01 00 00 00	 mov	 edx, 1
+  00263	48 8d 4d c0	 lea	 rcx, QWORD PTR b$[rbp-256]
+  00267	e8 00 00 00 00	 call	 ??R?$Buffer@V?$Window@AEAU?$Action@V<lambda_cffe59b91f15e7b90ef16ff48daf597b>@@@stream@@V?$vector@HV?$allocator@H@std@@@std@@@stream@@H@stream@@QEAAXH@Z ; stream::Buffer<stream::Window<stream::Action<<lambda_cffe59b91f15e7b90ef16ff48daf597b> > & __ptr64,std::vector<int,std::allocator<int> > >,int>::operator()
 
 ; 306  :   b(2);
 
-  0027a	ba 02 00 00 00	 mov	 edx, 2
-  0027f	48 8d 4d c0	 lea	 rcx, QWORD PTR b$[rbp-256]
-  00283	e8 00 00 00 00	 call	 ??R?$Buffer@V?$Window@AEAU?$Action@V<lambda_cffe59b91f15e7b90ef16ff48daf597b>@@@stream@@V?$vector@HV?$allocator@H@std@@@std@@@stream@@H@stream@@QEAAXH@Z ; stream::Buffer<stream::Window<stream::Action<<lambda_cffe59b91f15e7b90ef16ff48daf597b> > & __ptr64,std::vector<int,std::allocator<int> > >,int>::operator()
+  0026c	ba 02 00 00 00	 mov	 edx, 2
+  00271	48 8d 4d c0	 lea	 rcx, QWORD PTR b$[rbp-256]
+  00275	e8 00 00 00 00	 call	 ??R?$Buffer@V?$Window@AEAU?$Action@V<lambda_cffe59b91f15e7b90ef16ff48daf597b>@@@stream@@V?$vector@HV?$allocator@H@std@@@std@@@stream@@H@stream@@QEAAXH@Z ; stream::Buffer<stream::Window<stream::Action<<lambda_cffe59b91f15e7b90ef16ff48daf597b> > & __ptr64,std::vector<int,std::allocator<int> > >,int>::operator()
 
 ; 307  :   b(3);
 
-  00288	ba 03 00 00 00	 mov	 edx, 3
-  0028d	48 8d 4d c0	 lea	 rcx, QWORD PTR b$[rbp-256]
-  00291	e8 00 00 00 00	 call	 ??R?$Buffer@V?$Window@AEAU?$Action@V<lambda_cffe59b91f15e7b90ef16ff48daf597b>@@@stream@@V?$vector@HV?$allocator@H@std@@@std@@@stream@@H@stream@@QEAAXH@Z ; stream::Buffer<stream::Window<stream::Action<<lambda_cffe59b91f15e7b90ef16ff48daf597b> > & __ptr64,std::vector<int,std::allocator<int> > >,int>::operator()
+  0027a	ba 03 00 00 00	 mov	 edx, 3
+  0027f	48 8d 4d c0	 lea	 rcx, QWORD PTR b$[rbp-256]
+  00283	e8 00 00 00 00	 call	 ??R?$Buffer@V?$Window@AEAU?$Action@V<lambda_cffe59b91f15e7b90ef16ff48daf597b>@@@stream@@V?$vector@HV?$allocator@H@std@@@std@@@stream@@H@stream@@QEAAXH@Z ; stream::Buffer<stream::Window<stream::Action<<lambda_cffe59b91f15e7b90ef16ff48daf597b> > & __ptr64,std::vector<int,std::allocator<int> > >,int>::operator()
 
 ; 308  :   b(4);
 
-  00296	ba 04 00 00 00	 mov	 edx, 4
-  0029b	48 8d 4d c0	 lea	 rcx, QWORD PTR b$[rbp-256]
-  0029f	e8 00 00 00 00	 call	 ??R?$Buffer@V?$Window@AEAU?$Action@V<lambda_cffe59b91f15e7b90ef16ff48daf597b>@@@stream@@V?$vector@HV?$allocator@H@std@@@std@@@stream@@H@stream@@QEAAXH@Z ; stream::Buffer<stream::Window<stream::Action<<lambda_cffe59b91f15e7b90ef16ff48daf597b> > & __ptr64,std::vector<int,std::allocator<int> > >,int>::operator()
+  00288	ba 04 00 00 00	 mov	 edx, 4
+  0028d	48 8d 4d c0	 lea	 rcx, QWORD PTR b$[rbp-256]
+  00291	e8 00 00 00 00	 call	 ??R?$Buffer@V?$Window@AEAU?$Action@V<lambda_cffe59b91f15e7b90ef16ff48daf597b>@@@stream@@V?$vector@HV?$allocator@H@std@@@std@@@stream@@H@stream@@QEAAXH@Z ; stream::Buffer<stream::Window<stream::Action<<lambda_cffe59b91f15e7b90ef16ff48daf597b> > & __ptr64,std::vector<int,std::allocator<int> > >,int>::operator()
 
 ; 309  :   b(5);
 
-  002a4	ba 05 00 00 00	 mov	 edx, 5
-  002a9	48 8d 4d c0	 lea	 rcx, QWORD PTR b$[rbp-256]
-  002ad	e8 00 00 00 00	 call	 ??R?$Buffer@V?$Window@AEAU?$Action@V<lambda_cffe59b91f15e7b90ef16ff48daf597b>@@@stream@@V?$vector@HV?$allocator@H@std@@@std@@@stream@@H@stream@@QEAAXH@Z ; stream::Buffer<stream::Window<stream::Action<<lambda_cffe59b91f15e7b90ef16ff48daf597b> > & __ptr64,std::vector<int,std::allocator<int> > >,int>::operator()
+  00296	ba 05 00 00 00	 mov	 edx, 5
+  0029b	48 8d 4d c0	 lea	 rcx, QWORD PTR b$[rbp-256]
+  0029f	e8 00 00 00 00	 call	 ??R?$Buffer@V?$Window@AEAU?$Action@V<lambda_cffe59b91f15e7b90ef16ff48daf597b>@@@stream@@V?$vector@HV?$allocator@H@std@@@std@@@stream@@H@stream@@QEAAXH@Z ; stream::Buffer<stream::Window<stream::Action<<lambda_cffe59b91f15e7b90ef16ff48daf597b> > & __ptr64,std::vector<int,std::allocator<int> > >,int>::operator()
 
 ; 310  :   b(6);
 
-  002b2	ba 06 00 00 00	 mov	 edx, 6
-  002b7	48 8d 4d c0	 lea	 rcx, QWORD PTR b$[rbp-256]
-  002bb	e8 00 00 00 00	 call	 ??R?$Buffer@V?$Window@AEAU?$Action@V<lambda_cffe59b91f15e7b90ef16ff48daf597b>@@@stream@@V?$vector@HV?$allocator@H@std@@@std@@@stream@@H@stream@@QEAAXH@Z ; stream::Buffer<stream::Window<stream::Action<<lambda_cffe59b91f15e7b90ef16ff48daf597b> > & __ptr64,std::vector<int,std::allocator<int> > >,int>::operator()
+  002a4	ba 06 00 00 00	 mov	 edx, 6
+  002a9	48 8d 4d c0	 lea	 rcx, QWORD PTR b$[rbp-256]
+  002ad	e8 00 00 00 00	 call	 ??R?$Buffer@V?$Window@AEAU?$Action@V<lambda_cffe59b91f15e7b90ef16ff48daf597b>@@@stream@@V?$vector@HV?$allocator@H@std@@@std@@@stream@@H@stream@@QEAAXH@Z ; stream::Buffer<stream::Window<stream::Action<<lambda_cffe59b91f15e7b90ef16ff48daf597b> > & __ptr64,std::vector<int,std::allocator<int> > >,int>::operator()
 
 ; 311  :   b(7);
 
-  002c0	ba 07 00 00 00	 mov	 edx, 7
-  002c5	48 8d 4d c0	 lea	 rcx, QWORD PTR b$[rbp-256]
-  002c9	e8 00 00 00 00	 call	 ??R?$Buffer@V?$Window@AEAU?$Action@V<lambda_cffe59b91f15e7b90ef16ff48daf597b>@@@stream@@V?$vector@HV?$allocator@H@std@@@std@@@stream@@H@stream@@QEAAXH@Z ; stream::Buffer<stream::Window<stream::Action<<lambda_cffe59b91f15e7b90ef16ff48daf597b> > & __ptr64,std::vector<int,std::allocator<int> > >,int>::operator()
+  002b2	ba 07 00 00 00	 mov	 edx, 7
+  002b7	48 8d 4d c0	 lea	 rcx, QWORD PTR b$[rbp-256]
+  002bb	e8 00 00 00 00	 call	 ??R?$Buffer@V?$Window@AEAU?$Action@V<lambda_cffe59b91f15e7b90ef16ff48daf597b>@@@stream@@V?$vector@HV?$allocator@H@std@@@std@@@stream@@H@stream@@QEAAXH@Z ; stream::Buffer<stream::Window<stream::Action<<lambda_cffe59b91f15e7b90ef16ff48daf597b> > & __ptr64,std::vector<int,std::allocator<int> > >,int>::operator()
 
 ; 312  :   b(8);
 
-  002ce	ba 08 00 00 00	 mov	 edx, 8
-  002d3	48 8d 4d c0	 lea	 rcx, QWORD PTR b$[rbp-256]
-  002d7	e8 00 00 00 00	 call	 ??R?$Buffer@V?$Window@AEAU?$Action@V<lambda_cffe59b91f15e7b90ef16ff48daf597b>@@@stream@@V?$vector@HV?$allocator@H@std@@@std@@@stream@@H@stream@@QEAAXH@Z ; stream::Buffer<stream::Window<stream::Action<<lambda_cffe59b91f15e7b90ef16ff48daf597b> > & __ptr64,std::vector<int,std::allocator<int> > >,int>::operator()
+  002c0	ba 08 00 00 00	 mov	 edx, 8
+  002c5	48 8d 4d c0	 lea	 rcx, QWORD PTR b$[rbp-256]
+  002c9	e8 00 00 00 00	 call	 ??R?$Buffer@V?$Window@AEAU?$Action@V<lambda_cffe59b91f15e7b90ef16ff48daf597b>@@@stream@@V?$vector@HV?$allocator@H@std@@@std@@@stream@@H@stream@@QEAAXH@Z ; stream::Buffer<stream::Window<stream::Action<<lambda_cffe59b91f15e7b90ef16ff48daf597b> > & __ptr64,std::vector<int,std::allocator<int> > >,int>::operator()
 
 ; 313  :   b(9);
 
-  002dc	ba 09 00 00 00	 mov	 edx, 9
-  002e1	48 8d 4d c0	 lea	 rcx, QWORD PTR b$[rbp-256]
-  002e5	e8 00 00 00 00	 call	 ??R?$Buffer@V?$Window@AEAU?$Action@V<lambda_cffe59b91f15e7b90ef16ff48daf597b>@@@stream@@V?$vector@HV?$allocator@H@std@@@std@@@stream@@H@stream@@QEAAXH@Z ; stream::Buffer<stream::Window<stream::Action<<lambda_cffe59b91f15e7b90ef16ff48daf597b> > & __ptr64,std::vector<int,std::allocator<int> > >,int>::operator()
+  002ce	ba 09 00 00 00	 mov	 edx, 9
+  002d3	48 8d 4d c0	 lea	 rcx, QWORD PTR b$[rbp-256]
+  002d7	e8 00 00 00 00	 call	 ??R?$Buffer@V?$Window@AEAU?$Action@V<lambda_cffe59b91f15e7b90ef16ff48daf597b>@@@stream@@V?$vector@HV?$allocator@H@std@@@std@@@stream@@H@stream@@QEAAXH@Z ; stream::Buffer<stream::Window<stream::Action<<lambda_cffe59b91f15e7b90ef16ff48daf597b> > & __ptr64,std::vector<int,std::allocator<int> > >,int>::operator()
 
 ; 92   :   return CompositionBuilder<TBuild1, TBuild2>{std::forward<TBuild1>(t1),
 
-  002ea	48 8d 05 00 00
+  002dc	48 8d 05 00 00
 	00 00		 lea	 rax, OFFSET FLAT:?sampleFunc@@YA_NH@Z ; sampleFunc
 ; File c:\program files (x86)\microsoft visual studio 14.0\vc\include\type_traits
 
 ; 1276 : 	return (static_cast<_Ty&&>(_Arg));
 
-  002f1	48 8d 4c 24 20	 lea	 rcx, QWORD PTR $T5[rsp]
-  002f6	48 89 4c 24 30	 mov	 QWORD PTR $T10[rsp], rcx
+  002e3	48 8d 4c 24 20	 lea	 rcx, QWORD PTR $T5[rsp]
+  002e8	48 89 4c 24 30	 mov	 QWORD PTR $T10[rsp], rcx
 ; File c:\users\alist_000\cppmisc\stream4.cc
 
 ; 44   :     return Where<TAction, TPredicate>{std::forward<TAction>(action),
 
-  002fb	48 89 44 24 70	 mov	 QWORD PTR $T16[rsp+16], rax
-  00300	0f 10 44 24 30	 movups	 xmm0, XMMWORD PTR $T10[rsp]
-  00305	f2 0f 10 4c 24
+  002ed	48 89 44 24 70	 mov	 QWORD PTR $T16[rsp+16], rax
+  002f2	0f 10 44 24 30	 movups	 xmm0, XMMWORD PTR $T10[rsp]
+  002f7	f2 0f 10 4c 24
 	70		 movsd	 xmm1, QWORD PTR $T16[rsp+16]
-  0030b	f2 0f 11 4c 24
+  002fd	f2 0f 11 4c 24
 	40		 movsd	 QWORD PTR $T9[rsp+16], xmm1
-  00311	0f 10 64 24 40	 movups	 xmm4, XMMWORD PTR $T9[rsp+16]
+  00303	0f 10 64 24 40	 movups	 xmm4, XMMWORD PTR $T9[rsp+16]
 ; File c:\program files (x86)\microsoft visual studio 14.0\vc\include\functional
 
 ; 164  : 		{	// construct
 
-  00316	48 8d 1d 00 00
+  00308	48 8d 1d 00 00
 	00 00		 lea	 rbx, OFFSET FLAT:??_7?$_Func_impl@U?$Where@U?$Where@U?$Where@U?$Select@AEAU?$Action@V<lambda_cab8f82deed967cef2bbf07a7cd63dbc>@@@stream@@V<lambda_8aa7c2fd8bb2d5404825e9f0eb58c65c>@@@stream@@P6A_NH@Z@stream@@V<lambda_cf2fcaad270884dc65f997dc259408a9>@@@stream@@V<lambda_598d4e86815a438fd4e7e6d387cce0a6>@@@stream@@V?$allocator@H@std@@XH@std@@6B@
-  0031d	48 89 5d 80	 mov	 QWORD PTR g$[rbp-256], rbx
+  0030f	48 89 5d 80	 mov	 QWORD PTR g$[rbp-256], rbx
 ; File c:\program files (x86)\microsoft visual studio 14.0\vc\include\xutility
 
 ; 288  : 			_Myval2(_STD forward<_Other2>(_Val2)...)
 
-  00321	0f 11 45 88	 movups	 XMMWORD PTR g$[rbp-248], xmm0
-  00325	0f 11 65 98	 movups	 XMMWORD PTR g$[rbp-232], xmm4
-  00329	f2 0f 10 44 24
+  00313	0f 11 45 88	 movups	 XMMWORD PTR g$[rbp-248], xmm0
+  00317	0f 11 65 98	 movups	 XMMWORD PTR g$[rbp-232], xmm4
+  0031b	f2 0f 10 44 24
 	50		 movsd	 xmm0, QWORD PTR $T8[rsp+32]
-  0032f	f2 0f 11 45 a8	 movsd	 QWORD PTR g$[rbp-216], xmm0
+  00321	f2 0f 11 45 a8	 movsd	 QWORD PTR g$[rbp-216], xmm0
 ; File c:\program files (x86)\microsoft visual studio 14.0\vc\include\functional
 
 ; 440  : 		_Mystorage._Ptrs[_Num_ptrs - 1] = _Ptr;
 
-  00334	48 8d 45 80	 lea	 rax, QWORD PTR g$[rbp-256]
-  00338	48 89 45 b8	 mov	 QWORD PTR g$[rbp-200], rax
+  00326	48 8d 45 80	 lea	 rax, QWORD PTR g$[rbp-256]
+  0032a	48 89 45 b8	 mov	 QWORD PTR g$[rbp-200], rax
 ; File c:\users\alist_000\cppmisc\stream4.cc
 
 ; 35   :     if (predicate(item))
 
-  0033c	b9 0f 00 00 00	 mov	 ecx, 15
-  00341	66 48 0f 7e e0	 movq	 rax, xmm4
-  00346	ff d0		 call	 rax
-  00348	84 c0		 test	 al, al
-  0034a	74 17		 je	 SHORT $LN584@main
+  0032e	b9 0f 00 00 00	 mov	 ecx, 15
+  00333	66 48 0f 7e e0	 movq	 rax, xmm4
+  00338	ff d0		 call	 rax
+  0033a	84 c0		 test	 al, al
+  0033c	74 17		 je	 SHORT $LN584@main
 
 ; 319  :            stream::action([](const auto &i) { std::cout << i << '\n'; });
 
-  0034c	f2 0f 10 0d 00
+  0033e	f2 0f 10 0d 00
 	00 00 00	 movsd	 xmm1, QWORD PTR __real@4030800000000000
-  00354	e8 00 00 00 00	 call	 ??6?$basic_ostream@DU?$char_traits@D@std@@@std@@QEAAAEAV01@N@Z ; std::basic_ostream<char,std::char_traits<char> >::operator<<
-  00359	48 8b c8	 mov	 rcx, rax
-  0035c	b2 0a		 mov	 dl, 10
-  0035e	e8 00 00 00 00	 call	 ??$?6U?$char_traits@D@std@@@std@@YAAEAV?$basic_ostream@DU?$char_traits@D@std@@@0@AEAV10@D@Z ; std::operator<<<std::char_traits<char> >
+  00346	e8 00 00 00 00	 call	 ??6?$basic_ostream@DU?$char_traits@D@std@@@std@@QEAAAEAV01@N@Z ; std::basic_ostream<char,std::char_traits<char> >::operator<<
+  0034b	48 8b c8	 mov	 rcx, rax
+  0034e	b2 0a		 mov	 dl, 10
+  00350	e8 00 00 00 00	 call	 ??$?6U?$char_traits@D@std@@@std@@YAAEAV?$basic_ostream@DU?$char_traits@D@std@@@0@AEAV10@D@Z ; std::operator<<<std::char_traits<char> >
 $LN584@main:
-  00363	48 8b 4d b8	 mov	 rcx, QWORD PTR g$[rbp-200]
-  00367	48 85 c9	 test	 rcx, rcx
+  00355	48 8b 4d b8	 mov	 rcx, QWORD PTR g$[rbp-200]
+  00359	48 85 c9	 test	 rcx, rcx
 ; File c:\program files (x86)\microsoft visual studio 14.0\vc\include\functional
 
 ; 277  : 		if (_Empty())
 
-  0036a	75 06		 jne	 SHORT $LN595@main
+  0035c	75 06		 jne	 SHORT $LN595@main
 
 ; 278  : 			_Xbad_function_call();
 
-  0036c	e8 00 00 00 00	 call	 ?_Xbad_function_call@std@@YAXXZ ; std::_Xbad_function_call
-  00371	90		 npad	 1
+  0035e	e8 00 00 00 00	 call	 ?_Xbad_function_call@std@@YAXXZ ; std::_Xbad_function_call
+  00363	90		 npad	 1
 $LN595@main:
 
 ; 122  : 		{	// non-virtual due to _Delete_this()
 
-  00372	48 8d 05 00 00
+  00364	48 8d 05 00 00
 	00 00		 lea	 rax, OFFSET FLAT:??_7?$_Func_base@XH@std@@6B@
-  00379	48 89 01	 mov	 QWORD PTR [rcx], rax
-  0037c	48 8d 45 80	 lea	 rax, QWORD PTR g$[rbp-256]
-  00380	48 3b c8	 cmp	 rcx, rax
+  0036b	48 89 01	 mov	 QWORD PTR [rcx], rax
+  0036e	48 8d 45 80	 lea	 rax, QWORD PTR g$[rbp-256]
+  00372	48 3b c8	 cmp	 rcx, rax
 
 ; 230  : 		if (_Deallocate)
 
-  00383	74 05		 je	 SHORT $LN730@main
+  00375	74 05		 je	 SHORT $LN730@main
 ; File c:\program files (x86)\microsoft visual studio 14.0\vc\include\xmemory0
 
 ; 132  : 	::operator delete(_Ptr);
 
-  00385	e8 00 00 00 00	 call	 ??3@YAXPEAX@Z		; operator delete
+  00377	e8 00 00 00 00	 call	 ??3@YAXPEAX@Z		; operator delete
 $LN730@main:
 ; File c:\program files (x86)\microsoft visual studio 14.0\vc\include\functional
 
 ; 440  : 		_Mystorage._Ptrs[_Num_ptrs - 1] = _Ptr;
 
-  0038a	48 c7 45 b8 00
+  0037c	48 c7 45 b8 00
 	00 00 00	 mov	 QWORD PTR g$[rbp-200], 0
 ; File c:\program files (x86)\microsoft visual studio 14.0\vc\include\mutex
 
 ; 35   : 		_Mtx_destroy_in_situ(_Mymtx());
 
-  00392	48 8d 4d 48	 lea	 rcx, QWORD PTR b$[rbp-120]
-  00396	e8 00 00 00 00	 call	 _Mtx_destroy_in_situ
+  00384	48 8d 4d 48	 lea	 rcx, QWORD PTR b$[rbp-120]
+  00388	e8 00 00 00 00	 call	 _Mtx_destroy_in_situ
 ; File c:\program files (x86)\microsoft visual studio 14.0\vc\include\vector
 
 ; 1637 : 		if (this->_Myfirst() != pointer())
 
-  0039b	48 bb ff ff ff
+  0038d	48 bb ff ff ff
 	ff ff ff ff 3f	 mov	 rbx, 4611686018427387903 ; 3fffffffffffffffH
-  003a5	48 8b 4d 30	 mov	 rcx, QWORD PTR b$[rbp-144]
-  003a9	48 85 c9	 test	 rcx, rcx
-  003ac	74 73		 je	 SHORT $LN756@main
+  00397	48 8b 4d 30	 mov	 rcx, QWORD PTR b$[rbp-144]
+  0039b	48 85 c9	 test	 rcx, rcx
+  0039e	74 73		 je	 SHORT $LN756@main
 
 ; 1638 : 			{	// something to free, destroy and deallocate it
 ; 1639 : 			this->_Orphan_all();
 ; 1640 : 			_Destroy(this->_Myfirst(), this->_Mylast());
 ; 1641 : 			this->_Getal().deallocate(this->_Myfirst(),
 
-  003ae	48 8b 45 40	 mov	 rax, QWORD PTR b$[rbp-128]
-  003b2	48 2b c1	 sub	 rax, rcx
-  003b5	48 c1 f8 02	 sar	 rax, 2
+  003a0	48 8b 45 40	 mov	 rax, QWORD PTR b$[rbp-128]
+  003a4	48 2b c1	 sub	 rax, rcx
+  003a7	48 c1 f8 02	 sar	 rax, 2
 ; File c:\program files (x86)\microsoft visual studio 14.0\vc\include\xmemory0
 
 ; 94   : 	_SCL_SECURE_ALWAYS_VALIDATE(_Count <= (size_t)(-1) / _Sz);
 
-  003b9	48 3b c3	 cmp	 rax, rbx
-  003bc	76 06		 jbe	 SHORT $LN823@main
-  003be	e8 00 00 00 00	 call	 _invalid_parameter_noinfo_noreturn
-  003c3	cc		 int	 3
+  003ab	48 3b c3	 cmp	 rax, rbx
+  003ae	76 06		 jbe	 SHORT $LN823@main
+  003b0	e8 00 00 00 00	 call	 _invalid_parameter_noinfo_noreturn
+  003b5	cc		 int	 3
 $LN823@main:
 
 ; 95   : 	const size_t _User_size = _Count * _Sz;
 
-  003c4	48 8d 04 85 00
+  003b6	48 8d 04 85 00
 	00 00 00	 lea	 rax, QWORD PTR [rax*4]
 
 ; 96   : 	if (_BIG_ALLOCATION_THRESHOLD <= _User_size)
 
-  003cc	48 3d 00 10 00
+  003be	48 3d 00 10 00
 	00		 cmp	 rax, 4096		; 00001000H
-  003d2	72 38		 jb	 SHORT $LN824@main
+  003c4	72 38		 jb	 SHORT $LN824@main
 
 ; 97   : 		{	// deallocate large block
 ; 98   : 		const uintptr_t _Ptr_user = reinterpret_cast<uintptr_t>(_Ptr);
 ; 99   : 		_SCL_SECURE_ALWAYS_VALIDATE(
 
-  003d4	f6 c1 1f	 test	 cl, 31
-  003d7	74 06		 je	 SHORT $LN825@main
-  003d9	e8 00 00 00 00	 call	 _invalid_parameter_noinfo_noreturn
-  003de	cc		 int	 3
+  003c6	f6 c1 1f	 test	 cl, 31
+  003c9	74 06		 je	 SHORT $LN825@main
+  003cb	e8 00 00 00 00	 call	 _invalid_parameter_noinfo_noreturn
+  003d0	cc		 int	 3
 $LN825@main:
 
 ; 100  : 			(_Ptr_user & (_BIG_ALLOCATION_ALIGNMENT - 1)) == 0);
@@ -17570,7 +17565,7 @@ $LN825@main:
 ; 102  : 		const uintptr_t _Ptr_container =
 ; 103  : 			*reinterpret_cast<uintptr_t *>(_Ptr_ptr);
 
-  003df	48 8b 41 f8	 mov	 rax, QWORD PTR [rcx-8]
+  003d1	48 8b 41 f8	 mov	 rax, QWORD PTR [rcx-8]
 
 ; 104  : 
 ; 105  :  #ifdef _DEBUG
@@ -17584,10 +17579,10 @@ $LN825@main:
 ; 113  : 		// Extra paranoia on aligned allocation/deallocation
 ; 114  : 		_SCL_SECURE_ALWAYS_VALIDATE(_Ptr_container < _Ptr_user);
 
-  003e3	48 3b c1	 cmp	 rax, rcx
-  003e6	72 06		 jb	 SHORT $LN826@main
-  003e8	e8 00 00 00 00	 call	 _invalid_parameter_noinfo_noreturn
-  003ed	cc		 int	 3
+  003d5	48 3b c1	 cmp	 rax, rcx
+  003d8	72 06		 jb	 SHORT $LN826@main
+  003da	e8 00 00 00 00	 call	 _invalid_parameter_noinfo_noreturn
+  003df	cc		 int	 3
 $LN826@main:
 
 ; 115  : 
@@ -17598,11 +17593,11 @@ $LN826@main:
 ; 120  :  #else /* _DEBUG */
 ; 121  : 		_SCL_SECURE_ALWAYS_VALIDATE(sizeof(void *)
 
-  003ee	48 2b c8	 sub	 rcx, rax
-  003f1	48 83 f9 08	 cmp	 rcx, 8
-  003f5	73 06		 jae	 SHORT $LN827@main
-  003f7	e8 00 00 00 00	 call	 _invalid_parameter_noinfo_noreturn
-  003fc	cc		 int	 3
+  003e0	48 2b c8	 sub	 rcx, rax
+  003e3	48 83 f9 08	 cmp	 rcx, 8
+  003e7	73 06		 jae	 SHORT $LN827@main
+  003e9	e8 00 00 00 00	 call	 _invalid_parameter_noinfo_noreturn
+  003ee	cc		 int	 3
 $LN827@main:
 
 ; 122  : 			<= _Ptr_user - _Ptr_container);
@@ -17610,97 +17605,97 @@ $LN827@main:
 ; 124  : 
 ; 125  : 		_SCL_SECURE_ALWAYS_VALIDATE(_Ptr_user - _Ptr_container
 
-  003fd	48 83 f9 27	 cmp	 rcx, 39			; 00000027H
-  00401	76 06		 jbe	 SHORT $LN828@main
-  00403	e8 00 00 00 00	 call	 _invalid_parameter_noinfo_noreturn
-  00408	cc		 int	 3
+  003ef	48 83 f9 27	 cmp	 rcx, 39			; 00000027H
+  003f3	76 06		 jbe	 SHORT $LN828@main
+  003f5	e8 00 00 00 00	 call	 _invalid_parameter_noinfo_noreturn
+  003fa	cc		 int	 3
 $LN828@main:
 
 ; 126  : 			<= _NON_USER_SIZE);
 ; 127  : 
 ; 128  : 		_Ptr = reinterpret_cast<void *>(_Ptr_container);
 
-  00409	48 8b c8	 mov	 rcx, rax
+  003fb	48 8b c8	 mov	 rcx, rax
 $LN824@main:
 
 ; 132  : 	::operator delete(_Ptr);
 
-  0040c	e8 00 00 00 00	 call	 ??3@YAXPEAX@Z		; operator delete
-  00411	0f 57 c0	 xorps	 xmm0, xmm0
-  00414	66 0f 7f 45 30	 movdqa	 XMMWORD PTR b$[rbp-144], xmm0
+  003fe	e8 00 00 00 00	 call	 ??3@YAXPEAX@Z		; operator delete
+  00403	0f 57 c0	 xorps	 xmm0, xmm0
+  00406	66 0f 7f 45 30	 movdqa	 XMMWORD PTR b$[rbp-144], xmm0
 ; File c:\program files (x86)\microsoft visual studio 14.0\vc\include\vector
 
 ; 1645 : 			this->_Myend() = pointer();
 
-  00419	48 c7 45 40 00
+  0040b	48 c7 45 40 00
 	00 00 00	 mov	 QWORD PTR b$[rbp-128], 0
 $LN756@main:
 ; File c:\program files (x86)\microsoft visual studio 14.0\vc\include\mutex
 
 ; 35   : 		_Mtx_destroy_in_situ(_Mymtx());
 
-  00421	48 8d 4d e0	 lea	 rcx, QWORD PTR b$[rbp-224]
-  00425	e8 00 00 00 00	 call	 _Mtx_destroy_in_situ
+  00413	48 8d 4d e0	 lea	 rcx, QWORD PTR b$[rbp-224]
+  00417	e8 00 00 00 00	 call	 _Mtx_destroy_in_situ
 ; File c:\program files (x86)\microsoft visual studio 14.0\vc\include\vector
 
 ; 976  : 		_Tidy();
 
-  0042a	48 8d 4d c8	 lea	 rcx, QWORD PTR b$[rbp-248]
-  0042e	e8 00 00 00 00	 call	 ?_Tidy@?$vector@V?$vector@HV?$allocator@H@std@@@std@@V?$allocator@V?$vector@HV?$allocator@H@std@@@std@@@2@@std@@IEAAXXZ ; std::vector<std::vector<int,std::allocator<int> >,std::allocator<std::vector<int,std::allocator<int> > > >::_Tidy
-  00433	90		 npad	 1
+  0041c	48 8d 4d c8	 lea	 rcx, QWORD PTR b$[rbp-248]
+  00420	e8 00 00 00 00	 call	 ?_Tidy@?$vector@V?$vector@HV?$allocator@H@std@@@std@@V?$allocator@V?$vector@HV?$allocator@H@std@@@std@@@2@@std@@IEAAXXZ ; std::vector<std::vector<int,std::allocator<int> >,std::allocator<std::vector<int,std::allocator<int> > > >::_Tidy
+  00425	90		 npad	 1
 ; File c:\users\alist_000\cppmisc\timer_w32.cc
 
 ; 66   :     if (!disposed_) {
 
-  00434	80 bd 70 01 00
+  00426	80 bd 70 01 00
 	00 00		 cmp	 BYTE PTR t$[rbp-48], 0
-  0043b	75 19		 jne	 SHORT $LN884@main
+  0042d	75 19		 jne	 SHORT $LN884@main
 
 ; 67   :       disposed_ = true;
 
-  0043d	c6 85 70 01 00
+  0042f	c6 85 70 01 00
 	00 01		 mov	 BYTE PTR t$[rbp-48], 1
 
 ; 68   :       DeleteTimerQueueTimer(NULL, timerHandle_, NULL);
 
-  00444	45 33 c0	 xor	 r8d, r8d
-  00447	48 8b 95 68 01
+  00436	45 33 c0	 xor	 r8d, r8d
+  00439	48 8b 95 68 01
 	00 00		 mov	 rdx, QWORD PTR t$[rbp-56]
-  0044e	33 c9		 xor	 ecx, ecx
-  00450	ff 15 00 00 00
+  00440	33 c9		 xor	 ecx, ecx
+  00442	ff 15 00 00 00
 	00		 call	 QWORD PTR __imp_DeleteTimerQueueTimer
 $LN884@main:
 ; File c:\program files (x86)\microsoft visual studio 14.0\vc\include\functional
 
 ; 297  : 		return (_Getimpl() == 0);
 
-  00456	48 8b 8d 60 01
+  00448	48 8b 8d 60 01
 	00 00		 mov	 rcx, QWORD PTR t$[rbp-64]
-  0045d	48 85 c9	 test	 rcx, rcx
+  0044f	48 85 c9	 test	 rcx, rcx
 
 ; 384  : 		if (!_Empty())
 
-  00460	74 1e		 je	 SHORT $LN915@main
+  00452	74 1e		 je	 SHORT $LN915@main
 
 ; 385  : 			{	// destroy callable object and maybe delete it
 ; 386  : 			_Getimpl()->_Delete_this(!_Local());
 
-  00462	48 8b 01	 mov	 rax, QWORD PTR [rcx]
+  00454	48 8b 01	 mov	 rax, QWORD PTR [rcx]
 
 ; 421  : 		return (_Getimpl() == _Getspace());
 
-  00465	48 8d 95 28 01
+  00457	48 8d 95 28 01
 	00 00		 lea	 rdx, QWORD PTR t$[rbp-120]
-  0046c	48 3b ca	 cmp	 rcx, rdx
+  0045e	48 3b ca	 cmp	 rcx, rdx
 
 ; 386  : 			_Getimpl()->_Delete_this(!_Local());
 
-  0046f	0f 95 c2	 setne	 dl
-  00472	ff 50 20	 call	 QWORD PTR [rax+32]
+  00461	0f 95 c2	 setne	 dl
+  00464	ff 50 20	 call	 QWORD PTR [rax+32]
 
 ; 440  : 		_Mystorage._Ptrs[_Num_ptrs - 1] = _Ptr;
 
-  00475	48 c7 85 60 01
+  00467	48 c7 85 60 01
 	00 00 00 00 00
 	00		 mov	 QWORD PTR t$[rbp-64], 0
 $LN915@main:
@@ -17708,57 +17703,57 @@ $LN915@main:
 
 ; 35   : 		_Mtx_destroy_in_situ(_Mymtx());
 
-  00480	48 8d 8d d0 00
+  00472	48 8d 8d d0 00
 	00 00		 lea	 rcx, QWORD PTR t$[rbp-208]
-  00487	e8 00 00 00 00	 call	 _Mtx_destroy_in_situ
+  00479	e8 00 00 00 00	 call	 _Mtx_destroy_in_situ
 ; File c:\program files (x86)\microsoft visual studio 14.0\vc\include\vector
 
 ; 1637 : 		if (this->_Myfirst() != pointer())
 
-  0048c	48 8b 8d b8 00
+  0047e	48 8b 8d b8 00
 	00 00		 mov	 rcx, QWORD PTR t$[rbp-232]
-  00493	48 85 c9	 test	 rcx, rcx
-  00496	74 6a		 je	 SHORT $LN930@main
+  00485	48 85 c9	 test	 rcx, rcx
+  00488	74 6a		 je	 SHORT $LN930@main
 
 ; 1638 : 			{	// something to free, destroy and deallocate it
 ; 1639 : 			this->_Orphan_all();
 ; 1640 : 			_Destroy(this->_Myfirst(), this->_Mylast());
 ; 1641 : 			this->_Getal().deallocate(this->_Myfirst(),
 
-  00498	48 8b 85 c8 00
+  0048a	48 8b 85 c8 00
 	00 00		 mov	 rax, QWORD PTR t$[rbp-216]
-  0049f	48 2b c1	 sub	 rax, rcx
-  004a2	48 c1 f8 02	 sar	 rax, 2
+  00491	48 2b c1	 sub	 rax, rcx
+  00494	48 c1 f8 02	 sar	 rax, 2
 ; File c:\program files (x86)\microsoft visual studio 14.0\vc\include\xmemory0
 
 ; 94   : 	_SCL_SECURE_ALWAYS_VALIDATE(_Count <= (size_t)(-1) / _Sz);
 
-  004a6	48 3b c3	 cmp	 rax, rbx
-  004a9	76 06		 jbe	 SHORT $LN997@main
-  004ab	e8 00 00 00 00	 call	 _invalid_parameter_noinfo_noreturn
-  004b0	cc		 int	 3
+  00498	48 3b c3	 cmp	 rax, rbx
+  0049b	76 06		 jbe	 SHORT $LN997@main
+  0049d	e8 00 00 00 00	 call	 _invalid_parameter_noinfo_noreturn
+  004a2	cc		 int	 3
 $LN997@main:
 
 ; 95   : 	const size_t _User_size = _Count * _Sz;
 
-  004b1	48 8d 04 85 00
+  004a3	48 8d 04 85 00
 	00 00 00	 lea	 rax, QWORD PTR [rax*4]
 
 ; 96   : 	if (_BIG_ALLOCATION_THRESHOLD <= _User_size)
 
-  004b9	48 3d 00 10 00
+  004ab	48 3d 00 10 00
 	00		 cmp	 rax, 4096		; 00001000H
-  004bf	72 3c		 jb	 SHORT $LN998@main
+  004b1	72 3c		 jb	 SHORT $LN998@main
 
 ; 97   : 		{	// deallocate large block
 ; 98   : 		const uintptr_t _Ptr_user = reinterpret_cast<uintptr_t>(_Ptr);
 ; 99   : 		_SCL_SECURE_ALWAYS_VALIDATE(
 
-  004c1	f6 85 b8 00 00
+  004b3	f6 85 b8 00 00
 	00 1f		 test	 BYTE PTR t$[rbp-232], 31
-  004c8	74 06		 je	 SHORT $LN999@main
-  004ca	e8 00 00 00 00	 call	 _invalid_parameter_noinfo_noreturn
-  004cf	cc		 int	 3
+  004ba	74 06		 je	 SHORT $LN999@main
+  004bc	e8 00 00 00 00	 call	 _invalid_parameter_noinfo_noreturn
+  004c1	cc		 int	 3
 $LN999@main:
 
 ; 100  : 			(_Ptr_user & (_BIG_ALLOCATION_ALIGNMENT - 1)) == 0);
@@ -17766,7 +17761,7 @@ $LN999@main:
 ; 102  : 		const uintptr_t _Ptr_container =
 ; 103  : 			*reinterpret_cast<uintptr_t *>(_Ptr_ptr);
 
-  004d0	48 8b 41 f8	 mov	 rax, QWORD PTR [rcx-8]
+  004c2	48 8b 41 f8	 mov	 rax, QWORD PTR [rcx-8]
 
 ; 104  : 
 ; 105  :  #ifdef _DEBUG
@@ -17780,10 +17775,10 @@ $LN999@main:
 ; 113  : 		// Extra paranoia on aligned allocation/deallocation
 ; 114  : 		_SCL_SECURE_ALWAYS_VALIDATE(_Ptr_container < _Ptr_user);
 
-  004d4	48 3b c1	 cmp	 rax, rcx
-  004d7	72 06		 jb	 SHORT $LN1000@main
-  004d9	e8 00 00 00 00	 call	 _invalid_parameter_noinfo_noreturn
-  004de	cc		 int	 3
+  004c6	48 3b c1	 cmp	 rax, rcx
+  004c9	72 06		 jb	 SHORT $LN1000@main
+  004cb	e8 00 00 00 00	 call	 _invalid_parameter_noinfo_noreturn
+  004d0	cc		 int	 3
 $LN1000@main:
 
 ; 115  : 
@@ -17794,11 +17789,11 @@ $LN1000@main:
 ; 120  :  #else /* _DEBUG */
 ; 121  : 		_SCL_SECURE_ALWAYS_VALIDATE(sizeof(void *)
 
-  004df	48 2b c8	 sub	 rcx, rax
-  004e2	48 83 f9 08	 cmp	 rcx, 8
-  004e6	73 06		 jae	 SHORT $LN1001@main
-  004e8	e8 00 00 00 00	 call	 _invalid_parameter_noinfo_noreturn
-  004ed	cc		 int	 3
+  004d1	48 2b c8	 sub	 rcx, rax
+  004d4	48 83 f9 08	 cmp	 rcx, 8
+  004d8	73 06		 jae	 SHORT $LN1001@main
+  004da	e8 00 00 00 00	 call	 _invalid_parameter_noinfo_noreturn
+  004df	cc		 int	 3
 $LN1001@main:
 
 ; 122  : 			<= _Ptr_user - _Ptr_container);
@@ -17806,43 +17801,43 @@ $LN1001@main:
 ; 124  : 
 ; 125  : 		_SCL_SECURE_ALWAYS_VALIDATE(_Ptr_user - _Ptr_container
 
-  004ee	48 83 f9 27	 cmp	 rcx, 39			; 00000027H
-  004f2	76 06		 jbe	 SHORT $LN1002@main
-  004f4	e8 00 00 00 00	 call	 _invalid_parameter_noinfo_noreturn
-  004f9	cc		 int	 3
+  004e0	48 83 f9 27	 cmp	 rcx, 39			; 00000027H
+  004e4	76 06		 jbe	 SHORT $LN1002@main
+  004e6	e8 00 00 00 00	 call	 _invalid_parameter_noinfo_noreturn
+  004eb	cc		 int	 3
 $LN1002@main:
 
 ; 126  : 			<= _NON_USER_SIZE);
 ; 127  : 
 ; 128  : 		_Ptr = reinterpret_cast<void *>(_Ptr_container);
 
-  004fa	48 8b c8	 mov	 rcx, rax
+  004ec	48 8b c8	 mov	 rcx, rax
 $LN998@main:
 
 ; 132  : 	::operator delete(_Ptr);
 
-  004fd	e8 00 00 00 00	 call	 ??3@YAXPEAX@Z		; operator delete
+  004ef	e8 00 00 00 00	 call	 ??3@YAXPEAX@Z		; operator delete
 $LN930@main:
 ; File c:\users\alist_000\cppmisc\stream4.cc
 
 ; 328  :   return 0;
 
-  00502	33 c0		 xor	 eax, eax
+  004f4	33 c0		 xor	 eax, eax
 
 ; 329  : }
 
-  00504	48 8b 8d 80 01
+  004f6	48 8b 8d 80 01
 	00 00		 mov	 rcx, QWORD PTR __$ArrayPad$[rbp-256]
-  0050b	48 33 cc	 xor	 rcx, rsp
-  0050e	e8 00 00 00 00	 call	 __security_check_cookie
-  00513	4c 8d 9c 24 90
+  004fd	48 33 cc	 xor	 rcx, rsp
+  00500	e8 00 00 00 00	 call	 __security_check_cookie
+  00505	4c 8d 9c 24 90
 	02 00 00	 lea	 r11, QWORD PTR [rsp+656]
-  0051b	49 8b 5b 10	 mov	 rbx, QWORD PTR [r11+16]
-  0051f	49 8b 7b 18	 mov	 rdi, QWORD PTR [r11+24]
-  00523	4d 8b 73 20	 mov	 r14, QWORD PTR [r11+32]
-  00527	49 8b e3	 mov	 rsp, r11
-  0052a	5d		 pop	 rbp
-  0052b	c3		 ret	 0
+  0050d	49 8b 5b 10	 mov	 rbx, QWORD PTR [r11+16]
+  00511	49 8b 7b 18	 mov	 rdi, QWORD PTR [r11+24]
+  00515	4d 8b 73 20	 mov	 r14, QWORD PTR [r11+32]
+  00519	49 8b e3	 mov	 rsp, r11
+  0051c	5d		 pop	 rbp
+  0051d	c3		 ret	 0
 $LN1040@main:
 main	ENDP
 _TEXT	ENDS
@@ -18152,7 +18147,7 @@ milliseconds$dead$ = 8
 
 ; 251  :   return TimeClusterBuilder<TItem>{milliseconds};
 
-  00000	b8 c8 00 00 00	 mov	 eax, 200		; 000000c8H
+  00000	b8 f4 01 00 00	 mov	 eax, 500		; 000001f4H
 
 ; 252  : }
 
