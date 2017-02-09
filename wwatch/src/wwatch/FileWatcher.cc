@@ -33,8 +33,10 @@ void FileWatcher::poll(std::function<void(const FileWatchEvent &)> handler) {
     event.action = notifications->Action;
     event.path = std::wstring(notifications->FileName,
                               notifications->FileNameLength / 2);
+    
     handler(event);
-    notifications += notifications->NextEntryOffset;
+    notifications = reinterpret_cast<PFILE_NOTIFY_INFORMATION>(reinterpret_cast<char*>(notifications) 
+      + notifications->NextEntryOffset);
   } while (notifications->NextEntryOffset != 0);
 }
 }
