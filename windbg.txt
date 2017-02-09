@@ -1,5 +1,2 @@
-
-* bp stream4!main
-
-g
-
+bm *!main
+*g
