@@ -7,6 +7,7 @@
 #include <functional>
 #include <memory>
 #include <string>
+#include <vector>
 
 namespace wwatch {
 
@@ -24,6 +25,6 @@ class FileWatcher {
 
 public:
   FileWatcher(const std::wstring &path, unsigned bufferSize = 4096);
-  void poll(std::function<void(const FileWatchEvent &)> handler);
+  std::vector<FileWatchEvent> poll();
 };
 }
