@@ -12,6 +12,7 @@
 *.lnk
 *.db
 *.debug
+*.opendb
 .vs/
 a.out
 *.nativecodeanalysis.xml
