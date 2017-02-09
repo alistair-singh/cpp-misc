@@ -28,14 +28,16 @@ PFILE_NOTIFY_INFORMATION FileWatcher::pollInternal() {
 
 std::vector<FileWatchEvent> FileWatcher::poll() {
   std::vector<FileWatchEvent> events;
-  
+
   auto notifications = pollInternal();
   do {
-    events.push_back({ notifications->Action, std::wstring(notifications->FileName,
-      notifications->FileNameLength / 2) });
+    events.push_back({notifications->Action,
+                      std::wstring(notifications->FileName,
+                                   notifications->FileNameLength / 2)});
 
-    notifications = reinterpret_cast<PFILE_NOTIFY_INFORMATION>(reinterpret_cast<char*>(notifications) 
-      + notifications->NextEntryOffset);
+    notifications = reinterpret_cast<PFILE_NOTIFY_INFORMATION>(
+        reinterpret_cast<char *>(notifications) +
+        notifications->NextEntryOffset);
   } while (notifications->NextEntryOffset != 0);
 
   return events;

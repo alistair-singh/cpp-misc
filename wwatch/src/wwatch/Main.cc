@@ -56,8 +56,7 @@ int wmain(int argc, wchar_t *argv[]) {
     wwatch::FileWatcher watcher(dir);
     size_t gi = 0;
     while (true) {
-      for (const auto &event : watcher.poll())
-      {
+      for (const auto &event : watcher.poll()) {
         handle(++gi, event.action, event.path, subcommand, extensions);
       }
     }
