@@ -11,11 +11,11 @@ mkdir %NUGET_DIR%
 mkdir %PACKAGEDIR%
 if not exist %NUGET% (powershell -Command "wget http://nuget.org/nuget.exe -OutFile %NUGET%")
 
-::if not exist %VSTOOLSDIR%* ( 
+if not exist %VSTOOLSDIR%* ( 
 
-%NUGET% install VisualCppTools -SolutionDirectory . -ConfigFile %~dp0.nuget\nuget.config -NonInteractive -PreRelease -OutputDirectory %PACKAGEDIR% 
+%NUGET% install VisualCppTools -SolutionDirectory . -ConfigFile %~dp0.nuget\nuget.config -NonInteractive -OutputDirectory %PACKAGEDIR% 
 
-::)
+)
 
 :SkipDownload
 
