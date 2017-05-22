@@ -65,7 +65,7 @@ public:
   void stop() {
     if (!disposed_) {
       disposed_ = true;
-      DeleteTimerQueueTimer(NULL, timerHandle_, NULL);
+      (void)DeleteTimerQueueTimer(NULL, timerHandle_, NULL);
     }
   }
 
@@ -78,7 +78,7 @@ VOID CALLBACK timer_tick(PVOID lpParam, BOOLEAN timerOrWaitFired) {
   }
 }
 
-int test(int, char **) {
+int main(int, char **) {
   Timer t1;
   t1.start(200, 200,
            [](auto m) { std::cout << "hello1: " << m.epoch_ms << std::endl; });

@@ -135,16 +135,16 @@ int main() {
   try {
     resErr.error();
     resErr.item();
-  } catch (std::runtime_error &error) {
-    std::cerr << error.what() << std::endl;
+  } catch (std::runtime_error &e) {
+    std::cerr << e.what() << std::endl;
   }
   Result<char, Stream<std::string::const_iterator>> res1('a', stream);
   try {
     if ('a' == res1.item())
       std::wcout << "equal a" << std::endl;
     res1.error();
-  } catch (std::runtime_error &error) {
-    std::cerr << error.what() << std::endl;
+  } catch (std::runtime_error &e) {
+    std::cerr << e.what() << std::endl;
   }
 
   auto stream2 = make_stream(source);

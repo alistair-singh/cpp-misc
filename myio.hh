@@ -49,13 +49,13 @@ public:
     }
 #else
     handle_ = fopen(path, mode);
-    if (!handle_) {
+    if (bad()) {
       throw std::runtime_error(strerror(errno));
     }
 #endif
   };
   ~CFile() noexcept {
-    if (!handle_ && own_)
+    if (!bad() && own_)
       fclose(handle_);
   }
 
@@ -139,12 +139,6 @@ std::vector<char> read_all_bytes(CFile &file) {
 
 std::vector<char> read_all_bytes(std::string path) {
   CFile file(path.c_str(), "rb");
-  file.seek(0L, Seek::End);
-  size_t length = file.tell();
-  file.seek(0L, Seek::Set);
-
-  std::vector<char> buffer(length);
-  file.read(buffer.data(), 0, length);
-  return buffer;
+  return read_all_bytes(file);
 }
 }
