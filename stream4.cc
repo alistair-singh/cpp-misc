@@ -252,6 +252,41 @@ template <typename TItem> auto time_cluster(int milliseconds) {
 }
 
 //------------------------------------------------------------- TIMECLUSTER
+
+//------------------------------------------------------------- CONCAT
+
+template <typename TAction, typename TActionOther> class Concat {
+  TAction action_;
+  TActionOther other_;
+
+public:
+  Concat(TAction &&action, TActionOther &&other)
+      : action_(std::forward<TAction>(action)), 
+      other_(std::forward<TActionOther>(other)) {}
+template <typename TItem>
+  inline void operator()(TItem item) {
+    action_(item);
+    other_(item);
+  }
+
+  inline void reset() {
+    action_.reset();
+    other_.reset();
+  }
+};
+
+template <typename TActionOther> struct ConcatBuilder {
+  TActionOther other;
+  template <typename TAction> inline auto operator()(TAction &&action, TActionOther &&other) {
+    return Concat<TAction>{std::forward<TAction>(action), std::forward<TActionOther>(other) };
+  }
+};
+
+template <typename TActionOther> auto concat(TActionOther other) {
+  return ConcatBuilder<TActionOther>{other};
+}
+
+//------------------------------------------------------------- CONCAT
 }
 
 bool sampleFunc(int i) {
@@ -269,6 +304,9 @@ int main() {
                return i; 
                }) // dedupe
            >> stream::where([](const auto& i) { return !i.empty(); })
+           >> stream::concat(stream::action([](const auto& i){
+                 std::cout << i.size() << '\n';
+                 }))
            >> stream::action([](const auto& i) {
              for (const auto &si : i) {
                std::cout << '\t' << "t(" <<si << ")";
