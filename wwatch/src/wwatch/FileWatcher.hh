@@ -4,7 +4,6 @@
 #include "Win32Error.hh"
 
 #include <Windows.h>
-#include <functional>
 #include <memory>
 #include <string>
 #include <vector>
@@ -16,6 +15,8 @@ struct FileWatchEvent {
   std::wstring path;
 };
 
+std::vector<FileWatchEvent> toEvents(PFILE_NOTIFY_INFORMATION notifications);
+
 class FileWatcher {
   HANDLE directory_;
   std::unique_ptr<char> buffer_;
@@ -26,5 +27,6 @@ class FileWatcher {
 public:
   FileWatcher(const std::wstring &path, unsigned bufferSize = 4096);
   std::vector<FileWatchEvent> poll();
+	HANDLE directory() const { return directory_; }
 };
 }

@@ -1,33 +1,40 @@
 
 #include <chrono>
 #include <iostream>
+#include <string>
 #include <thread>
+#include <vector>
+#include <thread>
+#include <future>
+#include <functional>
 
-class X {
-public:
-  X() { std::cout << "ctor" << std::endl; }
-  ~X() { std::cout << "dtor" << std::endl; }
-};
+#include <windows.h>
 
-void Do(char *str) {
-  thread_local static X x;
-  std::cout << &x << " - " << str << std::endl;
+template <typename F>
+auto myasync(F && func) {
+  std::packaged_task<F> task(func); 
+
+//  ::QueueUserWorkItem(
+//      [&](LPVOID) -> DWORD { 
+        task();
+//        return 0; 
+//      }, 
+//      nullptr, 
+//      0);
+
+  return task.get_future();
 }
 
 int main(int argc, char *argv[]) {
-  std::cout << __FILE__ << std::endl;
+  std::vector<std::string>(argv, argv + argc);
 
-  for (int i = 0; i < argc; i++) {
-    std::thread t([=] {
-      Do(argv[i]);
-      std::this_thread::sleep_for(std::chrono::seconds(i));
-      std::cout << "fin " << std::this_thread::get_id() << std::endl;
-    });
-    t.detach();
-  }
-
+  auto res = myasync([]{
+    std::cout << "H" << std::endl;
+    return true;
+  });
 
   std::cout << "Press enter to exit..." << std::endl;
   std::cin.get();
+
   return 0;
 }

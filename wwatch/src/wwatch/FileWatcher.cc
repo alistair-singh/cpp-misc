@@ -6,10 +6,12 @@ namespace wwatch {
 FileWatcher::FileWatcher(const std::wstring &path, unsigned bufferSize)
     : bufferSize_(bufferSize) {
   buffer_ = std::unique_ptr<char>(new char[bufferSize_]);
-  directory_ =
-      ::CreateFileW(path.data(), FILE_LIST_DIRECTORY,
+  directory_ = ::CreateFileW(path.data(), FILE_LIST_DIRECTORY,
                     FILE_SHARE_WRITE | FILE_SHARE_READ | FILE_SHARE_DELETE,
-                    NULL, OPEN_EXISTING, FILE_FLAG_BACKUP_SEMANTICS, NULL);
+                    NULL,
+										OPEN_EXISTING, 
+										FILE_FLAG_BACKUP_SEMANTICS | FILE_FLAG_OVERLAPPED, 
+										NULL);
   if (directory_ == INVALID_HANDLE_VALUE) {
     throw Win32Error::GetLastWin32Error();
   }
@@ -26,20 +28,22 @@ PFILE_NOTIFY_INFORMATION FileWatcher::pollInternal() {
   return reinterpret_cast<PFILE_NOTIFY_INFORMATION>(buffer_.get());
 }
 
+std::vector<FileWatchEvent> toEvents(PFILE_NOTIFY_INFORMATION notifications) {
+	std::vector<FileWatchEvent> events;
+	do {
+		events.push_back({ notifications->Action,
+			std::wstring(notifications->FileName,
+				notifications->FileNameLength / 2) });
+
+		notifications = reinterpret_cast<PFILE_NOTIFY_INFORMATION>(
+			reinterpret_cast<char *>(notifications) +
+			notifications->NextEntryOffset);
+	} while (notifications->NextEntryOffset != 0);
+
+	return events;
+}
+
 std::vector<FileWatchEvent> FileWatcher::poll() {
-  std::vector<FileWatchEvent> events;
-
-  auto notifications = pollInternal();
-  do {
-    events.push_back({notifications->Action,
-                      std::wstring(notifications->FileName,
-                                   notifications->FileNameLength / 2)});
-
-    notifications = reinterpret_cast<PFILE_NOTIFY_INFORMATION>(
-        reinterpret_cast<char *>(notifications) +
-        notifications->NextEntryOffset);
-  } while (notifications->NextEntryOffset != 0);
-
-  return events;
+	return toEvents(pollInternal());
 }
 }

@@ -17,5 +17,6 @@ public:
   const std::wstring &message() const { return message_; }
   const unsigned &code() const { return code_; }
   static Win32Error GetLastWin32Error();
+	static Win32Error GetLastWin32Error(unsigned code);
 };
 }

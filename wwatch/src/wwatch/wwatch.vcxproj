@@ -121,6 +121,7 @@
     <ClCompile Include="Util.cc" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="CompletionPort.hh" />
     <ClInclude Include="Win32Error.hh" />
     <ClInclude Include="FileWatcher.hh" />
     <ClInclude Include="Util.hh" />

@@ -1,4 +1,6 @@
 
+
+#include "CompletionPort.hh"
 #include "FileWatcher.hh"
 #include "Util.hh"
 #include "Win32Error.hh"
@@ -31,19 +33,31 @@ void handle(size_t global, unsigned action, const std::wstring &name,
   }
 }
 
+void pollInternal2(wwatch::CompletionPort& completionPort, HANDLE directory) {
+	auto buffer = completionPort.buffer();
+	if (::ReadDirectoryChangesW(directory, static_cast<LPVOID>(buffer->data.values),
+		(DWORD)buffer->data.size, TRUE, FILE_NOTIFY_CHANGE_SIZE,
+		NULL, &buffer->overlapped, NULL) == FALSE) {
+		throw wwatch::Win32Error::GetLastWin32Error();
+	}
+	buffer.release();
+}
+
 int wmain(int argc, wchar_t *argv[]) {
-  if (argc < 4) {
+
+	std::vector<std::wstring> margs(&argv[0], &argv[argc]);
+	if (margs.size() < 4) {
     std::wcout << L"usage:" << std::endl;
     std::wcout << L"\t" << argv[0] << L" \\dir\\to\\watch extension command"
                << std::endl;
     return 1;
   }
 
-  std::wstring dir(argv[1]);
-  auto extensions = wwatch::split(argv[2], L',');
+  std::wstring dir(margs[1]);
+  auto extensions = wwatch::split(margs[2], L',');
 
-  auto begin = &argv[3];
-  auto end = begin + (argc - 3);
+  auto begin = margs.begin()+3;
+	auto end = margs.end();
   std::vector<std::wstring> args(begin, end);
   auto subcommand = wwatch::concat(args, L" ");
 
@@ -53,13 +67,21 @@ int wmain(int argc, wchar_t *argv[]) {
   std::wcout << L"Will execute " << subcommand << L" [filename]" << std::endl;
 
   try {
+		wwatch::CompletionPort completionPort;
     wwatch::FileWatcher watcher(dir);
-    size_t gi = 0;
-    while (true) {
-      for (const auto &event : watcher.poll()) {
-        handle(++gi, event.action, event.path, subcommand, extensions);
-      }
-    }
+		completionPort.associate(watcher.directory(), 0);
+		size_t gi = 0;
+		while (true) {
+			pollInternal2(completionPort, watcher.directory());
+			auto c = completionPort.get();
+			auto s = reinterpret_cast<PFILE_NOTIFY_INFORMATION>(c.buffer->data.values);
+			auto events = wwatch::toEvents(s);
+
+			for (const auto &event : events) {
+				handle(++gi, event.action, event.path, subcommand, extensions);
+			}
+			if (c.data == -1) break;
+		}
   } catch (const wwatch::Win32Error &error) {
     std::wcerr << L"Error Code: " << error.code() << std::endl;
     std::wcerr << L"Error Message: " << error.message() << std::endl;
